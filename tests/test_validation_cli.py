@@ -126,3 +126,27 @@ def test_pipeline_dispatches_holdout_stage(monkeypatch, tmp_path: Path) -> None:
     assert result["ok"] is True
     assert len(calls) == 1
     assert calls[0]["output_dir"] == tmp_path / "output" / "validation" / "holdout"
+
+
+def test_pipeline_dispatches_synthetic_stage(monkeypatch, tmp_path: Path) -> None:
+    baseline = Baseline(kind="package", root=tmp_path, files={}, hashes={})
+    calls: list[dict] = []
+    monkeypatch.setattr(validation_pipeline, "resolve_baseline", lambda *args, **kwargs: baseline)
+    monkeypatch.setattr(
+        validation_pipeline.validation_synthetic,
+        "run",
+        lambda **kwargs: calls.append(kwargs) or {"ok": True, "status": "smoke_passed"},
+    )
+
+    result = validation_pipeline.run(
+        mode="smoke",
+        input_path=tmp_path / "input.csv",
+        output_root=tmp_path / "output",
+        device="cpu",
+        requested_stage="synthetic",
+        package_root=tmp_path / "package",
+    )
+
+    assert result["ok"] is True
+    assert len(calls) == 1
+    assert calls[0]["output_dir"] == tmp_path / "output" / "validation" / "synthetic_recovery"
