@@ -35,6 +35,10 @@ def sensitivity_dir(output_root: str | Path) -> Path:
     return resolve_project_path(output_root) / "sensitivity"
 
 
+def validation_dir(output_root: str | Path) -> Path:
+    return resolve_project_path(output_root) / "validation"
+
+
 def default_input_text() -> str:
     return DEFAULT_INPUT.relative_to(PROJECT_ROOT).as_posix()
 

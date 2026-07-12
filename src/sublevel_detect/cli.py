@@ -5,7 +5,18 @@ import json
 from pathlib import Path
 from typing import Sequence
 
-from . import ablation_pipeline, main_pipeline, model, paths, robustness_pipeline, sensitivity_pipeline
+from . import (
+    ablation_pipeline,
+    main_pipeline,
+    model,
+    paths,
+    robustness_pipeline,
+    sensitivity_pipeline,
+    validation_pipeline,
+)
+
+
+VALIDATION_STAGES = ("selector", "bootstrap", "holdout", "synthetic", "benchmark")
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -23,6 +34,13 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--ablation", action="store_true", help="Run the ablation baseline after the main baseline.")
     parser.add_argument("--robustness", action="store_true", help="Run selector perturbation and leave-one-Vr-out robustness.")
     parser.add_argument("--sensitivity", action="store_true", help="Run forward-prior and channel-uncertainty sensitivity scans.")
+    parser.add_argument("--validation", action="store_true", help="Run all preregistered supplementary validation stages.")
+    parser.add_argument(
+        "--validation-only",
+        choices=VALIDATION_STAGES,
+        default=None,
+        help="Run one validation stage and its required dependencies.",
+    )
     parser.add_argument("--input", default=paths.default_input_text(), help="Input data file.")
     parser.add_argument("--output", default=paths.default_output_text(), help="Output root directory.")
     parser.add_argument("--device", choices=["cpu", "cuda", "auto"], default="cpu")
@@ -31,6 +49,10 @@ def build_parser() -> argparse.ArgumentParser:
 
 def hyperopt_enabled(args: argparse.Namespace) -> bool:
     return str(args.mode) == "fullscan" and "hpopt" not in set(args.exclude or [])
+
+
+def validation_enabled(args: argparse.Namespace) -> bool:
+    return bool(args.validation or args.validation_only is not None)
 
 
 def existing_main_result(args: argparse.Namespace) -> dict | None:
@@ -65,6 +87,16 @@ def existing_main_result(args: argparse.Namespace) -> dict | None:
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+    if validation_enabled(args):
+        validation_result = validation_pipeline.run(
+            mode=str(args.mode),
+            input_path=args.input,
+            output_root=args.output,
+            device=str(args.device),
+            requested_stage=args.validation_only,
+        )
+        print(json.dumps(model.json_ready({"validation": validation_result}), ensure_ascii=False, indent=2))
+        return 0 if bool(validation_result.get("ok", False)) else 1
     main_result = existing_main_result(args) or main_pipeline.run(
         mode=str(args.mode),
         input_path=args.input,
