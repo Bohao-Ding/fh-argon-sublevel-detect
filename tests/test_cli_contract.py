@@ -102,6 +102,17 @@ def test_explicit_cuda_is_the_only_cuda_dispatch_path(monkeypatch) -> None:
     assert auto_cfg.dispatch_strategy == "cpu_4"
 
 
+def test_parallel_fit_worker_count_keeps_production_cuda_serial_and_allows_explicit_validation_parallelism() -> None:
+    production = model.Config(selected_device="cuda", dispatch_strategy="single", cuda_workers=1)
+    validation = model.Config(selected_device="cuda", dispatch_strategy="cuda_4", cuda_workers=4)
+    cpu = model.Config(selected_device="cpu", dispatch_strategy="cpu_4", cpu_workers=4)
+
+    assert model.parallel_fit_worker_count(production, torch_device="cuda", job_count=8) == 1
+    assert model.parallel_fit_worker_count(validation, torch_device="cuda", job_count=8) == 4
+    assert model.parallel_fit_worker_count(validation, torch_device="cuda", job_count=2) == 2
+    assert model.parallel_fit_worker_count(cpu, torch_device="cpu", job_count=8) == 4
+
+
 def test_external_input_and_output_paths_can_be_overridden() -> None:
     input_path = paths.PROJECT_ROOT / "data" / "argon" / "FHdata.xlsx"
     output_root = paths.PROJECT_ROOT / "_tmp_contract_output"

@@ -224,7 +224,11 @@ def _unit_config(
     cfg.profile = f"validation_bootstrap_{mode}"
     cfg.device = str(device)
     cfg.selected_device = "cuda" if str(device) == "cuda" and model.torch.cuda.is_available() else "cpu"
-    cfg.dispatch_strategy = "single" if cfg.selected_device == "cuda" else ("cpu_4" if cfg.cpu_workers > 1 else "single")
+    if cfg.selected_device == "cuda":
+        cfg.cuda_workers = 4
+        cfg.dispatch_strategy = "cuda_4"
+    else:
+        cfg.dispatch_strategy = "cpu_4" if cfg.cpu_workers > 1 else "single"
     cfg.seed = int(train_seed)
     cfg.scan_seeds = str(int(train_seed))
     cfg.hyperopt_enabled = False

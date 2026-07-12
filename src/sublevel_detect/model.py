@@ -3005,6 +3005,29 @@ def runtime_cpu_workers(cfg: Config) -> int:
     return max(1, int(cfg.cpu_workers))
 
 
+def runtime_cuda_workers(cfg: Config) -> int:
+    override = os.environ.get("SUBLEVEL_CUDA_WORKERS", "").strip()
+    if override:
+        try:
+            return max(1, int(override))
+        except ValueError:
+            return max(1, int(cfg.cuda_workers))
+    return max(1, int(cfg.cuda_workers))
+
+
+def parallel_fit_worker_count(cfg: Config, *, torch_device: str, job_count: int) -> int:
+    jobs = max(0, int(job_count))
+    if jobs <= 1:
+        return 1
+    device = str(torch_device)
+    strategy = str(cfg.dispatch_strategy)
+    if device == "cpu" and strategy == "cpu_4":
+        return min(jobs, runtime_cpu_workers(cfg))
+    if device.startswith("cuda") and strategy.startswith("cuda_"):
+        return min(jobs, runtime_cuda_workers(cfg))
+    return 1
+
+
 def _run_level_fit_worker(payload: Dict[str, Any]) -> Dict[str, Any]:
     os.environ["OMP_NUM_THREADS"] = "1"
     os.environ["MKL_NUM_THREADS"] = "1"
@@ -3068,14 +3091,9 @@ def run_level_scan(cfg: Config) -> Dict[str, Any]:
                     "resume_ckpt": str(resume_ckpt) if resume_ckpt is not None else "",
                 }
             )
-    use_parallel = (
-        str(cfg.dispatch_strategy) == "cpu_4"
-        and str(device) == "cpu"
-        and len(jobs) > 1
-        and runtime_cpu_workers(cfg) > 1
-    )
-    if use_parallel:
-        with concurrent.futures.ProcessPoolExecutor(max_workers=runtime_cpu_workers(cfg)) as pool:
+    worker_count = parallel_fit_worker_count(cfg, torch_device=str(device), job_count=len(jobs))
+    if worker_count > 1:
+        with concurrent.futures.ProcessPoolExecutor(max_workers=worker_count) as pool:
             for _ in pool.map(_run_level_fit_worker, jobs):
                 pass
     else:
