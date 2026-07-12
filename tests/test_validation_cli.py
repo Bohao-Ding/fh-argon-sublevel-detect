@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
 from sublevel_detect import cli, validation_pipeline
 from sublevel_detect.validation_common import Baseline
 
@@ -179,3 +181,63 @@ def test_benchmark_stage_runs_holdout_dependency_before_benchmark(monkeypatch, t
     assert result["ok"] is True
     assert result["requested_stages"] == ["holdout", "benchmark"]
     assert order == ["holdout", "benchmark"]
+
+
+def test_pipeline_reuses_identity_matching_completed_selector(monkeypatch, tmp_path: Path) -> None:
+    baseline = Baseline(kind="package", root=tmp_path, files={}, hashes={})
+    calls = {"selector": 0}
+    monkeypatch.setattr(validation_pipeline, "resolve_baseline", lambda *args, **kwargs: baseline)
+
+    def fake_selector(**kwargs):
+        calls["selector"] += 1
+        return {"ok": True, "status": "smoke_passed", "scenario_count": 15}
+
+    monkeypatch.setattr(validation_pipeline.validation_selector, "run", fake_selector)
+    arguments = {
+        "mode": "smoke",
+        "input_path": tmp_path / "input.csv",
+        "output_root": tmp_path / "output",
+        "device": "cpu",
+        "requested_stage": "selector",
+        "package_root": tmp_path / "package",
+    }
+
+    first = validation_pipeline.run(**arguments)
+    second = validation_pipeline.run(**arguments)
+
+    assert first["ok"] is True and second["ok"] is True
+    assert calls["selector"] == 1
+    assert second["reused_stages"] == ["selector"]
+    assert (tmp_path / "output" / "validation" / "validation_summary.json").is_file()
+    assert (tmp_path / "output" / "validation" / "validation_summary.md").is_file()
+
+
+def test_pipeline_refuses_completed_stage_when_baseline_identity_changes(monkeypatch, tmp_path: Path) -> None:
+    current = {
+        "baseline": Baseline(kind="package", root=tmp_path, files={}, hashes={"config": "A"})
+    }
+    monkeypatch.setattr(
+        validation_pipeline,
+        "resolve_baseline",
+        lambda *args, **kwargs: current["baseline"],
+    )
+    monkeypatch.setattr(
+        validation_pipeline.validation_selector,
+        "run",
+        lambda **kwargs: {"ok": True, "status": "smoke_passed", "scenario_count": 15},
+    )
+    arguments = {
+        "mode": "smoke",
+        "input_path": tmp_path / "input.csv",
+        "output_root": tmp_path / "output",
+        "device": "cpu",
+        "requested_stage": "selector",
+        "package_root": tmp_path / "package",
+    }
+    validation_pipeline.run(**arguments)
+    current["baseline"] = Baseline(
+        kind="package", root=tmp_path, files={}, hashes={"config": "B"}
+    )
+
+    with pytest.raises(ValueError, match="refusing to reuse or overwrite"):
+        validation_pipeline.run(**arguments)
