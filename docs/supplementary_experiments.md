@@ -5,8 +5,8 @@
 - Origin Skill: academic-research-suite/experiment-agent
 - Origin Mode: plan
 - Origin Date: 2026-07-12
-- Verification Status: UNVERIFIED
-- Version Label: code_plan_v1
+- Verification Status: VERIFIED_AND_FROZEN
+- Version Label: preregistration_v1
 - Execution Workflow: superpowers using-superpowers, brainstorming, writing-plans, using-git-worktrees, subagent-driven-development
 
 ## 1. 文档用途与冻结规则
@@ -267,7 +267,7 @@ Baseline 解析遵循以下不可交换的优先级：
 
 | 顺序 | 阶段 | 状态 | 完成判据 |
 |---:|---|---|---|
-| 1 | 隔离worktree、基线测试、预注册文档 | smoke_passed | 当前表示基线测试与文档自检已通过；文档提交并经用户审阅后才更新为complete |
+| 1 | 隔离worktree、基线测试、预注册文档 | complete | 基线测试、文档自检、提交及用户审阅确认均已完成 |
 | 2 | validation基础设施与selector audit | not_started | 单测、smoke、正式审计与摘要完成 |
 | 3 | block residual bootstrap | not_started | 主/敏感性矩阵及区间汇总完成 |
 | 4 | leave-one-\(V_r\)-out prediction | not_started | 5折零样本与稀疏校准输出完成 |
@@ -281,10 +281,10 @@ Baseline 解析遵循以下不可交换的优先级：
 
 ### 阶段 1：隔离worktree、基线测试与预注册文档
 
-- 状态：`smoke_passed`
-- 证据：已在 `feature/supplementary-validation-experiments` 隔离worktree中确认依赖全部满足；完整基线测试为28项通过、1项按环境条件跳过；原始checkout的source-data package未提交改动未被带入或修改；本文档禁用词扫描和空白错误检查通过。
-- 推断：隔离环境与现有测试基线满足开始补充验证开发的前置条件；该结论只涉及代码基线，不涉及任何科学结果。
-- 限制：本文档尚待用户审阅，Verification Status 仍为 UNVERIFIED；其余实验阶段均未开始。
+- 状态：`complete`
+- 证据：已在 `feature/supplementary-validation-experiments` 隔离worktree中确认依赖全部满足；完整基线测试为28项通过、1项按环境条件跳过；原始checkout的source-data package未提交改动未被带入或修改；本文档禁用词扫描和空白错误检查通过；提交 `7878144` 经用户明确确认。
+- 推断：隔离环境、现有测试基线与冻结的预注册协议满足开始补充验证开发的前置条件；该结论只涉及代码与研究设计基线，不涉及任何科学结果。
+- 限制：其余实验阶段均未开始；后续只允许更新状态并在本节追加结果，不依据结果回改冻结定义。
 
 ### 后续阶段记录格式
 
