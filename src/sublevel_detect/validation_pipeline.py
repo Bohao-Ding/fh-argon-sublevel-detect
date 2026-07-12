@@ -1,7 +1,13 @@
 from __future__ import annotations
 
+import platform
+import subprocess
+import sys
 from pathlib import Path
 from typing import Any
+
+from . import model, paths, validation_selector
+from .validation_common import atomic_json_dump, resolve_baseline, write_progress
 
 
 VALIDATION_STAGES = ("selector", "bootstrap", "holdout", "synthetic", "benchmark")
@@ -24,10 +30,84 @@ def run(
     output_root: str | Path,
     device: str,
     requested_stage: str | None,
+    package_root: str | Path | None = None,
 ) -> dict[str, Any]:
-    del input_path, output_root, device
+    stages = requested_stages(requested_stage)
+    validation_root = paths.validation_dir(output_root)
+    package = Path(package_root) if package_root is not None else paths.PROJECT_ROOT / "source_data_package"
+    baseline = resolve_baseline(paths.resolve_project_path(output_root), package_root=package)
+    commit = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=paths.PROJECT_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    dirty = bool(
+        subprocess.run(
+            ["git", "status", "--porcelain"],
+            cwd=paths.PROJECT_ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+    )
+    selected_device = "cuda" if str(device) == "cuda" and model.torch.cuda.is_available() else "cpu"
+    manifest = {
+        "schema_version": 1,
+        "invocation": {
+            "mode": str(mode),
+            "input": str(paths.resolve_project_path(input_path)),
+            "output": str(paths.resolve_project_path(output_root)),
+            "device_requested": str(device),
+            "requested_stage": requested_stage,
+            "requested_stages": stages,
+        },
+        "git": {"commit": commit, "dirty": dirty},
+        "environment": {
+            "python": sys.version,
+            "platform": platform.platform(),
+            "torch": model.torch.__version__,
+            "cuda_runtime": model.torch.version.cuda,
+            "cuda_available": bool(model.torch.cuda.is_available()),
+            "device_selected": selected_device,
+        },
+        "baseline": {
+            "kind": baseline.kind,
+            "root": str(baseline.root),
+            "identity_sha256": baseline.identity_hash,
+            "files": {key: str(path) for key, path in baseline.files.items()},
+            "hashes": baseline.hashes,
+        },
+        "frozen_stage_order": list(VALIDATION_STAGES),
+    }
+    atomic_json_dump(manifest, validation_root / "experiment_manifest.json")
+    write_progress(validation_root / "progress.json", completed=0, failed=0, total=len(stages))
+    results: dict[str, Any] = {}
+    completed = 0
+    for stage in stages:
+        if stage == "selector":
+            result = validation_selector.run(
+                baseline=baseline,
+                output_dir=validation_root / "selector_audit",
+                mode=str(mode),
+            )
+        else:
+            raise NotImplementedError(f"Validation stage is not implemented yet: {stage}")
+        results[stage] = result
+        completed += 1
+        write_progress(
+            validation_root / "progress.json",
+            completed=completed,
+            failed=0,
+            total=len(stages),
+            current_stage=stage,
+        )
     return {
         "ok": True,
         "mode": str(mode),
-        "requested_stages": requested_stages(requested_stage),
+        "baseline_kind": baseline.kind,
+        "requested_stages": stages,
+        "stage_results": results,
+        "manifest": str(validation_root / "experiment_manifest.json"),
     }
