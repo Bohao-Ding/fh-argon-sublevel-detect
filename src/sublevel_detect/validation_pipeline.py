@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from . import model, paths, validation_bootstrap, validation_selector
+from . import model, paths, validation_bootstrap, validation_holdout, validation_selector
 from .validation_common import atomic_json_dump, resolve_baseline, write_progress
 
 
@@ -99,6 +99,15 @@ def run(
                 input_path=input_path,
                 baseline=baseline,
                 output_dir=validation_root / "block_bootstrap",
+                validation_root=validation_root,
+                device=str(device),
+            )
+        elif stage == "holdout":
+            result = validation_holdout.run(
+                mode=str(mode),
+                input_path=input_path,
+                baseline=baseline,
+                output_dir=validation_root / "holdout",
                 validation_root=validation_root,
                 device=str(device),
             )

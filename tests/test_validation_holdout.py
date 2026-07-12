@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 import numpy as np
+import pandas as pd
 import pytest
 import torch
 
+from sublevel_detect import validation_holdout
+from sublevel_detect.validation_common import Baseline, sha256_file
 from sublevel_detect.validation_holdout import (
     HoldoutUnit,
     SparseNuisance,
@@ -92,3 +95,77 @@ def test_sparse_calibration_optimizes_only_three_nuisance_parameters() -> None:
     assert sum(parameter.numel() for parameter in result["module"].parameters()) == 3
     assert set(result["values"]) == {"gain", "bias", "delta_va"}
     assert result["loss"] < 1e-4
+
+
+def test_smoke_runner_uses_excluded_fold_and_writes_prediction_outputs(monkeypatch, tmp_path) -> None:
+    rows = []
+    for curve_id, vr in enumerate((0.0, 4.0, 6.0, 8.0, 10.0), start=1):
+        for index in range(161):
+            rows.append(
+                {
+                    "curve_id": curve_id,
+                    "Vr": vr,
+                    "Va": index * 0.5,
+                    "IuA": float(index) / 100.0 + vr / 100.0,
+                }
+            )
+    input_path = tmp_path / "input.csv"
+    pd.DataFrame(rows).to_csv(input_path, index=False)
+    config_path = tmp_path / "config.json"
+    config_path.write_text("{}\n", encoding="utf-8")
+    forward_path = tmp_path / "forward.json"
+    forward_path.write_text("{}\n", encoding="utf-8")
+    baseline = Baseline(
+        kind="local",
+        root=tmp_path,
+        files={"config": config_path, "forward_evidence": forward_path},
+        hashes={"config": sha256_file(config_path), "forward_evidence": sha256_file(forward_path)},
+    )
+    configs = []
+
+    def fake_scan(cfg):
+        configs.append(cfg)
+        return {"decision": {"selected_k": 2}, "scan_dir": cfg.out_dir}
+
+    def fake_evaluate(**kwargs):
+        unit = kwargs["unit"]
+        return {
+            "zero_metrics": {"rmse": 1.0, "mae": 0.8, "nrmse": 0.5, "n_points": 161},
+            "calibrated_metrics": {"rmse": 0.7, "mae": 0.6, "nrmse": 0.35, "n_points": 140},
+            "zero_predictions": [{"index": 0, "observed": 1.0, "predicted": 0.0}],
+            "calibrated_predictions": [{"index": 1, "observed": 1.0, "predicted": 0.3}],
+            "nuisance": {"gain": 1.0, "bias": 0.0, "delta_va": 0.0},
+            "unit": unit,
+        }
+
+    monkeypatch.setattr(validation_holdout.model, "run_level_scan", fake_scan)
+    monkeypatch.setattr(validation_holdout, "evaluate_candidate", fake_evaluate)
+    output_dir = tmp_path / "validation" / "holdout"
+
+    result = validation_holdout.run(
+        mode="smoke",
+        input_path=input_path,
+        baseline=baseline,
+        output_dir=output_dir,
+        validation_root=output_dir.parent,
+        device="cpu",
+    )
+
+    assert result["ok"] is True
+    assert result["status"] == "smoke_passed"
+    assert len(configs) == 1
+    assert configs[0].exclude_vr_values == "0.0"
+    assert configs[0].scan_seeds == "0"
+    assert configs[0].level_scan_min == 1
+    assert configs[0].level_scan_max == 2
+    for name in (
+        "fold_manifest.csv",
+        "candidate_status.csv",
+        "zero_shot_metrics.csv",
+        "calibrated_metrics.csv",
+        "zero_shot_predictions.csv",
+        "calibrated_predictions.csv",
+        "holdout_summary.json",
+        "stage_status.json",
+    ):
+        assert (output_dir / name).is_file()
