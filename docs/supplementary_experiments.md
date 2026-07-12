@@ -268,7 +268,7 @@ Baseline 解析遵循以下不可交换的优先级：
 | 顺序 | 阶段 | 状态 | 完成判据 |
 |---:|---|---|---|
 | 1 | 隔离worktree、基线测试、预注册文档 | complete | 基线测试、文档自检、提交及用户审阅确认均已完成 |
-| 2 | validation基础设施与selector audit | not_started | 单测、smoke、正式审计与摘要完成 |
+| 2 | validation基础设施与selector audit | complete | 单测、smoke、正式审计与摘要完成 |
 | 3 | block residual bootstrap | not_started | 主/敏感性矩阵及区间汇总完成 |
 | 4 | leave-one-\(V_r\)-out prediction | not_started | 5折零样本与稀疏校准输出完成 |
 | 5 | synthetic recovery | not_started | epoch gate、筛查、确认与prior-off完成 |
@@ -292,6 +292,13 @@ Baseline 解析遵循以下不可交换的优先级：
 - 证据：记录命令、输入/配置哈希、完成与失败分母以及主要数值输出。
 - 推断：只陈述证据直接支持的结论，不把条件性结果外推为真实能级发现。
 - 限制：记录数据、模型、先验、计算预算和可复现性边界。
+
+### 阶段 2：Validation 基础设施与 selector decontamination audit
+
+- 状态：`complete`
+- 证据：正式命令 `python run.py --mode fullscan --validation-only selector --device cuda` 在干净提交 `e6ec9314fdea9daa3c70d661adbede0c3bebe2af` 上返回0；manifest记录 `dirty=false`、package baseline identity SHA-256=`5E5B921CC22BCAE3BFDD58BCCBE8BABE5435EF034B95BA7E738FF789012C49CA`、model-selection table SHA-256=`1C5517D8FD4821431B613457688B79BDCFC1B05AAE7FD982A0A1E242BF3479A7`。15个预注册情景全部完成且无失败：13/15选择K=4，`leave_one_bic_out`与`remove_complexity_group`选择K=8；移除legacy summary后仍选择K=4。相关矩阵含81个有序分量对；RMSE与legacy summary的Spearman相关为1.0，d1与d2、d1与structure均为0.95238。CLI smoke同样完成15个情景与81个相关单元，临时目录已删除；完整测试为48项通过、1项按环境条件跳过。
+- 推断：在冻结scan rows上，K=4并非由legacy summary这一重复分量单独造成，也不因逐项移除shape或physical分量而改变；但选择对BIC复杂度惩罚具有实质依赖，去掉BIC或整个复杂度组时转向K=8。RMSE与legacy summary完全同序证实二者在当前表中没有独立排序信息。
+- 限制：这是对既有训练结果的确定性重计分，不是新的独立数据或外推预测验证；13/15情景的K=4比例不能解释为统计置信度。该结果只定位selector的依赖结构，不证明K=4是真实能级数，也不支持重新定义production selector。
 
 ## 15. 临时文件清理
 
