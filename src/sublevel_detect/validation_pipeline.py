@@ -9,6 +9,7 @@ from typing import Any
 from . import (
     model,
     paths,
+    validation_benchmark,
     validation_bootstrap,
     validation_holdout,
     validation_selector,
@@ -124,6 +125,15 @@ def run(
                 input_path=input_path,
                 baseline=baseline,
                 output_dir=validation_root / "synthetic_recovery",
+                validation_root=validation_root,
+                device=str(device),
+            )
+        elif stage == "benchmark":
+            result = validation_benchmark.run(
+                mode=str(mode),
+                input_path=input_path,
+                holdout_dir=validation_root / "holdout",
+                output_dir=validation_root / "benchmark",
                 validation_root=validation_root,
                 device=str(device),
             )

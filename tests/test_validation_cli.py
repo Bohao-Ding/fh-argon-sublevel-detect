@@ -150,3 +150,32 @@ def test_pipeline_dispatches_synthetic_stage(monkeypatch, tmp_path: Path) -> Non
     assert result["ok"] is True
     assert len(calls) == 1
     assert calls[0]["output_dir"] == tmp_path / "output" / "validation" / "synthetic_recovery"
+
+
+def test_benchmark_stage_runs_holdout_dependency_before_benchmark(monkeypatch, tmp_path: Path) -> None:
+    baseline = Baseline(kind="package", root=tmp_path, files={}, hashes={})
+    order: list[str] = []
+    monkeypatch.setattr(validation_pipeline, "resolve_baseline", lambda *args, **kwargs: baseline)
+    monkeypatch.setattr(
+        validation_pipeline.validation_holdout,
+        "run",
+        lambda **kwargs: order.append("holdout") or {"ok": True, "status": "smoke_passed"},
+    )
+    monkeypatch.setattr(
+        validation_pipeline.validation_benchmark,
+        "run",
+        lambda **kwargs: order.append("benchmark") or {"ok": True, "status": "smoke_passed"},
+    )
+
+    result = validation_pipeline.run(
+        mode="smoke",
+        input_path=tmp_path / "input.csv",
+        output_root=tmp_path / "output",
+        device="cpu",
+        requested_stage="benchmark",
+        package_root=tmp_path / "package",
+    )
+
+    assert result["ok"] is True
+    assert result["requested_stages"] == ["holdout", "benchmark"]
+    assert order == ["holdout", "benchmark"]
