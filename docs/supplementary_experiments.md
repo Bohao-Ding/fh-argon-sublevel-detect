@@ -269,11 +269,11 @@ Baseline 解析遵循以下不可交换的优先级：
 |---:|---|---|---|
 | 1 | 隔离worktree、基线测试、预注册文档 | complete | 基线测试、文档自检、提交及用户审阅确认均已完成 |
 | 2 | validation基础设施与selector audit | complete | 单测、smoke、正式审计与摘要完成 |
-| 3 | block residual bootstrap | not_started | 主/敏感性矩阵及区间汇总完成 |
-| 4 | leave-one-\(V_r\)-out prediction | not_started | 5折零样本与稀疏校准输出完成 |
-| 5 | synthetic recovery | not_started | epoch gate、筛查、确认与prior-off完成 |
-| 6 | matched-budget MLP | not_started | 5折三seed及paired comparison完成 |
-| 7 | 整体验证与交付 | not_started | 全测试、两次smoke、manifest与清理审计通过 |
+| 3 | block residual bootstrap | formal_running | 主/敏感性矩阵及区间汇总完成 |
+| 4 | leave-one-\(V_r\)-out prediction | smoke_passed | 5折零样本与稀疏校准输出完成 |
+| 5 | synthetic recovery | smoke_passed | epoch gate、筛查、确认与prior-off完成 |
+| 6 | matched-budget MLP | smoke_passed | 5折三seed及paired comparison完成 |
+| 7 | 整体验证与交付 | smoke_passed | 全测试、两次smoke、manifest与清理审计通过 |
 
 ## 14. 追加式结果记录
 
@@ -299,6 +299,20 @@ Baseline 解析遵循以下不可交换的优先级：
 - 证据：正式命令 `python run.py --mode fullscan --validation-only selector --device cuda` 在干净提交 `e6ec9314fdea9daa3c70d661adbede0c3bebe2af` 上返回0；manifest记录 `dirty=false`、package baseline identity SHA-256=`5E5B921CC22BCAE3BFDD58BCCBE8BABE5435EF034B95BA7E738FF789012C49CA`、model-selection table SHA-256=`1C5517D8FD4821431B613457688B79BDCFC1B05AAE7FD982A0A1E242BF3479A7`。15个预注册情景全部完成且无失败：13/15选择K=4，`leave_one_bic_out`与`remove_complexity_group`选择K=8；移除legacy summary后仍选择K=4。相关矩阵含81个有序分量对；RMSE与legacy summary的Spearman相关为1.0，d1与d2、d1与structure均为0.95238。CLI smoke同样完成15个情景与81个相关单元，临时目录已删除；完整测试为48项通过、1项按环境条件跳过。
 - 推断：在冻结scan rows上，K=4并非由legacy summary这一重复分量单独造成，也不因逐项移除shape或physical分量而改变；但选择对BIC复杂度惩罚具有实质依赖，去掉BIC或整个复杂度组时转向K=8。RMSE与legacy summary完全同序证实二者在当前表中没有独立排序信息。
 - 限制：这是对既有训练结果的确定性重计分，不是新的独立数据或外推预测验证；13/15情景的K=4比例不能解释为统计置信度。该结果只定位selector的依赖结构，不证明K=4是真实能级数，也不支持重新定义production selector。
+
+### 阶段 3：Correlation-preserving block residual bootstrap（运行中）
+
+- 状态：`formal_running`
+- 证据：代码与测试已完成；CPU与CUDA smoke各完成1个最小单元且无失败，临时目录均已删除。正式命令已在CUDA四worker验证配置上启动，预注册总数为60个训练单元；截至本记录写入时完成2/60、失败0/60，前两个block=7、seed=0单元均选择K=8。GPU运行保持约97%利用率，单元完成后即时写入selection row、checkpoint与progress。
+- 推断：并行调度和断点记录链路工作正常；当前2个完成单元只属于执行进度证据，不足以估计selected-K分布或K=4比例。
+- 限制：阶段尚未完成，Wilson区间、block-length敏感性和optimizer-seed敏感性均不得提前报告；串行试运行的中断checkpoint被完整保存在忽略目录 `output/validation_interrupted/serial_ef3714b_block_bootstrap`，未与正式并行矩阵混用。
+
+### 阶段 4–7：实现与 smoke 验证进度
+
+- 状态：`smoke_passed`
+- 证据：leave-one-Vr-out smoke完成1折、2个K候选、零失败，并同时写出161点neutral零样本指标与21点校准/140点评价的三nuisance参数结果；synthetic smoke完成1个K=4、delta=0.25 V、1x噪声单元并写出truth hash、selection、Hungarian matching和recovery summary；MLP smoke确认输入仅Va/Vr、参数数严格45，并与同根holdout selected-K零样本行完成配对。两个独立整合smoke根均完成全部5阶段，分别生成5个stage manifest和5个stage result，断言后目录均已删除。正式矩阵计数被manifest冻结为selector=15、bootstrap=60、holdout=120、synthetic=297、benchmark=15。
+- 推断：五阶段CLI、依赖顺序、输入哈希、失败返回码、输出schema和临时清理已在最小计算预算下贯通；这只证明实现链路可运行，不代表正式科学终点已经获得。
+- 限制：holdout、synthetic和benchmark正式运行尚未开始；smoke epochs与缩减K范围不能用于论文结论。near-pair次要终点采用预先写入summary的操作阈值：Hungarian匹配后前两真值通道的能量误差均不超过0.125 V；该阈值不参与exact-K主要终点，最终解释须单独披露。
 
 ## 15. 临时文件清理
 
