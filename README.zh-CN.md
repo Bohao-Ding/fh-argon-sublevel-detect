@@ -23,6 +23,7 @@
 - 消融基线：selector-only 消融，以及关闭 forward anchor gap 的 retrain，用于检验最终选择对正向锚点的依赖程度。
 - 稳健性基线：selector 权重扰动，以及固定主基线超参后的 leave-one-retarding-voltage-out 重训。
 - 敏感性补充实验：forward-anchor prior-strength 扫描，以及 seed jitter、残差 bootstrap、噪声扰动和峰谷窗口半径扰动下的两类 K=4 不确定度汇总。`conditional_k4_all_fits` 是所有 K=4 条件拟合的 stress-test drift；`production_anchor_matched_k4` 将扰动后的 K=4 通道匹配回 production K=4 四个锚定通道。
+- 预注册验证套件：selector 去污染审计、循环移动块残差 bootstrap、leave-one-retarding-voltage-out 预测、半合成恢复，以及固定 45 参数预算的 MLP 基准。
 
 物理响应审核只保留两项 caveat：late-bias 与 high-retarding-voltage valley-depth。
 
@@ -33,6 +34,32 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 ```
+
+## 快速复现
+
+先用 CPU 对完整补充验证接口进行 smoke check：
+
+```powershell
+$smoke = Join-Path $env:TEMP 'fh_validation_smoke'
+python run.py --mode smoke --exclude hpopt --validation --output $smoke --device cpu
+Remove-Item -LiteralPath $smoke -Recurse -Force
+```
+
+使用 CUDA 运行预注册正式验证套件：
+
+```powershell
+python run.py --mode fullscan --validation --device cuda
+```
+
+正式命令会按照依赖顺序运行 `selector`、`bootstrap`、`holdout`、`synthetic` 和 `benchmark`。只复现一个阶段时，例如：
+
+```powershell
+python run.py --mode fullscan --validation-only holdout --device cuda
+```
+
+`--validation-only` 会自动启用 validation 并解析必要的前置阶段。程序优先复用所选输出根下兼容且已完成的主基线；若不存在，则只读使用已提交的 `source_data_package/`。所有输入、配置、checkpoint、源码和基线哈希都会写入清单，身份不兼容的结果不会被静默混用或覆盖。
+
+正式验证的计算量较大。新运行产物写入 `output/validation/`，由 Git 忽略，不属于本次源码发布内容。
 
 ## 如果你是 AI agent
 
@@ -127,6 +154,15 @@ smoke 命令只用于功能检查。除非测试本身需要保留输出，否�
 - `channel_uncertainty_anchor_matched.csv` 将扰动 K=4 拟合匹配回 production K=4 四个锚定通道，是 production K=4 不确定度表述的候选依据。
 - 敏感性输出写入 `output/sensitivity/`。
 
+预注册验证流程：
+
+- Selector audit 冻结 production selector，依次移除单项与分组诊断，加入 fit-complexity-only 对照，并报告 rank correlation 和 selected-K 分布。
+- 循环移动块残差 bootstrap 在每条曲线内部对中心化残差重采样。正式设计以 7 点块为主条件，以 5 点和 9 点块检查敏感性，并报告 selected-K 分布及 K=4 比例的 Wilson 区间。
+- Leave-one-retarding-voltage-out prediction 在未见曲线上评估 K=1..8 和训练折 selected model。主要终点为零样本 RMSE、MAE 和 range-normalized RMSE；次要的 21 点校准只拟合 gain、bias 与加速电压偏移。
+- 半合成恢复覆盖真值 K=1、2、4、8，0.25、0.5、1.0 V 的近邻通道间隔，以及三档 block-residual 噪声。输出 exact-K recovery 及 Wilson 区间、过选/欠选、匹配能量 RMSE、权重 MAE 和近邻恢复率。
+- 匹配预算基准固定使用 `2 -> 11 -> 1` Tanh、softplus 输出的 45 参数 MLP，采用与 held-out 实验相同的数据折与预处理，结论只限定于这一固定预算比较器。
+- 每个阶段均写出 manifest、progress、逐单元记录、stage status 和 `stage_result.json`。失败单元保留在预注册统计分母中，未完成或失败的验证最终返回非零退出码。
+
 设备和路径控制：
 
 ```powershell
@@ -168,6 +204,13 @@ python run.py --mode fullscan --input data/argon/FHdata.xlsx --output output --d
 - `output/robustness/selector_weight_perturbation_summary.csv` 汇总扰动情景下的 selected-K 分布。
 - `output/robustness/leave_one_vr_out_summary.csv` 报告每个留出阻滞电压曲线对应的 selected K 和关键指标。
 - `output/robustness/robustness_summary.json` 是面向论文写作的紧凑稳健性摘要。
+
+补充验证分析：
+
+- `output/validation/experiment_manifest.json` 记录请求阶段以及所有身份相关输入的哈希。
+- `output/validation/progress.json` 记录可断点复用的逐单元进度，不改变预注册分母。
+- `output/validation/<stage>/stage_manifest.json` 和 `stage_result.json` 将每项结果绑定到精确的阶段身份。
+- 全部请求阶段完成后，`output/validation/validation_summary.json` 和 `validation_summary.md` 汇总证据、推断边界与限制。
 
 论文写作时应引用生成的 JSON/CSV 表，而不是中间 checkpoint。已提交的 `source_data_package/` 是当前手稿对应的整理归档；该目录之外新生成的 checkpoint 和运行输出仍由 `.gitignore` 排除。
 
@@ -231,6 +274,17 @@ forward-prior 与通道不确定度补充实验：
 python run.py --mode fullscan --exclude hpopt --sensitivity --device cpu
 ```
 
+预注册补充验证：
+
+```powershell
+python run.py --mode fullscan --validation --device cuda
+python run.py --mode fullscan --validation-only selector --device cpu
+python run.py --mode fullscan --validation-only bootstrap --device cuda
+python run.py --mode fullscan --validation-only holdout --device cuda
+python run.py --mode fullscan --validation-only synthetic --device cuda
+python run.py --mode fullscan --validation-only benchmark --device cuda
+```
+
 ## 输出文件
 
 主基线证据：
@@ -265,6 +319,18 @@ python run.py --mode fullscan --exclude hpopt --sensitivity --device cpu
 - `output/sensitivity/uncertainty/channel_uncertainty_summary.csv`
 - `output/sensitivity/uncertainty/uncertainty_selection_summary.csv`
 - `output/sensitivity/sensitivity_summary.json`
+
+补充验证证据：
+
+- `output/validation/experiment_manifest.json`
+- `output/validation/progress.json`
+- `output/validation/selector_audit/stage_result.json`
+- `output/validation/block_bootstrap/stage_result.json`
+- `output/validation/holdout/stage_result.json`
+- `output/validation/synthetic_recovery/stage_result.json`
+- `output/validation/benchmark/stage_result.json`
+- `output/validation/validation_summary.json`
+- `output/validation/validation_summary.md`
 
 ## 测试
 
