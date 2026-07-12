@@ -1,6 +1,9 @@
 from __future__ import annotations
 
-from sublevel_detect import cli
+from pathlib import Path
+
+from sublevel_detect import cli, validation_pipeline
+from sublevel_detect.validation_common import Baseline
 
 
 def test_validation_defaults_off_and_validation_only_enables_it() -> None:
@@ -75,3 +78,27 @@ def test_legacy_run_without_validation_still_runs_main(monkeypatch) -> None:
 
     assert cli.main(["--mode", "smoke"]) == 0
     assert calls == {"main": 1, "validation": 0}
+
+
+def test_pipeline_dispatches_bootstrap_stage(monkeypatch, tmp_path: Path) -> None:
+    baseline = Baseline(kind="package", root=tmp_path, files={}, hashes={})
+    calls: list[dict] = []
+    monkeypatch.setattr(validation_pipeline, "resolve_baseline", lambda *args, **kwargs: baseline)
+    monkeypatch.setattr(
+        validation_pipeline.validation_bootstrap,
+        "run",
+        lambda **kwargs: calls.append(kwargs) or {"ok": True, "status": "smoke_passed"},
+    )
+
+    result = validation_pipeline.run(
+        mode="smoke",
+        input_path=tmp_path / "input.csv",
+        output_root=tmp_path / "output",
+        device="cpu",
+        requested_stage="bootstrap",
+        package_root=tmp_path / "package",
+    )
+
+    assert result["ok"] is True
+    assert len(calls) == 1
+    assert calls[0]["output_dir"] == tmp_path / "output" / "validation" / "block_bootstrap"

@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from . import model, paths, validation_selector
+from . import model, paths, validation_bootstrap, validation_selector
 from .validation_common import atomic_json_dump, resolve_baseline, write_progress
 
 
@@ -85,6 +85,7 @@ def run(
     write_progress(validation_root / "progress.json", completed=0, failed=0, total=len(stages))
     results: dict[str, Any] = {}
     completed = 0
+    all_ok = True
     for stage in stages:
         if stage == "selector":
             result = validation_selector.run(
@@ -92,19 +93,40 @@ def run(
                 output_dir=validation_root / "selector_audit",
                 mode=str(mode),
             )
+        elif stage == "bootstrap":
+            result = validation_bootstrap.run(
+                mode=str(mode),
+                input_path=input_path,
+                baseline=baseline,
+                output_dir=validation_root / "block_bootstrap",
+                validation_root=validation_root,
+                device=str(device),
+            )
         else:
             raise NotImplementedError(f"Validation stage is not implemented yet: {stage}")
         results[stage] = result
         completed += 1
-        write_progress(
-            validation_root / "progress.json",
-            completed=completed,
-            failed=0,
-            total=len(stages),
-            current_stage=stage,
-        )
+        all_ok = all_ok and bool(result.get("ok", False))
+        if "unit_total" in result:
+            write_progress(
+                validation_root / "progress.json",
+                completed=int(result.get("completed", 0)),
+                failed=int(result.get("failed", 0)),
+                total=int(result["unit_total"]),
+                current_stage=stage,
+                completed_stages=completed,
+                total_stages=len(stages),
+            )
+        else:
+            write_progress(
+                validation_root / "progress.json",
+                completed=completed,
+                failed=0 if bool(result.get("ok", False)) else 1,
+                total=len(stages),
+                current_stage=stage,
+            )
     return {
-        "ok": True,
+        "ok": all_ok,
         "mode": str(mode),
         "baseline_kind": baseline.kind,
         "requested_stages": stages,
