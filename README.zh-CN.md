@@ -23,7 +23,7 @@
 - 消融基线：selector-only 消融，以及关闭 forward anchor gap 的 retrain，用于检验最终选择对正向锚点的依赖程度。
 - 稳健性基线：selector 权重扰动，以及固定主基线超参后的 leave-one-retarding-voltage-out 重训。
 - 敏感性补充实验：forward-anchor prior-strength 扫描，以及 seed jitter、残差 bootstrap、噪声扰动和峰谷窗口半径扰动下的两类 K=4 不确定度汇总。`conditional_k4_all_fits` 是所有 K=4 条件拟合的 stress-test drift；`production_anchor_matched_k4` 将扰动后的 K=4 通道匹配回 production K=4 四个锚定通道。
-- 预注册验证套件：selector 去污染审计、循环移动块残差 bootstrap、leave-one-retarding-voltage-out 预测、半合成恢复，以及固定 45 参数预算的 MLP 基准。
+- 补充验证套件：selector 去污染审计、循环移动块残差 bootstrap、leave-one-retarding-voltage-out 预测，以及针对 NIST Ar I 4s 能级组的四假设比较。
 
 物理响应审核只保留两项 caveat：late-bias 与 high-retarding-voltage valley-depth。
 
@@ -37,11 +37,11 @@ python -m pip install -r requirements.txt
 
 ## 快速复现
 
-先用 CPU 对完整补充验证接口进行 smoke check：
+先用 CPU 对 H4s 针对性比较进行 smoke check：
 
 ```powershell
 $smoke = Join-Path $env:TEMP 'fh_validation_smoke'
-python run.py --mode smoke --exclude hpopt --validation --output $smoke --device cpu
+python run.py --mode smoke --exclude hpopt --validation-only h4s --output $smoke --device cpu
 Remove-Item -LiteralPath $smoke -Recurse -Force
 ```
 
@@ -51,10 +51,10 @@ Remove-Item -LiteralPath $smoke -Recurse -Force
 python run.py --mode fullscan --validation --device cuda
 ```
 
-正式命令会按照依赖顺序运行 `selector`、`bootstrap`、`holdout`、`synthetic` 和 `benchmark`。只复现一个阶段时，例如：
+正式命令会按照依赖顺序运行 `selector`、`bootstrap`、`holdout` 和 `h4s`。只复现针对性物理比较时使用：
 
 ```powershell
-python run.py --mode fullscan --validation-only holdout --device cuda
+python run.py --mode fullscan --validation-only h4s --device cuda
 ```
 
 `--validation-only` 会自动启用 validation 并解析必要的前置阶段。程序优先复用所选输出根下兼容且已完成的主基线；若不存在，则只读使用已提交的 `source_data_package/`。所有输入、配置、checkpoint、源码和基线哈希都会写入清单，身份不兼容的结果不会被静默混用或覆盖。
@@ -159,8 +159,8 @@ smoke 命令只用于功能检查。除非测试本身需要保留输出，否�
 - Selector audit 冻结 production selector，依次移除单项与分组诊断，加入 fit-complexity-only 对照，并报告 rank correlation 和 selected-K 分布。
 - 循环移动块残差 bootstrap 在每条曲线内部对中心化残差重采样。正式设计以 7 点块为主条件，以 5 点和 9 点块检查敏感性，并报告 selected-K 分布及 K=4 比例的 Wilson 区间。
 - Leave-one-retarding-voltage-out prediction 在未见曲线上评估 K=1..8 和训练折 selected model。主要终点为零样本 RMSE、MAE 和 range-normalized RMSE；次要的 21 点校准只拟合 gain、bias 与加速电压偏移。
-- 半合成恢复覆盖真值 K=1、2、4、8，0.25、0.5、1.0 V 的近邻通道间隔，以及三档 block-residual 噪声。输出 exact-K recovery 及 Wilson 区间、过选/欠选、匹配能量 RMSE、权重 MAE 和近邻恢复率。
-- 匹配预算基准固定使用 `2 -> 11 -> 1` Tanh、softplus 输出的 45 参数 MLP，采用与 held-out 实验相同的数据折与预处理，结论只限定于这一固定预算比较器。
+- H4s 针对性比较在相同五个留出阻滞电压上评估 `H1`、`H1+B`、`H4s` 和 `H4s+B`。`H4s` 使用四个 NIST Ar I 4s 能量并允许一个受限共同能量微调；`B` 是现有平滑高能损失项，不是第五个激发通道。
+- H4s 阶段报告零样本 RMSE、MAE、NRMSE 的配对差异，不自动生成支持或否定结论。seed 仅代表优化起点，smoke 结果不可用于论文声称。
 - 每个阶段均写出 manifest、progress、逐单元记录、stage status 和 `stage_result.json`。失败单元保留在预注册统计分母中，未完成或失败的验证最终返回非零退出码。
 
 设备和路径控制：
@@ -281,8 +281,7 @@ python run.py --mode fullscan --validation --device cuda
 python run.py --mode fullscan --validation-only selector --device cpu
 python run.py --mode fullscan --validation-only bootstrap --device cuda
 python run.py --mode fullscan --validation-only holdout --device cuda
-python run.py --mode fullscan --validation-only synthetic --device cuda
-python run.py --mode fullscan --validation-only benchmark --device cuda
+python run.py --mode fullscan --validation-only h4s --device cuda
 ```
 
 ## 输出文件
@@ -327,8 +326,9 @@ python run.py --mode fullscan --validation-only benchmark --device cuda
 - `output/validation/selector_audit/stage_result.json`
 - `output/validation/block_bootstrap/stage_result.json`
 - `output/validation/holdout/stage_result.json`
-- `output/validation/synthetic_recovery/stage_result.json`
-- `output/validation/benchmark/stage_result.json`
+- `output/validation/h4s_comparison/stage_result.json`
+- `output/validation/h4s_comparison/h4s_comparison_summary.json`
+- `output/validation/h4s_comparison/paired_contrasts.csv`
 - `output/validation/validation_summary.json`
 - `output/validation/validation_summary.md`
 

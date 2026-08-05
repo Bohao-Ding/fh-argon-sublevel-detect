@@ -23,7 +23,7 @@ The code fits and evaluates a multi-level Frank-Hertz argon model. It is organiz
 - Ablation baseline: selector-only ablations plus a no-forward-anchor-gap retraining run to test how much the final decision depends on forward anchors.
 - Robustness baseline: selector weight perturbation plus leave-one-retarding-voltage-out retraining with the main baseline hyperparameters fixed.
 - Sensitivity supplement: forward-anchor prior-strength scan and two K=4 uncertainty summaries under seed jitter, residual bootstrap, noise perturbation, and peak-window-radius perturbation. `conditional_k4_all_fits` is a stress-test drift summary over all fitted K=4 channels; `production_anchor_matched_k4` matches perturbed K=4 channels back to the four production K=4 anchors.
-- Preregistered validation suite: selector decontamination audit, circular moving-block residual bootstrap, leave-one-retarding-voltage-out prediction, semi-synthetic recovery, and a fixed 45-parameter MLP benchmark.
+- Supplementary validation suite: selector decontamination audit, circular moving-block residual bootstrap, leave-one-retarding-voltage-out prediction, and a targeted four-hypothesis comparison of the NIST Ar I 4s manifold.
 
 The retained physical response audit uses two gates: late-bias and high-retarding-voltage valley-depth.
 
@@ -37,11 +37,11 @@ python -m pip install -r requirements.txt
 
 ## Quick Reproduction
 
-Run a CPU smoke check of the complete supplementary-validation interface:
+Run the targeted H4s comparison smoke check on CPU:
 
 ```powershell
 $smoke = Join-Path $env:TEMP 'fh_validation_smoke'
-python run.py --mode smoke --exclude hpopt --validation --output $smoke --device cpu
+python run.py --mode smoke --exclude hpopt --validation-only h4s --output $smoke --device cpu
 Remove-Item -LiteralPath $smoke -Recurse -Force
 ```
 
@@ -51,10 +51,10 @@ Run the preregistered formal validation suite with CUDA:
 python run.py --mode fullscan --validation --device cuda
 ```
 
-The formal command runs `selector`, `bootstrap`, `holdout`, `synthetic`, and `benchmark` in dependency order. To reproduce only one stage, use for example:
+The formal command runs `selector`, `bootstrap`, `holdout`, and `h4s` in dependency order. To reproduce only the targeted physical comparison, use:
 
 ```powershell
-python run.py --mode fullscan --validation-only holdout --device cuda
+python run.py --mode fullscan --validation-only h4s --device cuda
 ```
 
 `--validation-only` enables validation automatically and resolves required earlier stages. A compatible completed main baseline under the selected output root is reused; otherwise the runner uses the committed `source_data_package/` as a read-only baseline. Input, configuration, checkpoint, source, and baseline hashes are recorded so incompatible results are not silently mixed or overwritten.
@@ -161,8 +161,8 @@ Preregistered validation workflow:
 - Selector audit keeps the production selector frozen while removing individual and grouped diagnostics, adding a fit-complexity-only control, and reporting rank correlations and selected-K distributions.
 - Circular moving-block residual bootstrap resamples centered residuals within each curve. The formal design uses a 7-point main block with 5- and 9-point sensitivity checks and reports the selected-K distribution and Wilson interval for the K=4 rate.
 - Leave-one-retarding-voltage-out prediction evaluates K=1..8 and the training-fold selected model on unseen curves. Its primary endpoints are zero-shot RMSE, MAE, and range-normalized RMSE; a secondary 21-point calibration fits only gain, bias, and accelerating-voltage offset.
-- Semi-synthetic recovery covers true K values 1, 2, 4, and 8, neighboring-channel spacings 0.25, 0.5, and 1.0 V, and three block-residual noise levels. It reports exact-K recovery with Wilson intervals, over/under-selection, matched energy RMSE, weight MAE, and near-neighbor recovery.
-- The matched-budget benchmark fixes a `2 -> 11 -> 1` Tanh MLP with softplus output (45 parameters), uses the same held-out folds and preprocessing, and limits conclusions to this fixed-budget comparator.
+- The targeted H4s comparison evaluates `H1`, `H1+B`, `H4s`, and `H4s+B` on the same five held-out retarding-voltage curves. `H4s` uses the four NIST Ar I 4s energies with one bounded common energy adjustment; `B` is the existing smooth high-energy loss term, not a fifth excitation channel.
+- The H4s stage reports paired zero-shot RMSE, MAE, and NRMSE differences without automatically declaring support or rejection. Seeds are optimization restarts rather than independent samples, and smoke output is never claim-evaluable.
 - Every stage writes a manifest, progress state, unit-level records, stage status, and `stage_result.json`. Failed units remain in the registered denominator, and an incomplete or failed validation run returns a non-zero exit code.
 
 Device and path controls:
@@ -283,8 +283,7 @@ python run.py --mode fullscan --validation --device cuda
 python run.py --mode fullscan --validation-only selector --device cpu
 python run.py --mode fullscan --validation-only bootstrap --device cuda
 python run.py --mode fullscan --validation-only holdout --device cuda
-python run.py --mode fullscan --validation-only synthetic --device cuda
-python run.py --mode fullscan --validation-only benchmark --device cuda
+python run.py --mode fullscan --validation-only h4s --device cuda
 ```
 
 ## Outputs
@@ -329,8 +328,9 @@ Supplementary validation evidence:
 - `output/validation/selector_audit/stage_result.json`
 - `output/validation/block_bootstrap/stage_result.json`
 - `output/validation/holdout/stage_result.json`
-- `output/validation/synthetic_recovery/stage_result.json`
-- `output/validation/benchmark/stage_result.json`
+- `output/validation/h4s_comparison/stage_result.json`
+- `output/validation/h4s_comparison/h4s_comparison_summary.json`
+- `output/validation/h4s_comparison/paired_contrasts.csv`
 - `output/validation/validation_summary.json`
 - `output/validation/validation_summary.md`
 

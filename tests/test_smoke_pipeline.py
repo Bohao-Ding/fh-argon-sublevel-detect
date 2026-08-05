@@ -89,7 +89,7 @@ def test_smoke_with_sensitivity_writes_prior_and_uncertainty_outputs() -> None:
         shutil.rmtree(output_root, ignore_errors=True)
 
 
-def test_validation_smoke_writes_all_stage_outputs_and_summaries() -> None:
+def test_h4s_validation_smoke_writes_targeted_outputs_and_summaries() -> None:
     output_root = Path(tempfile.mkdtemp(prefix="sublevel_detect_validation_smoke_", dir=paths.PROJECT_ROOT))
     try:
         env = dict(os.environ)
@@ -104,7 +104,8 @@ def test_validation_smoke_writes_all_stage_outputs_and_summaries() -> None:
                 str(output_root),
                 "--exclude",
                 "hpopt",
-                "--validation",
+                "--validation-only",
+                "h4s",
                 "--device",
                 "cpu",
             ],
@@ -122,12 +123,14 @@ def test_validation_smoke_writes_all_stage_outputs_and_summaries() -> None:
         assert (validation_root / "progress.json").exists()
         assert (validation_root / "validation_summary.json").exists()
         assert (validation_root / "validation_summary.md").exists()
-        assert (validation_root / "selector_audit" / "selector_summary.json").exists()
-        assert (validation_root / "block_bootstrap" / "block_bootstrap_summary.json").exists()
-        assert (validation_root / "holdout" / "holdout_summary.json").exists()
-        assert (validation_root / "synthetic_recovery" / "synthetic_summary.json").exists()
-        assert (validation_root / "benchmark" / "benchmark_summary.json").exists()
-        assert len(list(validation_root.glob("*/stage_manifest.json"))) == 5
-        assert len(list(validation_root.glob("*/stage_result.json"))) == 5
+        h4s_root = validation_root / "h4s_comparison"
+        assert (h4s_root / "h4s_comparison_summary.json").exists()
+        assert (h4s_root / "hypothesis_manifest.json").exists()
+        assert (h4s_root / "unit_status.csv").exists()
+        assert (h4s_root / "zero_shot_metrics.csv").exists()
+        assert (h4s_root / "zero_shot_predictions.csv").exists()
+        assert (h4s_root / "paired_contrasts.csv").exists()
+        assert len(list(validation_root.glob("*/stage_manifest.json"))) == 1
+        assert len(list(validation_root.glob("*/stage_result.json"))) == 1
     finally:
         shutil.rmtree(output_root, ignore_errors=True)

@@ -1,46 +1,17 @@
-# Franck-Hertz 补充验证实验预注册与进度台账
+# Franck-Hertz 补充验证实验与进度台账
 
-## Material Passport
+## 1. 当前研究问题
 
-- Origin Skill: academic-research-suite/experiment-agent
-- Origin Mode: plan
-- Origin Date: 2026-07-12
-- Verification Status: VERIFIED_AND_FROZEN
-- Version Label: preregistration_v1
-- Execution Workflow: superpowers using-superpowers, brainstorming, writing-plans, using-git-worktrees, subagent-driven-development
+本验证层回答两个不同问题：
 
-## 1. 文档用途与冻结规则
+1. 现有自由 K 扫描中的 (K=4) 选择对 selector、复杂度惩罚和相关噪声是否稳定。
+2. 已知的 Ar I 最低 (4s) 四能级组，能否在相同物理前向核下比单一激发能假设更好地预测完全留出的阻滞电压曲线。
 
-本文档同时承担补充验证实验的设计定稿、预注册协议、执行台账和结果索引。本文档提交并经用户审阅确认后，下列研究问题、实验矩阵、随机种子、主要终点、解释阈值和失败规则正式冻结。冻结后只能更新执行状态，并在第 14 节追加“证据—推断—限制”记录，不得依据结果回改预注册定义。
+第二个问题由针对性的四臂物理假设比较承担，不再使用 semi-synthetic recovery 或固定预算 MLP。删除旧实验不改变已完成 selector、block-bootstrap 和 holdout 结果；Git 历史仍保留旧设计的实现过程。
 
-技术完成标准是：预注册单元全部具有成功或明确失败记录，输入与配置可追溯，失败单元保留在分母中，汇总可由同一 CLI 重跑。技术完成不以 K=4 被恢复、物理模型胜出或任何结果方向为条件。
+本阶段不修改论文、补充材料、图件、production selector、默认模型或 `source_data_package/`。技术完成仅表示代码、身份记录、失败语义和 smoke 链路可复现，不代表任何物理假设已经得到支持。
 
-## 2. 研究目标与范围边界
-
-### 2.1 目标
-
-1. 审计 production selector 对重复指标和训练内诊断的依赖。
-2. 在保留曲线内相关性的条件下重新评估 residual-bootstrap selected-K 分布。
-3. 测量模型对完全留出的阻滞电压曲线的零样本预测能力，以及有限 nuisance 校准后的迁移能力。
-4. 在已知真值的 semi-synthetic 数据中测量通道数、近邻间隔、能量和权重的恢复能力。
-5. 以参数预算匹配的单一 MLP 检查预测性能与参数量比较，避免对所有黑盒模型作泛化结论。
-
-### 2.2 冻结边界
-
-- 当前 production K=4、production forward prior 和默认 selector 只作为冻结参考，不由本轮验证自动重定义。
-- 新实验写入独立 `output/validation/`，不覆盖 `output/main/`、`output/robustness/` 或 `output/sensitivity/`。
-- 本阶段不修改论文、补充材料、论文图件或 `source_data_package/`。
-- 新实验可以产生与当前中心结论不一致的结果；所有负结果和失败记录均须保留。
-- 普通运行输出继续由 `.gitignore` 排除，只有本文档及后续源码、测试和复现文档进入版本控制。
-
-## 3. 环境与执行入口
-
-- Repository: `fh-argon-sublevel-detect`
-- Isolated worktree: `D:\VScode_repository\FrankHertz_Experiment\.worktrees\fh-validation`
-- Branch: `feature/supplementary-validation-experiments`
-- Language/framework: Python 3.13, PyTorch 2.8
-- Preferred formal device: NVIDIA GeForce RTX 4060 Laptop GPU through explicit `--device cuda`
-- CPU fallback: allowed only when CUDA is unavailable；设备、驱动和运行时必须写入 manifest，CPU/GPU wall time 不得混合比较。
+## 2. CLI
 
 正式整合命令：
 
@@ -48,272 +19,108 @@
 python run.py --mode fullscan --validation --device cuda
 ```
 
-Smoke 命令：
+当前整合顺序为 `selector`、`bootstrap`、`holdout`、`h4s`。分阶段命令：
 
 ```powershell
-python run.py --mode smoke --exclude hpopt --validation --output C:\tmp\fh_validation_smoke --device cpu
-```
-
-分阶段命令：
-
-```powershell
-python run.py --mode fullscan --validation-only selector --device cuda
+python run.py --mode fullscan --validation-only selector --device cpu
 python run.py --mode fullscan --validation-only bootstrap --device cuda
 python run.py --mode fullscan --validation-only holdout --device cuda
-python run.py --mode fullscan --validation-only synthetic --device cuda
-python run.py --mode fullscan --validation-only benchmark --device cuda
+python run.py --mode fullscan --validation-only h4s --device cuda
 ```
 
-`--validation-only` 自动启用 validation。正式论文复现采用不带 `--validation-only` 的整合命令；分阶段命令仅用于逐项推进、诊断和显式重跑。
+H4s 功能 smoke：
 
-## 4. Baseline 解析与证据隔离
+```powershell
+$smoke = Join-Path $env:TEMP 'fh_h4s_smoke'
+python run.py --mode smoke --exclude hpopt --validation-only h4s --output $smoke --device cpu
+Remove-Item -LiteralPath $smoke -Recurse -Force
+```
 
-Baseline 解析遵循以下不可交换的优先级：
+Smoke 只检查运行链路和输出 schema，固定写入 `claim_evaluable=false`，不得用于论文结论。
 
-1. 若指定 `--output` 下存在完整的 `main/fullscan` 与 selected-model artifact，则整套使用该本地 baseline。
-2. 若本地 baseline 不完整，则整套回退到已提交 `source_data_package` 中的 production config、decision、scan tables、forward evidence、K=4 scorecard/checkpoint 和 prediction points。
+## 3. Baseline 与身份隔离
 
-同一次 validation run 使用的 decision、config、model-selection table、scan summary、forward evidence、selected scorecard、checkpoint 和 prediction points 必须来自同一 baseline root。每个必需文件记录 SHA-256；禁止跨 root 拼接。若已有完成阶段的代码版本、输入、baseline、实验矩阵或 seed 哈希不匹配，流程拒绝覆盖并要求使用新的 `--output`。
+1. 若指定输出根含完整且身份兼容的 `main/fullscan`，验证使用该本地 baseline。
+2. 否则只读使用已提交 `source_data_package/` 中的 config、decision、scan table、forward evidence、selected scorecard、checkpoint 和 prediction points。
+3. 每阶段记录输入、baseline、矩阵、seed、设备及源码哈希。已有阶段身份不一致时拒绝复用或覆盖。
+4. 单元失败保留在预定义分母中；任一单元失败均令阶段及 CLI 返回非零。
 
-## 5. Selector decontamination audit
+## 4. 保留的验证阶段
 
-该实验只读取冻结 scan rows 并重算 decision，不重新训练、不修改 production selector。共冻结 15 个情景：
+### 4.1 Selector audit
 
-1. `production`
-2. `leave_one_rmse_out`
-3. `leave_one_legacy_summary_out`
-4. `leave_one_d1_out`
-5. `leave_one_d2_out`
-6. `leave_one_structure_out`
-7. `leave_one_physical_out`
-8. `leave_one_bic_out`
-9. `leave_one_aic_out`
-10. `leave_one_degeneracy_out`
-11. `remove_fit_group`：移除 RMSE 与 legacy summary
-12. `remove_shape_group`：移除 d1、d2 与 structure
-13. `remove_physical_group`：移除 physical
-14. `remove_complexity_group`：移除 BIC、AIC 与 degeneracy
-15. `fit_complexity_only`：仅保留 RMSE、BIC、AIC 与 degeneracy
+冻结 production selector，对逐指标移除、分组移除及 fit-complexity-only 情景重新计分，不重新训练。当前正式结果为 15/15 情景完成：13个选择 (K=4)，移除 BIC 或整个复杂度组的2个情景选择 (K=8)。该结果说明 (K=4) 是复杂度约束下的条件性折中，不是无条件唯一解。
 
-所有移除情景都把被移除分量的权重设为0，未移除分量严格沿用 production 权重，不重新归一化。原始指标按升序生成 competition rank：数值在 `1e-12` 内相同则共享最小名次，下一名次保留位置跳跃；非有限值排在全部有限值之后。composite score并列时选择较小K。`fit_complexity_only` 同样沿用 RMSE=1、BIC=1、AIC=0.5、degeneracy=1 的production权重。
+### 4.2 Circular moving-block residual bootstrap
 
-主要终点：
+在每条曲线内部对中心化残差作循环移动块采样。当前60/60单元完成且零失败；主条件 block=7、seed=0 中 (K=4) 为8/30，Wilson 95%区间为 `[0.1418, 0.4445]`，众数为 (K=5)。该结果是 exact-(K=4) 稳定性的限制证据。
 
-- 去掉 legacy summary 后 selected K 是否变化。
-- 去掉训练内 shape/physical 诊断后 selected K 如何变化。
-- 15 个情景的 selected-K 分布。
-- 各 rank 分量在 K=1..8 上的 Spearman 相关矩阵。
+### 4.3 Leave-one-(V_r)-out prediction
 
-该审计不加入 no-forward、prior-off、±25% rank-weight 或既有复合偏重情景；这些属于已有 ablation/robustness 证据，不在本实验重复计算。
+五折训练 K=1..8、seeds 0/1/2，以完全留出曲线上的零样本 RMSE、MAE、NRMSE 为主要终点。当前120/120单元完成且零失败；平均零样本 NRMSE 为 K1 `0.12547`、K4 `0.12269`、K8 `0.11695`。该阶段支持多通道预测改善，但不单独确定真实通道数。
 
-## 6. Correlation-preserving residual bootstrap
+## 5. 针对性 H4s 四臂比较
 
-### 6.1 生成协议
+### 5.1 四个假设
 
-- 残差源：冻结 production K=4 `prediction_points.csv`。
-- 每条曲线分别中心化残差，禁止跨曲线采样。
-- 使用 circular moving-block bootstrap，保持块内相邻顺序。
-- 主 block length：7 个采样点；在0.5 V等间隔网格上，块内首尾坐标跨度为3.0 V。
-- 敏感性 block length：5 和 9 个采样点。
+| 键 | 物理含义 | 4s 能量 | 平滑高能背景 |
+|---|---|---|---|
+| `h1` | 单一有效激发能 | 一个自由能量 | 关闭 |
+| `h1_background` | 单一有效激发能加背景 | 一个自由能量 | 开启 |
+| `h4s` | 最低 Ar I 4s 四能级组 | NIST 相对间隔固定 | 关闭 |
+| `h4s_background` | 四能级组加背景 | NIST 相对间隔固定 | 开启 |
 
-### 6.2 预注册矩阵
+NIST Ar I 4s 能量固定为：
 
-- block=7：30 个 data replicate，训练 seed 0。
-- block=7 的 replicate 0–4：追加训练 seed 1 和 2。
-- block=5：10 个 data replicate，训练 seed 0。
-- block=9：10 个 data replicate，训练 seed 0。
+```text
+11.54835442, 11.62359272, 11.72316039, 11.82807116 eV
+```
 
-### 6.3 终点
+来源：[NIST Atomic Spectra Database](https://physics.nist.gov/cgi-bin/ASD/energy1.pl?spectrum=Ar+I&units=1&level_out=on&conf_out=on&term_out=on&j_out=on)。四个能量保持相对间隔不变，只允许共同微调 ([-0.25,0.25]) eV；现有 `phase` 参数继续表达曲线相位或接触电势相关偏移。通道权重通过 softmax 保证非负且归一化，四通道共享展宽。
 
-- 主要终点：block=7 的 selected-K 分布，以及 K=4 比例的 Wilson 95% 区间。
-- 次要终点：block length 与 optimizer seed 对 selected K 的影响。
-- 现有 pointwise residual bootstrap 只作为独立对照；两种 bootstrap 的行和结论不得合并。
+`B` 直接复用模型现有的平滑 `high_energy_loss` 强度、起点和宽度。无背景模型将这三个参数冻结，并把强度严格置零；它不是第五个原子能级或振荡通道。
 
-## 7. Leave-one-\(V_r\)-out prediction
+### 5.2 实验矩阵
 
-### 7.1 训练折
+- Smoke：1个留出 (V_r) × 4个假设 × 1个 seed，共4单元，使用2 epochs。
+- Fullscan：5个留出 (V_r) × 4个假设 × seeds 0/1/2，共60单元。
+- Fullscan 统一使用 `init_jitter_scale=0.05`。seed 仅检查优化起点敏感性，不作为独立统计样本。
+- 每个单元只在其余4条曲线上训练，留出曲线只参与 neutral-nuisance 零样本评价。
 
-- 依次留出 `Vr=0,4,6,8,10 V`，共 5 折。
-- 每折只使用其余 4 条曲线训练 K=1..8。
-- 每个 K 使用 seeds 0、1、2，固定 production hyperparameters，不重新执行 hpopt。
+### 5.3 终点和预定义对照
 
-### 7.2 主要零样本终点
+逐单元报告 RMSE、MAE、NRMSE、训练时间、可训练参数数、四能级共同偏移及逐点预测。预定义配对差异为：
 
-对完全留出的曲线使用 `nuisance_mode=neutral`，不读取或拟合该曲线的 nuisance 参数。报告：
+1. (H_{4s}-H_1)
+2. ((H_{4s}+B)-(H_1+B))
+3. ((H_1+B)-H_1)
+4. ((H_{4s}+B)-H_{4s})
 
-- RMSE
-- MAE
-- range-normalized RMSE
+负的误差差值表示候选模型误差更低。程序只输出逐折、逐优化起点、种子中位数及方向计数，不自动生成“支持”或“否定”结论。
 
-分别保留 K=1、K=4、K=8 和训练折 selected-K 模型的结果。
+## 6. H4s 输出
 
-训练折 selected K 只使用该折4条训练曲线生成的 K=1..8 scan summaries，并调用冻结 production selector。forward evidence、训练损失、structure、physical、AIC/BIC和退化指标全部由训练折计算；在 selected K 固定之前不得读取留出曲线的观测值或预测指标。
+`output/validation/h4s_comparison/` 包含：
 
-### 7.3 稀疏校准次要终点
+- `hypothesis_manifest.json`：四个假设、NIST 数据、背景定义和预定义对照。
+- `unit_status.csv`：全部成功、失败和复用单元。
+- `zero_shot_metrics.csv`：逐折逐 seed 指标。
+- `zero_shot_predictions.csv`：全部留出点预测。
+- `paired_contrasts.csv`：四类配对差异。
+- `h4s_comparison_summary.json`：描述性汇总、fold median 和 claim 边界。
+- `stage_manifest.json`、`stage_result.json`、`stage_status.json`：阶段身份和完成状态。
 
-将留出曲线按 \(V_a\) 排序，固定索引 `0,8,16,...,160` 为 21 个校准点，其余 140 点为测试点。全局物理核和通道参数保持冻结，只允许拟合 gain、bias 和 \(\Delta V_a\) 三个 nuisance 参数。校准点和测试点不得重叠；报告只在 140 个测试点上计算。
+## 7. 当前状态
 
-零样本结果是主要预测证据；稀疏校准结果是条件性迁移诊断，二者不得互换称谓。
+| 阶段 | 状态 | 正式结果 |
+|---|---|---|
+| selector audit | `complete` | 15/15，失败0 |
+| block bootstrap | `complete` | 60/60，失败0 |
+| held-out prediction | `complete` | 120/120，失败0 |
+| targeted H4s comparison | `smoke_passed` | 尚无正式结果；CPU smoke 4/4 单元完成、0 失败，`claim_evaluable=false` |
 
-全文统一将 range-normalized RMSE 记为 NRMSE，定义为 `RMSE / (max(I_heldout)-min(I_heldout))`。分母固定使用该留出曲线全部161个观测点的电流范围；零样本和稀疏校准测试使用同一分母。该观测范围只参与事后指标归一化，不进入训练、模型选择或nuisance拟合。
+已退役验证的结果目录与旧五阶段顶层进度清单已删除。保留的三组正式结果不因本次源码替换而重算。
 
-## 8. Synthetic recovery and detectability
+## 8. 临时文件规则
 
-### 8.1 生成器
-
-生成器继承冻结 production K=4 checkpoint 的共享物理核与曲线 nuisance，再显式注入已知通道：
-
-- K=1：energies=`[11.5]`，weights=`[1.0]`。
-- K=2：energies=`[11.5, 11.5+delta]`，weights=`[0.5, 0.5]`。
-- K=4：energies=`[11.5, 11.5+delta, 12.594, 13.965]`；weights=`[0.359396, 0.396105, 0.086224, 0.158275]` 后归一化。
-- K=8：能量与权重逐项读取已打包 `channel_parameters.csv` 的 K=8 行，并记录该文件 SHA-256。
-
-`delta={0.25,0.5,1.0} V` 仅用于 K=2 和 K=4。噪声使用 block=7 的真实残差块，尺度为 `{0.5,1.0,1.5}`。该实验是 semi-synthetic、in-family 恢复上界，不构成真实仪器的独立分辨率证明。
-
-对K=4，`delta`只定义并检验 `E2-E1`，不是四通道集合的全局最小间隔。特别是 `delta=1.0 V` 时，固定的 `E3=12.594 V` 使 `E3-E2=0.094 V`；该单元仍归类为 `E2-E1=1.0 V` 情景，并单独报告全部相邻间隔，禁止把它解释为“所有通道至少相隔1.0 V”。
-
-### 8.2 Epoch gate
-
-在固定代表数据上比较 800、1600 与 3500 epochs。只有当 1600 相对 3500 满足以下全部条件时，正式矩阵才使用 1600：
-
-1. 所有 K 的 RMSE 相对差均小于 1%。
-2. selected K 一致。
-
-否则正式矩阵统一使用 3500 epochs。选择结果写入 manifest，后续不随实验方向改变。
-
-### 8.3 Replicate 与 seed
-
-- 全矩阵筛查：每个 truth/gap/noise 单元 3 个 replicate，训练 seed 0。
-- 五个确认单元扩展为 30 个 replicate：
-  - K=1，noise=1x
-  - K=2，delta=0.25 V，noise=1x
-  - K=4，delta=0.25 V，noise=1x
-  - K=4，delta=0.5 V，noise=1x
-  - K=8，noise=1x
-- 每个确认单元的 replicate 0–4 追加训练 seeds 1、2。
-- K=4、delta=0.25 V、noise=1x 追加相同 replicate/seed 结构的 prior-off 对照。
-
-### 8.4 终点
-
-- 主要终点：exact-K recovery rate 与 Wilson 95% 区间。
-- 只有 Wilson 区间下界不低于 0.80，才允许称该情景下“可靠恢复”。
-- 次要终点：over-selection、under-selection、Hungarian matching energy RMSE、weight MAE 与 near-pair recovery rate。
-- 失败训练保留在预注册分母中，不得通过删除失败单元提高恢复率。
-
-## 9. Matched-budget MLP benchmark
-
-- 输入仅为 \(V_a,V_r\)，不使用 curve ID 或 embedding。
-- 标准化参数只由每折训练数据计算，再原样应用于测试折。
-- 网络：`2 -> 11 -> 1`，hidden activation 为 Tanh，输出为 Softplus。
-- 可训练参数严格为 45，与 production K=4 参数数一致。
-- 使用与 leave-one-\(V_r\)-out 完全相同的 5 折和 seeds 0、1、2。
-- Optimizer：AdamW，learning rate=0.0025，weight decay=1e-4。
-- Max epochs=3500；early-stop min epochs/warmup/patience=`300/300/45`。
-- 早停只读取训练 loss，不查看测试折，不执行额外调参。
-
-报告零样本 NRMSE、MAE、参数量和训练时间。结论只能表述为“这一固定参数预算 MLP 基线下”的比较，不能外推到所有深度学习模型。
-
-## 10. 输出契约
-
-验证根目录固定为 `output/validation/`，至少包含：
-
-- `experiment_manifest.json`
-- `progress.json`
-- `validation_summary.json`
-- `validation_summary.md`
-- 每阶段 `stage_status.json`
-- `selector_audit/` 的 scenario table、rank correlation 与 summary
-- `block_bootstrap/` 的 replicate manifest、selection rows 与 block-length summary
-- `holdout/` 的 fold config、zero-shot/calibrated predictions、fold metrics 与 summary
-- `synthetic_recovery/` 的 truth manifest、生成数据哈希、selection rows、channel matching 与 recovery summary
-- `benchmark/` 的 MLP config、fold metrics 与 paired comparison
-
-`experiment_manifest.json` 必须记录命令、Git commit/dirty 状态、Python/PyTorch/CUDA版本、设备、输入哈希、baseline来源、场景、seed、主要终点和epoch-gate选择。
-
-## 11. 状态、断点和失败规则
-
-阶段状态只允许：
-
-- `not_started`
-- `smoke_passed`
-- `formal_running`
-- `complete`
-- `incomplete`
-- `blocked`
-
-规则：
-
-1. 只有代码、输入、baseline、矩阵和seed哈希全部匹配，已完成阶段才能复用。
-2. 哈希不匹配时拒绝覆盖；流程不自动删除旧实验。
-3. 数据或配置错误立即停止。
-4. 单个随机训练失败时记录原因并继续其余预注册单元；阶段最终标记 `incomplete`，CLI 返回非零。
-5. 失败单元保留在汇总分母中，不得静默删除。
-6. 流程不自动重试；用户再次运行命令才会显式重跑缺失或失败单元。
-7. 每个 fit 完成后更新 `progress.json`，记录完成数、失败数、耗时和 ETA。
-
-## 12. 测试与验收协议
-
-- CLI：默认关闭、`validation-only` 隐式启用、stage路由、依赖解析和旧命令兼容。
-- Baseline：优先级、同根约束、必需哈希和 mismatch 拒绝复用。
-- Selector：默认权重不可原地修改；15个情景及相关矩阵字段准确。
-- Bootstrap：同seed可复现、行数不变、曲线隔离、block连续、残差中心化、噪声尺度正确。
-- Holdout：训练集中不存在留出 \(V_r\)；校准点和测试点不重叠；仅3个nuisance参数变化。
-- Synthetic：真值注入、block noise、Wilson区间和Hungarian matching正确。
-- MLP：参数数严格45、输入仅 \(V_a,V_r\)、训练/测试无泄漏。
-- Integration：两次独立smoke均生成最小完整输出并清理临时目录；全测试和compileall通过。
-- Final audit：manifest场景数、seed、哈希、失败分母和output schema完整；论文与source-data package无改动。
-
-## 13. 执行顺序与状态台账
-
-| 顺序 | 阶段 | 状态 | 完成判据 |
-|---:|---|---|---|
-| 1 | 隔离worktree、基线测试、预注册文档 | complete | 基线测试、文档自检、提交及用户审阅确认均已完成 |
-| 2 | validation基础设施与selector audit | complete | 单测、smoke、正式审计与摘要完成 |
-| 3 | block residual bootstrap | formal_running | 主/敏感性矩阵及区间汇总完成 |
-| 4 | leave-one-\(V_r\)-out prediction | smoke_passed | 5折零样本与稀疏校准输出完成 |
-| 5 | synthetic recovery | smoke_passed | epoch gate、筛查、确认与prior-off完成 |
-| 6 | matched-budget MLP | smoke_passed | 5折三seed及paired comparison完成 |
-| 7 | 整体验证与交付 | smoke_passed | 全测试、两次smoke、manifest与清理审计通过 |
-
-## 14. 追加式结果记录
-
-本节只允许在每阶段完成后追加记录，采用以下固定结构：
-
-### 阶段 1：隔离worktree、基线测试与预注册文档
-
-- 状态：`complete`
-- 证据：已在 `feature/supplementary-validation-experiments` 隔离worktree中确认依赖全部满足；完整基线测试为28项通过、1项按环境条件跳过；原始checkout的source-data package未提交改动未被带入或修改；本文档禁用词扫描和空白错误检查通过；提交 `7878144` 经用户明确确认。
-- 推断：隔离环境、现有测试基线与冻结的预注册协议满足开始补充验证开发的前置条件；该结论只涉及代码与研究设计基线，不涉及任何科学结果。
-- 限制：其余实验阶段均未开始；后续只允许更新状态并在本节追加结果，不依据结果回改冻结定义。
-
-### 后续阶段记录格式
-
-- 状态：使用第11节定义的状态值。
-- 证据：记录命令、输入/配置哈希、完成与失败分母以及主要数值输出。
-- 推断：只陈述证据直接支持的结论，不把条件性结果外推为真实能级发现。
-- 限制：记录数据、模型、先验、计算预算和可复现性边界。
-
-### 阶段 2：Validation 基础设施与 selector decontamination audit
-
-- 状态：`complete`
-- 证据：正式命令 `python run.py --mode fullscan --validation-only selector --device cuda` 在干净提交 `e6ec9314fdea9daa3c70d661adbede0c3bebe2af` 上返回0；manifest记录 `dirty=false`、package baseline identity SHA-256=`5E5B921CC22BCAE3BFDD58BCCBE8BABE5435EF034B95BA7E738FF789012C49CA`、model-selection table SHA-256=`1C5517D8FD4821431B613457688B79BDCFC1B05AAE7FD982A0A1E242BF3479A7`。15个预注册情景全部完成且无失败：13/15选择K=4，`leave_one_bic_out`与`remove_complexity_group`选择K=8；移除legacy summary后仍选择K=4。相关矩阵含81个有序分量对；RMSE与legacy summary的Spearman相关为1.0，d1与d2、d1与structure均为0.95238。CLI smoke同样完成15个情景与81个相关单元，临时目录已删除；完整测试为48项通过、1项按环境条件跳过。
-- 推断：在冻结scan rows上，K=4并非由legacy summary这一重复分量单独造成，也不因逐项移除shape或physical分量而改变；但选择对BIC复杂度惩罚具有实质依赖，去掉BIC或整个复杂度组时转向K=8。RMSE与legacy summary完全同序证实二者在当前表中没有独立排序信息。
-- 限制：这是对既有训练结果的确定性重计分，不是新的独立数据或外推预测验证；13/15情景的K=4比例不能解释为统计置信度。该结果只定位selector的依赖结构，不证明K=4是真实能级数，也不支持重新定义production selector。
-
-### 阶段 3：Correlation-preserving block residual bootstrap（运行中）
-
-- 状态：`formal_running`
-- 证据：代码与测试已完成；CPU与CUDA smoke各完成1个最小单元且无失败，临时目录均已删除。正式命令已在CUDA四worker验证配置上启动，预注册总数为60个训练单元；截至本记录写入时完成2/60、失败0/60，前两个block=7、seed=0单元均选择K=8。GPU运行保持约97%利用率，单元完成后即时写入selection row、checkpoint与progress。
-- 推断：并行调度和断点记录链路工作正常；当前2个完成单元只属于执行进度证据，不足以估计selected-K分布或K=4比例。
-- 限制：阶段尚未完成，Wilson区间、block-length敏感性和optimizer-seed敏感性均不得提前报告；串行试运行的中断checkpoint被完整保存在忽略目录 `output/validation_interrupted/serial_ef3714b_block_bootstrap`，未与正式并行矩阵混用。
-
-### 阶段 4–7：实现与 smoke 验证进度
-
-- 状态：`smoke_passed`
-- 证据：leave-one-Vr-out smoke完成1折、2个K候选、零失败，并同时写出161点neutral零样本指标与21点校准/140点评价的三nuisance参数结果；synthetic smoke完成1个K=4、delta=0.25 V、1x噪声单元并写出truth hash、selection、Hungarian matching和recovery summary；MLP smoke确认输入仅Va/Vr、参数数严格45，并与同根holdout selected-K零样本行完成配对。两个独立整合smoke根均完成全部5阶段，分别生成5个stage manifest和5个stage result，断言后目录均已删除。正式矩阵计数被manifest冻结为selector=15、bootstrap=60、holdout=120、synthetic=297、benchmark=15。
-- 推断：五阶段CLI、依赖顺序、输入哈希、失败返回码、输出schema和临时清理已在最小计算预算下贯通；这只证明实现链路可运行，不代表正式科学终点已经获得。
-- 限制：holdout、synthetic和benchmark正式运行尚未开始；smoke epochs与缩减K范围不能用于论文结论。near-pair次要终点采用预先写入summary的操作阈值：Hungarian匹配后前两真值通道的能量误差均不超过0.125 V；该阈值不参与exact-K主要终点，最终解释须单独披露。
-
-## 15. 临时文件清理
-
-Smoke测试产生的目录必须位于 `C:\tmp` 或 pytest 临时目录，并在断言完成后删除。正式扰动输入和运行结果只进入被忽略的 `output/validation/`。任何用于诊断的额外临时目录在证据收集完成后立即清除；工作区中不得遗留smoke输出、缓存副本或未登记的实验结果。
+Smoke 输出必须写入 `C:\tmp` 或 pytest 临时目录。断言完成后删除整个 smoke 根；不得在仓库中遗留临时训练目录、缓存副本或 smoke 结果。正式训练必须等待新的明确指令。

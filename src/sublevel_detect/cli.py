@@ -16,7 +16,7 @@ from . import (
 )
 
 
-VALIDATION_STAGES = ("selector", "bootstrap", "holdout", "synthetic", "benchmark")
+VALIDATION_STAGES = ("selector", "bootstrap", "holdout", "h4s")
 
 
 def build_parser() -> argparse.ArgumentParser:

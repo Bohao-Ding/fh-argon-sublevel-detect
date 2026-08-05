@@ -11,11 +11,10 @@ from typing import Any
 from . import (
     model,
     paths,
-    validation_benchmark,
     validation_bootstrap,
+    validation_h4s,
     validation_holdout,
     validation_selector,
-    validation_synthetic,
 )
 from .validation_common import (
     atomic_json_dump,
@@ -26,22 +25,20 @@ from .validation_common import (
 )
 
 
-VALIDATION_STAGES = ("selector", "bootstrap", "holdout", "synthetic", "benchmark")
+VALIDATION_STAGES = ("selector", "bootstrap", "holdout", "h4s")
 
 STAGE_DIR_NAMES = {
     "selector": "selector_audit",
     "bootstrap": "block_bootstrap",
     "holdout": "holdout",
-    "synthetic": "synthetic_recovery",
-    "benchmark": "benchmark",
+    "h4s": "h4s_comparison",
 }
 
 STAGE_MODULES = {
     "selector": (validation_selector, model),
     "bootstrap": (validation_bootstrap, model),
     "holdout": (validation_holdout, model),
-    "synthetic": (validation_synthetic, validation_bootstrap, model),
-    "benchmark": (validation_benchmark, validation_holdout),
+    "h4s": (validation_h4s, validation_holdout, model),
 }
 
 
@@ -50,8 +47,6 @@ def requested_stages(stage: str | None) -> list[str]:
         return list(VALIDATION_STAGES)
     if stage not in VALIDATION_STAGES:
         raise ValueError(f"Unsupported validation stage: {stage}")
-    if stage == "benchmark":
-        return ["holdout", "benchmark"]
     return [stage]
 
 
@@ -62,10 +57,8 @@ def _stage_matrix(stage: str, mode: str) -> list[dict[str, Any]]:
         return [asdict(item) for item in validation_bootstrap.bootstrap_units(mode)]
     if stage == "holdout":
         return [asdict(item) for item in validation_holdout.holdout_units(mode)]
-    if stage == "synthetic":
-        return [asdict(item) for item in validation_synthetic.synthetic_units(mode)]
-    if stage == "benchmark":
-        return [asdict(item) for item in validation_benchmark.benchmark_units(mode)]
+    if stage == "h4s":
+        return [asdict(item) for item in validation_h4s.h4s_units(mode)]
     raise ValueError(f"Unsupported validation stage: {stage}")
 
 
@@ -85,12 +78,6 @@ def _stage_identity(
         for module in STAGE_MODULES[stage]
     }
     resolved_input = paths.resolve_project_path(input_path)
-    dependency_hashes: dict[str, str] = {}
-    if stage == "benchmark":
-        physical_metrics = validation_root / "holdout" / "zero_shot_metrics.csv"
-        dependency_hashes["holdout_zero_shot_metrics"] = (
-            sha256_file(physical_metrics) if physical_metrics.is_file() else "MISSING"
-        )
     return {
         "schema_version": 1,
         "stage": stage,
@@ -101,7 +88,7 @@ def _stage_identity(
         "matrix_sha256": canonical_hash(matrix),
         "seed_sha256": canonical_hash(seeds),
         "source_hashes": source_hashes,
-        "dependency_hashes": dependency_hashes,
+        "dependency_hashes": {},
     }
 
 
@@ -279,20 +266,11 @@ def run(
                 validation_root=validation_root,
                 device=str(device),
             )
-        elif result is None and stage == "synthetic":
-            result = validation_synthetic.run(
+        elif result is None and stage == "h4s":
+            result = validation_h4s.run(
                 mode=str(mode),
                 input_path=input_path,
                 baseline=baseline,
-                output_dir=stage_dir,
-                validation_root=validation_root,
-                device=str(device),
-            )
-        elif result is None and stage == "benchmark":
-            result = validation_benchmark.run(
-                mode=str(mode),
-                input_path=input_path,
-                holdout_dir=validation_root / "holdout",
                 output_dir=stage_dir,
                 validation_root=validation_root,
                 device=str(device),

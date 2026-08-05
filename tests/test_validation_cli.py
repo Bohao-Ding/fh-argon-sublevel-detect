@@ -49,7 +49,7 @@ def test_full_validation_routes_all_stages_without_running_main(monkeypatch) -> 
 
     def fake_validation_run(**kwargs):
         validation_calls.append(kwargs)
-        return {"ok": True, "requested_stages": ["selector", "bootstrap", "holdout", "synthetic", "benchmark"]}
+        return {"ok": True, "requested_stages": ["selector", "bootstrap", "holdout", "h4s"]}
 
     monkeypatch.setattr(cli.main_pipeline, "run", fail_main_run)
     monkeypatch.setattr(cli.validation_pipeline, "run", fake_validation_run)
@@ -130,12 +130,12 @@ def test_pipeline_dispatches_holdout_stage(monkeypatch, tmp_path: Path) -> None:
     assert calls[0]["output_dir"] == tmp_path / "output" / "validation" / "holdout"
 
 
-def test_pipeline_dispatches_synthetic_stage(monkeypatch, tmp_path: Path) -> None:
+def test_pipeline_dispatches_h4s_stage(monkeypatch, tmp_path: Path) -> None:
     baseline = Baseline(kind="package", root=tmp_path, files={}, hashes={})
     calls: list[dict] = []
     monkeypatch.setattr(validation_pipeline, "resolve_baseline", lambda *args, **kwargs: baseline)
     monkeypatch.setattr(
-        validation_pipeline.validation_synthetic,
+        validation_pipeline.validation_h4s,
         "run",
         lambda **kwargs: calls.append(kwargs) or {"ok": True, "status": "smoke_passed"},
     )
@@ -145,42 +145,19 @@ def test_pipeline_dispatches_synthetic_stage(monkeypatch, tmp_path: Path) -> Non
         input_path=tmp_path / "input.csv",
         output_root=tmp_path / "output",
         device="cpu",
-        requested_stage="synthetic",
+        requested_stage="h4s",
         package_root=tmp_path / "package",
     )
 
     assert result["ok"] is True
     assert len(calls) == 1
-    assert calls[0]["output_dir"] == tmp_path / "output" / "validation" / "synthetic_recovery"
+    assert calls[0]["output_dir"] == tmp_path / "output" / "validation" / "h4s_comparison"
 
 
-def test_benchmark_stage_runs_holdout_dependency_before_benchmark(monkeypatch, tmp_path: Path) -> None:
-    baseline = Baseline(kind="package", root=tmp_path, files={}, hashes={})
-    order: list[str] = []
-    monkeypatch.setattr(validation_pipeline, "resolve_baseline", lambda *args, **kwargs: baseline)
-    monkeypatch.setattr(
-        validation_pipeline.validation_holdout,
-        "run",
-        lambda **kwargs: order.append("holdout") or {"ok": True, "status": "smoke_passed"},
-    )
-    monkeypatch.setattr(
-        validation_pipeline.validation_benchmark,
-        "run",
-        lambda **kwargs: order.append("benchmark") or {"ok": True, "status": "smoke_passed"},
-    )
-
-    result = validation_pipeline.run(
-        mode="smoke",
-        input_path=tmp_path / "input.csv",
-        output_root=tmp_path / "output",
-        device="cpu",
-        requested_stage="benchmark",
-        package_root=tmp_path / "package",
-    )
-
-    assert result["ok"] is True
-    assert result["requested_stages"] == ["holdout", "benchmark"]
-    assert order == ["holdout", "benchmark"]
+@pytest.mark.parametrize("removed_stage", ["synthetic", "benchmark"])
+def test_removed_validation_stages_are_rejected_by_cli(removed_stage: str) -> None:
+    with pytest.raises(SystemExit):
+        cli.build_parser().parse_args(["--validation-only", removed_stage])
 
 
 def test_pipeline_reuses_identity_matching_completed_selector(monkeypatch, tmp_path: Path) -> None:
