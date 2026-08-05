@@ -16,7 +16,7 @@
 正式整合命令：
 
 ```powershell
-python run.py --mode fullscan --validation --device cuda
+python run.py --mode fullscan --validation --device cpu
 ```
 
 当前整合顺序为 `selector`、`bootstrap`、`holdout`、`h4s`。分阶段命令：
@@ -25,7 +25,7 @@ python run.py --mode fullscan --validation --device cuda
 python run.py --mode fullscan --validation-only selector --device cpu
 python run.py --mode fullscan --validation-only bootstrap --device cuda
 python run.py --mode fullscan --validation-only holdout --device cuda
-python run.py --mode fullscan --validation-only h4s --device cuda
+python run.py --mode fullscan --validation-only h4s --device cpu
 ```
 
 H4s 功能 smoke：
@@ -96,7 +96,7 @@ NIST Ar I 4s 能量固定为：
 3. ((H_1+B)-H_1)
 4. ((H_{4s}+B)-H_{4s})
 
-负的误差差值表示候选模型误差更低。程序只输出逐折、逐优化起点、种子中位数及方向计数，不自动生成“支持”或“否定”结论。
+负的误差差值表示候选模型误差更低。程序先计算同一 fold、同一 seed 内的配对差值，再取每个 fold 的 seed 中位数；方向一致性只以这5个 fold-level 中位差为分母。失败 seed 或 fold 仍计入预期分母。程序不自动生成“支持”或“否定”结论。
 
 ## 6. H4s 输出
 
@@ -107,6 +107,8 @@ NIST Ar I 4s 能量固定为：
 - `zero_shot_metrics.csv`：逐折逐 seed 指标。
 - `zero_shot_predictions.csv`：全部留出点预测。
 - `paired_contrasts.csv`：四类配对差异。
+- `fold_seed_medians.csv`：每个 fold 与假设的 seed 中位数及预期、可用、失败 seed 数。
+- `fold_median_contrasts.csv`：每个 fold 的配对差值中位数及失败传播。
 - `h4s_comparison_summary.json`：描述性汇总、fold median 和 claim 边界。
 - `stage_manifest.json`、`stage_result.json`、`stage_status.json`：阶段身份和完成状态。
 
@@ -117,10 +119,24 @@ NIST Ar I 4s 能量固定为：
 | selector audit | `complete` | 15/15，失败0 |
 | block bootstrap | `complete` | 60/60，失败0 |
 | held-out prediction | `complete` | 120/120，失败0 |
-| targeted H4s comparison | `smoke_passed` | 尚无正式结果；CPU smoke 4/4 单元完成、0 失败，`claim_evaluable=false` |
+| targeted H4s comparison | `smoke_passed` | 尚无正式结果；CPU 与 CUDA smoke 均为4/4单元完成、0失败，schema/checkpoint 哈希完整，`claim_evaluable=false` |
 
 已退役验证的结果目录与旧五阶段顶层进度清单已删除。保留的三组正式结果不因本次源码替换而重算。
 
-## 8. 临时文件规则
+## 8. 正式训练前性能与正确性审计
+
+- 正式 H4s 单元使用四曲线批量前向与批量损失，但保持逐曲线损失定义、权重、3500 epochs 和早停规则不变。
+- Fullscan checkpoint 改为至多每60秒周期保存；epoch 1、早停、正常结束和异常退出仍强制保存。production 默认仍为每10 epochs 保存。
+- 300-epoch、两次独立重复的墙钟中位数：CPU 基线 `20.1578 s`，优化 CPU-4 `15.7539 s`，加速 `21.85%`；CUDA 基线 `83.5604 s`，优化 CUDA-4 `29.3465 s`，加速 `64.88%`。
+- 优化 CPU 比优化 CUDA 快 `46.32%`，且通过跨设备数值准入门，因此正式 H4s 设备确定为 CPU，worker 数为4、每 worker 单线程。
+- 同设备预测、指标、能量、共同偏移、权重及四类方向均通过有界等价门。性能数字只用于工程设备选择，不构成物理论文证据。完整审计见 `docs/h4s_performance_audit.md`。
+
+正式 H4s 命令冻结为：
+
+```powershell
+python run.py --mode fullscan --validation-only h4s --device cpu
+```
+
+## 9. 临时文件规则
 
 Smoke 输出必须写入 `C:\tmp` 或 pytest 临时目录。断言完成后删除整个 smoke 根；不得在仓库中遗留临时训练目录、缓存副本或 smoke 结果。正式训练必须等待新的明确指令。

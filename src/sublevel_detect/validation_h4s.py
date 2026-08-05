@@ -127,7 +127,9 @@ class H4sHypothesisModel(model.PoissonRateFHCoreMultiLevel):
             self.raw_common_energy_shift = torch.nn.Parameter(torch.zeros((), dtype=torch.float32))
         else:
             self.register_parameter("raw_common_energy_shift", None)
+            self.raw_level_logits.requires_grad_(False)
         if not self.hypothesis_spec.background_enabled:
+            self.high_energy_loss_enabled = False
             for name in BACKGROUND_PARAMETER_NAMES:
                 getattr(self, name).requires_grad_(False)
 
@@ -176,6 +178,48 @@ def load_all_curves(*, baseline: Baseline, input_path: str | Path) -> list[dict[
     return validation_holdout._full_curves(cfg)
 
 
+def prepare_h4s_fold(
+    all_curves: Sequence[Mapping[str, Any]],
+    *,
+    heldout_vr: float,
+    cfg: model.Config,
+) -> tuple[list[dict[str, Any]], dict[str, Any], dict[str, float]]:
+    training_curves, heldout_curves = validation_holdout.split_vr_fold(
+        all_curves,
+        heldout_vr=heldout_vr,
+    )
+    spacings = [
+        spacing
+        for curve in training_curves
+        if (
+            spacing := model.estimate_peak_spacing(
+                np.asarray(curve["Va"], dtype=np.float32),
+                np.asarray(curve["Ip"], dtype=np.float32),
+            )
+        )
+        is not None
+        and np.isfinite(spacing)
+    ]
+    forward_main = model.safe_float(getattr(cfg, "forward_main_spacing", 0.0), 0.0)
+    if str(getattr(cfg, "forward_prior_mode", "off")) != "off" and 5.0 <= forward_main <= 20.0:
+        excitation = float(forward_main)
+        source = "forward_soft_prior"
+    else:
+        excitation = float(np.mean(spacings)) if spacings else 11.5
+        source = "raw_peak_spacing"
+    init = {
+        "V_exc_init": excitation,
+        "V_exc_std": float(np.std(spacings)) if spacings else 0.0,
+        "V_exc_init_source": source,
+        "forward_confidence": model.safe_float(
+            getattr(cfg, "forward_confidence", 0.0), 0.0
+        ),
+        "n_curves": float(len(training_curves)),
+        "n_rows": float(sum(len(curve["Va"]) for curve in training_curves)),
+    }
+    return training_curves, heldout_curves[0], init
+
+
 def _unit_config(
     *,
     unit: H4sUnit,
@@ -201,11 +245,21 @@ def _unit_config(
     cfg.w_prior_anchor = 0.0
     cfg.w_prior_gap = 0.0
     cfg.init_jitter_scale = INITIALIZATION_JITTER_SCALE
+    cfg.batch_curve_losses = True
     cfg.device = str(device)
     cfg.selected_device = (
         "cuda" if str(device) == "cuda" and torch.cuda.is_available() else "cpu"
     )
     cfg.resume_mode = "auto" if str(mode) == "fullscan" else "off"
+    if str(mode) == "fullscan":
+        cfg.checkpoint_min_interval = 0
+        cfg.checkpoint_max_interval_seconds = 60.0
+        if cfg.selected_device == "cuda":
+            cfg.dispatch_strategy = "cuda_4"
+            cfg.cuda_workers = 4
+        else:
+            cfg.dispatch_strategy = "cpu_4"
+            cfg.cpu_workers = 4
     return cfg
 
 
@@ -274,16 +328,37 @@ def execute_unit(
             raise ValueError(f"H4s unit identity mismatch; refusing to overwrite {target}")
     else:
         atomic_json_dump({"identity": identity}, manifest_path)
+    fit_dir = target / "fit"
+    checkpoint_last = fit_dir / "checkpoint_last.pt"
+    checkpoint_best = fit_dir / "checkpoint_best.pt"
     if result_path.exists() and predictions_path.exists():
         existing_result = json.loads(result_path.read_text(encoding="utf-8-sig"))
         if bool(existing_result.get("ok", False)):
+            expected_hashes = {
+                "checkpoint_last_sha256": str(existing_result.get("checkpoint_last_sha256", "")),
+                "checkpoint_best_sha256": str(existing_result.get("checkpoint_best_sha256", "")),
+            }
+            if not bool(existing_result.get("training_terminal", False)):
+                raise ValueError(f"H4s result is not terminal; refusing silent reuse {target}")
+            if not checkpoint_last.is_file() or not checkpoint_best.is_file():
+                raise ValueError(f"H4s result checkpoint is missing; refusing silent reuse {target}")
+            actual_hashes = {
+                "checkpoint_last_sha256": sha256_file(checkpoint_last),
+                "checkpoint_best_sha256": sha256_file(checkpoint_best),
+            }
+            if not all(expected_hashes.values()) or actual_hashes != expected_hashes:
+                raise ValueError(f"H4s result checkpoint hash mismatch; refusing silent reuse {target}")
             return {
                 **existing_result,
                 "predictions": pd.read_csv(predictions_path).to_dict("records"),
                 "reused": True,
             }
 
-    training_curves, init = model.load_curves_and_init(cfg)
+    training_curves, heldout_curve, init = prepare_h4s_fold(
+        all_curves,
+        heldout_vr=unit.heldout_vr,
+        cfg=cfg,
+    )
     heldout_values = {
         float(np.asarray(curve["Vr"], dtype=np.float64).reshape(-1)[0])
         for curve in training_curves
@@ -292,11 +367,6 @@ def execute_unit(
         abs(value - float(unit.heldout_vr)) <= 1e-6 for value in heldout_values
     ):
         raise AssertionError(f"Held-out Vr={unit.heldout_vr} leaked into training curves")
-    _, heldout_curves = validation_holdout.split_vr_fold(
-        all_curves,
-        heldout_vr=unit.heldout_vr,
-    )
-    heldout_curve = heldout_curves[0]
     torch_device = model.resolve_device(cfg.selected_device)
     model.set_seed(unit.seed)
     trained = H4sHypothesisModel(
@@ -309,16 +379,18 @@ def execute_unit(
         init_jitter_scale=float(cfg.init_jitter_scale),
         init_seed=unit.seed,
     ).to(torch_device)
-    resume_path = target / "fit" / "checkpoint_last.pt"
+    resume_path = checkpoint_last
     scorecard = model.train_multilevel(
         cfg,
         trained,
         training_curves,
         torch_device,
-        target / "fit",
+        fit_dir,
         int(cfg.epochs),
         resume_path if cfg.resume_mode == "auto" and resume_path.is_file() else None,
     )
+    if not bool(scorecard.get("training_terminal", False)):
+        raise RuntimeError(f"H4s training returned a non-terminal scorecard: {target}")
     observed = np.asarray(heldout_curve["Ip"], dtype=np.float64)
     va_values = np.asarray(heldout_curve["Va"], dtype=np.float64)
     va = torch.as_tensor(va_values, dtype=torch.float32, device=torch_device)
@@ -356,12 +428,21 @@ def execute_unit(
         for index in range(len(observed))
     ]
     pd.DataFrame(predictions).to_csv(predictions_path, index=False)
+    if not checkpoint_last.is_file() or not checkpoint_best.is_file():
+        raise RuntimeError(f"H4s training did not produce both checkpoints: {target}")
     result = {
         "ok": True,
         "status": "complete",
         "unit": asdict(unit),
         "metrics": metrics,
         "elapsed_seconds": float(scorecard.get("elapsed_seconds", 0.0)),
+        "elapsed_seconds_current_attempt": float(
+            scorecard.get("elapsed_seconds_current_attempt", 0.0)
+        ),
+        "training_terminal": bool(scorecard.get("training_terminal", False)),
+        "terminal_reason": str(scorecard.get("terminal_reason", "unknown")),
+        "checkpoint_last_sha256": sha256_file(checkpoint_last),
+        "checkpoint_best_sha256": sha256_file(checkpoint_best),
         "trainable_parameter_count": trained.trainable_parameter_count(),
         "params": extracted,
         "reused": False,
@@ -371,6 +452,7 @@ def execute_unit(
 
 
 def _worker(payload: dict[str, Any]) -> dict[str, Any]:
+    model.configure_worker_runtime(1)
     return execute_unit(**payload)
 
 
@@ -417,91 +499,158 @@ def build_paired_contrasts(
     return rows
 
 
-def _metric_summary(rows: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
-    frame = pd.DataFrame(rows)
-    if frame.empty:
-        return []
-    return (
-        frame.groupby("hypothesis", as_index=False)
-        .agg(
-            row_count=("rmse", "size"),
-            rmse_mean=("rmse", "mean"),
-            mae_mean=("mae", "mean"),
-            nrmse_mean=("nrmse", "mean"),
-            elapsed_seconds_mean=("elapsed_seconds", "mean"),
-            trainable_parameter_count=("trainable_parameter_count", "max"),
-        )
-        .to_dict("records")
-    )
-
-
-def _contrast_summary(rows: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
-    frame = pd.DataFrame([row for row in rows if row.get("status") == "complete"])
-    if frame.empty:
-        return []
-    return (
-        frame.groupby("contrast", as_index=False)
-        .agg(
-            pair_count=("delta_nrmse", "size"),
-            delta_rmse_mean=("delta_rmse", "mean"),
-            delta_mae_mean=("delta_mae", "mean"),
-            delta_nrmse_mean=("delta_nrmse", "mean"),
-            nrmse_improvement_count=("delta_nrmse", lambda values: int((values < 0.0).sum())),
-        )
-        .to_dict("records")
-    )
-
-
-def _fold_median_contrasts(metric_rows: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
-    frame = pd.DataFrame(metric_rows)
-    if frame.empty:
-        return []
-    medians = (
-        frame.groupby(["heldout_vr", "hypothesis"], as_index=False)
-        .agg(rmse=("rmse", "median"), mae=("mae", "median"), nrmse=("nrmse", "median"))
-    )
-    lookup = {
-        (float(row.heldout_vr), str(row.hypothesis)): row
-        for row in medians.itertuples(index=False)
+def build_fold_seed_medians(
+    metric_rows: Sequence[Mapping[str, Any]],
+    *,
+    expected_units: Sequence[Mapping[str, Any]],
+) -> list[dict[str, Any]]:
+    observed = {
+        (float(row["heldout_vr"]), str(row["hypothesis"]), int(row["seed"])): row
+        for row in metric_rows
     }
+    groups: dict[tuple[float, str], list[int]] = {}
+    for unit in expected_units:
+        key = (float(unit["heldout_vr"]), str(unit["hypothesis"]))
+        groups.setdefault(key, []).append(int(unit["seed"]))
     rows: list[dict[str, Any]] = []
-    for heldout_vr in sorted(frame["heldout_vr"].unique()):
-        for contrast, candidate_name, reference_name in CONTRASTS:
-            candidate = lookup.get((float(heldout_vr), candidate_name))
-            reference = lookup.get((float(heldout_vr), reference_name))
-            if candidate is None or reference is None:
-                continue
-            rows.append(
-                {
-                    "contrast": contrast,
-                    "heldout_vr": float(heldout_vr),
-                    "delta_rmse": float(candidate.rmse - reference.rmse),
-                    "delta_mae": float(candidate.mae - reference.mae),
-                    "delta_nrmse": float(candidate.nrmse - reference.nrmse),
-                }
-            )
+    for (heldout_vr, hypothesis), seeds in sorted(
+        groups.items(), key=lambda item: (item[0][0], H4S_HYPOTHESES.index(item[0][1]))
+    ):
+        values = [observed[(heldout_vr, hypothesis, seed)] for seed in seeds if (heldout_vr, hypothesis, seed) in observed]
+        complete = len(values) == len(seeds)
+        row: dict[str, Any] = {
+            "heldout_vr": heldout_vr,
+            "hypothesis": hypothesis,
+            "status": "complete" if complete else "unavailable",
+            "expected_seed_count": len(seeds),
+            "available_seed_count": len(values),
+            "failed_seed_count": len(seeds) - len(values),
+        }
+        for name in ("rmse", "mae", "nrmse", "elapsed_seconds"):
+            row[name] = float(np.median([float(value[name]) for value in values])) if complete else None
+        row["trainable_parameter_count"] = (
+            int(np.median([int(value["trainable_parameter_count"]) for value in values]))
+            if complete
+            else None
+        )
+        shifts = [value.get("common_energy_shift_eV") for value in values]
+        finite_shifts = [float(value) for value in shifts if value is not None and np.isfinite(float(value))]
+        row["common_energy_shift_eV"] = (
+            float(np.median(finite_shifts)) if complete and finite_shifts else None
+        )
+        rows.append(row)
     return rows
 
 
-def _direction_consistency(rows: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
-    frame = pd.DataFrame(rows)
-    if frame.empty:
-        return []
+def build_fold_median_contrasts(
+    paired_rows: Sequence[Mapping[str, Any]],
+    *,
+    expected_units: Sequence[Mapping[str, Any]],
+) -> list[dict[str, Any]]:
+    expected_seeds: dict[float, set[int]] = {}
+    for unit in expected_units:
+        expected_seeds.setdefault(float(unit["heldout_vr"]), set()).add(int(unit["seed"]))
+    lookup = {
+        (float(row["heldout_vr"]), str(row["contrast"]), int(row["seed"])): row
+        for row in paired_rows
+    }
+    rows: list[dict[str, Any]] = []
+    for heldout_vr in sorted(expected_seeds):
+        seeds = sorted(expected_seeds[heldout_vr])
+        for contrast, candidate, reference in CONTRASTS:
+            values = [lookup.get((heldout_vr, contrast, seed)) for seed in seeds]
+            available = [value for value in values if value is not None and value.get("status") == "complete"]
+            complete = len(available) == len(seeds)
+            row: dict[str, Any] = {
+                "contrast": contrast,
+                "candidate": candidate,
+                "reference": reference,
+                "heldout_vr": heldout_vr,
+                "status": "complete" if complete else "unavailable",
+                "expected_seed_count": len(seeds),
+                "available_seed_count": len(available),
+                "failed_seed_count": len(seeds) - len(available),
+            }
+            for name in ("delta_rmse", "delta_mae", "delta_nrmse"):
+                row[name] = (
+                    float(np.median([float(value[name]) for value in available]))
+                    if complete
+                    else None
+                )
+            rows.append(row)
+    return rows
+
+
+def _metric_summary(rows: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
     summaries: list[dict[str, Any]] = []
-    for contrast, group in frame.groupby("contrast", sort=False):
-        deltas = group["delta_nrmse"].astype(float)
-        lower_count = int((deltas < 0.0).sum())
-        higher_count = int((deltas > 0.0).sum())
-        tied_count = int((deltas == 0.0).sum())
-        fold_count = int(len(deltas))
+    for hypothesis in H4S_HYPOTHESES:
+        expected = [row for row in rows if row.get("hypothesis") == hypothesis]
+        if not expected:
+            continue
+        available = [row for row in expected if row.get("status") == "complete"]
+        summary: dict[str, Any] = {
+            "hypothesis": hypothesis,
+            "expected_fold_count": len(expected),
+            "available_fold_count": len(available),
+            "failed_fold_count": len(expected) - len(available),
+        }
+        for name in ("rmse", "mae", "nrmse", "elapsed_seconds"):
+            summary[f"{name}_mean"] = (
+                float(np.mean([float(row[name]) for row in available])) if available else None
+            )
+        summary["trainable_parameter_count"] = (
+            max(int(row["trainable_parameter_count"]) for row in available) if available else None
+        )
+        summaries.append(summary)
+    return summaries
+
+
+def _contrast_summary(rows: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
+    summaries: list[dict[str, Any]] = []
+    for contrast, _, _ in CONTRASTS:
+        expected = [row for row in rows if row.get("contrast") == contrast]
+        if not expected:
+            continue
+        available = [row for row in expected if row.get("status") == "complete"]
+        summary: dict[str, Any] = {
+            "contrast": contrast,
+            "expected_fold_count": len(expected),
+            "available_fold_count": len(available),
+            "failed_fold_count": len(expected) - len(available),
+            "nrmse_improvement_count": sum(float(row["delta_nrmse"]) < 0.0 for row in available),
+        }
+        for name in ("delta_rmse", "delta_mae", "delta_nrmse"):
+            summary[f"{name}_mean"] = (
+                float(np.mean([float(row[name]) for row in available])) if available else None
+            )
+        summaries.append(summary)
+    return summaries
+
+
+def _direction_consistency(rows: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
+    summaries: list[dict[str, Any]] = []
+    for contrast, _, _ in CONTRASTS:
+        expected = [row for row in rows if row.get("contrast") == contrast]
+        if not expected:
+            continue
+        available = [row for row in expected if row.get("status") == "complete"]
+        deltas = [float(row["delta_nrmse"]) for row in available]
+        lower_count = sum(delta < 0.0 for delta in deltas)
+        higher_count = sum(delta > 0.0 for delta in deltas)
+        tied_count = sum(delta == 0.0 for delta in deltas)
         summaries.append(
             {
-                "contrast": str(contrast),
-                "fold_count": fold_count,
+                "contrast": contrast,
+                "expected_fold_count": len(expected),
+                "available_fold_count": len(available),
+                "failed_fold_count": len(expected) - len(available),
                 "candidate_lower_nrmse_fold_count": lower_count,
                 "candidate_higher_nrmse_fold_count": higher_count,
                 "tied_fold_count": tied_count,
-                "candidate_lower_nrmse_fold_fraction": lower_count / fold_count,
+                "candidate_lower_nrmse_expected_fold_fraction": lower_count / len(expected),
+                "candidate_lower_nrmse_available_fold_fraction": (
+                    lower_count / len(available) if available else None
+                ),
             }
         )
     return summaries
@@ -516,9 +665,18 @@ def _worker_count(mode: str, device: str, baseline: Baseline, unit_count: int) -
     if str(mode) == "smoke" or unit_count <= 1:
         return 1
     cfg = validation_holdout._baseline_config(baseline)
-    if str(device) == "cuda" and torch.cuda.is_available():
-        return min(unit_count, max(1, int(cfg.cuda_workers)))
-    return min(unit_count, max(1, int(cfg.cpu_workers)))
+    selected_device = "cuda" if str(device) == "cuda" and torch.cuda.is_available() else "cpu"
+    if selected_device == "cuda":
+        cfg.dispatch_strategy = "cuda_4"
+        cfg.cuda_workers = 4
+    else:
+        cfg.dispatch_strategy = "cpu_4"
+        cfg.cpu_workers = 4
+    return model.parallel_fit_worker_count(
+        cfg,
+        torch_device=selected_device,
+        job_count=unit_count,
+    )
 
 
 def run(
@@ -643,7 +801,15 @@ def run(
         metric_rows,
         expected_units=[asdict(unit) for unit in units],
     )
-    fold_medians = _fold_median_contrasts(metric_rows)
+    expected_units = [asdict(unit) for unit in units]
+    fold_seed_medians = build_fold_seed_medians(
+        metric_rows,
+        expected_units=expected_units,
+    )
+    fold_medians = build_fold_median_contrasts(
+        contrasts,
+        expected_units=expected_units,
+    )
     status = "incomplete" if failed else ("smoke_passed" if str(mode) == "smoke" else "complete")
     claim_evaluable = str(mode) == "fullscan" and failed == 0 and completed == len(units)
     summary = {
@@ -659,8 +825,9 @@ def run(
         "claim_evaluable": claim_evaluable,
         "claim_decision": "not_automated",
         "seed_interpretation": "Optimization restarts only; seeds are not independent samples.",
-        "zero_shot_summary": _metric_summary(metric_rows),
-        "paired_contrast_summary": _contrast_summary(contrasts),
+        "zero_shot_summary": _metric_summary(fold_seed_medians),
+        "paired_contrast_summary": _contrast_summary(fold_medians),
+        "fold_seed_medians": fold_seed_medians,
         "fold_median_contrasts": fold_medians,
         "fold_median_direction_consistency": _direction_consistency(fold_medians),
     }
@@ -709,6 +876,41 @@ def run(
             "delta_mae",
             "candidate_nrmse",
             "reference_nrmse",
+            "delta_nrmse",
+        ),
+    )
+    _write_csv(
+        target / "fold_seed_medians.csv",
+        fold_seed_medians,
+        (
+            "heldout_vr",
+            "hypothesis",
+            "status",
+            "expected_seed_count",
+            "available_seed_count",
+            "failed_seed_count",
+            "rmse",
+            "mae",
+            "nrmse",
+            "elapsed_seconds",
+            "trainable_parameter_count",
+            "common_energy_shift_eV",
+        ),
+    )
+    _write_csv(
+        target / "fold_median_contrasts.csv",
+        fold_medians,
+        (
+            "contrast",
+            "candidate",
+            "reference",
+            "heldout_vr",
+            "status",
+            "expected_seed_count",
+            "available_seed_count",
+            "failed_seed_count",
+            "delta_rmse",
+            "delta_mae",
             "delta_nrmse",
         ),
     )

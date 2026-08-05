@@ -48,13 +48,13 @@ Remove-Item -LiteralPath $smoke -Recurse -Force
 使用 CUDA 运行预注册正式验证套件：
 
 ```powershell
-python run.py --mode fullscan --validation --device cuda
+python run.py --mode fullscan --validation --device cpu
 ```
 
 正式命令会按照依赖顺序运行 `selector`、`bootstrap`、`holdout` 和 `h4s`。只复现针对性物理比较时使用：
 
 ```powershell
-python run.py --mode fullscan --validation-only h4s --device cuda
+python run.py --mode fullscan --validation-only h4s --device cpu
 ```
 
 `--validation-only` 会自动启用 validation 并解析必要的前置阶段。程序优先复用所选输出根下兼容且已完成的主基线；若不存在，则只读使用已提交的 `source_data_package/`。所有输入、配置、checkpoint、源码和基线哈希都会写入清单，身份不兼容的结果不会被静默混用或覆盖。
@@ -161,6 +161,7 @@ smoke 命令只用于功能检查。除非测试本身需要保留输出，否�
 - Leave-one-retarding-voltage-out prediction 在未见曲线上评估 K=1..8 和训练折 selected model。主要终点为零样本 RMSE、MAE 和 range-normalized RMSE；次要的 21 点校准只拟合 gain、bias 与加速电压偏移。
 - H4s 针对性比较在相同五个留出阻滞电压上评估 `H1`、`H1+B`、`H4s` 和 `H4s+B`。`H4s` 使用四个 NIST Ar I 4s 能量并允许一个受限共同能量微调；`B` 是现有平滑高能损失项，不是第五个激发通道。
 - H4s 阶段报告零样本 RMSE、MAE、NRMSE 的配对差异，不自动生成支持或否定结论。seed 仅代表优化起点，smoke 结果不可用于论文声称。
+- H4s 汇总先在同一 seed 内形成配对差值，再对每个 fold 取 seed 中位数；失败 seed 与失败 fold 仍保留在预期分母中。固定性能审计选定 CPU 与4个单线程 worker，详见 `docs/h4s_performance_audit.md`。
 - 每个阶段均写出 manifest、progress、逐单元记录、stage status 和 `stage_result.json`。失败单元保留在预注册统计分母中，未完成或失败的验证最终返回非零退出码。
 
 设备和路径控制：
@@ -277,11 +278,11 @@ python run.py --mode fullscan --exclude hpopt --sensitivity --device cpu
 预注册补充验证：
 
 ```powershell
-python run.py --mode fullscan --validation --device cuda
+python run.py --mode fullscan --validation --device cpu
 python run.py --mode fullscan --validation-only selector --device cpu
 python run.py --mode fullscan --validation-only bootstrap --device cuda
 python run.py --mode fullscan --validation-only holdout --device cuda
-python run.py --mode fullscan --validation-only h4s --device cuda
+python run.py --mode fullscan --validation-only h4s --device cpu
 ```
 
 ## 输出文件
@@ -329,6 +330,8 @@ python run.py --mode fullscan --validation-only h4s --device cuda
 - `output/validation/h4s_comparison/stage_result.json`
 - `output/validation/h4s_comparison/h4s_comparison_summary.json`
 - `output/validation/h4s_comparison/paired_contrasts.csv`
+- `output/validation/h4s_comparison/fold_seed_medians.csv`
+- `output/validation/h4s_comparison/fold_median_contrasts.csv`
 - `output/validation/validation_summary.json`
 - `output/validation/validation_summary.md`
 

@@ -45,16 +45,16 @@ python run.py --mode smoke --exclude hpopt --validation-only h4s --output $smoke
 Remove-Item -LiteralPath $smoke -Recurse -Force
 ```
 
-Run the preregistered formal validation suite with CUDA:
+Run the preregistered formal validation suite with the audited CPU configuration:
 
 ```powershell
-python run.py --mode fullscan --validation --device cuda
+python run.py --mode fullscan --validation --device cpu
 ```
 
 The formal command runs `selector`, `bootstrap`, `holdout`, and `h4s` in dependency order. To reproduce only the targeted physical comparison, use:
 
 ```powershell
-python run.py --mode fullscan --validation-only h4s --device cuda
+python run.py --mode fullscan --validation-only h4s --device cpu
 ```
 
 `--validation-only` enables validation automatically and resolves required earlier stages. A compatible completed main baseline under the selected output root is reused; otherwise the runner uses the committed `source_data_package/` as a read-only baseline. Input, configuration, checkpoint, source, and baseline hashes are recorded so incompatible results are not silently mixed or overwritten.
@@ -163,6 +163,7 @@ Preregistered validation workflow:
 - Leave-one-retarding-voltage-out prediction evaluates K=1..8 and the training-fold selected model on unseen curves. Its primary endpoints are zero-shot RMSE, MAE, and range-normalized RMSE; a secondary 21-point calibration fits only gain, bias, and accelerating-voltage offset.
 - The targeted H4s comparison evaluates `H1`, `H1+B`, `H4s`, and `H4s+B` on the same five held-out retarding-voltage curves. `H4s` uses the four NIST Ar I 4s energies with one bounded common energy adjustment; `B` is the existing smooth high-energy loss term, not a fifth excitation channel.
 - The H4s stage reports paired zero-shot RMSE, MAE, and NRMSE differences without automatically declaring support or rejection. Seeds are optimization restarts rather than independent samples, and smoke output is never claim-evaluable.
+- H4s seed aggregation first forms within-seed paired differences and then takes the fold-level median. Failed seeds and folds remain in the expected denominator. A fixed runtime audit selected CPU with four single-thread workers; see `docs/h4s_performance_audit.md`.
 - Every stage writes a manifest, progress state, unit-level records, stage status, and `stage_result.json`. Failed units remain in the registered denominator, and an incomplete or failed validation run returns a non-zero exit code.
 
 Device and path controls:
@@ -279,11 +280,11 @@ python run.py --mode fullscan --exclude hpopt --sensitivity --device cpu
 Preregistered supplementary validation:
 
 ```powershell
-python run.py --mode fullscan --validation --device cuda
+python run.py --mode fullscan --validation --device cpu
 python run.py --mode fullscan --validation-only selector --device cpu
 python run.py --mode fullscan --validation-only bootstrap --device cuda
 python run.py --mode fullscan --validation-only holdout --device cuda
-python run.py --mode fullscan --validation-only h4s --device cuda
+python run.py --mode fullscan --validation-only h4s --device cpu
 ```
 
 ## Outputs
@@ -331,6 +332,8 @@ Supplementary validation evidence:
 - `output/validation/h4s_comparison/stage_result.json`
 - `output/validation/h4s_comparison/h4s_comparison_summary.json`
 - `output/validation/h4s_comparison/paired_contrasts.csv`
+- `output/validation/h4s_comparison/fold_seed_medians.csv`
+- `output/validation/h4s_comparison/fold_median_contrasts.csv`
 - `output/validation/validation_summary.json`
 - `output/validation/validation_summary.md`
 

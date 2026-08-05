@@ -99,6 +99,8 @@ class Config:
     early_stop_min_delta_rel: float = 2.0e-4
     early_stop_smoothing: int = 7
     checkpoint_min_interval: int = 10
+    checkpoint_max_interval_seconds: float = 0.0
+    batch_curve_losses: bool = False
     low_weight_quantile: float = 0.25
     low_weight_floor: float = 0.015
     concentration_quantile: float = 0.90
@@ -792,6 +794,7 @@ class PoissonRateFHCoreMultiLevel(nn.Module):
         self.raw_high_energy_loss_strength = nn.Parameter(torch.tensor(inv_bounded(0.04, 0.0, 0.45), dtype=torch.float32))
         self.raw_high_energy_loss_onset = nn.Parameter(torch.tensor(inv_bounded(68.0, 52.0, 88.0), dtype=torch.float32))
         self.raw_high_energy_loss_width = nn.Parameter(torch.tensor(inv_bounded(7.0, 2.0, 20.0), dtype=torch.float32))
+        self.high_energy_loss_enabled = True
         self.raw_vr_late_baseline = nn.Parameter(torch.tensor(inv_bounded(0.0, -0.050, 0.030), dtype=torch.float32))
 
         self.raw_curve_gain = nn.Parameter(torch.zeros(self.n_curves, dtype=torch.float32))
@@ -864,11 +867,18 @@ class PoissonRateFHCoreMultiLevel(nn.Module):
         vr = Vr.float()
         if str(nuisance_mode) == "curve":
             _, _, dva = self.nuisance_values(curve_idx)
+            while dva.ndim < va.ndim:
+                dva = dva.unsqueeze(-1)
             va = va + dva
         e_collision = torch.clamp(va, min=0.0)
         e_collect = va - p["vr_scale"] * vr
         drive = F.softplus(e_collision - p["v_emit"], beta=2.0)
-        norm = torch.pow(torch.clamp(torch.max(e_collision).detach(), min=1.0) + 1.0, p["power"])
+        collision_max = (
+            torch.max(e_collision)
+            if e_collision.ndim <= 1
+            else torch.amax(e_collision, dim=-1, keepdim=True)
+        )
+        norm = torch.pow(torch.clamp(collision_max.detach(), min=1.0) + 1.0, p["power"])
         envelope = p["amp"] * torch.pow(drive + 1e-4, p["power"]) / norm
         envelope = envelope + p["offset"] + p["slope"] * e_collision
 
@@ -885,11 +895,23 @@ class PoissonRateFHCoreMultiLevel(nn.Module):
             + p["vr_late_contrast"] * vr_norm * late_gate
         )
         contrast_scale = torch.exp(torch.clamp(contrast_log, min=-0.65, max=0.65))
-        relative_collision = torch.clamp(e_collision / (torch.clamp(torch.max(e_collision).detach(), min=1.0) + 1e-6), 0.0, 1.0)
+        relative_collision = torch.clamp(
+            e_collision / (torch.clamp(collision_max.detach(), min=1.0) + 1e-6),
+            0.0,
+            1.0,
+        )
         envelope = envelope + p["vr_late_baseline"] * high_vr_gate * late_gate * relative_collision
 
-        high_energy_gate = torch.sigmoid((e_collision - p["high_energy_loss_onset"]) / (p["high_energy_loss_width"] + 1e-6))
-        high_energy_loss = 1.0 - p["high_energy_loss_strength"] * high_energy_gate * (0.35 + 0.65 * high_vr_gate)
+        if self.high_energy_loss_enabled:
+            high_energy_gate = torch.sigmoid(
+                (e_collision - p["high_energy_loss_onset"])
+                / (p["high_energy_loss_width"] + 1e-6)
+            )
+            high_energy_loss = 1.0 - p["high_energy_loss_strength"] * high_energy_gate * (
+                0.35 + 0.65 * high_vr_gate
+            )
+        else:
+            high_energy_loss = torch.ones_like(e_collision)
 
         energies = levels["energies"].view(1, -1).to(device=e_collision.device, dtype=e_collision.dtype)
         weights = levels["weights"].view(1, -1).to(device=e_collision.device, dtype=e_collision.dtype)
@@ -897,7 +919,7 @@ class PoissonRateFHCoreMultiLevel(nn.Module):
         nearest = torch.round(phase)
         residual = phase - nearest
         dips = torch.exp(-0.5 * torch.square(residual * energies / (p["width"] + 1e-6)))
-        weighted_dip = torch.sum(weights * dips, dim=1)
+        weighted_dip = torch.sum(weights * dips, dim=1).reshape_as(e_collision)
         decay = torch.exp(-p["damping"] * e_collision)
         modulation = torch.clamp(1.0 - p["osc_amp"] * contrast_scale * weighted_dip * decay, min=0.03, max=1.15)
         pred = envelope * collector_transmission * high_energy_loss * modulation
@@ -937,6 +959,9 @@ class PoissonRateFHCoreMultiLevel(nn.Module):
         pred = self.forward_core(Va, Vr, curve_idx=curve_idx, nuisance_mode=nuisance_mode)
         if str(nuisance_mode) == "curve":
             gain, bias, _ = self.nuisance_values(curve_idx)
+            while gain.ndim < pred.ndim:
+                gain = gain.unsqueeze(-1)
+                bias = bias.unsqueeze(-1)
             pred = gain * pred + bias
         return torch.clamp(pred, min=0.0)
 
@@ -1009,6 +1034,58 @@ def curve_to_tensors(curve: Dict[str, Any], device: torch.device, peak_window_ra
         "Ip_d2": d2_t,
         "structure_weight": torch.tensor(weight_np, device=device),
         "valley_weight": torch.tensor(valley_weight_np, device=device),
+    }
+
+
+def prepare_training_curves(
+    curves: Sequence[Dict[str, Any]],
+    device: torch.device,
+    cfg: Config,
+) -> List[Dict[str, Any]]:
+    prepared: List[Dict[str, Any]] = []
+    for curve in curves:
+        tensors: Dict[str, Any] = curve_to_tensors(
+            curve,
+            device,
+            peak_window_radius=float(cfg.peak_window_radius),
+        )
+        late_mask = tensors["Va"] >= float(cfg.vr_late_va_min)
+        tensors["late_mask"] = late_mask
+        tensors["late_point_count"] = int(torch.count_nonzero(late_mask).item())
+        tensors["high_vr_curve"] = bool(
+            float(torch.mean(tensors["Vr"].float()).item()) >= float(cfg.high_vr_threshold)
+        )
+        prepared.append(tensors)
+    return prepared
+
+
+def prepare_batched_training_inputs(
+    curves: Sequence[Dict[str, Any]],
+) -> Optional[Dict[str, torch.Tensor]]:
+    if not curves:
+        return None
+    point_counts = {int(curve["Va"].numel()) for curve in curves}
+    if len(point_counts) != 1:
+        return None
+    return {
+        "Va": torch.stack([curve["Va"] for curve in curves], dim=0),
+        "Vr": torch.stack([curve["Vr"] for curve in curves], dim=0),
+        "curve_idx": torch.stack([curve["curve_idx"] for curve in curves], dim=0),
+        "Ip": torch.stack([curve["Ip"] for curve in curves], dim=0),
+        "Ip_d1": torch.stack([curve["Ip_d1"] for curve in curves], dim=0),
+        "Ip_d2": torch.stack([curve["Ip_d2"] for curve in curves], dim=0),
+        "structure_weight": torch.stack(
+            [curve["structure_weight"] for curve in curves], dim=0
+        ),
+        "valley_weight": torch.stack(
+            [curve["valley_weight"] for curve in curves], dim=0
+        ),
+        "late_mask": torch.stack([curve["late_mask"] for curve in curves], dim=0),
+        "high_vr_curve": torch.tensor(
+            [bool(curve["high_vr_curve"]) for curve in curves],
+            device=curves[0]["Va"].device,
+            dtype=torch.bool,
+        ),
     }
 
 
@@ -1256,11 +1333,119 @@ def compute_structure_metrics(
     return {"segments": segments, "per_curve": per_curve, "per_class": class_rows, "summary": summary}
 
 
+def finite_diff_last_dim(values: torch.Tensor, x: torch.Tensor) -> torch.Tensor:
+    if values.shape[-1] < 2:
+        return torch.zeros_like(values)
+    dy = values[..., 1:] - values[..., :-1]
+    dx = torch.clamp(x[..., 1:] - x[..., :-1], min=1e-6)
+    derivative = dy / dx
+    return torch.cat([derivative, derivative[..., -1:]], dim=-1)
+
+
+def compute_losses_multilevel_batched(
+    cfg: Config,
+    model: PoissonRateFHCoreMultiLevel,
+    batch: Dict[str, torch.Tensor],
+) -> Dict[str, torch.Tensor]:
+    pred = model(
+        batch["Va"],
+        batch["Vr"],
+        curve_idx=batch["curve_idx"],
+        nuisance_mode="curve",
+    )
+    target = batch["Ip"]
+    pred_d1 = finite_diff_last_dim(pred, batch["Va"])
+    pred_d2 = finite_diff_last_dim(pred_d1, batch["Va"])
+    raw = torch.mean(torch.square(pred - target))
+    d1 = torch.mean(torch.square(pred_d1 - batch["Ip_d1"]))
+    d2 = torch.mean(torch.square(pred_d2 - batch["Ip_d2"]))
+
+    structure_weight = batch["structure_weight"]
+    peak_per_curve = torch.sum(
+        structure_weight * torch.square(pred - target), dim=-1
+    ) / torch.clamp(torch.sum(structure_weight, dim=-1), min=1.0)
+    peak_window = torch.mean(peak_per_curve)
+    smooth = (
+        torch.mean(torch.square(pred[..., 2:] - 2.0 * pred[..., 1:-1] + pred[..., :-2]))
+        if pred.shape[-1] >= 3
+        else torch.zeros((), device=pred.device)
+    )
+
+    late_mask = batch["late_mask"]
+    late_weight = late_mask.to(dtype=pred.dtype)
+    late_count = torch.sum(late_weight, dim=-1)
+    valid_late = late_count >= 2.0
+    safe_count = torch.clamp(late_count, min=1.0)
+    late_bias = torch.sum((pred - target) * late_weight, dim=-1) / safe_count
+    vr_late_bias = torch.mean(torch.where(valid_late, torch.square(late_bias), 0.0))
+
+    positive_inf = torch.full_like(target, float("inf"))
+    negative_inf = torch.full_like(target, float("-inf"))
+    target_min = torch.min(torch.where(late_mask, target, positive_inf), dim=-1).values
+    target_max = torch.max(torch.where(late_mask, target, negative_inf), dim=-1).values
+    pred_min = torch.min(torch.where(late_mask, pred, positive_inf), dim=-1).values
+    pred_max = torch.max(torch.where(late_mask, pred, negative_inf), dim=-1).values
+    target_range = torch.clamp(target_max - target_min, min=1.0e-4)
+    pred_range = torch.clamp(pred_max - pred_min, min=1.0e-4)
+    target_range = torch.where(valid_late, target_range, 1.0)
+    pred_range = torch.where(valid_late, pred_range, 1.0)
+    amplitude_loss = torch.square(torch.log(pred_range / target_range))
+    vr_amplitude_ratio = torch.mean(torch.where(valid_late, amplitude_loss, 0.0))
+
+    valley_weight = batch["valley_weight"] * late_weight
+    high_vr_weight = batch["high_vr_curve"].to(dtype=pred.dtype).unsqueeze(-1)
+    valley_weight = valley_weight * high_vr_weight
+    valley_denominator = torch.clamp(torch.sum(valley_weight, dim=-1), min=1.0)
+    high_vr_per_curve = torch.sum(
+        valley_weight * torch.square(torch.relu(pred - target)), dim=-1
+    ) / valley_denominator
+    high_vr_valley_depth = torch.mean(
+        torch.where(valid_late, high_vr_per_curve, 0.0)
+    )
+    reg = model.regularization_loss(cfg)
+    total = (
+        float(cfg.w_raw) * raw
+        + float(cfg.w_d1) * d1
+        + float(cfg.w_d2) * d2
+        + float(cfg.w_peak_window) * peak_window
+        + float(cfg.w_smooth) * smooth
+        + float(cfg.w_vr_late_bias) * vr_late_bias
+        + float(cfg.w_vr_amplitude_ratio) * vr_amplitude_ratio
+        + float(cfg.w_high_vr_valley_depth) * high_vr_valley_depth
+        + reg
+    )
+    monitor = (
+        total
+        + 0.25 * d1
+        + 0.10 * d2
+        + 0.25 * peak_window
+        + 0.20 * vr_late_bias
+        + 0.10 * vr_amplitude_ratio
+        + 0.20 * high_vr_valley_depth
+    )
+    return {
+        "loss_total": total,
+        "loss_monitor": monitor,
+        "loss_raw": raw,
+        "loss_d1": d1,
+        "loss_d2": d2,
+        "loss_peak_window": peak_window,
+        "loss_smooth": smooth,
+        "loss_vr_late_bias": vr_late_bias,
+        "loss_vr_amplitude_ratio": vr_amplitude_ratio,
+        "loss_high_vr_valley_depth": high_vr_valley_depth,
+        "loss_reg": reg,
+    }
+
+
 def compute_losses_multilevel(
     cfg: Config,
     model: PoissonRateFHCoreMultiLevel,
     tensor_curves: Sequence[Dict[str, torch.Tensor]],
+    batched_inputs: Optional[Dict[str, torch.Tensor]] = None,
 ) -> Dict[str, torch.Tensor]:
+    if batched_inputs is not None:
+        return compute_losses_multilevel_batched(cfg, model, batched_inputs)
     raw_losses: List[torch.Tensor] = []
     d1_losses: List[torch.Tensor] = []
     d2_losses: List[torch.Tensor] = []
@@ -1269,10 +1454,18 @@ def compute_losses_multilevel(
     vr_late_bias_losses: List[torch.Tensor] = []
     vr_amplitude_ratio_losses: List[torch.Tensor] = []
     high_vr_valley_losses: List[torch.Tensor] = []
-    for curve in tensor_curves:
+    predictions = tuple(
+        model(
+            curve["Va"],
+            curve["Vr"],
+            curve_idx=curve["curve_idx"],
+            nuisance_mode="curve",
+        )
+        for curve in tensor_curves
+    )
+    for curve, pred in zip(tensor_curves, predictions):
         va = curve["Va"]
         target = curve["Ip"]
-        pred = model(va, curve["Vr"], curve_idx=curve["curve_idx"], nuisance_mode="curve")
         pred_d1 = finite_diff(pred, va)
         pred_d2 = finite_diff(pred_d1, va)
         raw_losses.append(torch.mean(torch.square(pred - target)))
@@ -1287,8 +1480,8 @@ def compute_losses_multilevel(
             smooth_losses.append(torch.mean(torch.square(pred[2:] - 2.0 * pred[1:-1] + pred[:-2])))
         else:
             smooth_losses.append(torch.zeros((), device=pred.device))
-        late_mask = va >= float(cfg.vr_late_va_min)
-        if int(torch.sum(late_mask).detach().cpu()) >= 2:
+        late_mask = curve["late_mask"]
+        if int(curve["late_point_count"]) >= 2:
             pred_late = pred[late_mask]
             target_late = target[late_mask]
             late_bias = torch.mean(pred_late - target_late)
@@ -1296,9 +1489,8 @@ def compute_losses_multilevel(
             pred_range = torch.clamp(torch.max(pred_late) - torch.min(pred_late), min=1.0e-4)
             vr_late_bias_losses.append(torch.square(late_bias))
             vr_amplitude_ratio_losses.append(torch.square(torch.log(pred_range / target_range)))
-            mean_vr = torch.mean(curve["Vr"].float())
             valley_weight = curve.get("valley_weight")
-            if valley_weight is not None and float(mean_vr.detach().cpu()) >= float(cfg.high_vr_threshold):
+            if valley_weight is not None and bool(curve["high_vr_curve"]):
                 valley_mask = valley_weight[late_mask]
                 denom = torch.clamp(torch.sum(valley_mask), min=1.0)
                 high_vr_valley_losses.append(torch.sum(valley_mask * torch.square(torch.relu(pred_late - target_late))) / denom)
@@ -1636,8 +1828,24 @@ def config_hash(cfg: Config) -> str:
     values = asdict(cfg)
     if safe_float(values.get("init_jitter_scale"), 0.0) == 0.0:
         values.pop("init_jitter_scale", None)
+    if safe_float(values.get("checkpoint_max_interval_seconds"), 0.0) == 0.0:
+        values.pop("checkpoint_max_interval_seconds", None)
+    if not bool(values.get("batch_curve_losses", False)):
+        values.pop("batch_curve_losses", None)
     payload = json.dumps(json_ready(values), ensure_ascii=False, sort_keys=True)
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()[:16]
+
+
+def atomic_torch_save(payload: Any, path: str | Path) -> None:
+    target = Path(path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    temporary = target.with_name(f".{target.name}.{os.getpid()}.tmp")
+    try:
+        torch.save(payload, temporary)
+        temporary.replace(target)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
 
 
 def save_last_checkpoint(
@@ -1650,9 +1858,12 @@ def save_last_checkpoint(
     best_epoch: int,
     stopper: EarlyStopper,
     cfg: Config,
+    *,
+    elapsed_seconds_total: float = 0.0,
+    training_terminal: bool = False,
+    terminal_reason: str = "running",
 ) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    torch.save(
+    atomic_torch_save(
         {
             "model_state": model.state_dict(),
             "optimizer_state": optimizer.state_dict(),
@@ -1662,6 +1873,9 @@ def save_last_checkpoint(
             "best_epoch": int(best_epoch),
             "early_stopper": stopper.state_dict(),
             "config_hash": config_hash(cfg),
+            "elapsed_seconds_total": float(elapsed_seconds_total),
+            "training_terminal": bool(training_terminal),
+            "terminal_reason": str(terminal_reason),
         },
         path,
     )
@@ -1677,8 +1891,11 @@ def write_status(
     best_epoch: int,
     early_stop: bool,
     start_time: Optional[float] = None,
+    elapsed_seconds_base: float = 0.0,
 ) -> None:
-    elapsed = float(time.perf_counter() - start_time) if start_time is not None else 0.0
+    elapsed = float(elapsed_seconds_base) + (
+        float(time.perf_counter() - start_time) if start_time is not None else 0.0
+    )
     status = "early_stopped" if bool(early_stop) else ("completed" if int(epoch) >= int(epochs) else "running")
     eta_hint = "complete" if status in {"completed", "early_stopped"} else "unknown"
     payload = {
@@ -1733,11 +1950,27 @@ def train_multilevel(
     if resume_ckpt is not None and Path(resume_ckpt).exists():
         loaded = torch.load(Path(resume_ckpt), map_location=device, weights_only=False)
         if isinstance(loaded, dict) and "model_state" in loaded:
+            expected_hash = config_hash(cfg)
+            actual_hash = str(loaded.get("config_hash", ""))
+            if actual_hash != expected_hash:
+                raise ValueError(
+                    f"Checkpoint config mismatch: expected={expected_hash}, "
+                    f"actual={actual_hash or 'MISSING'}"
+                )
             resume_payload = loaded
             model.load_state_dict(loaded["model_state"], strict=False)
         else:
-            model.load_state_dict(loaded, strict=False)
-    tensor_curves = [curve_to_tensors(curve, device, peak_window_radius=float(cfg.peak_window_radius)) for curve in curves]
+            raise ValueError(
+                f"Checkpoint is missing resumable training state: {Path(resume_ckpt)}"
+            )
+    tensor_curves = prepare_training_curves(curves, device, cfg)
+    batched_inputs = (
+        prepare_batched_training_inputs(tensor_curves)
+        if bool(cfg.batch_curve_losses)
+        else None
+    )
+    if bool(cfg.batch_curve_losses) and batched_inputs is None:
+        raise ValueError("Batched curve loss requires equal point counts across curves")
     optimizer = build_optimizer(model.named_parameters(), cfg.optimizer, cfg.lr, cfg.weight_decay)
     stopper = EarlyStopper(
         warmup_epochs=int(cfg.early_stop_warmup),
@@ -1750,6 +1983,9 @@ def train_multilevel(
     best_loss = float("inf")
     best_epoch = 0
     start_epoch = 0
+    elapsed_seconds_base = 0.0
+    resumed_terminal = False
+    terminal_reason = "running"
     if resume_payload is not None:
         optimizer.load_state_dict(resume_payload.get("optimizer_state", {}))
         stopper.load_state_dict(resume_payload.get("early_stopper", {}))
@@ -1757,47 +1993,145 @@ def train_multilevel(
         best_loss = safe_float(resume_payload.get("best_loss"), float("inf"))
         best_epoch = int(resume_payload.get("best_epoch", 0))
         start_epoch = int(resume_payload.get("epoch", 0))
-    log_rows: List[Dict[str, Any]] = []
+        elapsed_seconds_base = safe_float(
+            resume_payload.get("elapsed_seconds_total"),
+            0.0,
+        )
+        resumed_terminal = bool(resume_payload.get("training_terminal", False))
+        terminal_reason = str(resume_payload.get("terminal_reason", "running"))
+    if start_epoch >= int(epochs):
+        resumed_terminal = True
+        terminal_reason = "completed"
+    train_log_path = out_dir / "train_log.csv"
+    if resume_payload is not None and train_log_path.is_file():
+        log_rows: List[Dict[str, Any]] = pd.read_csv(train_log_path).to_dict("records")
+    else:
+        log_rows = []
     start = time.perf_counter()
+    last_checkpoint_time = start
+    last_checkpoint_epoch = start_epoch
+    last_checkpoint_elapsed_total = elapsed_seconds_base
+    last_completed_epoch = start_epoch
     model.train()
-    for epoch in range(start_epoch + 1, int(epochs) + 1):
-        optimizer.zero_grad(set_to_none=True)
-        losses = compute_losses_multilevel(cfg, model, tensor_curves)
-        loss = losses["loss_total"]
-        loss.backward()
-        if float(cfg.grad_clip) > 0:
-            torch.nn.utils.clip_grad_norm_(model.parameters(), float(cfg.grad_clip))
-        optimizer.step()
-        loss_value = float(loss.detach().cpu())
-        monitor_value = float(losses["loss_monitor"].detach().cpu())
-        state = stopper.update(epoch, monitor_value)
-        if monitor_value < best_loss:
-            best_loss = monitor_value
-            best_epoch = epoch
-            best_state = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}
-        if epoch == 1 or epoch == int(epochs) or epoch % max(1, int(cfg.checkpoint_min_interval)) == 0 or state.should_stop:
-            row = {
-                "epoch": int(epoch),
-                "loss_total": loss_value,
-                "loss_monitor": monitor_value,
-                "loss_raw": float(losses["loss_raw"].detach().cpu()),
-                "loss_d1": float(losses["loss_d1"].detach().cpu()),
-                "loss_d2": float(losses["loss_d2"].detach().cpu()),
-                "loss_peak_window": float(losses["loss_peak_window"].detach().cpu()),
-                "loss_smooth": float(losses["loss_smooth"].detach().cpu()),
-                "loss_vr_late_bias": float(losses["loss_vr_late_bias"].detach().cpu()),
-                "loss_vr_amplitude_ratio": float(losses["loss_vr_amplitude_ratio"].detach().cpu()),
-                "loss_high_vr_valley_depth": float(losses["loss_high_vr_valley_depth"].detach().cpu()),
-                "loss_reg": float(losses["loss_reg"].detach().cpu()),
-                "best_epoch": int(best_epoch),
-                "early_stop_wait": int(state.wait_count),
-                "early_stop": bool(state.should_stop),
-            }
-            log_rows.append(row)
-            save_last_checkpoint(out_dir / "checkpoint_last.pt", model, optimizer, epoch, best_state, best_loss, best_epoch, stopper, cfg)
-            write_status(out_dir, cfg, int(model.n_levels), epoch, int(epochs), losses, best_epoch, bool(state.should_stop), start)
-        if state.should_stop:
-            break
+    if not resumed_terminal:
+        try:
+            for epoch in range(start_epoch + 1, int(epochs) + 1):
+                optimizer.zero_grad(set_to_none=True)
+                losses = compute_losses_multilevel(
+                    cfg,
+                    model,
+                    tensor_curves,
+                    batched_inputs=batched_inputs,
+                )
+                loss = losses["loss_total"]
+                loss.backward()
+                if float(cfg.grad_clip) > 0:
+                    torch.nn.utils.clip_grad_norm_(model.parameters(), float(cfg.grad_clip))
+                optimizer.step()
+                monitor_value = float(losses["loss_monitor"].detach().cpu())
+                state = stopper.update(epoch, monitor_value)
+                last_completed_epoch = epoch
+                if monitor_value < best_loss:
+                    best_loss = monitor_value
+                    best_epoch = epoch
+                    best_state = {
+                        key: value.detach().clone()
+                        for key, value in model.state_dict().items()
+                    }
+                now = time.perf_counter()
+                epoch_interval = int(cfg.checkpoint_min_interval)
+                seconds_interval = float(cfg.checkpoint_max_interval_seconds)
+                periodic_epoch_due = bool(
+                    epoch_interval > 0
+                    and epoch - last_checkpoint_epoch >= epoch_interval
+                )
+                periodic_time_due = bool(
+                    seconds_interval > 0.0
+                    and now - last_checkpoint_time >= seconds_interval
+                )
+                terminal = bool(state.should_stop or epoch == int(epochs))
+                should_checkpoint = bool(
+                    epoch == 1
+                    or terminal
+                    or periodic_epoch_due
+                    or periodic_time_due
+                )
+                if should_checkpoint:
+                    terminal_reason = (
+                        "early_stopped"
+                        if state.should_stop
+                        else ("completed" if epoch == int(epochs) else "running")
+                    )
+                    row = {
+                        "epoch": int(epoch),
+                        "loss_total": float(loss.detach().cpu()),
+                        "loss_monitor": monitor_value,
+                        "loss_raw": float(losses["loss_raw"].detach().cpu()),
+                        "loss_d1": float(losses["loss_d1"].detach().cpu()),
+                        "loss_d2": float(losses["loss_d2"].detach().cpu()),
+                        "loss_peak_window": float(losses["loss_peak_window"].detach().cpu()),
+                        "loss_smooth": float(losses["loss_smooth"].detach().cpu()),
+                        "loss_vr_late_bias": float(losses["loss_vr_late_bias"].detach().cpu()),
+                        "loss_vr_amplitude_ratio": float(losses["loss_vr_amplitude_ratio"].detach().cpu()),
+                        "loss_high_vr_valley_depth": float(losses["loss_high_vr_valley_depth"].detach().cpu()),
+                        "loss_reg": float(losses["loss_reg"].detach().cpu()),
+                        "best_epoch": int(best_epoch),
+                        "early_stop_wait": int(state.wait_count),
+                        "early_stop": bool(state.should_stop),
+                    }
+                    log_rows.append(row)
+                    elapsed_total = elapsed_seconds_base + float(now - start)
+                    save_last_checkpoint(
+                        out_dir / "checkpoint_last.pt",
+                        model,
+                        optimizer,
+                        epoch,
+                        best_state,
+                        best_loss,
+                        best_epoch,
+                        stopper,
+                        cfg,
+                        elapsed_seconds_total=elapsed_total,
+                        training_terminal=terminal,
+                        terminal_reason=terminal_reason,
+                    )
+                    last_checkpoint_elapsed_total = elapsed_total
+                    write_status(
+                        out_dir,
+                        cfg,
+                        int(model.n_levels),
+                        epoch,
+                        int(epochs),
+                        losses,
+                        best_epoch,
+                        bool(state.should_stop),
+                        start,
+                        elapsed_seconds_base,
+                    )
+                    last_checkpoint_time = now
+                    last_checkpoint_epoch = epoch
+                if state.should_stop:
+                    break
+        except Exception:
+            try:
+                save_last_checkpoint(
+                    out_dir / "checkpoint_last.pt",
+                    model,
+                    optimizer,
+                    last_completed_epoch,
+                    best_state,
+                    best_loss,
+                    best_epoch,
+                    stopper,
+                    cfg,
+                    elapsed_seconds_total=elapsed_seconds_base
+                    + float(time.perf_counter() - start),
+                    training_terminal=False,
+                    terminal_reason="interrupted",
+                )
+            except Exception:
+                pass
+            raise
 
     if best_state is not None:
         model.load_state_dict(best_state, strict=True)
@@ -1811,17 +2145,28 @@ def train_multilevel(
         if forward_evidence is not None
         else None
     )
-    elapsed = float(time.perf_counter() - start)
+    elapsed_total = float(last_checkpoint_elapsed_total)
+    elapsed_current_attempt = max(0.0, elapsed_total - elapsed_seconds_base)
+    training_terminal = bool(
+        resumed_terminal
+        or terminal_reason in {"completed", "early_stopped"}
+        or last_completed_epoch >= int(epochs)
+    )
+    if last_completed_epoch >= int(epochs):
+        terminal_reason = "completed"
     scorecard = {
         "n_levels": int(model.n_levels),
         "model_schema": MODEL_SCHEMA,
         "config_hash": config_hash(cfg),
         "seed": int(cfg.seed),
         "epochs_requested": int(epochs),
-        "epochs_completed": int(log_rows[-1]["epoch"] if log_rows else start_epoch),
+        "epochs_completed": int(last_completed_epoch),
         "best_epoch": int(best_epoch),
         "best_loss": float(best_loss),
-        "elapsed_seconds": elapsed,
+        "elapsed_seconds": elapsed_total,
+        "elapsed_seconds_current_attempt": elapsed_current_attempt,
+        "training_terminal": training_terminal,
+        "terminal_reason": terminal_reason,
         "device": str(device),
         "optimizer_summary": optimizer.summary(),
         "metrics_curve": metrics,
@@ -1829,7 +2174,7 @@ def train_multilevel(
         "weight_diagnostics": diagnostics,
         "forward_reverse_consistency": forward_consistency,
         "early_stop": {
-            "triggered": bool(log_rows[-1]["early_stop"] if log_rows else False),
+            "triggered": bool(terminal_reason == "early_stopped"),
             "min_epochs": int(stopper.min_epochs),
             "warmup_epochs": int(stopper.warmup_epochs),
             "patience": int(stopper.patience),
@@ -1837,9 +2182,23 @@ def train_multilevel(
             "smoothing": int(stopper.smoothing),
         },
     }
-    if not (out_dir / "checkpoint_last.pt").exists():
-        save_last_checkpoint(out_dir / "checkpoint_last.pt", model, optimizer, int(start_epoch), best_state, best_loss, best_epoch, stopper, cfg)
-    torch.save(model.state_dict(), out_dir / "checkpoint_best.pt")
+    checkpoint_last = out_dir / "checkpoint_last.pt"
+    if not checkpoint_last.exists():
+        save_last_checkpoint(
+            checkpoint_last,
+            model,
+            optimizer,
+            int(last_completed_epoch),
+            best_state,
+            best_loss,
+            best_epoch,
+            stopper,
+            cfg,
+            elapsed_seconds_total=elapsed_total,
+            training_terminal=training_terminal,
+            terminal_reason=terminal_reason,
+        )
+    atomic_torch_save(model.state_dict(), out_dir / "checkpoint_best.pt")
     safe_json_dump(params, out_dir / "params_best.json")
     safe_json_dump(metrics, out_dir / "metrics_best.json")
     safe_json_dump(scorecard, out_dir / "scorecard.json")
@@ -3028,13 +3387,20 @@ def parallel_fit_worker_count(cfg: Config, *, torch_device: str, job_count: int)
     return 1
 
 
-def _run_level_fit_worker(payload: Dict[str, Any]) -> Dict[str, Any]:
-    os.environ["OMP_NUM_THREADS"] = "1"
-    os.environ["MKL_NUM_THREADS"] = "1"
+def configure_worker_runtime(threads_per_worker: int = 1) -> int:
+    threads = max(1, int(threads_per_worker))
+    os.environ["OMP_NUM_THREADS"] = str(threads)
+    os.environ["MKL_NUM_THREADS"] = str(threads)
+    torch.set_num_threads(threads)
     try:
-        torch.set_num_threads(1)
-    except Exception:
+        torch.set_num_interop_threads(1)
+    except RuntimeError:
         pass
+    return threads
+
+
+def _run_level_fit_worker(payload: Dict[str, Any]) -> Dict[str, Any]:
+    configure_worker_runtime(1)
     cfg = Config(**payload["cfg"])
     out_dir = Path(payload["out_dir"])
     resume_ckpt = Path(payload["resume_ckpt"]) if payload.get("resume_ckpt") else None
