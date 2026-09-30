@@ -31,7 +31,7 @@
 - 敏感性补充实验：forward-anchor prior-strength 扫描，以及 seed jitter、残差 bootstrap、噪声扰动和峰谷窗口半径扰动下的两类 K=4 不确定度汇总。`conditional_k4_all_fits` 是所有 K=4 条件拟合的 stress-test drift；`production_anchor_matched_k4` 将扰动后的 K=4 通道匹配回 production K=4 四个锚定通道。
 - 补充验证套件：selector 去污染审计、循环移动块残差 bootstrap、leave-one-retarding-voltage-out 预测，以及针对 NIST Ar I 4s 能级组的四假设比较。
 
-正式 H4s 比较已经完成：60/60 单元完成、0 失败（5个留出阻滞电压 × 4个假设 × 3个优化重启）。`H4s` 在5个留出条件中的4个比 `H1` 具有更低的折级中位 NRMSE，主要改善位于4、6和8 V；10 V 条件下方向反转。该结果支持“指定的4s能级组共同参与宏观响应”这一可解释假设，但不表示四个能级已被逐级分辨，也不排除复杂度相近的其他多通道模型。
+正式 H4s 比较已经完成：60/60 单元完成、0 失败（5个留出阻滞电压 × 4个假设 × 3个优化重启）。`H4s` 在5个留出条件中的4个比 `H1` 具有更低的折级中位 NRMSE，主要改善位于4、6和8 V；10 V 条件下方向反转。该结果说明指定相对间隔在受检模型中具有条件性预测作用。后续碰撞历史与专一性检验进一步限定其物理解释：它不能据此确认四个原子能级共同生成响应、逐级分辨这些能级，或排除同复杂度替代解释。
 
 物理响应审核只保留两项 caveat：late-bias 与 high-retarding-voltage valley-depth。
 
