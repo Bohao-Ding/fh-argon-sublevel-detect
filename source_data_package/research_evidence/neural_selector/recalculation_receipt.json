@@ -1,0 +1,9 @@
+{
+  "method": "Deterministic selector recalculation from the preserved fitted candidates; no new training",
+  "source": "source_data_package/output_results/main/fullscan/model_selection_table.csv",
+  "source_sha256": "5a0bf8dde462ca82da6ee4f98aa4b7843342708b2ecaada582f235288df7f487",
+  "implementation": "src/sublevel_detect/validation_selector.py",
+  "production_selected_k": 4,
+  "without_complexity_selected_k": 8,
+  "scenario_count": 15
+}

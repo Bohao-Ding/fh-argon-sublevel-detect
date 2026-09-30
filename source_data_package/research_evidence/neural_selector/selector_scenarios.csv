@@ -1,0 +1,16 @@
+scenario,selected_k,selected_composite_rank_score,weight_rmse,weight_summary,weight_d1,weight_d2,weight_structure,weight_physical,weight_bic,weight_aic,weight_degeneracy
+production,4,15.0,1.0,1.0,1.0,1.0,1.25,1.0,1.0,0.5,1.0
+leave_one_rmse_out,4,14.0,0.0,1.0,1.0,1.0,1.25,1.0,1.0,0.5,1.0
+leave_one_legacy_summary_out,4,14.0,1.0,0.0,1.0,1.0,1.25,1.0,1.0,0.5,1.0
+leave_one_d1_out,4,12.0,1.0,1.0,0.0,1.0,1.25,1.0,1.0,0.5,1.0
+leave_one_d2_out,4,11.0,1.0,1.0,1.0,0.0,1.25,1.0,1.0,0.5,1.0
+leave_one_structure_out,4,12.5,1.0,1.0,1.0,1.0,0.0,1.0,1.0,0.5,1.0
+leave_one_physical_out,4,14.0,1.0,1.0,1.0,1.0,1.25,0.0,1.0,0.5,1.0
+leave_one_bic_out,8,13.75,1.0,1.0,1.0,1.0,1.25,1.0,0.0,0.5,1.0
+leave_one_aic_out,4,14.5,1.0,1.0,1.0,1.0,1.25,1.0,1.0,0.0,1.0
+leave_one_degeneracy_out,4,14.0,1.0,1.0,1.0,1.0,1.25,1.0,1.0,0.5,0.0
+remove_fit_group,4,13.0,0.0,0.0,1.0,1.0,1.25,1.0,1.0,0.5,1.0
+remove_shape_group,4,5.5,1.0,1.0,0.0,0.0,0.0,1.0,1.0,0.5,1.0
+remove_physical_group,4,14.0,1.0,1.0,1.0,1.0,1.25,0.0,1.0,0.5,1.0
+remove_complexity_group,8,11.25,1.0,1.0,1.0,1.0,1.25,1.0,0.0,0.0,0.0
+fit_complexity_only,4,3.5,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.5,1.0
