@@ -3,7 +3,7 @@
 This additive package connects preserved physics-structured fits to the subsequent hypothesis checks. It contains numerical tables and receipts, not manuscript PDFs, figure archives, training histories or checkpoints.
 
 - `h4s_holdout/`: formal 60-unit comparison and derived manuscript-facing tables. The original run identity is retained; optimizer seeds are restarts, not independent measurements.
-- `neural_selector/`: deterministic group-removal recalculation from the preserved fitted candidates; no new model training. This audit is separate from the original 23 weight-perturbation scenarios.
+- `neural_selector/`: deterministic group-removal recalculation from the preserved fitted candidates; no new model training. The candidate table is copied here to preserve its input bytes independently of legacy checkout newline conversion. This audit is separate from the original 23 weight-perturbation scenarios.
 - `collision_history/`: v2l H1/H4s results, predictions and morphology audit. H4s did not plateau; A4's matched cross-section experiment was not executed.
 - `full_retry/`: compact frozen foundational results and virtual sensitivities. Historical recovery interpretations are superseded by A5/A14.
 - `diagnostics_v2/`: A-series CSV/JSON aggregates, including failed gates and A15's numerical identity.

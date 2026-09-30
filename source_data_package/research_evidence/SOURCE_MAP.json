@@ -268,5 +268,6 @@
   "source_data_package/research_evidence/collision_history/h4s/predictions.csv": "NewModel-TEST/output/v2l_q4_h4s_iteration_01/h4s/predictions.csv",
   "source_data_package/research_evidence/collision_history/h4s_morphology_audit.json": "NewModel-TEST/output/v2l_q4_h4s_iteration_01/h4s_morphology_audit.json",
   "source_data_package/research_evidence/neural_selector/recalculation_receipt.json": "Frank_Hertz_Experiment/fh-argon-sublevel-detect/source_data_package/output_results/main/fullscan/model_selection_table.csv",
-  "source_data_package/research_evidence/neural_selector/selector_scenarios.csv": "Frank_Hertz_Experiment/fh-argon-sublevel-detect/source_data_package/output_results/main/fullscan/model_selection_table.csv"
+  "source_data_package/research_evidence/neural_selector/selector_scenarios.csv": "Frank_Hertz_Experiment/fh-argon-sublevel-detect/source_data_package/output_results/main/fullscan/model_selection_table.csv",
+  "source_data_package/research_evidence/neural_selector/model_selection_table.csv": "Frank_Hertz_Experiment/fh-argon-sublevel-detect/source_data_package/output_results/main/fullscan/model_selection_table.csv"
 }

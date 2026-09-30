@@ -1,2 +1,2 @@
 # Keep frozen receipt bytes and their file SHA-256 unchanged on checkout.
-source_data_package/research_evidence/** -text
+source_data_package/research_evidence/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

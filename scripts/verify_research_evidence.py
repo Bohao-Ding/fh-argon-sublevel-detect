@@ -22,11 +22,11 @@ def verify(root: Path = ROOT) -> dict:
         checked += 1
     for relative in ("data/argon/FHdata.xlsx", "FULL-REtry/data/FHdata.xlsx", "NewModel-TEST/data/FHdata.xlsx"):
         assert hashlib.sha256((root / relative).read_bytes()).hexdigest().upper() == DATA_SHA256, relative
-    selection_path = root / "source_data_package/output_results/main/fullscan/model_selection_table.csv"
+    selector = evidence / "neural_selector"
+    selection_path = selector / "model_selection_table.csv"
     selection = pd.read_csv(selection_path).set_index("n_levels")
     assert round(selection.loc[1, "rmse_mean"], 5) == 0.08020
     assert round(selection.loc[4, "rmse_mean"], 5) == 0.07735
-    selector = evidence / "neural_selector"
     receipt = json.loads((selector / "recalculation_receipt.json").read_text(encoding="utf-8"))
     assert hashlib.sha256(selection_path.read_bytes()).hexdigest() == receipt["source_sha256"]
     scenarios = pd.read_csv(selector / "selector_scenarios.csv").set_index("scenario")
