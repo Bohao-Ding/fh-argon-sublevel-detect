@@ -1,8 +1,14 @@
-﻿# SubLevel Detect 中文说明
+# SubLevel Detect 中文说明
+
+## 整合研究：从曲线描述到物理假设验证
+
+物理结构约束的可微模型能够描述归档曲线，并在指定先验与筛选规则下提出多成分候选。本仓库现已纳入碰撞历史模型、阻滞响应分析及后续诊断，依次检验预测作用、解释必要性、宏观信息和能级专一性。入口：[研究总览](docs/research_overview.md)、[独立复现](docs/research_reproduction.md)、[详细中文主线](docs/research_storyline.zh-CN.md)。新增最小数值证据在 [research_evidence](source_data_package/research_evidence/README.md)；文章 PDF 与新增完整图件留在本地。
+
+自由 K=4 是条件性候选，与固定相对间隔 H4s 不同。真正的 H4s 留出有 60 个完成单元，平均 NRMSE 改善 2.36%，端点反转。自由 K 导出的旧 `cv_rmse_mean` 是拟合误差。selected-model residual bootstrap 的 30 次均未选 K=4，K=5/6 各10次；后期 A5 跨度 argmin 是另一选择器。A4 公平截面比较仍未执行。
 
 [English README](README.md)
 
-这是用于论文复现的 Frank-Hertz 氩有效多通道响应分析源码项目。
+这是用于检验氩 Franck-Hertz 教学实验中“四个最低 Ar I 4s 能级共同参与”解释并复现论文结果的源码项目。
 
 本仓库在常规复现层面采用“代码优先”策略：仓库包含源码、输入数据表、测试与说明文档；新的运行输出仍写入 `output/`，不作为普通源码变更提交。为便于手稿核验，当前版本单独提交了整理后的 `source_data_package/`，其中包含当前论文草稿使用的图像资产、manuscript-facing CSV/JSON 表、保留的 K=1/K=4 运行记录和校验清单。
 
@@ -17,13 +23,15 @@
 
 ## 项目复现内容
 
-代码拟合并评估多能级 Frank-Hertz 氩模型。正式复现流程包含两条平行基线：
+代码以物理前向核拟合并评估 Frank-Hertz 氩响应。论文面对的主要问题是：相较一个有效激发阈值，四个最低 NIST Ar I 4s 能级能否更好地预测完全留出的阻滞电压曲线。正式复现流程包含：
 
 - 主基线：构建正向证据、可选超参调节、候选 K 扫描训练、自动后评估。
 - 消融基线：selector-only 消融，以及关闭 forward anchor gap 的 retrain，用于检验最终选择对正向锚点的依赖程度。
 - 稳健性基线：selector 权重扰动，以及固定主基线超参后的 leave-one-retarding-voltage-out 重训。
 - 敏感性补充实验：forward-anchor prior-strength 扫描，以及 seed jitter、残差 bootstrap、噪声扰动和峰谷窗口半径扰动下的两类 K=4 不确定度汇总。`conditional_k4_all_fits` 是所有 K=4 条件拟合的 stress-test drift；`production_anchor_matched_k4` 将扰动后的 K=4 通道匹配回 production K=4 四个锚定通道。
 - 补充验证套件：selector 去污染审计、循环移动块残差 bootstrap、leave-one-retarding-voltage-out 预测，以及针对 NIST Ar I 4s 能级组的四假设比较。
+
+正式 H4s 比较已经完成：60/60 单元完成、0 失败（5个留出阻滞电压 × 4个假设 × 3个优化重启）。`H4s` 在5个留出条件中的4个比 `H1` 具有更低的折级中位 NRMSE，主要改善位于4、6和8 V；10 V 条件下方向反转。该结果支持“指定的4s能级组共同参与宏观响应”这一可解释假设，但不表示四个能级已被逐级分辨，也不排除复杂度相近的其他多通道模型。
 
 物理响应审核只保留两项 caveat：late-bias 与 high-retarding-voltage valley-depth。
 
@@ -45,7 +53,7 @@ python run.py --mode smoke --exclude hpopt --validation-only h4s --output $smoke
 Remove-Item -LiteralPath $smoke -Recurse -Force
 ```
 
-使用 CUDA 运行预注册正式验证套件：
+使用经性能审计选定的 CPU 配置运行预注册正式验证套件：
 
 ```powershell
 python run.py --mode fullscan --validation --device cpu
@@ -160,7 +168,7 @@ smoke 命令只用于功能检查。除非测试本身需要保留输出，否�
 - 循环移动块残差 bootstrap 在每条曲线内部对中心化残差重采样。正式设计以 7 点块为主条件，以 5 点和 9 点块检查敏感性，并报告 selected-K 分布及 K=4 比例的 Wilson 区间。
 - Leave-one-retarding-voltage-out prediction 在未见曲线上评估 K=1..8 和训练折 selected model。主要终点为零样本 RMSE、MAE 和 range-normalized RMSE；次要的 21 点校准只拟合 gain、bias 与加速电压偏移。
 - H4s 针对性比较在相同五个留出阻滞电压上评估 `H1`、`H1+B`、`H4s` 和 `H4s+B`。`H4s` 使用四个 NIST Ar I 4s 能量并允许一个受限共同能量微调；`B` 是现有平滑高能损失项，不是第五个激发通道。
-- H4s 阶段报告零样本 RMSE、MAE、NRMSE 的配对差异，不自动生成支持或否定结论。seed 仅代表优化起点，smoke 结果不可用于论文声称。
+- H4s 阶段报告零样本 RMSE、MAE、NRMSE 的配对差异，不自动生成支持或否定结论。seed 仅代表优化起点；正式结果以5个 fold-level 中位数汇总，smoke 结果不可用于论文声称。
 - H4s 汇总先在同一 seed 内形成配对差值，再对每个 fold 取 seed 中位数；失败 seed 与失败 fold 仍保留在预期分母中。固定性能审计选定 CPU 与4个单线程 worker，详见 `docs/h4s_performance_audit.md`。
 - 每个阶段均写出 manifest、progress、逐单元记录、stage status 和 `stage_result.json`。失败单元保留在预注册统计分母中，未完成或失败的验证最终返回非零退出码。
 

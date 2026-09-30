@@ -1,5 +1,7 @@
 # Franck-Hertz 补充验证实验与进度台账
 
+> Research integration (2026-10-01): see [the research guide](research_overview.md), [standalone reproduction](research_reproduction.md), and [the receipt-backed storyline](research_storyline.zh-CN.md). Archived free-K fitting, fixed H4s holdout, and later span calibration have distinct inference roles.
+
 ## 1. 当前研究问题
 
 本验证层回答两个不同问题：
@@ -9,7 +11,7 @@
 
 第二个问题由针对性的四臂物理假设比较承担，不再使用 semi-synthetic recovery 或固定预算 MLP。删除旧实验不改变已完成 selector、block-bootstrap 和 holdout 结果；Git 历史仍保留旧设计的实现过程。
 
-本阶段不修改论文、补充材料、图件、production selector、默认模型或 `source_data_package/`。技术完成仅表示代码、身份记录、失败语义和 smoke 链路可复现，不代表任何物理假设已经得到支持。
+源码实现阶段没有修改 production selector 或默认模型。正式 H4s 计算完成后，论文、补充材料、主图和精简 `source_data_package/` 已按同一证据边界同步；正式 checkpoint 与临时日志仍不进入发布包。
 
 ## 2. CLI
 
@@ -119,9 +121,9 @@ NIST Ar I 4s 能量固定为：
 | selector audit | `complete` | 15/15，失败0 |
 | block bootstrap | `complete` | 60/60，失败0 |
 | held-out prediction | `complete` | 120/120，失败0 |
-| targeted H4s comparison | `smoke_passed` | 尚无正式结果；CPU 与 CUDA smoke 均为4/4单元完成、0失败，schema/checkpoint 哈希完整，`claim_evaluable=false` |
+| targeted H4s comparison | `complete` | 60/60，失败0；5折 × 4假设 × 3优化重启，`claim_evaluable=true`、不自动判定声称 |
 
-已退役验证的结果目录与旧五阶段顶层进度清单已删除。保留的三组正式结果不因本次源码替换而重算。
+正式 H4s 结果来自源码提交 `60522c54f13333070c65a352e571acf17f5cc698`。`H4s-H1` 的折级 NRMSE 差值在5个留出条件中4个为负，均值由 `0.12918` 降至 `0.12613`；改善主要位于 (V_r=4,6,8) V，在 (V_r=10) V 反转为 `+0.03326`。这一结果支持四个最低 Ar I 4s 能级共同参与的结构化解释，但不构成逐级分辨，也不排除匹配复杂度的替代多通道模型。已退役验证的结果目录与旧五阶段顶层进度清单已删除。
 
 ## 8. 正式训练前性能与正确性审计
 
@@ -139,4 +141,4 @@ python run.py --mode fullscan --validation-only h4s --device cpu
 
 ## 9. 临时文件规则
 
-Smoke 输出必须写入 `C:\tmp` 或 pytest 临时目录。断言完成后删除整个 smoke 根；不得在仓库中遗留临时训练目录、缓存副本或 smoke 结果。正式训练必须等待新的明确指令。
+Smoke 输出必须写入 `C:\tmp` 或 pytest 临时目录。断言完成后删除整个 smoke 根；不得在仓库中遗留临时训练目录、缓存副本或 smoke 结果。正式 H4s 训练已经完成；任何重跑仍须使用新的输出根或在明确核验身份后断点复用，禁止静默覆盖现有正式结果。

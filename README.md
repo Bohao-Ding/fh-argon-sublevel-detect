@@ -1,8 +1,14 @@
-﻿# SubLevel Detect
+# SubLevel Detect
+
+## Integrated research: from fitting to hypothesis validation
+
+The physics-structured differentiable model describes the archive and proposes multicomponent candidates under specified priors and selectors. The repository now also contains collision-history modeling, retarding-response analysis and the diagnostic checks that establish their physical interpretation and limits. Follow [the research guide](docs/research_overview.md), [reproduction instructions](docs/research_reproduction.md), and [the detailed Chinese storyline](docs/research_storyline.zh-CN.md). New minimal numerical evidence is in [research_evidence](source_data_package/research_evidence/README.md); manuscript PDFs and new figure archives remain local.
+
+Free K=4 selection is a conditional candidate, distinct from the fixed-spacing H4s test. True H4s holdout has 60 completed units and a 2.36% mean NRMSE improvement with endpoint reversal. Legacy `cv_rmse_mean` in free-K exports is fitting error. The selected-model residual bootstrap never selects K=4 in 30 trials (K=5/6 each 10); the later A5 span-selector pathology is a separate check. A4's fair cross-section comparison is not executed.
 
 [中文 README](README.zh-CN.md)
 
-Frank-Hertz argon effective multichannel response analysis source project for paper reproduction.
+Source project for testing a four-level Ar I 4s interpretation in an argon Franck-Hertz teaching experiment.
 
 This repository is code-first for normal reproduction: it contains source code, one input spreadsheet, tests, and documentation, while fresh runtime outputs remain under `output/` and are not committed. For manuscript checking, the curated `source_data_package/` directory is committed separately and contains the figure assets, manuscript-facing CSV/JSON tables, retained K=1/K=4 run records, and checksums used by the current paper draft.
 
@@ -17,13 +23,15 @@ The reports document the full workflow, loss terms, physical kernel, optimizer s
 
 ## What This Project Reproduces
 
-The code fits and evaluates a multi-level Frank-Hertz argon model. It is organized around two reproducible baselines:
+The code fits and evaluates a physics-based Frank-Hertz argon response model. The paper-facing question is whether the four lowest NIST Ar I 4s levels improve prediction of a completely held-out retarding-voltage curve relative to one effective threshold. It is organized around the following reproducible workflows:
 
 - Main baseline: forward-evidence preparation, optional hyperparameter optimization, training over candidate level counts, and automatic post-evaluation.
 - Ablation baseline: selector-only ablations plus a no-forward-anchor-gap retraining run to test how much the final decision depends on forward anchors.
 - Robustness baseline: selector weight perturbation plus leave-one-retarding-voltage-out retraining with the main baseline hyperparameters fixed.
 - Sensitivity supplement: forward-anchor prior-strength scan and two K=4 uncertainty summaries under seed jitter, residual bootstrap, noise perturbation, and peak-window-radius perturbation. `conditional_k4_all_fits` is a stress-test drift summary over all fitted K=4 channels; `production_anchor_matched_k4` matches perturbed K=4 channels back to the four production K=4 anchors.
 - Supplementary validation suite: selector decontamination audit, circular moving-block residual bootstrap, leave-one-retarding-voltage-out prediction, and a targeted four-hypothesis comparison of the NIST Ar I 4s manifold.
+
+The formal H4s comparison is complete: 60/60 units finished with zero failures (five held-out retarding voltages, four hypotheses, and three optimization restarts). `H4s` lowers fold-level median NRMSE relative to `H1` in four of five conditions, mainly at 4, 6, and 8 V; the direction reverses at 10 V. This supports joint participation of the specified 4s manifold as an interpretable response hypothesis. It does not establish four individually resolved levels or exclude alternative multichannel models with comparable complexity.
 
 The retained physical response audit uses two gates: late-bias and high-retarding-voltage valley-depth.
 
@@ -162,7 +170,7 @@ Preregistered validation workflow:
 - Circular moving-block residual bootstrap resamples centered residuals within each curve. The formal design uses a 7-point main block with 5- and 9-point sensitivity checks and reports the selected-K distribution and Wilson interval for the K=4 rate.
 - Leave-one-retarding-voltage-out prediction evaluates K=1..8 and the training-fold selected model on unseen curves. Its primary endpoints are zero-shot RMSE, MAE, and range-normalized RMSE; a secondary 21-point calibration fits only gain, bias, and accelerating-voltage offset.
 - The targeted H4s comparison evaluates `H1`, `H1+B`, `H4s`, and `H4s+B` on the same five held-out retarding-voltage curves. `H4s` uses the four NIST Ar I 4s energies with one bounded common energy adjustment; `B` is the existing smooth high-energy loss term, not a fifth excitation channel.
-- The H4s stage reports paired zero-shot RMSE, MAE, and NRMSE differences without automatically declaring support or rejection. Seeds are optimization restarts rather than independent samples, and smoke output is never claim-evaluable.
+- The H4s stage reports paired zero-shot RMSE, MAE, and NRMSE differences without automatically declaring support or rejection. Seeds are optimization restarts rather than independent samples; formal results use five fold-level medians, and smoke output is never claim-evaluable.
 - H4s seed aggregation first forms within-seed paired differences and then takes the fold-level median. Failed seeds and folds remain in the expected denominator. A fixed runtime audit selected CPU with four single-thread workers; see `docs/h4s_performance_audit.md`.
 - Every stage writes a manifest, progress state, unit-level records, stage status, and `stage_result.json`. Failed units remain in the registered denominator, and an incomplete or failed validation run returns a non-zero exit code.
 
