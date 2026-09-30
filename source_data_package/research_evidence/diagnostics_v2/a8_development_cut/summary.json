@@ -1,0 +1,43 @@
+{
+  "summary": {
+    "experiment": "A8_development_cut",
+    "dataset_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+    "gates": {
+      "G_A8a_period_variant_drift_within_5pp": true,
+      "G_A8b_nist_percentile_above_5pct_all_trims": true,
+      "max_abs_drift_pp": 1.289250922005708,
+      "percentile_range": [
+        0.74609375,
+        0.74609375
+      ],
+      "forward_segment_gain": 0.3480404358788997,
+      "backward_segment_gain": 0.7696440795992838,
+      "forward_segment_rank2_beats_both": true,
+      "backward_segment_rank2_beats_both": true
+    },
+    "gate_verdicts": {
+      "G_A8a": "PASS: rank-2 conclusion is insensitive to the 11.55 V literature prior (drift <= 5 pp)",
+      "G_A8b": "PASS: NIST template stays non-specific under all response trims (template step is prior-free by construction)"
+    },
+    "note": "the time-forward split is the closest local analogue to a discovery/confirmation division available on one archived dataset; it is not a substitute for new data",
+    "timings": {
+      "segments_seconds": 0.0016765999898780137,
+      "period_variants_seconds": 0.05283860000781715,
+      "template_trims_seconds": 0.2868564999953378,
+      "total_seconds": 0.36160609999205917
+    }
+  },
+  "table_sha256": {
+    "segment_split": "26493D9A0764D3C3038A2120FE55CC46AE92EDB9E9CEC895BFB20FC680718972",
+    "period_variant_detail": "F69A96D140588A028BAA024C358BF6B35B4B72E1EE14203D462CF112EAA6E903",
+    "period_variant_summary": "2AEADA1AA2D99C7FA7B18A261ECE66F97945FA64A110C2B13C9E11B91B8951EC",
+    "template_trim_percentiles": "93A13068779B086BE695D621EDD1B983496BD38C0AD35F4E7137AC18E5F0294A"
+  },
+  "environment": {
+    "python": "3.13.7",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "2.3.3"
+  },
+  "written_utc": "2026-09-23T16:32:47Z"
+}

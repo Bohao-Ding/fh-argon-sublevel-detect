@@ -1,0 +1,48 @@
+{
+  "summary": {
+    "experiment": "A5_injection_debias",
+    "dataset_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+    "null_replicates": 500,
+    "power_replicates": 300,
+    "gates": {
+      "pathology_confirmed_max_candidate_null_selection_above_50pct": true,
+      "G_A5a_detection_instrument_calibrated": true,
+      "fp_max_over_min_worst_scheme": 1.5,
+      "frozen_85pct_recovery_at_12x_is_null_geometry": true,
+      "nist_span_detection_power_at_archived_snr": 0.17666666666666667
+    },
+    "headline": "Phase-3 argmin recovery is null geometry (max-candidate selected at 90% under no-signal null); the calibrated per-template detection instrument shows the NIST-span template at 18% detection power at the archived noise level, so no resolution number from model selection is quotable",
+    "quotable_boundary": "detection-based: even the widest candidate span (3.36 eV) has 20% detection power at archived SNR; S50 in SNR is reported per span in snr50 table",
+    "gate_verdicts": {
+      "G_A5a": "PASS: detection instrument calibrated (FP in band); its power curve is quotable"
+    },
+    "claim_boundary": [
+      "detection thresholds are per-template null quantiles at 5% level, block-resampled empirical residuals",
+      "S50 values are instrument properties of this pipeline, not instrument specifications of any FH apparatus",
+      "the frozen phase-3 'resolution boundary at 2.24 eV' wording must be retired in favor of this analysis"
+    ],
+    "timings": {
+      "setup_seconds": 0.00638570002047345,
+      "pathology_seconds": 3.059084900014568,
+      "calibration_seconds": 0.5308252999966498,
+      "power_seconds": 4.782094900001539,
+      "gates_seconds": 0.007500700012315065,
+      "total_seconds": 8.406057499989402
+    }
+  },
+  "table_sha256": {
+    "argmin_pathology": "E2661D10C6A6E9E83079FF103682CB68997B8EFCA4E6BA5F5A089B2B12B899AB",
+    "argmin_recovery_curve": "BAEE36C4365DF378D93C46284B8312E295F977E4D558CBFFA2EDD89770E65DB5",
+    "detection_calibration": "C3E5CB35114026D33B6F50646EFC59174AE7DB117353F74E47A04A77AE423523",
+    "detection_power": "EBAB7F873AD298BD9659DADAB994FDEDFD9D887A7D23A3C38590685699EF66E6",
+    "power_at_archived_snr": "DB00D729EE352321D2FDA1ED328612DCBA0259B770102C9C7CF78EA1855B19C4",
+    "snr50_per_span": "0A7B1861E425D68A4FE441EF5D2F1EBD3535263FE7894A2D8EB6D5CDA768C181"
+  },
+  "environment": {
+    "python": "3.13.7",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "2.3.3"
+  },
+  "written_utc": "2026-09-23T16:32:45Z"
+}

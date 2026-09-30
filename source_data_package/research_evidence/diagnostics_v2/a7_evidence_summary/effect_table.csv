@@ -1,0 +1,7 @@
+claim,layer,metric,value,ci_low,ci_high,source
+C1,retarding-response rank,median leave-block improvement,0.42145969694115953,-0.046726200809589294,0.08968535120082025,fresh
+C1,retarding-response rank,blocks beating trend5 and best pseudo,4.0,,,fresh
+C2,phenomenological kernel,H4s-H1 delta RMSE at Vr=4 (largest pro-4s fold),-0.0474531682323514,,,fresh_read
+C2,phenomenological kernel,H4s-H1 delta RMSE at Vr=10 (reversal),0.0657143356009365,,,fresh_read
+C2,collision-history kernel (v2l),top channel fraction of H4s rate,0.9136142730712891,,,fresh_read
+C3,template specificity,NIST percentile among 256 matched pseudo-templates,0.74609375,,,fresh

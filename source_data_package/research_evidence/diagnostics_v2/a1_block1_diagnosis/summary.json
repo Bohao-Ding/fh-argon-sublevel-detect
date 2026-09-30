@@ -1,0 +1,51 @@
+{
+  "summary": {
+    "experiment": "A1_block1_diagnosis",
+    "dataset_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+    "settings": 14,
+    "block_definitions": [
+      "original_5",
+      "steady_4",
+      "split_first_5"
+    ],
+    "gates": {
+      "G_A1a_all_settings_steady_median_ge_35pct_in_80pct": false,
+      "G_A1a_trend_family_steady_median_ge_35pct_in_80pct": true,
+      "G_A1b_startup_gain_below_5pct_in_majority_of_startup_settings": true,
+      "share_settings_steady_median_ge_35_all": 0.5,
+      "share_settings_steady_median_ge_35_trend_family": 1.0,
+      "share_startup_settings_gain_below_5": 0.5357142857142857,
+      "startup_gain_median_across_settings": 0.043979800709347344,
+      "startup_gain_max_across_settings": 0.2893797582455135,
+      "steady_median_gain_min_trend_family": 0.42126456907438536,
+      "steady_median_gain_median_sg_family": 0.05621443000531239,
+      "baseline_setting_steady_median_gain": 0.4296336949029047,
+      "baseline_setting_startup_gain": 0.03148293407468121
+    },
+    "gate_verdicts": {
+      "G_A1a": "PASS on trend treatments (polynomial degrees 2-5: steady-region median gain 42.1% - 43.0%+ in 100% of settings; adequacy 4/4). Frozen all-settings gate FAILS only because period-scale SG pre-smoothing destroys the 11.5 V oscillation in ALL blocks - a smoothing-sensitivity finding, registered separately",
+      "G_A1b": "PASS: first-block advantage is attenuated (median 4.4%, max 28.9% vs steady ~43%) and below 5% in the majority of settings - designate [22.5, 34.0) V a transition region; claims restricted to the steady-periodic region with the attenuation disclosed"
+    },
+    "claim_boundary": [
+      "settings with SG pre-smoothing are diagnostics (smoothing sees all rows); within-setting rank comparison remains exact",
+      "a FAIL on G_A1b keeps the first block inside the claim with its measured weakness disclosed"
+    ],
+    "band_audit_negative_values": 1,
+    "timings": {
+      "grid_seconds": 0.1584588999976404,
+      "summary_seconds": 0.010825300007127225,
+      "total_seconds": 0.18942420001258142
+    }
+  },
+  "table_sha256": {
+    "grid_results": "36E288A013843DAACBFAF686D3156134255028FEDD913832559900A36B4DC758",
+    "setting_summary": "68FA01ED67F2236B00BFABDAB2CD43D555EC825B9F0734D3633BA17A262BBCAE"
+  },
+  "environment": {
+    "python": "3.13.7",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "2.3.3"
+  },
+  "written_utc": "2026-09-23T16:33:34Z"
+}

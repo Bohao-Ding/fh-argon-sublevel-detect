@@ -1,0 +1,75 @@
+{
+  "summary": {
+    "experiment": "A14_instrument_completion",
+    "dataset_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+    "gates": {
+      "G_A14a_nested_works_on_design_signals": true,
+      "G_A14b_response_definition_consistent": true,
+      "a14a_nested_power_by_factor": {
+        "0.5": 0.956,
+        "1.0": 0.98,
+        "2.0": 0.988,
+        "4.0": 0.956,
+        "8.0": 0.992,
+        "12.0": 0.988
+      },
+      "a14a_power_min_max": [
+        0.956,
+        0.992
+      ],
+      "a14a_signal_max_offdiag_correlation": 0.9923621217446533,
+      "a14b_percentile_raw_currents": 0.74609375,
+      "a14b_percentile_retarding_fractions": 0.75,
+      "a14c_wide_lags": {
+        "Vr_0_4-vs-Vr_4_6": [
+          3,
+          0
+        ],
+        "Vr_4_6-vs-Vr_6_8": [
+          3,
+          0
+        ],
+        "Vr_6_8-vs-Vr_8_10": [
+          3,
+          0
+        ],
+        "Vr_8_10-vs-Vr_gt_10": [
+          7,
+          0
+        ],
+        "Vr_0_4-vs-Vr_gt_10": [
+          -7,
+          0
+        ]
+      }
+    },
+    "gate_verdicts": {
+      "G_A14a": "PASS: the nested instrument detects design-constructed four-level signatures at the archived amplitude - existence detection is real, and its span dependence below is quotable",
+      "G_A14b": "PASS: the two response definitions give consistent percentiles"
+    },
+    "claim_boundary": [
+      "design signals use equal-weight in-phase sums of the H1-orthogonal template components",
+      "wide lag search re-introduces period aliasing beyond half a period; adjacent-band lags remain the primary readout"
+    ],
+    "timings": {
+      "a14a_seconds": 0.1901849999849219,
+      "a14b_seconds": 0.18998219998320565,
+      "a14c_seconds": 0.003203700005542487,
+      "gates_seconds": 0.0005230999959167093,
+      "total_seconds": 0.4043466000002809
+    }
+  },
+  "table_sha256": {
+    "a14a_signal_gram": "3502D19D877C028F78C011747B24B71C10D7B7D64D2394B5022B40398B3086EE",
+    "a14a_nested_power": "1485428C83D1D418ACF03D864B66BEAEE0C9CEFD4B36976994C647EE479E2D93",
+    "a14b_response_definitions": "2738B68F7030B0055BDC0CAFB498B7E6FBECD600021AB404CFCA432E6E244519",
+    "a14c_wide_lags": "10EBEA2FBE3B34DB4BDF56D036FCE1196B61509377DB39170DCA3681361B2A4E"
+  },
+  "environment": {
+    "python": "3.13.7",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "2.3.3"
+  },
+  "written_utc": "2026-09-23T16:33:03Z"
+}

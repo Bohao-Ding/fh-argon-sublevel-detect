@@ -1,0 +1,17 @@
+injected_span_factor,scheme,nested_detection_power
+0.5,common_h1_block_3,0.5833333333333334
+0.5,common_h1_block_5,0.6866666666666666
+0.5,common_h1_block_9,0.5166666666666667
+0.5,common_h1_phase,0.5366666666666666
+1.0,common_h1_block_3,0.6033333333333334
+1.0,common_h1_block_5,0.5333333333333333
+1.0,common_h1_block_9,0.6233333333333333
+1.0,common_h1_phase,0.5466666666666666
+2.0,common_h1_block_3,0.5166666666666667
+2.0,common_h1_block_5,0.6433333333333333
+2.0,common_h1_block_9,0.63
+2.0,common_h1_phase,0.5366666666666666
+4.0,common_h1_block_3,0.6666666666666666
+4.0,common_h1_block_5,0.6633333333333333
+4.0,common_h1_block_9,0.5933333333333334
+4.0,common_h1_phase,0.51

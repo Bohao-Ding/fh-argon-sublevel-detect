@@ -1,0 +1,603 @@
+{
+  "status": "completed",
+  "config": {
+    "data_path": "D:\\VScode_repository\\FrankHertz_Experiment\\NewModel-TEST\\data\\FHdata.xlsx",
+    "output_dir": "D:\\VScode_repository\\FrankHertz_Experiment\\NewModel-TEST\\output\\v2l_q4_iteration_01\\h1",
+    "n_levels": 1,
+    "seed": 0,
+    "device": "cuda",
+    "max_epochs": 1800,
+    "min_epochs": 300,
+    "patience": 120,
+    "min_delta_rel": 0.0001,
+    "smoothing": 15,
+    "learning_rate": 0.02,
+    "n_layers": 32,
+    "max_collisions": 6,
+    "quadrature_order": 4,
+    "log_interval": 10
+  },
+  "config_sha256": "b92e4cb954e58261511257ec3925f264d98993c2ba3f93a052f21621392ae4d7",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "elapsed_seconds": 12.84425740000006,
+  "epochs_completed": 0,
+  "best_epoch": 0,
+  "best_loss": 0.001830382738262415,
+  "stop_reason": "post_plateau_coordinate_calibration",
+  "parameters": {
+    "model_class": "CalibratedCollisionFieldFranckHertz",
+    "model_version": "v2l-calibrated-collision-field",
+    "hypothesis": "h1",
+    "n_levels": 1,
+    "n_layers": 32,
+    "max_collisions": 6,
+    "state_space_size": 7,
+    "trainable_parameter_count": 19,
+    "energies_eV": [
+      10.885501861572266
+    ],
+    "channel_rate_fractions": [
+      1.0
+    ],
+    "current_limit_uA": 9.02588176727295,
+    "supply_scale_V": 119.66841888427734,
+    "collision_region_offset_eV": 5.996620178222656,
+    "arrival_offset_eV": 5.0293073654174805,
+    "collector_offset_eV": 2.751986026763916,
+    "retarding_scale": 1.025560736656189,
+    "gate_sigma_eV": 2.9999964237213135,
+    "thermal_energy_eV": 0.29999691247940063,
+    "angle_sigma_rad": 0.19124358892440796,
+    "arrival_scale_eV": 0.2922416925430298,
+    "optical_depth": 33.54581832885742,
+    "cross_section_rise_eV": 4.9999823570251465,
+    "cross_section_decay_eV": 499.8780517578125,
+    "cross_section_power": 2.626535415649414,
+    "acceleration_scale": 0.9400004148483276,
+    "scattering_anisotropy_scale_eV": 1.112560510635376,
+    "supply_exponent": 1.212273359298706,
+    "aperture_sigma_rad": 0.3186861276626587,
+    "collision_field_spread_eV": 10.5,
+    "collision_spread_decay_V": 32.0,
+    "collector_closure": "probability-weighted last inelastic collision position",
+    "additional_trainable_parameters_vs_v2a": 2,
+    "post_collision_angular_distribution": "uncollided states remain forward; collided states blend isotropic and forward",
+    "angle_sigma_role": "frozen legacy parameter; superseded by aperture_sigma_rad",
+    "collision_hazard": "Weibull threshold activation with exponential high-energy decay",
+    "collector_reachability": "non-negative axial arrival energy followed by Gaussian barrier gate",
+    "legacy_frozen_parameters": [
+      "raw_thermal_energy",
+      "raw_arrival_scale",
+      "raw_optical_depth",
+      "raw_cross_decay",
+      "raw_cross_power",
+      "raw_angle_sigma"
+    ],
+    "supply_law": "I_lim*u^p/(1+u^p), u=a*Va/V_scale",
+    "angular_acceptance": "unnormalized Gaussian aperture exp[-theta^2/(2*sigma_aperture^2)]",
+    "collision_field_closure": "five-point Gaussian ensemble applied only to collision-history advance",
+    "collision_field_spread_law": "sigma(Va)=sigma0*exp(-Va/Vdecay)",
+    "collision_field_calibration": "fixed H1 morphology-scan apparatus closure",
+    "collision_field_calibration_grid": "sigma0=10.5..11.97 eV, decay=24..36 V; selected lowest-NRMSE 15/15-feasible point"
+  },
+  "metrics": {
+    "summary": {
+      "overall_nrmse": 0.026276037825347598,
+      "mean_curve_nrmse": 0.03052807808412808,
+      "cutoff_mae_V": 0.4,
+      "max_cutoff_error_V": 1.5,
+      "zero_region_mae_uA": 0.0010251004606449065,
+      "peak_position_mae_V": 0.4473684210526316,
+      "trough_position_mae_V": 0.46875,
+      "peak_recall": 1.0,
+      "peak_precision": 1.0,
+      "trough_recall": 1.0,
+      "trough_precision": 1.0,
+      "peak_drift_rmse_V": 0.48181205582971576,
+      "vr0_spurious_feature_count": 0,
+      "low_voltage_mae_uA": 0.04026086801343663,
+      "vr0_low_voltage_mae_uA": 0.05667859055728296,
+      "late_voltage_mae_uA": 0.0678351372044261,
+      "early_high_retarding_mae_uA": 0.06963906065398646,
+      "peak_current_bias_uA": 0.012072045100362703,
+      "peak_current_mae_uA": 0.053209041269202,
+      "trough_current_bias_uA": 0.06765427742898464,
+      "trough_current_mae_uA": 0.07913864396512507,
+      "late_trough_current_bias_uA": 0.11741969975829124,
+      "late_trough_current_mae_uA": 0.11741969975829124,
+      "oscillation_contrast_bias_uA": -0.06836780829727648,
+      "oscillation_contrast_mae_uA": 0.06877926521003246,
+      "sse_uA2": 4.498629000267914,
+      "n_points": 805,
+      "n_params": 19,
+      "bic": -4048.465019633171,
+      "aic": -4137.591022904124
+    },
+    "per_curve": [
+      {
+        "curve_id": 1,
+        "Vr": 0.0,
+        "nrmse": 0.02530375817775153,
+        "observed_cutoff_V": 5.5,
+        "predicted_cutoff_V": 5.5,
+        "cutoff_error_V": 0.0,
+        "observed_peaks_V": [],
+        "predicted_peaks_V": [],
+        "observed_troughs_V": [],
+        "predicted_troughs_V": []
+      },
+      {
+        "curve_id": 2,
+        "Vr": 4.0,
+        "nrmse": 0.036491329775711054,
+        "observed_cutoff_V": 7.0,
+        "predicted_cutoff_V": 7.0,
+        "cutoff_error_V": 0.0,
+        "observed_peaks_V": [
+          32.0,
+          42.5,
+          53.5,
+          65.0,
+          77.0
+        ],
+        "predicted_peaks_V": [
+          31.0,
+          41.5,
+          53.5,
+          65.5,
+          77.0
+        ],
+        "observed_troughs_V": [
+          35.5,
+          47.0,
+          58.5,
+          70.0
+        ],
+        "predicted_troughs_V": [
+          34.0,
+          46.0,
+          58.0,
+          70.0
+        ]
+      },
+      {
+        "curve_id": 3,
+        "Vr": 6.0,
+        "nrmse": 0.02760509322209944,
+        "observed_cutoff_V": 9.0,
+        "predicted_cutoff_V": 9.0,
+        "cutoff_error_V": 0.0,
+        "observed_peaks_V": [
+          32.5,
+          43.0,
+          54.5,
+          66.0,
+          77.5
+        ],
+        "predicted_peaks_V": [
+          31.0,
+          42.5,
+          54.0,
+          66.0,
+          77.5
+        ],
+        "observed_troughs_V": [
+          36.5,
+          48.0,
+          59.5,
+          71.0
+        ],
+        "predicted_troughs_V": [
+          35.0,
+          47.5,
+          59.5,
+          71.0
+        ]
+      },
+      {
+        "curve_id": 4,
+        "Vr": 8.0,
+        "nrmse": 0.025516265316833223,
+        "observed_cutoff_V": 11.0,
+        "predicted_cutoff_V": 10.5,
+        "cutoff_error_V": 0.5,
+        "observed_peaks_V": [
+          33.0,
+          43.5,
+          55.0,
+          66.5,
+          78.5
+        ],
+        "predicted_peaks_V": [
+          31.5,
+          43.5,
+          55.0,
+          66.5,
+          78.5
+        ],
+        "observed_troughs_V": [
+          37.5,
+          48.5,
+          60.0,
+          72.0
+        ],
+        "predicted_troughs_V": [
+          36.5,
+          48.5,
+          60.0,
+          72.0
+        ]
+      },
+      {
+        "curve_id": 5,
+        "Vr": 10.0,
+        "nrmse": 0.037723943928245136,
+        "observed_cutoff_V": 14.5,
+        "predicted_cutoff_V": 13.0,
+        "cutoff_error_V": 1.5,
+        "observed_peaks_V": [
+          34.0,
+          44.5,
+          56.0,
+          67.5
+        ],
+        "predicted_peaks_V": [
+          32.5,
+          44.0,
+          56.0,
+          67.5
+        ],
+        "observed_troughs_V": [
+          38.5,
+          50.0,
+          61.5,
+          73.0
+        ],
+        "predicted_troughs_V": [
+          38.0,
+          49.5,
+          61.0,
+          73.0
+        ]
+      }
+    ]
+  },
+  "single_level_gate": {
+    "passed": true,
+    "checks": [
+      {
+        "metric": "mean_curve_nrmse",
+        "direction": "max",
+        "threshold": 0.05,
+        "value": 0.03052807808412808,
+        "passed": true
+      },
+      {
+        "metric": "cutoff_mae_V",
+        "direction": "max",
+        "threshold": 1.0,
+        "value": 0.4,
+        "passed": true
+      },
+      {
+        "metric": "max_cutoff_error_V",
+        "direction": "max",
+        "threshold": 1.5,
+        "value": 1.5,
+        "passed": true
+      },
+      {
+        "metric": "zero_region_mae_uA",
+        "direction": "max",
+        "threshold": 0.015,
+        "value": 0.0010251004606449065,
+        "passed": true
+      },
+      {
+        "metric": "peak_position_mae_V",
+        "direction": "max",
+        "threshold": 1.0,
+        "value": 0.4473684210526316,
+        "passed": true
+      },
+      {
+        "metric": "trough_position_mae_V",
+        "direction": "max",
+        "threshold": 1.25,
+        "value": 0.46875,
+        "passed": true
+      },
+      {
+        "metric": "peak_recall",
+        "direction": "min",
+        "threshold": 0.8,
+        "value": 1.0,
+        "passed": true
+      },
+      {
+        "metric": "trough_recall",
+        "direction": "min",
+        "threshold": 0.75,
+        "value": 1.0,
+        "passed": true
+      },
+      {
+        "metric": "peak_drift_rmse_V",
+        "direction": "max",
+        "threshold": 1.0,
+        "value": 0.48181205582971576,
+        "passed": true
+      },
+      {
+        "metric": "vr0_spurious_feature_count",
+        "direction": "max",
+        "threshold": 0.0,
+        "value": 0.0,
+        "passed": true
+      },
+      {
+        "metric": "vr0_low_voltage_mae_uA",
+        "direction": "max",
+        "threshold": 0.07,
+        "value": 0.05667859055728296,
+        "passed": true
+      },
+      {
+        "metric": "late_trough_current_mae_uA",
+        "direction": "max",
+        "threshold": 0.205,
+        "value": 0.11741969975829124,
+        "passed": true
+      },
+      {
+        "metric": "late_voltage_mae_uA",
+        "direction": "max",
+        "threshold": 0.11,
+        "value": 0.0678351372044261,
+        "passed": true
+      },
+      {
+        "metric": "trough_precision",
+        "direction": "min",
+        "threshold": 1.0,
+        "value": 1.0,
+        "passed": true
+      },
+      {
+        "metric": "early_high_retarding_mae_uA",
+        "direction": "max",
+        "threshold": 0.075,
+        "value": 0.06963906065398646,
+        "passed": true
+      }
+    ]
+  },
+  "old_k1_baseline_metrics": {
+    "summary": {
+      "overall_nrmse": 0.029143837072545174,
+      "mean_curve_nrmse": 0.03259515742028017,
+      "cutoff_mae_V": 4.7,
+      "max_cutoff_error_V": 7.0,
+      "zero_region_mae_uA": 0.04542835058922738,
+      "peak_position_mae_V": 0.5263157894736842,
+      "trough_position_mae_V": 0.28125,
+      "peak_recall": 1.0,
+      "peak_precision": 0.76,
+      "trough_recall": 1.0,
+      "trough_precision": 0.6956521739130435,
+      "peak_drift_rmse_V": 0.44320263021395917,
+      "vr0_spurious_feature_count": 9,
+      "low_voltage_mae_uA": 0.07964012947207494,
+      "vr0_low_voltage_mae_uA": 0.1544487301111221,
+      "late_voltage_mae_uA": 0.06514834386081231,
+      "early_high_retarding_mae_uA": 0.052058263990186884,
+      "peak_current_bias_uA": 0.02756029008564201,
+      "peak_current_mae_uA": 0.03774830396551837,
+      "trough_current_bias_uA": 0.059026488333940495,
+      "trough_current_mae_uA": 0.07525372484326362,
+      "late_trough_current_bias_uA": 0.09832211080193518,
+      "late_trough_current_mae_uA": 0.09832211080193518,
+      "oscillation_contrast_bias_uA": -0.024105952292680723,
+      "oscillation_contrast_mae_uA": 0.0515244160592556,
+      "sse_uA2": 5.534187670917076,
+      "n_points": 805
+    },
+    "per_curve": [
+      {
+        "curve_id": 1,
+        "Vr": 0.0,
+        "nrmse": 0.04206055014330953,
+        "observed_cutoff_V": 5.5,
+        "predicted_cutoff_V": 0.0,
+        "cutoff_error_V": 5.5,
+        "observed_peaks_V": [],
+        "predicted_peaks_V": [
+          30.0,
+          41.5,
+          53.5,
+          65.0,
+          76.5
+        ],
+        "observed_troughs_V": [],
+        "predicted_troughs_V": [
+          34.5,
+          46.0,
+          57.5,
+          69.5
+        ]
+      },
+      {
+        "curve_id": 2,
+        "Vr": 4.0,
+        "nrmse": 0.03139542358297913,
+        "observed_cutoff_V": 7.0,
+        "predicted_cutoff_V": 0.0,
+        "cutoff_error_V": 7.0,
+        "observed_peaks_V": [
+          32.0,
+          42.5,
+          53.5,
+          65.0,
+          77.0
+        ],
+        "predicted_peaks_V": [
+          30.5,
+          41.5,
+          53.5,
+          65.0,
+          76.5
+        ],
+        "observed_troughs_V": [
+          35.5,
+          47.0,
+          58.5,
+          70.0
+        ],
+        "predicted_troughs_V": [
+          35.0,
+          46.5,
+          58.5,
+          70.0
+        ]
+      },
+      {
+        "curve_id": 3,
+        "Vr": 6.0,
+        "nrmse": 0.02820928155116259,
+        "observed_cutoff_V": 9.0,
+        "predicted_cutoff_V": 3.5,
+        "cutoff_error_V": 5.5,
+        "observed_peaks_V": [
+          32.5,
+          43.0,
+          54.5,
+          66.0,
+          77.5
+        ],
+        "predicted_peaks_V": [
+          31.0,
+          42.5,
+          54.0,
+          65.5,
+          77.5
+        ],
+        "observed_troughs_V": [
+          36.5,
+          48.0,
+          59.5,
+          71.0
+        ],
+        "predicted_troughs_V": [
+          24.0,
+          36.0,
+          47.5,
+          59.5,
+          71.0
+        ]
+      },
+      {
+        "curve_id": 4,
+        "Vr": 8.0,
+        "nrmse": 0.02591871902113051,
+        "observed_cutoff_V": 11.0,
+        "predicted_cutoff_V": 7.0,
+        "cutoff_error_V": 4.0,
+        "observed_peaks_V": [
+          33.0,
+          43.5,
+          55.0,
+          66.5,
+          78.5
+        ],
+        "predicted_peaks_V": [
+          32.0,
+          43.5,
+          55.0,
+          66.5,
+          78.0
+        ],
+        "observed_troughs_V": [
+          37.5,
+          48.5,
+          60.0,
+          72.0
+        ],
+        "predicted_troughs_V": [
+          25.0,
+          37.0,
+          48.5,
+          60.5,
+          72.0
+        ]
+      },
+      {
+        "curve_id": 5,
+        "Vr": 10.0,
+        "nrmse": 0.03539181280281908,
+        "observed_cutoff_V": 14.5,
+        "predicted_cutoff_V": 16.0,
+        "cutoff_error_V": 1.5,
+        "observed_peaks_V": [
+          34.0,
+          44.5,
+          56.0,
+          67.5
+        ],
+        "predicted_peaks_V": [
+          32.5,
+          44.0,
+          55.5,
+          67.5,
+          79.0
+        ],
+        "observed_troughs_V": [
+          38.5,
+          50.0,
+          61.5,
+          73.0
+        ],
+        "predicted_troughs_V": [
+          26.0,
+          38.0,
+          49.5,
+          61.0,
+          73.0
+        ]
+      }
+    ]
+  },
+  "initialization": {
+    "loaded_tensor_count": 28,
+    "skipped_source_tensors": [
+      "angle_flux_weights",
+      "angle_mu",
+      "collision_counts",
+      "next_state",
+      "raw_collision_field_spread_v2j",
+      "raw_collision_spread_decay_v2j",
+      "thermal_nodes",
+      "thermal_weights"
+    ],
+    "source_checkpoint": "D:\\VScode_repository\\FrankHertz_Experiment\\NewModel-TEST\\output\\v2j_iteration_01\\h1\\checkpoint_best.pt"
+  },
+  "source_training": {
+    "result": "D:\\VScode_repository\\FrankHertz_Experiment\\NewModel-TEST\\output\\v2j_iteration_01\\h1\\result.json",
+    "epochs_completed": 375,
+    "best_epoch": 375,
+    "stop_reason": "plateau_early_stop"
+  },
+  "calibration": {
+    "selection_rule": "minimum mean_curve_nrmse among frozen-grid 15/15-feasible points",
+    "candidate_count": 63,
+    "feasible_count": 21,
+    "selected_collision_field_spread_eV": 10.5,
+    "selected_collision_spread_decay_V": 32.0,
+    "scan_artifact": "D:\\VScode_repository\\FrankHertz_Experiment\\NewModel-TEST\\output\\v2l_q4_iteration_01\\h1\\calibration_scan.csv"
+  },
+  "material_passport": {
+    "model_family": "v2l-calibrated-collision-field",
+    "hypothesis": "h1",
+    "physical_scope": "Plateau-stopped v2j continuous fit followed by a frozen-grid apparatus collision-dispersion calibration."
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "summary": {
+    "experiment": "A13_method_hardening",
+    "dataset_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+    "gates": {
+      "G_A13a_steady_survives_embargo": true,
+      "G_A13b_wide_span_detectable_when_nondegenerate": false,
+      "a13a_embargo_median_steady_gain": 0.32026901919883966,
+      "a13a_embargo_worst_steady_gain": 0.2123450282710736,
+      "a13b_signal_max_offdiag_correlation": 0.7858914416523043,
+      "a13b_null_argmin_max_rate": 0.8866666666666667,
+      "a13b_power_by_factor": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0,
+        "8.0": 0.002,
+        "12.0": 0.0
+      },
+      "a13d_percentile_pinned": 0.748046875,
+      "a13d_percentile_free_interior": 0.697265625,
+      "a13e_shift_median_gains": {
+        "-0.5": 0.419644522134003,
+        "-0.25": 0.41871428430240326,
+        "0.0": 0.40727748056945373,
+        "0.25": 0.4980794111554538,
+        "0.5": 0.4309558872797261
+      }
+    },
+    "gate_verdicts": {
+      "G_A13a": "PASS: steady-block advantage survives removing half a period on both sides of every test block - C1 is not a period-aligned replication artifact",
+      "G_A13b": "INFO: even non-degenerate wide-span signals stay below 50% per-template power at this amplitude - the amplitude-limited boundary statement is strengthened",
+      "G_A13d": "DISCLOSURE: the specificity percentile depends on the pseudo-template family; report the range"
+    },
+    "claim_boundary": [
+      "embargo removes +-5.75 V around each test block; harmonic rows are periodic so residual alignment remains at embargo distance",
+      "design-constructed signals are synthetic proxies for a physical four-level signature"
+    ],
+    "timings": {
+      "a13a_seconds": 0.0019663000130094588,
+      "a13b_seconds": 0.37034419999690726,
+      "a13c_seconds": 0.001427100010914728,
+      "a13d_seconds": 0.38040759999421425,
+      "a13e_seconds": 0.008304799994220957,
+      "gates_seconds": 0.0006952999974600971,
+      "total_seconds": 0.7810369999788236
+    }
+  },
+  "table_sha256": {
+    "a13a_embargo_blocks": "192EC7F1C22C6FEAC1197D7BA74B7B3763D8961EF889936653C5C24D0B71D2D7",
+    "a13b_signal_gram": "1E0B7273719EFACC41E96EDCF9634FD302C2E418F492B168A05469C7F7B64FF3",
+    "a13b_null_pathology": "9D4D73C2FF18CC4CEBF717BE893DBDCA8BC8B1718AAD31AC7FB78A5C94374585",
+    "a13b_power_vs_factor": "8C780CE9F165961717B70F8F2C66AC52CE68714618186FB312C4B840619C420D",
+    "a13c_band_contributions": "8302A78E8D8AAD800026C9C1703AD550D35EC87A845DADC7AD17CC9F347C476B",
+    "a13d_construction_sensitivity": "5A998C83D9AAAB4BD6E910D9F0BAA2D952C93723ADBD09623CE85C18FE13690E",
+    "a13e_block_shifts": "2C30F0BA33975311A1F79261963592E19B5468A2BB7F9A3DA63F7B6C6673621C"
+  },
+  "environment": {
+    "python": "3.13.7",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "2.3.3"
+  },
+  "written_utc": "2026-09-23T16:33:03Z"
+}

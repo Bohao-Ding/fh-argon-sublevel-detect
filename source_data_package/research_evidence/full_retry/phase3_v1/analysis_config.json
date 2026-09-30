@@ -1,0 +1,7 @@
+{
+  "workers_requested": "auto",
+  "workers_used": 8,
+  "surrogate_replicates_per_task": 2000,
+  "injection_replicates_per_task": 500,
+  "phase3_plan": "PHASE3_PLAN.md"
+}

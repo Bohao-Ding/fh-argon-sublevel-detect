@@ -1,0 +1,28 @@
+{
+  "sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+  "rows": 805,
+  "columns": [
+    "curve_id",
+    "Vr",
+    "Va",
+    "IuA"
+  ],
+  "curve_count": 5,
+  "points_per_curve": 161,
+  "vr_values_V": [
+    0,
+    4,
+    6,
+    8,
+    10
+  ],
+  "va_min_V": 0.0,
+  "va_max_V": 80.0,
+  "va_step_V": 0.5,
+  "missing_values": 0,
+  "duplicate_keys": 0,
+  "current_quantization_uA": 0.0009999999999998899,
+  "monotonic_comparisons": 644,
+  "monotonic_violations": 1,
+  "max_monotonic_violation_uA": 0.0009999999999998899
+}

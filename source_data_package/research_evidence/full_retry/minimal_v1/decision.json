@@ -1,0 +1,49 @@
+{
+  "gates": {
+    "G0_data": true,
+    "G1_two_mode_stability": true,
+    "G2_block_prediction": true,
+    "G3_negative_controls": true
+  },
+  "phase_a_positive_screen": true,
+  "scale_decision": "ALLOW_CPU_CONFIRMATION_ONLY",
+  "data_metrics": {
+    "monotonic_violations": 1,
+    "max_violation_uA": 0.0009999999999998899,
+    "clipping_correction_uA": 0.0009999999999998899
+  },
+  "modal_metrics": {
+    "reference_cumulative_explained_2": 0.9778048914709729,
+    "reference_s2_over_s3": 5.505953938602697,
+    "reference_periods_V": [
+      11.2,
+      11.225
+    ],
+    "sensitivity_min_cumulative_explained_2": 0.9335080688411226,
+    "sensitivity_min_s2_over_s3": 3.036151541679081,
+    "sensitivity_max_subspace_angle_deg": 1.982217938905186
+  },
+  "cv_metrics": {
+    "rank2_better_blocks": 5,
+    "relative_improvement_by_block": {
+      "1": 0.03148293407468121,
+      "2": 0.42145969694115953,
+      "3": 0.5454977095120196,
+      "4": 0.4109963535529087,
+      "5": 0.43780769286464993
+    },
+    "median_relative_improvement": 0.42145969694115953,
+    "worst_relative_improvement": 0.03148293407468121,
+    "mean_balanced_rmse_rank1": 0.780184970978039,
+    "mean_balanced_rmse_rank2": 0.4778694059177779,
+    "mean_balanced_rmse_trend_degree5": 0.994790433453697,
+    "best_pseudo_period_mean_balanced_rmse": 1.0268280254867812
+  },
+  "claim_limit": "stable two-dimensional period-locked coarse retarding-response redistribution",
+  "prohibited_interpretations": [
+    "resolved atomic sublevels",
+    "identified physical collision channels",
+    "calibrated EEDF or energy spectrum",
+    "independent confirmatory evidence"
+  ]
+}

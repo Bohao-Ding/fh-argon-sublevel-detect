@@ -1,0 +1,2 @@
+phi_unwrapped_rad,phi_inf_rad,delta_rad,tau_V,saturation_r2,linear_r2,linear_slope_rad_per_V,phase_step_last_over_median,best_monotone_r2,best_monotone_model
+0.6386;-0.1364;-0.9936;-1.8459;-3.7274,-11.547397858297805,-12.566370614263683,23.91779446972904,0.922780333576051,0.9525736543491325,-0.4509793645613055,-2.2075317096137312,0.9525736543491325,linear

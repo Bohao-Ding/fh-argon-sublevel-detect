@@ -1,0 +1,31 @@
+{
+  "summary": {
+    "experiment": "A15_shift_equivalence",
+    "dataset_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+    "numerical_identity_tolerance": 1e-10,
+    "max_prediction_difference": 1.0658141036401503e-14,
+    "identity_verified": true,
+    "steady_rank2_gain_median": 0.4296336949029047,
+    "adjacent_shift_V_mod_period": [
+      1.4247846859982007,
+      1.5757099136152553,
+      1.5667466409770658,
+      3.4586428908876696
+    ],
+    "interpretation": "The same fitted predictions admit a single-period, band-shifted form. Neither fit nor blocked CV can distinguish response physics from an unrecorded acquisition shift.",
+    "timings": {
+      "total_seconds": 0.020279799995478243
+    }
+  },
+  "table_sha256": {
+    "folds": "E9E6A161C7BD6D432BA6F0A5B0A214FA40F2FBD8D2885A8FC3BB97EC7B98A6C2",
+    "phase_shifts": "958A827E80534EBB1FC7D1C684EEC9A76E83B8B0DF117A44357F0166152DB6AB"
+  },
+  "environment": {
+    "python": "3.13.7",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "2.3.3"
+  },
+  "written_utc": "2026-09-23T16:33:03Z"
+}

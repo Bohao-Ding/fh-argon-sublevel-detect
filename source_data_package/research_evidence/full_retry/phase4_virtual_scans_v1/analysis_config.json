@@ -1,0 +1,32 @@
+{
+  "existing_levels_V": [
+    0,
+    4,
+    6,
+    8,
+    10
+  ],
+  "virtual_levels_V": [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10
+  ],
+  "lag_grid_V": [
+    0.0,
+    0.125,
+    0.25,
+    0.5,
+    1.0,
+    2.0,
+    4.0
+  ],
+  "reference_lag_V": 0.5,
+  "interpolation_designs": [
+    "linear_vr2",
+    "pchip_vr2"
+  ],
+  "scan_lag_model": "first-order causal response in the voltage domain"
+}

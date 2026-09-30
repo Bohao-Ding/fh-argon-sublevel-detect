@@ -1,0 +1,305 @@
+{
+  "evidence_identity": "synthetic direction-lag stress test derived from one archived dataset",
+  "reference_design": "linear_vr2",
+  "reference_lag_V": 0.5,
+  "reference_12_curve_gate_passed": false,
+  "reference_raw_results": [
+    {
+      "design": "linear_vr2",
+      "lag_V": 0.5,
+      "direction": "forward",
+      "level_count": 6,
+      "representation": "raw_fraction",
+      "improved_blocks": 4,
+      "median_gain": 0.4014042229718535,
+      "worst_gain": -0.33658866162883294,
+      "mean_rank1_rmse": 0.7087657713833748,
+      "mean_rank2_rmse": 0.4731868021793698,
+      "strict_G2_pass": false,
+      "majority_pass": true,
+      "absolute_adequacy_blocks": 4,
+      "worst_adequacy_margin": -0.22516923133915914
+    },
+    {
+      "design": "linear_vr2",
+      "lag_V": 0.5,
+      "direction": "reverse",
+      "level_count": 6,
+      "representation": "raw_fraction",
+      "improved_blocks": 4,
+      "median_gain": 0.40663648383888706,
+      "worst_gain": -0.3075035181313067,
+      "mean_rank1_rmse": 0.7273947043100764,
+      "mean_rank2_rmse": 0.47122822990757146,
+      "strict_G2_pass": false,
+      "majority_pass": true,
+      "absolute_adequacy_blocks": 4,
+      "worst_adequacy_margin": -0.23395570569026755
+    }
+  ],
+  "reference_max_direction_rmse_uA": 0.07384705372896197,
+  "reference_max_direction_rmse_over_curve_span": 0.037469652904129354,
+  "max_tested_lag_with_raw_strict_pass_both_directions_V": {
+    "linear_vr2": null,
+    "pchip_vr2": null
+  },
+  "observed_5level_max_tested_lag_with_raw_strict_pass_both_directions_V": 1.0,
+  "observed_5level_zero_lag_raw": [
+    {
+      "design": "observed_5level",
+      "lag_V": 0.0,
+      "direction": "forward",
+      "level_count": 5,
+      "representation": "raw_fraction",
+      "improved_blocks": 5,
+      "median_gain": 0.42145969694115953,
+      "worst_gain": 0.03148293407468121,
+      "mean_rank1_rmse": 0.780184970978039,
+      "mean_rank2_rmse": 0.4778694059177779,
+      "strict_G2_pass": true,
+      "majority_pass": true,
+      "absolute_adequacy_blocks": 4,
+      "worst_adequacy_margin": -0.23898737789847965
+    },
+    {
+      "design": "observed_5level",
+      "lag_V": 0.0,
+      "direction": "reverse",
+      "level_count": 5,
+      "representation": "raw_fraction",
+      "improved_blocks": 5,
+      "median_gain": 0.42145969694115953,
+      "worst_gain": 0.03148293407468121,
+      "mean_rank1_rmse": 0.780184970978039,
+      "mean_rank2_rmse": 0.4778694059177779,
+      "strict_G2_pass": true,
+      "majority_pass": true,
+      "absolute_adequacy_blocks": 4,
+      "worst_adequacy_margin": -0.23898737789847965
+    }
+  ],
+  "virtual_6level_zero_lag_raw": [
+    {
+      "design": "linear_vr2",
+      "lag_V": 0.0,
+      "direction": "forward",
+      "level_count": 6,
+      "representation": "raw_fraction",
+      "improved_blocks": 4,
+      "median_gain": 0.3964993879215224,
+      "worst_gain": -0.32445561553979957,
+      "mean_rank1_rmse": 0.7235966032198418,
+      "mean_rank2_rmse": 0.47785840680853753,
+      "strict_G2_pass": false,
+      "majority_pass": true,
+      "absolute_adequacy_blocks": 4,
+      "worst_adequacy_margin": -0.23596649105344777
+    },
+    {
+      "design": "linear_vr2",
+      "lag_V": 0.0,
+      "direction": "reverse",
+      "level_count": 6,
+      "representation": "raw_fraction",
+      "improved_blocks": 4,
+      "median_gain": 0.3964993879215224,
+      "worst_gain": -0.32445561553979957,
+      "mean_rank1_rmse": 0.7235966032198418,
+      "mean_rank2_rmse": 0.47785840680853753,
+      "strict_G2_pass": false,
+      "majority_pass": true,
+      "absolute_adequacy_blocks": 4,
+      "worst_adequacy_margin": -0.23596649105344777
+    },
+    {
+      "design": "pchip_vr2",
+      "lag_V": 0.0,
+      "direction": "forward",
+      "level_count": 6,
+      "representation": "raw_fraction",
+      "improved_blocks": 4,
+      "median_gain": 0.40357234274585835,
+      "worst_gain": -0.33751223951046105,
+      "mean_rank1_rmse": 0.7354565160165805,
+      "mean_rank2_rmse": 0.48788861285990637,
+      "strict_G2_pass": false,
+      "majority_pass": true,
+      "absolute_adequacy_blocks": 4,
+      "worst_adequacy_margin": -0.17544057111899528
+    },
+    {
+      "design": "pchip_vr2",
+      "lag_V": 0.0,
+      "direction": "reverse",
+      "level_count": 6,
+      "representation": "raw_fraction",
+      "improved_blocks": 4,
+      "median_gain": 0.40357234274585835,
+      "worst_gain": -0.33751223951046105,
+      "mean_rank1_rmse": 0.7354565160165805,
+      "mean_rank2_rmse": 0.48788861285990637,
+      "strict_G2_pass": false,
+      "majority_pass": true,
+      "absolute_adequacy_blocks": 4,
+      "worst_adequacy_margin": -0.17544057111899528
+    }
+  ],
+  "reference_D02_D24_min_correlation": 0.9999999999999996,
+  "reference_D02_D24_max_second_singular_variance_fraction": 2.086300257060074e-30,
+  "measured_partition_raw_strict_pass_count": 4,
+  "measured_partition_raw_total": 7,
+  "measured_partition_raw_failures": [
+    {
+      "levels": "0-4-10",
+      "level_count": 3,
+      "representation": "raw_fraction",
+      "improved_blocks": 4,
+      "median_gain": 0.45043353052630003,
+      "worst_gain": -0.18651130797657064,
+      "mean_rank1_rmse": 0.7098046356125831,
+      "mean_rank2_rmse": 0.43026389625357553,
+      "strict_G2_pass": false,
+      "majority_pass": true,
+      "absolute_adequacy_blocks": 4,
+      "worst_adequacy_margin": -0.5211230433498181
+    },
+    {
+      "levels": "0-4-6-10",
+      "level_count": 4,
+      "representation": "raw_fraction",
+      "improved_blocks": 4,
+      "median_gain": 0.4180893712065834,
+      "worst_gain": -0.22703747508640168,
+      "mean_rank1_rmse": 0.7057147294160167,
+      "mean_rank2_rmse": 0.44858233487935467,
+      "strict_G2_pass": false,
+      "majority_pass": true,
+      "absolute_adequacy_blocks": 4,
+      "worst_adequacy_margin": -0.11460091957641393
+    },
+    {
+      "levels": "0-4-8-10",
+      "level_count": 4,
+      "representation": "raw_fraction",
+      "improved_blocks": 4,
+      "median_gain": 0.4507766014194051,
+      "worst_gain": -0.259210669359795,
+      "mean_rank1_rmse": 0.719488440539387,
+      "mean_rank2_rmse": 0.44070106739463555,
+      "strict_G2_pass": false,
+      "majority_pass": true,
+      "absolute_adequacy_blocks": 4,
+      "worst_adequacy_margin": -0.2973314643291754
+    }
+  ],
+  "lag_gate": [
+    {
+      "design": "linear_vr2",
+      "lag_V": 0.0,
+      "both_directions_strict_pass": false,
+      "minimum_median_gain": 0.3964993879215224,
+      "minimum_worst_gain": -0.32445561553979957
+    },
+    {
+      "design": "linear_vr2",
+      "lag_V": 0.125,
+      "both_directions_strict_pass": false,
+      "minimum_median_gain": 0.3966216646687352,
+      "minimum_worst_gain": -0.32506596362986023
+    },
+    {
+      "design": "linear_vr2",
+      "lag_V": 0.25,
+      "both_directions_strict_pass": false,
+      "minimum_median_gain": 0.39763384044629796,
+      "minimum_worst_gain": -0.32912981879708364
+    },
+    {
+      "design": "linear_vr2",
+      "lag_V": 0.5,
+      "both_directions_strict_pass": false,
+      "minimum_median_gain": 0.4014042229718535,
+      "minimum_worst_gain": -0.33658866162883294
+    },
+    {
+      "design": "linear_vr2",
+      "lag_V": 1.0,
+      "both_directions_strict_pass": false,
+      "minimum_median_gain": 0.4078257201429655,
+      "minimum_worst_gain": -0.32681194725978213
+    },
+    {
+      "design": "linear_vr2",
+      "lag_V": 2.0,
+      "both_directions_strict_pass": false,
+      "minimum_median_gain": 0.4022286247853374,
+      "minimum_worst_gain": -0.3457416444852406
+    },
+    {
+      "design": "linear_vr2",
+      "lag_V": 4.0,
+      "both_directions_strict_pass": false,
+      "minimum_median_gain": 0.30900600070756734,
+      "minimum_worst_gain": -0.39955862951652316
+    },
+    {
+      "design": "pchip_vr2",
+      "lag_V": 0.0,
+      "both_directions_strict_pass": false,
+      "minimum_median_gain": 0.40357234274585835,
+      "minimum_worst_gain": -0.33751223951046105
+    },
+    {
+      "design": "pchip_vr2",
+      "lag_V": 0.125,
+      "both_directions_strict_pass": false,
+      "minimum_median_gain": 0.4036847872934522,
+      "minimum_worst_gain": -0.33753365407091457
+    },
+    {
+      "design": "pchip_vr2",
+      "lag_V": 0.25,
+      "both_directions_strict_pass": false,
+      "minimum_median_gain": 0.4046449335626046,
+      "minimum_worst_gain": -0.3370442347864237
+    },
+    {
+      "design": "pchip_vr2",
+      "lag_V": 0.5,
+      "both_directions_strict_pass": false,
+      "minimum_median_gain": 0.4084328702701531,
+      "minimum_worst_gain": -0.33071010509036086
+    },
+    {
+      "design": "pchip_vr2",
+      "lag_V": 1.0,
+      "both_directions_strict_pass": false,
+      "minimum_median_gain": 0.41569354314501505,
+      "minimum_worst_gain": -0.3132406489632276
+    },
+    {
+      "design": "pchip_vr2",
+      "lag_V": 2.0,
+      "both_directions_strict_pass": false,
+      "minimum_median_gain": 0.4150215798312878,
+      "minimum_worst_gain": -0.2902952856247707
+    },
+    {
+      "design": "pchip_vr2",
+      "lag_V": 4.0,
+      "both_directions_strict_pass": false,
+      "minimum_median_gain": 0.34564526947013213,
+      "minimum_worst_gain": -0.28186919055871035
+    }
+  ],
+  "expand_to_36_synthetic_cycles": false,
+  "next_stage_decision": "DO_NOT_GENERATE_36_SYNTHETIC_THERMAL_CYCLES",
+  "reason": "The interpolated Vr=2 V curve adds no independent measurement and the six-band strict gate already fails at zero lag. Additional synthetic cycles would repeat assumptions rather than add independent physical information.",
+  "allowed_claim": "The archived-data conclusion was stress-tested against a specified first-order scan-direction lag model and an interpolated Vr=2 V curve.",
+  "prohibited_claims": [
+    "new experimental repeat scans were acquired",
+    "scan hysteresis was measured",
+    "thermal-cycle repeatability was established",
+    "the virtual lag parameter is an instrument calibration"
+  ]
+}

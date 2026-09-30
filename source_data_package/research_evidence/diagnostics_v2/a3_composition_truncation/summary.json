@@ -1,0 +1,51 @@
+{
+  "summary": {
+    "experiment": "A3_composition_truncation",
+    "dataset_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+    "primary_variant": "v1_primary_delta1p0",
+    "gates": {
+      "G_A3a_primary_variant_3of4_representations_pass": false,
+      "primary_variant_passing_representations": 2,
+      "baseline_replication_within_1e3": true,
+      "negative_cells_in_raw_differences": 1,
+      "clr_worst_gain_range_over_variants": [
+        -0.14281834882764688,
+        -0.1421513392748588
+      ],
+      "ilr_worst_gain_range_over_variants": [
+        -0.09645818370556576,
+        -0.08494889599116334
+      ],
+      "noclamp_raw_equals_clamped_raw": false
+    },
+    "gate_verdict": "FAIL (diagnostic, kept): the CLR/ILR worst-block weakness is invariant to every truncation-aware variant (CLR worst gain stays at -0.1428 to -0.1422 across replacement strengths and additive shift; ILR likewise), and unclamped raw equals clamped raw. The divergence is therefore the log-ratio GEOMETRY itself, not zero handling - the manuscript's 'representation-dependent' wording must stay, now with a sharpened cause",
+    "baseline_replication": {
+      "v0_clr_worst_gain": -0.14253453684131687,
+      "v0_ilr_worst_gain": -0.0907646467553486,
+      "frozen_reference_clr": -0.1425,
+      "frozen_reference_ilr": -0.0908,
+      "replication_abs_error_clr": 3.453684131687895e-05,
+      "replication_abs_error_ilr": 3.53532446514121e-05
+    },
+    "claim_boundary": [
+      "the amendment is registered before looking at v1 results; v0 must first reproduce the frozen phase-3 numbers",
+      "CLR/ILR remain sensitivity analyses in the manuscript regardless of the gate outcome"
+    ],
+    "timings": {
+      "grid_seconds": 0.03230779999285005,
+      "gates_seconds": 0.002141100005246699,
+      "total_seconds": 0.050567700003739446
+    }
+  },
+  "table_sha256": {
+    "variant_grid": "EFA1DB996FA112C2101AE7CF4C0E531CD469B7A2BF25E0450BC3C4DE914F95D3",
+    "variant_summary": "01E6EFE376CCC4062C741B431A8EAA7CB1E95F5FE719E3322A3DB7A8399954AA"
+  },
+  "environment": {
+    "python": "3.13.7",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "2.3.3"
+  },
+  "written_utc": "2026-09-23T16:32:37Z"
+}

@@ -1,0 +1,55 @@
+{
+  "summary": {
+    "experiment": "A6_gas_controls",
+    "dataset_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+    "instrument": "nested-model detection, null-calibrated at 5% level (A5 amendment)",
+    "gas_level_sources": {
+      "ar": "NIST ASD via fh_retry.phase2.NIST_4S_EV",
+      "ne": "NIST ASD 2p5 3s (1s5..1s2)",
+      "hg": "NIST ASD 6^3P0, 6^3P1"
+    },
+    "gates": {
+      "G_A6a_hg_dominant_energy_detection_ge_090": true,
+      "G_A6b_ne_manifold_fine_structure_detection_le_015": false,
+      "hg_single_detection_power": 1.0,
+      "ar_single_detection_power": 1.0,
+      "ne_single_detection_power": 1.0,
+      "ar_manifold_detection_power": 0.652,
+      "ne_manifold_detection_power": 0.775,
+      "hg_doublet_detection_power": 1.0,
+      "worst_null_fp_rate": 0.052,
+      "hg_single_snr_sweep": {
+        "hg_single_scale_x0.25": 0.894,
+        "hg_single_scale_x0.5": 1.0,
+        "hg_single_scale_x2": 1.0,
+        "hg_single_scale_x4": 1.0
+      }
+    },
+    "gate_verdicts": {
+      "G_A6a": "PASS: the dominant Hg excitation energy is detected at 100% power at archived-scale amplitude (89% even at 0.25x scale) - the calibrated instrument is not globally too weak",
+      "G_A6b": "FAIL as frozen, with a registered category-error correction: the frozen gate treated 'H1 + manifold template vs H1' detection as a fine-SPACING test, but that nested comparison detects ANY structure beyond a single shared phase (it fires at 65-100% for every manifold, consistent with the rank-2 finding, and the doublet with the fewest extra dof is the easiest). Spacing SPECIFICITY is answered by A5's span-flat SNR50 (~1.6-1.7 across 0.14-3.36 eV injected spans) and by Module C's matched-complexity percentile (74.8%) - both say the spacing is not resolved"
+    },
+    "interpretation": "dominant excitation energies are nested-model detectable at archived-scale amplitude (positive control); manifold templates are also detected because they capture real beyond-H1 structure, not because their spacing is resolved; spacing specificity is span-flat in A5 and non-specific in Module C - the boundary is amplitude/noise-limited before it is span-limited",
+    "claim_boundary": [
+      "controls are synthetic: NIST constants convolved with the archived noise/trend, not measurements on Hg/Ne tubes",
+      "detection is conditional on the equal-RMS injection and the frozen 15 V grid/operator-CV geometry"
+    ],
+    "timings": {
+      "setup_seconds": 0.00693239999236539,
+      "cells_seconds": 1.004653199983295,
+      "gates_seconds": 0.0027378999802749604,
+      "total_seconds": 1.0316727999888826
+    }
+  },
+  "table_sha256": {
+    "detection_by_config": "A64374A4DEC8F02468F34287A71C60BD956A29C9EA0C40A1242B5915F818D6D9",
+    "pooled_detection": "4EDB87C64228F1FBFE9D516A0812CAA99C5352A24D3AD1B3C07C0E183309D232"
+  },
+  "environment": {
+    "python": "3.13.7",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "2.3.3"
+  },
+  "written_utc": "2026-09-23T16:32:46Z"
+}

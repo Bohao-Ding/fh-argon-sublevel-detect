@@ -31,6 +31,10 @@ def _iter_text_files(root: Path) -> Iterable[Path]:
         "__pycache__",
         ".pytest_cache",
         ".git",
+        # Versioned companion research is preserved outside the formal neural package.
+        "NewModel-TEST",
+        "FULL-REtry",
+        "EXPERIMENT_V2",
     }
     for path in root.rglob("*"):
         if not path.is_file():

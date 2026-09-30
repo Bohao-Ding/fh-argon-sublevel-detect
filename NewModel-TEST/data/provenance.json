@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "copied_at": "2026-08-12",
+  "scope": "NewModel-TEST only; source files were read but not modified",
+  "formal_runtime": {
+    "python": "3.13.7",
+    "torch": "2.8.0+cu128",
+    "cuda_runtime": "12.8",
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "numpy": "2.3.3",
+    "pandas": "2.3.2",
+    "scipy": "1.16.2",
+    "matplotlib": "3.10.6",
+    "openpyxl": "3.1.5"
+  },
+  "files": [
+    {
+      "local_path": "data/FHdata.xlsx",
+      "source_path": "D:/VScode_repository/FrankHertz_Experiment/Frank_Hertz_Experiment/fh-argon-sublevel-detect/data/argon/FHdata.xlsx",
+      "sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+      "role": "experimental input"
+    },
+    {
+      "local_path": "data/old_k1_prediction_points.csv",
+      "source_path": "D:/VScode_repository/FrankHertz_Experiment/Frank_Hertz_Experiment/fh-argon-sublevel-detect/source_data_package/output_results/main/k1_full/prediction_points.csv",
+      "sha256": "25673B67F4A2AE17E03CAB2F14BFDB0F0C9BADDE6B2CE48FB5BCFFF80181B560",
+      "role": "read-only phenomenological K=1 baseline"
+    }
+  ]
+}

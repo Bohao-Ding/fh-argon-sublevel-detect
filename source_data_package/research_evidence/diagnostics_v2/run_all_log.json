@@ -1,0 +1,277 @@
+{
+  "a1_block1_diagnosis": {
+    "wall_seconds": 0.29815870002494194,
+    "gates": {
+      "G_A1a_all_settings_steady_median_ge_35pct_in_80pct": false,
+      "G_A1a_trend_family_steady_median_ge_35pct_in_80pct": true,
+      "G_A1b_startup_gain_below_5pct_in_majority_of_startup_settings": true,
+      "share_settings_steady_median_ge_35_all": 0.5,
+      "share_settings_steady_median_ge_35_trend_family": 1.0,
+      "share_startup_settings_gain_below_5": 0.5357142857142857,
+      "startup_gain_median_across_settings": 0.043979800709347344,
+      "startup_gain_max_across_settings": 0.2893797582455135,
+      "steady_median_gain_min_trend_family": 0.42126456907438536,
+      "steady_median_gain_median_sg_family": 0.05621443000531239,
+      "baseline_setting_steady_median_gain": 0.4296336949029047,
+      "baseline_setting_startup_gain": 0.03148293407468121
+    },
+    "out_dir": "D:\\VSC-WORKSPACE\\FrankHertz_Experiment\\EXPERIMENT_V2\\results\\a1_block1_diagnosis"
+  },
+  "a2_endpoint_mechanism": {
+    "wall_seconds": 0.05675579997478053,
+    "gates": {
+      "G_A2a_monotone_phase_progression_r2_ge_098": false,
+      "G_A2b_high_subset_rank1_catches_up": false,
+      "best_monotone_r2": 0.9525736543491325,
+      "best_monotone_model": "linear",
+      "linear_r2": 0.9525736543491325,
+      "saturation_r2": 0.922780333576051,
+      "linear_slope_rad_per_V": -0.4509793645613055,
+      "phase_step_last_over_median": -2.2075317096137312,
+      "high_subset_median_gain": 0.2724221674460012,
+      "low_subset_median_gain": 0.3625547155634198,
+      "all_subset_median_gain": 0.42145969694115953,
+      "high_band_pairwise_phase_diffs_exclude_zero": 0,
+      "high_band_pairwise_phase_diffs_total": 3,
+      "amplitude_by_band": {
+        "Vr_0_4": 1.2321633066532376,
+        "Vr_4_6": 0.8779750089477045,
+        "Vr_6_8": 1.077192420945285,
+        "Vr_8_10": 1.1046030922339112,
+        "Vr_gt_10": 1.0289864328467808
+      },
+      "phase_by_band_rad": {
+        "Vr_0_4": 0.6386470809311442,
+        "Vr_4_6": -0.13643397577520902,
+        "Vr_6_8": -0.9936181643124014,
+        "Vr_8_10": -1.8459263439366496,
+        "Vr_gt_10": 2.5557616303592527
+      }
+    },
+    "out_dir": "D:\\VSC-WORKSPACE\\FrankHertz_Experiment\\EXPERIMENT_V2\\results\\a2_endpoint_mechanism"
+  },
+  "a3_composition_truncation": {
+    "wall_seconds": 0.053470300015760586,
+    "gates": {
+      "G_A3a_primary_variant_3of4_representations_pass": false,
+      "primary_variant_passing_representations": 2,
+      "baseline_replication_within_1e3": true,
+      "negative_cells_in_raw_differences": 1,
+      "clr_worst_gain_range_over_variants": [
+        -0.14281834882764688,
+        -0.1421513392748588
+      ],
+      "ilr_worst_gain_range_over_variants": [
+        -0.09645818370556576,
+        -0.08494889599116334
+      ],
+      "noclamp_raw_equals_clamped_raw": false
+    },
+    "out_dir": "D:\\VSC-WORKSPACE\\FrankHertz_Experiment\\EXPERIMENT_V2\\results\\a3_composition_truncation"
+  },
+  "a5_injection_debias": {
+    "wall_seconds": 8.411732499982463,
+    "gates": {
+      "pathology_confirmed_max_candidate_null_selection_above_50pct": true,
+      "G_A5a_detection_instrument_calibrated": true,
+      "fp_max_over_min_worst_scheme": 1.5,
+      "frozen_85pct_recovery_at_12x_is_null_geometry": true,
+      "nist_span_detection_power_at_archived_snr": 0.17666666666666667
+    },
+    "out_dir": "D:\\VSC-WORKSPACE\\FrankHertz_Experiment\\EXPERIMENT_V2\\results\\a5_injection_debias"
+  },
+  "a6_gas_controls": {
+    "wall_seconds": 1.0339781999937259,
+    "gates": {
+      "G_A6a_hg_dominant_energy_detection_ge_090": true,
+      "G_A6b_ne_manifold_fine_structure_detection_le_015": false,
+      "hg_single_detection_power": 1.0,
+      "ar_single_detection_power": 1.0,
+      "ne_single_detection_power": 1.0,
+      "ar_manifold_detection_power": 0.652,
+      "ne_manifold_detection_power": 0.775,
+      "hg_doublet_detection_power": 1.0,
+      "worst_null_fp_rate": 0.052,
+      "hg_single_snr_sweep": {
+        "hg_single_scale_x0.25": 0.894,
+        "hg_single_scale_x0.5": 1.0,
+        "hg_single_scale_x2": 1.0,
+        "hg_single_scale_x4": 1.0
+      }
+    },
+    "out_dir": "D:\\VSC-WORKSPACE\\FrankHertz_Experiment\\EXPERIMENT_V2\\results\\a6_gas_controls"
+  },
+  "a8_development_cut": {
+    "wall_seconds": 0.36518510000314564,
+    "gates": {
+      "G_A8a_period_variant_drift_within_5pp": true,
+      "G_A8b_nist_percentile_above_5pct_all_trims": true,
+      "max_abs_drift_pp": 1.289250922005708,
+      "percentile_range": [
+        0.74609375,
+        0.74609375
+      ],
+      "forward_segment_gain": 0.3480404358788997,
+      "backward_segment_gain": 0.7696440795992838,
+      "forward_segment_rank2_beats_both": true,
+      "backward_segment_rank2_beats_both": true
+    },
+    "out_dir": "D:\\VSC-WORKSPACE\\FrankHertz_Experiment\\EXPERIMENT_V2\\results\\a8_development_cut"
+  },
+  "a9_band_periods": {
+    "wall_seconds": 11.705438000004506,
+    "gates": {
+      "per_band_period_span_eV": 0.5199999999999996,
+      "all_band_period_CIs_contain_first_band_period": true,
+      "period_label_slope_V_per_V": 0.001466165413533167,
+      "period_gradient_present": false,
+      "note": "period_grid resolution 0.02 V; bootstrap block 9 points; 400 replicates"
+    },
+    "out_dir": "D:\\VSC-WORKSPACE\\FrankHertz_Experiment\\EXPERIMENT_V2\\results\\a9_band_periods"
+  },
+  "a10_review_controls": {
+    "wall_seconds": 3.355406899994705,
+    "gates": {
+      "c1_all_block_CIs_contain_point_estimates": false,
+      "c1_max_null_p_value_steady_blocks": 0.0024937655860349127,
+      "c1_first_block_null_p_value": 0.14463840399002495,
+      "c2_structure_free_null_power_nist_span": 0.1275,
+      "c2_structure_free_null_power_range": [
+        0.10333333333333333,
+        0.13083333333333333
+      ],
+      "c3_single_energy_absolute_power_max": 0.7066666666666667,
+      "c4_nested_power_span_minmax": [
+        0.5766666666666667,
+        0.6083333333333334
+      ]
+    },
+    "out_dir": "D:\\VSC-WORKSPACE\\FrankHertz_Experiment\\EXPERIMENT_V2\\results\\a10_review_controls"
+  },
+  "a11_direct_evidence": {
+    "wall_seconds": 0.04106290001072921,
+    "gates": {
+      "G_A11a_all_pairwise_phase_diffs_exclude_zero_3sigma": true,
+      "G_A11b_fft_peak_periods_within_10p5_12p5": true,
+      "G_A11d_template_correlations_ge_0p999": true,
+      "min_pairwise_phase_significance_sigma": 4.660875011089678,
+      "fft_peak_period_range_V": [
+        10.916666666666666,
+        10.916666666666666
+      ],
+      "min_template_correlation": 0.9999999959244387,
+      "response_width_to_spacing_ratio": 10.367631197189,
+      "lissajous_correlations": {
+        "Vr_0_4-vs-Vr_4_6": 0.5664330125025464,
+        "Vr_0_4-vs-Vr_6_8": -0.13209330727462487,
+        "Vr_0_4-vs-Vr_8_10": -0.7708497255287429,
+        "Vr_0_4-vs-Vr_gt_10": -0.2887037479458162
+      }
+    },
+    "out_dir": "D:\\VSC-WORKSPACE\\FrankHertz_Experiment\\EXPERIMENT_V2\\results\\a11_direct_evidence"
+  },
+  "a12_robustness": {
+    "wall_seconds": 0.28602530001080595,
+    "gates": {
+      "G_A12a_steady_survives_without_Vr10": true,
+      "G_A12b_cumulative_lag_excludes_zero": true,
+      "G_A12c_worst_separation_below_1sigma": true,
+      "a12a_without_vr10_median_steady_gain": 0.3234193057526394,
+      "a12a_without_vr10_worst_steady_block": 2,
+      "a12a_without_vr10_worst_steady_gain": 0.24555217209462596,
+      "a12b_cumulative_lag_steps": -7,
+      "a12c_worst_separation_sigma": 0.0005772195295207789,
+      "percentile_count": 383,
+      "percentile_wilson_ci": [
+        0.7087,
+        0.7837
+      ],
+      "total_oscillation_cycles": 19
+    },
+    "out_dir": "D:\\VSC-WORKSPACE\\FrankHertz_Experiment\\EXPERIMENT_V2\\results\\a12_robustness"
+  },
+  "a13_method_hardening": {
+    "wall_seconds": 0.7869769000099041,
+    "gates": {
+      "G_A13a_steady_survives_embargo": true,
+      "G_A13b_wide_span_detectable_when_nondegenerate": false,
+      "a13a_embargo_median_steady_gain": 0.32026901919883966,
+      "a13a_embargo_worst_steady_gain": 0.2123450282710736,
+      "a13b_signal_max_offdiag_correlation": 0.7858914416523043,
+      "a13b_null_argmin_max_rate": 0.8866666666666667,
+      "a13b_power_by_factor": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0,
+        "8.0": 0.002,
+        "12.0": 0.0
+      },
+      "a13d_percentile_pinned": 0.748046875,
+      "a13d_percentile_free_interior": 0.697265625,
+      "a13e_shift_median_gains": {
+        "-0.5": 0.419644522134003,
+        "-0.25": 0.41871428430240326,
+        "0.0": 0.40727748056945373,
+        "0.25": 0.4980794111554538,
+        "0.5": 0.4309558872797261
+      }
+    },
+    "out_dir": "D:\\VSC-WORKSPACE\\FrankHertz_Experiment\\EXPERIMENT_V2\\results\\a13_method_hardening"
+  },
+  "a14_instrument_completion": {
+    "wall_seconds": 0.4080775000038557,
+    "gates": {
+      "G_A14a_nested_works_on_design_signals": true,
+      "G_A14b_response_definition_consistent": true,
+      "a14a_nested_power_by_factor": {
+        "0.5": 0.956,
+        "1.0": 0.98,
+        "2.0": 0.988,
+        "4.0": 0.956,
+        "8.0": 0.992,
+        "12.0": 0.988
+      },
+      "a14a_power_min_max": [
+        0.956,
+        0.992
+      ],
+      "a14a_signal_max_offdiag_correlation": 0.9923621217446533,
+      "a14b_percentile_raw_currents": 0.74609375,
+      "a14b_percentile_retarding_fractions": 0.75,
+      "a14c_wide_lags": {
+        "Vr_0_4-vs-Vr_4_6": [
+          3,
+          0
+        ],
+        "Vr_4_6-vs-Vr_6_8": [
+          3,
+          0
+        ],
+        "Vr_6_8-vs-Vr_8_10": [
+          3,
+          0
+        ],
+        "Vr_8_10-vs-Vr_gt_10": [
+          7,
+          0
+        ],
+        "Vr_0_4-vs-Vr_gt_10": [
+          -7,
+          0
+        ]
+      }
+    },
+    "out_dir": "D:\\VSC-WORKSPACE\\FrankHertz_Experiment\\EXPERIMENT_V2\\results\\a14_instrument_completion"
+  },
+  "a15_shift_equivalence": {
+    "wall_seconds": 0.023866000003181398,
+    "gates": {},
+    "out_dir": "D:\\VSC-WORKSPACE\\FrankHertz_Experiment\\EXPERIMENT_V2\\results\\a15_shift_equivalence"
+  },
+  "a7_evidence_summary": {
+    "wall_seconds": 0.9966444000019692,
+    "gates": {},
+    "out_dir": "D:\\VSC-WORKSPACE\\FrankHertz_Experiment\\EXPERIMENT_V2\\results\\a7_evidence_summary"
+  }
+}

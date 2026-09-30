@@ -1,0 +1,9 @@
+{
+  "retarding_order_seconds": 0.001636499997403007,
+  "endpoint_exclusion_seconds": 0.0074258000022382475,
+  "rank1_surrogate_seconds": 15.691489400000137,
+  "template_specificity_seconds": 2.969446800001606,
+  "injection_recovery_seconds": 10.199847000003501,
+  "gain_stress_seconds": 3.968387499997334,
+  "total_seconds": 32.83823300000222
+}

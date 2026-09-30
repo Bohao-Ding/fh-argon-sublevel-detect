@@ -1,0 +1,33 @@
+{
+  "summary": {
+    "experiment": "A9_band_periods",
+    "dataset_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+    "gates": {
+      "per_band_period_span_eV": 0.5199999999999996,
+      "all_band_period_CIs_contain_first_band_period": true,
+      "period_label_slope_V_per_V": 0.001466165413533167,
+      "period_gradient_present": false,
+      "note": "period_grid resolution 0.02 V; bootstrap block 9 points; 400 replicates"
+    },
+    "gate_verdict": "PHASE READING SURVIVES: per-band effective periods are mutually consistent within bootstrap CIs, so the band-to-band offsets are phase shifts under a common timing scale, not per-band period drift",
+    "claim_boundary": [
+      "per-band periods are descriptive dominant scales of standardized difference bands",
+      "the retarding-voltage label cannot be separated from acquisition order (no scan metadata)"
+    ],
+    "timings": {
+      "period_scan_seconds": 11.684766599995783,
+      "gates_seconds": 0.00028160001966170967,
+      "total_seconds": 11.703705799998716
+    }
+  },
+  "table_sha256": {
+    "band_periods": "193B9AE037B9CA44E70379BADF6CB19F22F4966412357B62DF61B2B49E87BB8A"
+  },
+  "environment": {
+    "python": "3.13.7",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "2.3.3"
+  },
+  "written_utc": "2026-09-23T16:32:58Z"
+}

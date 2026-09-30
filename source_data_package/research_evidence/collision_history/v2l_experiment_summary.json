@@ -1,0 +1,89 @@
+{
+  "status": "completed",
+  "selected_model": "v2l-calibrated-collision-field / H1",
+  "scope": "In-sample curve-fitting morphology only; no robustness, held-out, bootstrap, or selector tests.",
+  "h1": {
+    "gate_passed": true,
+    "passed_checks": 15,
+    "total_checks": 15,
+    "mean_curve_nrmse": 0.03052807808412808,
+    "cutoff_mae_V": 0.4,
+    "max_cutoff_error_V": 1.5,
+    "peak_position_mae_V": 0.4473684210526316,
+    "trough_position_mae_V": 0.46875,
+    "peak_recall": 1.0,
+    "trough_recall": 1.0,
+    "trough_precision": 1.0,
+    "early_high_retarding_mae_uA": 0.06963906065398646,
+    "late_trough_current_mae_uA": 0.11741969975829124,
+    "late_voltage_mae_uA": 0.0678351372044261,
+    "vr0_spurious_feature_count": 0,
+    "collision_field_spread_eV": 10.5,
+    "collision_spread_decay_V": 32.0,
+    "calibration_candidates": 63,
+    "calibration_feasible": 21,
+    "continuous_source_stop_reason": "plateau_early_stop",
+    "continuous_source_epochs": 375,
+    "result": "output/v2l_q4_iteration_01/h1/result.json",
+    "fit": "output/v2l_q4_iteration_01/h1/fit.png"
+  },
+  "h4s": {
+    "role": "secondary conditional comparison",
+    "posthoc_morphology_gate_passed": false,
+    "posthoc_passed_checks": 12,
+    "posthoc_total_checks": 15,
+    "failed_checks": [
+      "max_cutoff_error_V",
+      "vr0_spurious_feature_count",
+      "trough_precision"
+    ],
+    "mean_curve_nrmse": 0.03030628563635008,
+    "aic": -4163.999036887518,
+    "bic": -4060.8005067843096,
+    "epochs_completed": 1800,
+    "best_epoch": 1800,
+    "stop_reason": "max_epochs",
+    "energies_eV": [
+      11.289607048034668,
+      11.364845275878906,
+      11.464412689208984,
+      11.569323539733887
+    ],
+    "channel_rate_fractions": [
+      0.9136142730712891,
+      0.054703373461961746,
+      0.014629451557993889,
+      0.017052944749593735
+    ],
+    "result": "output/v2l_q4_h4s_iteration_01/h4s/result.json",
+    "fit": "output/v2l_q4_h4s_iteration_01/h4s/fit.png",
+    "morphology_audit": "output/v2l_q4_h4s_iteration_01/h4s_morphology_audit.json"
+  },
+  "conditional_comparison": {
+    "h1_aic": -4137.591022904124,
+    "h1_bic": -4048.465019633171,
+    "delta_h4s_minus_h1_mean_curve_nrmse": -0.0002217924477780006,
+    "delta_h4s_minus_h1_aic": -26.408013983394085,
+    "delta_h4s_minus_h1_bic": -12.33548715113875,
+    "decision": "Retain H1 because H4s violates the frozen morphology constraints, is dominated by its lowest channel, and did not reach a loss plateau. Conditional in-sample AIC/BIC support is not unique level-resolution evidence."
+  },
+  "rejected_variant": {
+    "model": "v2k-truncated-gaussian-gate / H1",
+    "passed_checks": 11,
+    "total_checks": 15,
+    "mean_curve_nrmse": 0.03349346897808736,
+    "cutoff_mae_V": 1.8,
+    "max_cutoff_error_V": 2.5,
+    "trough_precision": 0.8888888888888888,
+    "early_high_retarding_mae_uA": 0.09192313577128093,
+    "stop_reason": "max_epochs",
+    "result": "output/v2k_iteration_01/h1/result.json"
+  },
+  "numerical_convergence": {
+    "max_collisions_8_to_6_max_abs_current_difference_uA": 3.5762786865234375e-07,
+    "max_collisions_6_to_5_max_abs_current_difference_uA": 0.6617732048034668,
+    "quadrature_order_6_to_4_max_abs_current_difference_uA": 0.00210823817178607,
+    "quadrature_order_6_to_4_mean_abs_current_difference_uA": 0.0004094602772966027,
+    "selected_discretization": "32 layers, 6 collision cap, 4 thermal/angular quadrature points"
+  }
+}

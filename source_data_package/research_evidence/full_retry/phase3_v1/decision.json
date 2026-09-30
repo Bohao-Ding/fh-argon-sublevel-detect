@@ -1,0 +1,67 @@
+{
+  "gates": {
+    "G10_composition_robustness": false,
+    "G11_shifted_block_robustness": true,
+    "G12_prior_period_near_profile_optimum": true,
+    "G13_absolute_block_adequacy": true,
+    "G14_endpoint_full_rule": false,
+    "G15_nist_span_not_recoverable": true
+  },
+  "all_gates_passed": false,
+  "recommended_claim": "composition-audited nonseparable retarding-response structure with explicit local failures and conditional NIST-spacing non-recoverability",
+  "composition_summary": [
+    {
+      "representation": "hellinger",
+      "improved_blocks": 4,
+      "median_gain": 0.40941486464968374,
+      "worst_gain": -0.04802833069044568,
+      "mean_rank1_rmse": 0.7868482185754508,
+      "mean_rank2_rmse": 0.4969341783621304
+    },
+    {
+      "representation": "clr",
+      "improved_blocks": 4,
+      "median_gain": 0.26521696801067796,
+      "worst_gain": -0.14253453684131687,
+      "mean_rank1_rmse": 0.8601301688639701,
+      "mean_rank2_rmse": 0.6637962994320452
+    },
+    {
+      "representation": "ilr",
+      "improved_blocks": 4,
+      "median_gain": 0.20925465150194747,
+      "worst_gain": -0.0907646467553486,
+      "mean_rank1_rmse": 0.8310511547166491,
+      "mean_rank2_rmse": 0.662829611958723
+    }
+  ],
+  "prior_period_error_ratio": {
+    "hellinger": 1.0045983924622017,
+    "clr": 1.0064279299305376,
+    "ilr": 1.0035013733008635
+  },
+  "absolute_adequacy_blocks": {
+    "clr": 4,
+    "hellinger": 4,
+    "ilr": 4
+  },
+  "without_Vr10": {
+    "improved_blocks": 4,
+    "median_gain": 0.31400412943441186,
+    "worst_gain": -0.24829776990794655,
+    "passes_full_rule": false
+  },
+  "nist_exact_recovery_by_scheme": {
+    "common_h1_block_3": 0.002,
+    "common_h1_block_5": 0.0,
+    "common_h1_block_9": 0.0,
+    "common_h1_phase": 0.002
+  },
+  "claim_boundary": [
+    "rank-2 means nonseparable sine/cosine response coefficients, not two physical channels",
+    "all gates are internal development checks on one archived dataset",
+    "endpoint robustness fails if the original worst-block rule fails",
+    "injection recovery is conditional on the candidate grid and candidate-independent empirical residual",
+    "no apparatus calibration, repeat scan, or independent confirmation is supplied"
+  ]
+}

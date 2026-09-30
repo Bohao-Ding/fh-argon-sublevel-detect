@@ -1,0 +1,14 @@
+{
+  "dataset_role": "sole_reused_experimental_resource",
+  "source_path": "D:\\VScode_repository\\FrankHertz_Experiment\\Frank_Hertz_Experiment\\Core_Data\\data\\argon\\FHdata.xlsx",
+  "local_path": "data/FHdata.xlsx",
+  "sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+  "size_bytes": 26542,
+  "copied_on": "2026-08-31",
+  "reuse_exclusions": [
+    "existing manuscript text",
+    "existing model code",
+    "existing fitted parameters",
+    "existing result tables"
+  ]
+}

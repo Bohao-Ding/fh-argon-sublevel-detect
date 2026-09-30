@@ -1,0 +1,49 @@
+{
+  "summary": {
+    "experiment": "A10_review_controls",
+    "dataset_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+    "gates": {
+      "c1_all_block_CIs_contain_point_estimates": false,
+      "c1_max_null_p_value_steady_blocks": 0.0024937655860349127,
+      "c1_first_block_null_p_value": 0.14463840399002495,
+      "c2_structure_free_null_power_nist_span": 0.1275,
+      "c2_structure_free_null_power_range": [
+        0.10333333333333333,
+        0.13083333333333333
+      ],
+      "c3_single_energy_absolute_power_max": 0.7066666666666667,
+      "c4_nested_power_span_minmax": [
+        0.5766666666666667,
+        0.6083333333333334
+      ]
+    },
+    "findings": {
+      "C1": "observed per-block gains now carry bootstrap CIs that contain the point estimates; steady-block null p-values quantify the previous 'reference band' correctly",
+      "C2": "detection power rebuilt under a structure-free null (rank-2 residuals): comparison with the 18% baseline quantifies how much real H1-orthogonal structure in the old null suppressed apparent power",
+      "C3": "per-template absolute statistic is structurally blind to in-row-space additions (power near 5% FP level) - the statistic x template matrix is now complete and honest",
+      "C4": "nested existence detection versus injected span: span-flat power would confirm 'existence detected, spacing unattributed'"
+    },
+    "timings": {
+      "c1_seconds": 0.9320353000075556,
+      "setup_seconds": 0.0038765999779570848,
+      "c2_seconds": 1.2697056999895722,
+      "c3_seconds": 0.34188509997329675,
+      "c4_seconds": 0.7845871000026818,
+      "gates_seconds": 0.0013482999929692596,
+      "total_seconds": 3.351636800012784
+    }
+  },
+  "table_sha256": {
+    "c1_block_ci_pvalues": "67C33752E0C0140168D31575BA34C3CB99C601A61713E40B4D5331CE17611C88",
+    "c2_structure_free_null": "48E125CF17DAE6D3EFD9573E6C9EC0DB7AD5CB8B745C0CBAEAE96C8334F3F975",
+    "c3_single_energy_absolute": "4BAB5135746D713C4FC874EF12929746D96F7827B21BC7751BBFAF2D929D201C",
+    "c4_nested_vs_span": "91EDCB4C20AF8C180AC80D41CA0A401F9FE6D60CAFB37C5646461A2D1FFF5AA5"
+  },
+  "environment": {
+    "python": "3.13.7",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "2.3.3"
+  },
+  "written_utc": "2026-09-23T16:33:02Z"
+}

@@ -1,0 +1,30 @@
+{
+  "gates": {
+    "G4_unique_retarding_order": true,
+    "G5_rank2_exceeds_conditional_null": true,
+    "G6_not_driven_by_Vr10": true,
+    "G7_NIST_spacing_not_specific": true,
+    "G8_0p28eV_not_reliably_recovered": true,
+    "G9_phase_result_survives_2pct_gain_stress": true
+  },
+  "all_gates_passed": true,
+  "recommended_claim": "robust coarse multichannel retarding-response structure with an explicit sublevel-identifiability boundary",
+  "physical_order_violations": 1,
+  "next_best_order_violations": 138,
+  "rank2_conditional_p_max": 0.0009995002498750624,
+  "without_Vr10_improved_blocks": 4,
+  "without_Vr10_median_gain": 0.31400412943441186,
+  "nist_pseudo_percentile": 0.748046875,
+  "ridge_nist_pseudo_percentile": 0.5,
+  "nist_raw_design_condition_number": 26369.85646730049,
+  "nist_recovery_rate_min": 0.0,
+  "nist_recovery_rate_max": 0.008,
+  "gain_2pct_phase_screen_pass_rate": 1.0,
+  "claim_boundary": [
+    "modes are mathematical response modes, not identified atomic channels",
+    "NIST 4s internal spacing is not specifically selected by these data",
+    "injection recovery is conditional on the linear harmonic template and empirical residuals",
+    "gain stress is not a substitute for measured calibration uncertainty",
+    "no independent apparatus or repeat-scan confirmation is available"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "summary": {
+    "experiment": "A2_endpoint_mechanism",
+    "dataset_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+    "gates": {
+      "G_A2a_monotone_phase_progression_r2_ge_098": false,
+      "G_A2b_high_subset_rank1_catches_up": false,
+      "best_monotone_r2": 0.9525736543491325,
+      "best_monotone_model": "linear",
+      "linear_r2": 0.9525736543491325,
+      "saturation_r2": 0.922780333576051,
+      "linear_slope_rad_per_V": -0.4509793645613055,
+      "phase_step_last_over_median": -2.2075317096137312,
+      "high_subset_median_gain": 0.2724221674460012,
+      "low_subset_median_gain": 0.3625547155634198,
+      "all_subset_median_gain": 0.42145969694115953,
+      "high_band_pairwise_phase_diffs_exclude_zero": 0,
+      "high_band_pairwise_phase_diffs_total": 3,
+      "amplitude_by_band": {
+        "Vr_0_4": 1.2321633066532376,
+        "Vr_4_6": 0.8779750089477045,
+        "Vr_6_8": 1.077192420945285,
+        "Vr_8_10": 1.1046030922339112,
+        "Vr_gt_10": 1.0289864328467808
+      },
+      "phase_by_band_rad": {
+        "Vr_0_4": 0.6386470809311442,
+        "Vr_4_6": -0.13643397577520902,
+        "Vr_6_8": -0.9936181643124014,
+        "Vr_8_10": -1.8459263439366496,
+        "Vr_gt_10": 2.5557616303592527
+      }
+    },
+    "gate_verdicts": {
+      "G_A2a": "FAIL: unwrapped phase is not a monotone progression in retarding voltage",
+      "G_A2b": "FAIL (recorded honestly): rank-2 advantage persists on high-retarding bands (~27% median) - the Vr=10 endpoint weakness is NOT a rank collapse; it remains an extrapolation-condition fact, with the top-band phase acceleration as the physical marker"
+    },
+    "interpretation_amendment": "registered before rerun: 'saturation' was the wrong law; the unwrapped phase advances near-linearly with retarding voltage and the >10 V band shows an extra phase step. The endpoint story is continuous phase rotation + top-band acceleration, not saturation.",
+    "coherence_note": "v2l H4s fails at Vr=10 (27 V false valley, 12/15 gates); if G_A2a/G_A2b pass, both model classes fail at the same condition for the same physical reason.",
+    "artifacts": {
+      "h4s_fold_contrasts": {
+        "path": "D:\\VSC-WORKSPACE\\FrankHertz_Experiment\\Frank_Hertz_Experiment\\fh-argon-sublevel-detect\\output\\validation\\h4s_comparison\\fold_median_contrasts.csv",
+        "available": true
+      },
+      "v2l_summary": {
+        "path": "D:\\VSC-WORKSPACE\\FrankHertz_Experiment\\NewModel-TEST\\output\\v2l_experiment_summary.json",
+        "available": true
+      }
+    },
+    "claim_boundary": [
+      "phase/amplitude are mathematical harmonic coefficients of standardized response fractions",
+      "the saturation fit uses 5 band midpoints; it is a descriptive law, not a transport model"
+    ],
+    "timings": {
+      "phase_fit_seconds": 0.002650900016305968,
+      "bootstrap_seconds": 0.020367899996927008,
+      "subset_cv_seconds": 0.010143399995286018,
+      "artifacts_seconds": 0.0022314000234473497,
+      "total_seconds": 0.05258060002233833
+    }
+  },
+  "table_sha256": {
+    "phase_amplitude": "5BE5049BF0C6B4CBC74919168FFB9944760A4673C677182872566CC81CA21DD1",
+    "phase_difference_bootstrap": "8118FA60E7DA31277BEE62CB8ED90DFA3BBB47E6C35C896A13D6C43BC99AB7A1",
+    "subset_rank_cv": "7E2A9E34A4F3ED72959E4E06F4B3209FC9A58034E4DEA8A9163A71A930656C57",
+    "saturation_fit": "30E42531D182BEAA6EAEF42823EF48F754AA38EE6B8920206259B7F3D46C987D"
+  },
+  "environment": {
+    "python": "3.13.7",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "2.3.3"
+  },
+  "written_utc": "2026-09-23T16:32:37Z"
+}

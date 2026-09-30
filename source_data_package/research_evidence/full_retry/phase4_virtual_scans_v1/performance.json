@@ -1,0 +1,9 @@
+{
+  "logical_cpus": 24,
+  "workers": 8,
+  "tasks": 42,
+  "parallel_wall_seconds": 2.2292259999958333,
+  "task_seconds_sum": 17.008316500017827,
+  "parallelism_ratio": 7.629695912415169,
+  "total_seconds": 2.6859614999993937
+}

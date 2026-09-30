@@ -1,0 +1,16 @@
+{
+  "logical_cpus": 24,
+  "workers": 8,
+  "surrogate_tasks": 16,
+  "injection_tasks": 48,
+  "surrogate_replicates_per_task": 2000,
+  "injection_replicates_per_task": 500,
+  "sensitivity_seconds": 0.720345300003828,
+  "surrogate_parallel_wall_seconds": 13.867216600003303,
+  "surrogate_task_seconds_sum": 98.49698450000142,
+  "surrogate_parallelism_ratio": 7.102866230558334,
+  "injection_parallel_wall_seconds": 3.247864600001776,
+  "injection_task_seconds_sum": 14.396638400001393,
+  "injection_parallelism_ratio": 4.432647346195873,
+  "total_seconds": 18.01730609999504
+}

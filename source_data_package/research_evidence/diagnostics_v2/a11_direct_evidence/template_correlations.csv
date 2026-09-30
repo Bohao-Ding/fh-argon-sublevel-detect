@@ -1,0 +1,7 @@
+template_left,template_right,correlation
+NIST,equal,0.9999999999861141
+NIST,pseudo_0,0.9999999991253985
+NIST,pseudo_1,0.999999996355644
+equal,pseudo_0,0.99999999889676
+equal,pseudo_1,0.9999999959244387
+pseudo_0,pseudo_1,0.9999999990081859

@@ -1,0 +1,56 @@
+{
+  "summary": {
+    "experiment": "A12_completeness_audit",
+    "lag_alias_note": "adjacent-band lags are 3/3/3/7 steps; the direct first-to-last measurement is -7 steps. Consistency check: adjacent sum 16 steps = 8.0 V = -3.55 V modulo one period (23.1 steps) - matching the direct -7 steps (-3.5 V). Lags are resolution-limited to the 0.5 V step and the direct pair is read modulo one period.",
+    "dataset_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+    "gates": {
+      "G_A12a_steady_survives_without_Vr10": true,
+      "G_A12b_cumulative_lag_excludes_zero": true,
+      "G_A12c_worst_separation_below_1sigma": true,
+      "a12a_without_vr10_median_steady_gain": 0.3234193057526394,
+      "a12a_without_vr10_worst_steady_block": 2,
+      "a12a_without_vr10_worst_steady_gain": 0.24555217209462596,
+      "a12b_cumulative_lag_steps": -7,
+      "a12c_worst_separation_sigma": 0.0005772195295207789,
+      "percentile_count": 383,
+      "percentile_wilson_ci": [
+        0.7087,
+        0.7837
+      ],
+      "total_oscillation_cycles": 19
+    },
+    "gate_verdicts": {
+      "G_A12a": "PASS: without Vr=10 every steady block keeps a positive gain and the steady median stays >=10% - the old G14 failure concentrates in the transition region under the new framing",
+      "G_A12b": "PASS: the model-free time-domain lag between first and last bands is nonzero with segment agreement - the timing gradient no longer depends on any fitted basis",
+      "G_A12c": "PASS: alternative templates' best predictions differ from NIST by less than one noise sigma - the spacing is geometrically indistinguishable, independent of the estimator"
+    },
+    "claim_boundary": [
+      "lags are resolution-limited to the 0.5 V sampling step",
+      "the separation bound assumes per-point Gaussian noise at the pooled residual sigma"
+    ],
+    "timings": {
+      "a12a_seconds": 0.002161400014301762,
+      "a12b_seconds": 0.01468720001867041,
+      "a12c_seconds": 0.001189000002341345,
+      "percentile_seconds": 0.21144359998288564,
+      "oscillations_seconds": 0.0005688999954145402,
+      "gates_seconds": 0.00027320001390762627,
+      "total_seconds": 0.27993739998782985
+    }
+  },
+  "table_sha256": {
+    "a12a_without_vr10_blocks": "E5D7CD27D82D82E7903FDA949142F37639560DD6A534054DE2A7E1E6F74D9804",
+    "a12b_lags": "D011D1CA1A92C0271536436710FC57E1E3FA6EA3E9EDB904D5FB278F9F236537",
+    "a12c_separation": "6A8E3CCBEFA1BFE23E57233346798AC23BA40C48CD2001C227021F4085DBABAF",
+    "a12c_conditioning": "BDD21FBD8305276A3582DA13E4677E71C1EF0558B043AA25FEF767B554D82A53",
+    "percentile_ci": "DECD26A7D5E8D7E75426524E3EB91F6FD6FDF4100C0EFA1C6AB8FF3065DE707A",
+    "oscillation_counts": "E1CF52A2CBF627966F8B13507FDFAB722A693671A068397EB8DE31D32A774AB9"
+  },
+  "environment": {
+    "python": "3.13.7",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "2.3.3"
+  },
+  "written_utc": "2026-09-23T16:33:02Z"
+}

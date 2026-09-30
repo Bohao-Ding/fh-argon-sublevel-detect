@@ -1,0 +1,19 @@
+{
+  "python": "3.13.7",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "logical_cpus": 24,
+  "workers": 8,
+  "packages": {
+    "numpy": "2.3.3",
+    "pandas": "2.3.2",
+    "scipy": "1.16.2",
+    "openpyxl": "3.1.5",
+    "pytest": "9.0.3"
+  },
+  "thread_limits": {
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  }
+}

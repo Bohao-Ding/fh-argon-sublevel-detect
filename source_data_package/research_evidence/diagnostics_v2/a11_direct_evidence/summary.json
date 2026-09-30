@@ -1,0 +1,55 @@
+{
+  "summary": {
+    "experiment": "A11_direct_evidence",
+    "dataset_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+    "gates": {
+      "G_A11a_all_pairwise_phase_diffs_exclude_zero_3sigma": true,
+      "G_A11b_fft_peak_periods_within_10p5_12p5": true,
+      "G_A11d_template_correlations_ge_0p999": true,
+      "min_pairwise_phase_significance_sigma": 4.660875011089678,
+      "fft_peak_period_range_V": [
+        10.916666666666666,
+        10.916666666666666
+      ],
+      "min_template_correlation": 0.9999999959244387,
+      "response_width_to_spacing_ratio": 10.367631197189,
+      "lissajous_correlations": {
+        "Vr_0_4-vs-Vr_4_6": 0.5664330125025464,
+        "Vr_0_4-vs-Vr_6_8": -0.13209330727462487,
+        "Vr_0_4-vs-Vr_8_10": -0.7708497255287429,
+        "Vr_0_4-vs-Vr_gt_10": -0.2887037479458162
+      }
+    },
+    "gate_verdicts": {
+      "G_A11a": "PASS: every pair of bands has a phase difference significant at 3 sigma - the five phasors are not parallel, the direct-reading form of rank-2",
+      "G_A11b": "PASS: all bands share the same dominant period scale (common timing)",
+      "G_A11d": "PASS: candidate template waveforms are numerically interchangeable (r >= 0.999) - the direct-reading form of the spacing boundary"
+    },
+    "claim_boundary": [
+      "phases and amplitudes are parameters of a least-squares sinusoid fit to difference bands",
+      "the Lissajous trajectories are descriptive; the quantitative test is the 3-sigma phase table"
+    ],
+    "timings": {
+      "fits_seconds": 0.018793499999446794,
+      "fft_seconds": 0.00025370001094415784,
+      "lissajous_seconds": 0.00028730000485666096,
+      "templates_seconds": 0.0007288000197149813,
+      "gates_seconds": 0.00031659999513067305,
+      "total_seconds": 0.03747609999845736
+    }
+  },
+  "table_sha256": {
+    "band_sinusoid_fits": "6D1AB1BBB6EF8232994B2328DD942246756BC007F067CF3928106E23E3E54637",
+    "pairwise_phase_differences": "674F180438D61C2DCA82A0C5FBBB5EAF4F1A103E404D86AC3674829E364E2A14",
+    "fft_peaks": "70411676BE409DD0CB88B335F7F99E3D8F846E3D67FF6663C0A0C7F4DB8BE7F9",
+    "lissajous": "58D4DC88C5D3E4A1C6561F673CF514A48077125C4E9CD21E5B77D015364CB6C0",
+    "template_correlations": "F3AB4B24FB77E64D6BA447073474EE0995C0233B718A762DAF0A398114FD8FA8"
+  },
+  "environment": {
+    "python": "3.13.7",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "2.3.3"
+  },
+  "written_utc": "2026-09-23T16:33:02Z"
+}

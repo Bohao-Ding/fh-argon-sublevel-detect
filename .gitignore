@@ -15,3 +15,12 @@ checkpoint_*
 !source_data_package/**/*.ckpt
 _tmp*/
 sublevel_detect_smoke_*/
+
+# Fresh research runs; published reference tables live in research_evidence.
+FULL-REtry/results/
+FULL-REtry/figures/
+EXPERIMENT_V2/results/
+source_data_package/research_evidence/**/*.pt
+source_data_package/research_evidence/**/*.pth
+source_data_package/research_evidence/**/*.ckpt
+.test-tmp/

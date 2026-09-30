@@ -1,0 +1,12 @@
+{
+  "nist_span_eV": 0.2797167399999996,
+  "nist_raw_design_condition_number": 26369.85646730049,
+  "nist_mean_balanced_rmse": 0.077136369950949,
+  "nist_pseudo_percentile": 0.748046875,
+  "pseudo_error_min": 0.07710325449653752,
+  "pseudo_error_median": 0.07713110007118035,
+  "pseudo_error_max": 0.07714203725401658,
+  "pseudo_angle_max_deg": 0.04953267039609918,
+  "ridge_nist_mean_balanced_rmse": 0.09791915969892431,
+  "ridge_nist_pseudo_percentile": 0.5
+}

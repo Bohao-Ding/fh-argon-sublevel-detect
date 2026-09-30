@@ -1,0 +1,35 @@
+{
+  "status": "completed",
+  "audit_scope": "Apply the frozen 15-check v2j/v2l H1 morphology gate to the secondary H4s fit.",
+  "passed": false,
+  "passed_check_count": 12,
+  "total_check_count": 15,
+  "failed_checks": [
+    {
+      "metric": "max_cutoff_error_V",
+      "direction": "max",
+      "threshold": 1.5,
+      "value": 2.0
+    },
+    {
+      "metric": "vr0_spurious_feature_count",
+      "direction": "max",
+      "threshold": 0.0,
+      "value": 1.0
+    },
+    {
+      "metric": "trough_precision",
+      "direction": "min",
+      "threshold": 1.0,
+      "value": 0.9411764705882353
+    }
+  ],
+  "localized_failures": {
+    "vr0_spurious_peak_V": 76.5,
+    "vr10_observed_cutoff_V": 14.5,
+    "vr10_predicted_cutoff_V": 12.5,
+    "vr10_extra_trough_V": 27.0
+  },
+  "source_result": "output/v2l_q4_h4s_iteration_01/h4s/result.json",
+  "interpretation": "H4s is not eligible to replace the H1 morphology-selected primary model."
+}

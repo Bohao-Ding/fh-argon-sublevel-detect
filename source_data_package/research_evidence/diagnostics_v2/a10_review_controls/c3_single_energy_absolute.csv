@@ -1,0 +1,13 @@
+config,scheme,per_template_detection_power
+hg_single_4.886eV,common_h1_block_3,0.2
+hg_single_4.886eV,common_h1_block_5,0.18666666666666668
+hg_single_4.886eV,common_h1_block_9,0.14666666666666667
+hg_single_4.886eV,common_h1_phase,0.6533333333333333
+ar_single_meaneV,common_h1_block_3,0.24
+ar_single_meaneV,common_h1_block_5,0.25
+ar_single_meaneV,common_h1_block_9,0.21333333333333335
+ar_single_meaneV,common_h1_phase,0.22666666666666666
+ne_single_16.70eV,common_h1_block_3,0.2633333333333333
+ne_single_16.70eV,common_h1_block_5,0.24
+ne_single_16.70eV,common_h1_block_9,0.2
+ne_single_16.70eV,common_h1_phase,0.7066666666666667

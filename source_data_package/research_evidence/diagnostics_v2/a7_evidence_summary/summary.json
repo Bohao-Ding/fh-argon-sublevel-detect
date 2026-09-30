@@ -1,0 +1,48 @@
+{
+  "summary": {
+    "experiment": "A7_evidence_summary",
+    "dataset_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+    "c1": {
+      "median_gain": 0.42145969694115953,
+      "bootstrap_median_ci": [
+        -0.046726200809589294,
+        0.08968535120082025
+      ]
+    },
+    "c2_meta": {
+      "v2l": {
+        "source_available": true,
+        "h1_gates": "15/15",
+        "h4s_gates": "12/15",
+        "h1_nrmse": 0.03052807808412808,
+        "h4s_nrmse": 0.03030628563635008,
+        "top_channel_fraction": 0.9136142730712891
+      },
+      "fold_source": "fresh_read"
+    },
+    "c3_percentile_recomputed": 0.74609375,
+    "s50_from_a5": 0.17666666666666667,
+    "figure": "D:\\VSC-WORKSPACE\\FrankHertz_Experiment\\EXPERIMENT_V2\\results\\a7_evidence_summary\\figures\\evidence_summary.png",
+    "note": "effect sizes are direction-aligned: larger C1 = more structure; C2 deltas < 0 favor H4s; C3 percentile near chance = non-specific",
+    "timings": {
+      "c1_bootstrap_seconds": 0.4527801999938674,
+      "c3_percentile_seconds": 0.09004840001580305,
+      "artifact_reads_seconds": 0.0026579999830573797,
+      "figure_seconds": 0.4283049000077881,
+      "total_seconds": 0.99260199998389
+    }
+  },
+  "table_sha256": {
+    "c1_block_gains_bootstrap": "7B3475405873054F143E86928842BBCD6C5350B97927AA25268E32DD42762CA4",
+    "c1_adequacy": "ADF4FE93F4C4961F9A6AE763ABE31058D01BC8F993FF7E24E7B389F6D5A754AF",
+    "c2_fold_deltas": "4589FE7FE2A592A0FF6D28EE850A1E133F3D5A5498B1488341DD5F69089AA6EC",
+    "effect_table": "AD3C5D1535820AB766D7E8D72063B7C4A57B045A33EC3EB1D182AF41C7972768"
+  },
+  "environment": {
+    "python": "3.13.7",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "2.3.3"
+  },
+  "written_utc": "2026-09-23T16:33:04Z"
+}
