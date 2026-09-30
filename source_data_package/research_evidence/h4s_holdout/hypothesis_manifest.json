@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "nist_source": "https://physics.nist.gov/cgi-bin/ASD/energy1.pl?spectrum=Ar+I&units=1&level_out=on&conf_out=on&term_out=on&j_out=on",
+  "nist_4s_energies_eV": [
+    11.54835442,
+    11.62359272,
+    11.72316039,
+    11.82807116
+  ],
+  "common_energy_shift_limit_eV": 0.25,
+  "background_definition": "Existing smooth high_energy_loss term; it is not a fifth excitation channel.",
+  "hypotheses": [
+    {
+      "key": "h1",
+      "label": "H1",
+      "nist_constrained": false,
+      "background_enabled": false
+    },
+    {
+      "key": "h1_background",
+      "label": "H1+B",
+      "nist_constrained": false,
+      "background_enabled": true
+    },
+    {
+      "key": "h4s",
+      "label": "H4s",
+      "nist_constrained": true,
+      "background_enabled": false
+    },
+    {
+      "key": "h4s_background",
+      "label": "H4s+B",
+      "nist_constrained": true,
+      "background_enabled": true
+    }
+  ],
+  "contrasts": [
+    {
+      "name": "h4s_minus_h1",
+      "candidate": "h4s",
+      "reference": "h1"
+    },
+    {
+      "name": "h4s_background_minus_h1_background",
+      "candidate": "h4s_background",
+      "reference": "h1_background"
+    },
+    {
+      "name": "h1_background_minus_h1",
+      "candidate": "h1_background",
+      "reference": "h1"
+    },
+    {
+      "name": "h4s_background_minus_h4s",
+      "candidate": "h4s_background",
+      "reference": "h4s"
+    }
+  ],
+  "claim_decision": "not_automated"
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "formal_run_commit": "60522c54f13333070c65a352e571acf17f5cc698",
+  "formal_unit_count": 60,
+  "failed_unit_count": 0,
+  "statistical_unit": "five held-out retarding-voltage conditions",
+  "seed_role": "optimization restart; not an independent statistical replicate",
+  "figure_prediction_summary": "pointwise median across seeds 0, 1, and 2",
+  "source_files_sha256": {
+    "hypothesis_manifest.json": "6d2bed05e8a18a685bb38344064cfa35f0d613572fd0f2cbb9407b42306f2593",
+    "stage_manifest.json": "8e88ddab4fbae1171ed58da87d50cd9532d202844444951db4d3dd004ba666c0",
+    "unit_status.csv": "aad904fd42ece2f44f44f4f38d2f37dab94bd87a97eb2e539044b193cef7a4b4",
+    "zero_shot_metrics.csv": "e7fcebb21084768171fa80a9ca762455a75b04c665b3d7019c8fa92cbaf72b9c",
+    "zero_shot_predictions.csv": "bc9056574339ff90843b46f8a23cc39b77f0986be09125ea6412bd1cc3849271",
+    "paired_contrasts.csv": "bc79d6266a8eabe92317cc6decb2459db9b0538e2983bdd3a8a8b915b7a90852",
+    "fold_seed_medians.csv": "2fc84b822a02fd9f907d853a835d6a86c1d10d2b581f8d1b910dbe039eed55cd",
+    "fold_median_contrasts.csv": "05c4de44bbc9a3d54aa62bc2d79ad01a6d187e4ed97889d4bfa65a343f60bafa"
+  }
+}
