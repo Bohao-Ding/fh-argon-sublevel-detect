@@ -10,3 +10,7 @@ src/sublevel_detect/validation_holdout.py text eol=crlf
 source_data_package/spectral_evidence_v1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 
 scripts/summarize_spectral_concentration.py text eol=lf
+src/sublevel_detect/affine_readout.py text eol=lf
+scripts/audit_affine_calibration.py text eol=lf
+source_data_package/calibration_audit_v1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+source_data_package/calibration_reference_v1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
