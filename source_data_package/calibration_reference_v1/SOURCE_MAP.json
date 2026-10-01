@@ -1,0 +1,97 @@
+{
+  "input_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+  "kernel_sources": {
+    "spectral_models.py": "CAB7D308BF6C67490F0A53D74B8AE9CB5F93F30711B34F1BC5E8D953B5F77596",
+    "spectral_pipeline.py": "A3D4EBD79C8940FB68DFBC3A409821276254E467984C659CBE44B50168E7A3EA",
+    "model.py": "EFCDFD25B6B40E75BF3E51E7EF81AA8E1E469B064CFF070EDC12C8A94112535F",
+    "validation_common.py": "BEE2B897845E9DF3F12D762E4A4DF0254F5D666ED65A7BF389E3BE1504FED38B",
+    "validation_holdout.py": "0C5A3D180567A50248E25526A164745488D492BDC2A1B8099E281D6414EA5A7F"
+  },
+  "baseline_evidence_sha256": "E560C47D70EE99AB1DA470414FDB293884CA2296EEEA66E5680D3F6D0792CFC1",
+  "files": [
+    {
+      "published_path": "units/025837924314C64B7A22.json",
+      "source_path": "output/spectral_v1/grid_0.01/units/025837924314C64B7A22/fit.json",
+      "source_sha256": "09AE9AFF794FFF605F66ACF2B758817008C08235853C6C1439140CE333D8A941",
+      "transformation": "omit time/history; add verified training voltages",
+      "identity_verified_from_training_bytes": true
+    },
+    {
+      "published_path": "units/2E640833E123D9526D9A.json",
+      "source_path": "output/spectral_v1/grid_0.01/units/2E640833E123D9526D9A/fit.json",
+      "source_sha256": "836F714AA75C98F27B0EC7FAF7CAC4FB0F53A8E529B08724E578A8C519038FF2",
+      "transformation": "omit time/history; add verified training voltages",
+      "identity_verified_from_training_bytes": true
+    },
+    {
+      "published_path": "units/5EB3B345A7C9B6CCB95B.json",
+      "source_path": "output/spectral_v1/grid_0.01/units/5EB3B345A7C9B6CCB95B/fit.json",
+      "source_sha256": "81278878BAAFF1ACFB882C4996D48B38B5F275B15C351244B19FC78A0713E4CC",
+      "transformation": "omit time/history; add verified training voltages",
+      "identity_verified_from_training_bytes": true
+    },
+    {
+      "published_path": "units/80669D35AD59F777C24C.json",
+      "source_path": "output/spectral_v1/grid_0.01/units/80669D35AD59F777C24C/fit.json",
+      "source_sha256": "8594B54B3F4929B51F6962EEDE0CB9B6ECF00ABD272AC4CE245EF2AED3048BCD",
+      "transformation": "omit time/history; add verified training voltages",
+      "identity_verified_from_training_bytes": true
+    },
+    {
+      "published_path": "units/85FBE2E98A796C26B7D0.json",
+      "source_path": "output/spectral_v1/grid_0.01/units/85FBE2E98A796C26B7D0/fit.json",
+      "source_sha256": "A633113137C7FFF0A773E284BBEB2B88458226322D2F23BCF184176911189A78",
+      "transformation": "omit time/history; add verified training voltages",
+      "identity_verified_from_training_bytes": true
+    },
+    {
+      "published_path": "units/98E38605A1617F4BD18B.json",
+      "source_path": "output/spectral_v1/grid_0.01/units/98E38605A1617F4BD18B/fit.json",
+      "source_sha256": "87AA733A54322C8F657809B68CE06C8044EAAA042CDA863D63D7C3B35BE21508",
+      "transformation": "omit time/history; add verified training voltages",
+      "identity_verified_from_training_bytes": true
+    },
+    {
+      "published_path": "units/BD4C169811FE518403D7.json",
+      "source_path": "output/spectral_v1/grid_0.01/units/BD4C169811FE518403D7/fit.json",
+      "source_sha256": "7A8B9301738A016CEFCA797D3DEBD6A85A914E202217845E0E6ED0F387B357F4",
+      "transformation": "omit time/history; add verified training voltages",
+      "identity_verified_from_training_bytes": true
+    },
+    {
+      "published_path": "units/C8BEDA1002B86EFB4059.json",
+      "source_path": "output/spectral_v1/grid_0.01/units/C8BEDA1002B86EFB4059/fit.json",
+      "source_sha256": "97C8C20CFBCCA56449F3D2638E787051677AE31552ECCD068C8F81416F3BCC63",
+      "transformation": "omit time/history; add verified training voltages",
+      "identity_verified_from_training_bytes": true
+    },
+    {
+      "published_path": "units/E16044234B29E1CC0BDD.json",
+      "source_path": "output/spectral_v1/grid_0.01/units/E16044234B29E1CC0BDD/fit.json",
+      "source_sha256": "CA9B56AB03C6EEC65B450E929E9A559CBEAA16922918CCC7DD2F8B09D0911EDD",
+      "transformation": "omit time/history; add verified training voltages",
+      "identity_verified_from_training_bytes": true
+    },
+    {
+      "published_path": "units/EF7B67D79E5B30D1D562.json",
+      "source_path": "output/spectral_v1/grid_0.01/units/EF7B67D79E5B30D1D562/fit.json",
+      "source_sha256": "43E9D806042C137554D100A10FDFA0425CECF88047F15FFE41FEA9B8325AE825",
+      "transformation": "omit time/history; add verified training voltages",
+      "identity_verified_from_training_bytes": true
+    },
+    {
+      "published_path": "units/F3889DCC07644EE6F346.json",
+      "source_path": "output/spectral_v1/grid_0.01/units/F3889DCC07644EE6F346/fit.json",
+      "source_sha256": "D87AC3E24FD5EEB5E40796E590D1243FD9038B3CD0EBD85D4A9FB1FEA4090860",
+      "transformation": "omit time/history; add verified training voltages",
+      "identity_verified_from_training_bytes": true
+    },
+    {
+      "published_path": "units/FA3E732B02638D1EAD0F.json",
+      "source_path": "output/spectral_v1/grid_0.01/units/FA3E732B02638D1EAD0F/fit.json",
+      "source_sha256": "527A63977AE5CD8CBCF9AE7B971CFD7BD431A84DEA2F2BE6B4BB8774BB82F868",
+      "transformation": "omit time/history; add verified training voltages",
+      "identity_verified_from_training_bytes": true
+    }
+  ]
+}

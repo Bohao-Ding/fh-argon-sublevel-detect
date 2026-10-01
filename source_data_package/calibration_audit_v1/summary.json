@@ -1,0 +1,84 @@
+{
+  "schema": "affine-calibration-audit-v1",
+  "physical_kernel_retrained": false,
+  "train_points": 644,
+  "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+  "choices": {
+    "outer_0V": "none",
+    "outer_4V": "none",
+    "outer_6V": "none",
+    "outer_8V": "none",
+    "final": "none"
+  },
+  "outer_mean_seed_median_nrmse": [
+    {
+      "family": "C",
+      "mode": "global",
+      "nrmse": 0.11569936077006138
+    },
+    {
+      "family": "C",
+      "mode": "linear_vr_diagnostic",
+      "nrmse": 0.08048347795840824
+    },
+    {
+      "family": "C",
+      "mode": "none",
+      "nrmse": 0.12242194170238306
+    },
+    {
+      "family": "G1",
+      "mode": "global",
+      "nrmse": 0.10773082556578943
+    },
+    {
+      "family": "G1",
+      "mode": "linear_vr_diagnostic",
+      "nrmse": 0.06618018579125726
+    },
+    {
+      "family": "G1",
+      "mode": "none",
+      "nrmse": 0.10824478719879249
+    },
+    {
+      "family": "H1",
+      "mode": "global",
+      "nrmse": 0.10788663976963944
+    },
+    {
+      "family": "H1",
+      "mode": "linear_vr_diagnostic",
+      "nrmse": 0.0661072521569993
+    },
+    {
+      "family": "H1",
+      "mode": "none",
+      "nrmse": 0.10832880479855117
+    }
+  ],
+  "C_nested_selected_mean_nrmse": 0.12242194170238306,
+  "absolute_voltage_scale_identifiable": false,
+  "instrument_error_proven": false,
+  "C_mode_eV_unchanged": 12.039999961853027,
+  "hypothetical_gain_to_map_C_mode_into_4s": [
+    0.9591656525406368,
+    0.9823979399896601
+  ],
+  "linear_vr_is_diagnostic_only": true,
+  "stress_has_influenced_selection": false,
+  "baseline_evidence_sha256": "E560C47D70EE99AB1DA470414FDB293884CA2296EEEA66E5680D3F6D0792CFC1",
+  "additional_reference_sha256": "0A5FF7B67D6FC2F05B77001F70044C050E171A780508C1A105DBF76E30253966",
+  "input_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+  "frozen_kernel_sources": {
+    "spectral_models.py": "CAB7D308BF6C67490F0A53D74B8AE9CB5F93F30711B34F1BC5E8D953B5F77596",
+    "spectral_pipeline.py": "A3D4EBD79C8940FB68DFBC3A409821276254E467984C659CBE44B50168E7A3EA",
+    "model.py": "EFCDFD25B6B40E75BF3E51E7EF81AA8E1E469B064CFF070EDC12C8A94112535F",
+    "validation_common.py": "BEE2B897845E9DF3F12D762E4A4DF0254F5D666ED65A7BF389E3BE1504FED38B",
+    "validation_holdout.py": "0C5A3D180567A50248E25526A164745488D492BDC2A1B8099E281D6414EA5A7F"
+  },
+  "audit_sources": {
+    "audit_affine_calibration.py": "8877C02703ECB5C42DC3F12490B396AD5B7431FCC4431E573D4C5965BADFD4C3",
+    "affine_readout.py": "5B023D8B90E9FC592AC804F038BD1EAFFEE9DEE4316D82D7B2B044B329AD7F91"
+  }
+}

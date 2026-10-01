@@ -1,0 +1,84 @@
+{
+  "formal_derived_path": "output/calibration_audit_v1",
+  "baseline_evidence_sha256": "E560C47D70EE99AB1DA470414FDB293884CA2296EEEA66E5680D3F6D0792CFC1",
+  "additional_reference_sha256": "0A5FF7B67D6FC2F05B77001F70044C050E171A780508C1A105DBF76E30253966",
+  "input_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+  "audit_sources": {
+    "audit_affine_calibration.py": "8877C02703ECB5C42DC3F12490B396AD5B7431FCC4431E573D4C5965BADFD4C3",
+    "affine_readout.py": "5B023D8B90E9FC592AC804F038BD1EAFFEE9DEE4316D82D7B2B044B329AD7F91"
+  },
+  "sources": [
+    {
+      "path": "existing_nuisance.csv",
+      "bytes": 2515,
+      "sha256": "6577993F234A5C3E211A0268F7B4A29ABEF1034971690AF7179634C01E325584",
+      "source_path": "output/calibration_audit_v1/existing_nuisance.csv",
+      "source_sha256": "6577993F234A5C3E211A0268F7B4A29ABEF1034971690AF7179634C01E325584",
+      "transformation": "exact byte copy"
+    },
+    {
+      "path": "feature_regressions.csv",
+      "bytes": 1061,
+      "sha256": "FF6CA9284EAF5222C635B84DC624F123F779AB6E5B65776D8E8349A62C78C231",
+      "source_path": "output/calibration_audit_v1/feature_regressions.csv",
+      "source_sha256": "FF6CA9284EAF5222C635B84DC624F123F779AB6E5B65776D8E8349A62C78C231",
+      "transformation": "exact byte copy"
+    },
+    {
+      "path": "features.csv",
+      "bytes": 2384,
+      "sha256": "9D502C9A7A7F42E8A63AAE805B2E09DC11A3456DF46489307932410AAB9175D6",
+      "source_path": "output/calibration_audit_v1/features.csv",
+      "source_sha256": "9D502C9A7A7F42E8A63AAE805B2E09DC11A3456DF46489307932410AAB9175D6",
+      "transformation": "exact byte copy"
+    },
+    {
+      "path": "outer_fold_medians.csv",
+      "bytes": 1416,
+      "sha256": "1A2B94EF0C9FD78888EE61667CC8716EE05EB3AF160E751CE5537D0FDD7D70BC",
+      "source_path": "output/calibration_audit_v1/outer_fold_medians.csv",
+      "source_sha256": "1A2B94EF0C9FD78888EE61667CC8716EE05EB3AF160E751CE5537D0FDD7D70BC",
+      "transformation": "exact byte copy"
+    },
+    {
+      "path": "prediction_points.csv",
+      "bytes": 3723755,
+      "sha256": "4018F24EA8DF1C9A0E8C68DE01F18A725DC25CC7E12EC086DA0A2BB2D4173AC8",
+      "source_path": "output/calibration_audit_v1/prediction_points.csv",
+      "source_sha256": "4018F24EA8DF1C9A0E8C68DE01F18A725DC25CC7E12EC086DA0A2BB2D4173AC8",
+      "transformation": "exact byte copy"
+    },
+    {
+      "path": "readout_parameters.json",
+      "bytes": 122434,
+      "sha256": "1DF3BD5BE151E0FFC889ED8AD3081E29C3E30B60E7AE644135D9C11B79ABB290",
+      "source_path": "output/calibration_audit_v1/readout_parameters.json",
+      "source_sha256": "1DF3BD5BE151E0FFC889ED8AD3081E29C3E30B60E7AE644135D9C11B79ABB290",
+      "transformation": "exact byte copy"
+    },
+    {
+      "path": "scores.csv",
+      "bytes": 83937,
+      "sha256": "07BBA6DFDF156FE2A21990D311B3887F7D433F43E2DF6C6E744FB3EFC92A0E4C",
+      "source_path": "output/calibration_audit_v1/scores.csv",
+      "source_sha256": "07BBA6DFDF156FE2A21990D311B3887F7D433F43E2DF6C6E744FB3EFC92A0E4C",
+      "transformation": "exact byte copy"
+    },
+    {
+      "path": "selection.csv",
+      "bytes": 962,
+      "sha256": "9FCDCFB6606948F031EF28CEA950EEF93E622C741135B172E1E0A368FB43C612",
+      "source_path": "output/calibration_audit_v1/selection.csv",
+      "source_sha256": "9FCDCFB6606948F031EF28CEA950EEF93E622C741135B172E1E0A368FB43C612",
+      "transformation": "exact byte copy"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 2705,
+      "sha256": "95D1115222E9EADCA0AB7043DCD88B1F3F0659B790066C36053993B424F95A0E",
+      "source_path": "output/calibration_audit_v1/summary.json",
+      "source_sha256": "95D1115222E9EADCA0AB7043DCD88B1F3F0659B790066C36053993B424F95A0E",
+      "transformation": "exact byte copy"
+    }
+  ]
+}

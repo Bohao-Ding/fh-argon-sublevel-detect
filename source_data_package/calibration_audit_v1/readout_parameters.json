@@ -1,0 +1,5225 @@
+[
+  {
+    "scope": "inner",
+    "unit": "EF7B67D79E5B30D1D562",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      6.0,
+      8.0
+    ],
+    "training_hash": "10765AA2249E65F7EDE5250537314C0C2B1DC67B83591514B7ED6E8F4D6F1359",
+    "design_rank": 2,
+    "design_condition": 3.210974398129895
+  },
+  {
+    "scope": "inner",
+    "unit": "EF7B67D79E5B30D1D562",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.0907076171354888,
+      -0.05772919843999138
+    ],
+    "training_vr": [
+      6.0,
+      8.0
+    ],
+    "training_hash": "10765AA2249E65F7EDE5250537314C0C2B1DC67B83591514B7ED6E8F4D6F1359",
+    "design_rank": 2,
+    "design_condition": 3.210974398129895
+  },
+  {
+    "scope": "inner",
+    "unit": "2E640833E123D9526D9A",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      4.0,
+      8.0
+    ],
+    "training_hash": "BF8D50C3F4EB1C4996FA142C41F6F162498F7FEEFEC0B443B5AC57DC7EAED9F5",
+    "design_rank": 2,
+    "design_condition": 3.3036756418756497
+  },
+  {
+    "scope": "inner",
+    "unit": "2E640833E123D9526D9A",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.0867199544633621,
+      -0.04511877323414865
+    ],
+    "training_vr": [
+      4.0,
+      8.0
+    ],
+    "training_hash": "BF8D50C3F4EB1C4996FA142C41F6F162498F7FEEFEC0B443B5AC57DC7EAED9F5",
+    "design_rank": 2,
+    "design_condition": 3.3036756418756497
+  },
+  {
+    "scope": "inner",
+    "unit": "F3889DCC07644EE6F346",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      4.0,
+      6.0
+    ],
+    "training_hash": "F3CFEF78A0EB638FB8A9C74DD09B66E7F08A742BA6B3BA8B93D1B71DA0A98615",
+    "design_rank": 2,
+    "design_condition": 3.4413308881763025
+  },
+  {
+    "scope": "inner",
+    "unit": "F3889DCC07644EE6F346",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.0847742378711727,
+      -0.02013946555357209
+    ],
+    "training_vr": [
+      4.0,
+      6.0
+    ],
+    "training_hash": "F3CFEF78A0EB638FB8A9C74DD09B66E7F08A742BA6B3BA8B93D1B71DA0A98615",
+    "design_rank": 2,
+    "design_condition": 3.4413308881763025
+  },
+  {
+    "scope": "inner",
+    "unit": "EF7B67D79E5B30D1D562",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      6.0,
+      8.0
+    ],
+    "training_hash": "10765AA2249E65F7EDE5250537314C0C2B1DC67B83591514B7ED6E8F4D6F1359",
+    "design_rank": 2,
+    "design_condition": 3.210974398129895
+  },
+  {
+    "scope": "inner",
+    "unit": "EF7B67D79E5B30D1D562",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.0907076171354888,
+      -0.05772919843999138
+    ],
+    "training_vr": [
+      6.0,
+      8.0
+    ],
+    "training_hash": "10765AA2249E65F7EDE5250537314C0C2B1DC67B83591514B7ED6E8F4D6F1359",
+    "design_rank": 2,
+    "design_condition": 3.210974398129895
+  },
+  {
+    "scope": "inner",
+    "unit": "025837924314C64B7A22",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      8.0
+    ],
+    "training_hash": "F5DB8D6600ABED9252E2588827AF9F15B26725826438FBAF2F3F55E2CBE6E299",
+    "design_rank": 2,
+    "design_condition": 3.4344245138547853
+  },
+  {
+    "scope": "inner",
+    "unit": "025837924314C64B7A22",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.0662608280884276,
+      -0.08870503183424297
+    ],
+    "training_vr": [
+      0.0,
+      8.0
+    ],
+    "training_hash": "F5DB8D6600ABED9252E2588827AF9F15B26725826438FBAF2F3F55E2CBE6E299",
+    "design_rank": 2,
+    "design_condition": 3.4344245138547853
+  },
+  {
+    "scope": "inner",
+    "unit": "98E38605A1617F4BD18B",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      6.0
+    ],
+    "training_hash": "BBE9B54E1D5A8AA9DC16E20F911D60E828B2E21F813C2B202535B3F350667CAF",
+    "design_rank": 2,
+    "design_condition": 3.663300610985114
+  },
+  {
+    "scope": "inner",
+    "unit": "98E38605A1617F4BD18B",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.0368438240670539,
+      -0.04082883674121046
+    ],
+    "training_vr": [
+      0.0,
+      6.0
+    ],
+    "training_hash": "BBE9B54E1D5A8AA9DC16E20F911D60E828B2E21F813C2B202535B3F350667CAF",
+    "design_rank": 2,
+    "design_condition": 3.663300610985114
+  },
+  {
+    "scope": "inner",
+    "unit": "C8BEDA1002B86EFB4059",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      4.0,
+      8.0
+    ],
+    "training_hash": "BF8D50C3F4EB1C4996FA142C41F6F162498F7FEEFEC0B443B5AC57DC7EAED9F5",
+    "design_rank": 2,
+    "design_condition": 3.444618913143483
+  },
+  {
+    "scope": "inner",
+    "unit": "C8BEDA1002B86EFB4059",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      0.9971406289214504,
+      -0.02308011963757275
+    ],
+    "training_vr": [
+      4.0,
+      8.0
+    ],
+    "training_hash": "BF8D50C3F4EB1C4996FA142C41F6F162498F7FEEFEC0B443B5AC57DC7EAED9F5",
+    "design_rank": 2,
+    "design_condition": 3.444618913143483
+  },
+  {
+    "scope": "inner",
+    "unit": "85FBE2E98A796C26B7D0",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      8.0
+    ],
+    "training_hash": "F5DB8D6600ABED9252E2588827AF9F15B26725826438FBAF2F3F55E2CBE6E299",
+    "design_rank": 2,
+    "design_condition": 3.5493977645001107
+  },
+  {
+    "scope": "inner",
+    "unit": "85FBE2E98A796C26B7D0",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.0194211613408244,
+      -0.06933781415511367
+    ],
+    "training_vr": [
+      0.0,
+      8.0
+    ],
+    "training_hash": "F5DB8D6600ABED9252E2588827AF9F15B26725826438FBAF2F3F55E2CBE6E299",
+    "design_rank": 2,
+    "design_condition": 3.5493977645001107
+  },
+  {
+    "scope": "inner",
+    "unit": "BD4C169811FE518403D7",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0
+    ],
+    "training_hash": "5C772E4A52090B8CA100D53B3F6F36ECD685D61338FD48A82A35F7AA7E7E034A",
+    "design_rank": 2,
+    "design_condition": 3.8235439453927462
+  },
+  {
+    "scope": "inner",
+    "unit": "BD4C169811FE518403D7",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.0183822347271276,
+      0.013054938798700995
+    ],
+    "training_vr": [
+      0.0,
+      4.0
+    ],
+    "training_hash": "5C772E4A52090B8CA100D53B3F6F36ECD685D61338FD48A82A35F7AA7E7E034A",
+    "design_rank": 2,
+    "design_condition": 3.8235439453927462
+  },
+  {
+    "scope": "inner",
+    "unit": "5EB3B345A7C9B6CCB95B",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      4.0,
+      6.0
+    ],
+    "training_hash": "F3CFEF78A0EB638FB8A9C74DD09B66E7F08A742BA6B3BA8B93D1B71DA0A98615",
+    "design_rank": 2,
+    "design_condition": 3.4924232155573525
+  },
+  {
+    "scope": "inner",
+    "unit": "5EB3B345A7C9B6CCB95B",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.0441809222250937,
+      -0.0008370423533212464
+    ],
+    "training_vr": [
+      4.0,
+      6.0
+    ],
+    "training_hash": "F3CFEF78A0EB638FB8A9C74DD09B66E7F08A742BA6B3BA8B93D1B71DA0A98615",
+    "design_rank": 2,
+    "design_condition": 3.4924232155573525
+  },
+  {
+    "scope": "inner",
+    "unit": "80669D35AD59F777C24C",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      6.0
+    ],
+    "training_hash": "BBE9B54E1D5A8AA9DC16E20F911D60E828B2E21F813C2B202535B3F350667CAF",
+    "design_rank": 2,
+    "design_condition": 3.709828440660337
+  },
+  {
+    "scope": "inner",
+    "unit": "80669D35AD59F777C24C",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      0.9972491039441324,
+      -0.018904430585002425
+    ],
+    "training_vr": [
+      0.0,
+      6.0
+    ],
+    "training_hash": "BBE9B54E1D5A8AA9DC16E20F911D60E828B2E21F813C2B202535B3F350667CAF",
+    "design_rank": 2,
+    "design_condition": 3.709828440660337
+  },
+  {
+    "scope": "inner",
+    "unit": "BD4C169811FE518403D7",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0
+    ],
+    "training_hash": "5C772E4A52090B8CA100D53B3F6F36ECD685D61338FD48A82A35F7AA7E7E034A",
+    "design_rank": 2,
+    "design_condition": 3.8235439453927462
+  },
+  {
+    "scope": "inner",
+    "unit": "BD4C169811FE518403D7",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.0183822347271276,
+      0.013054938798700995
+    ],
+    "training_vr": [
+      0.0,
+      4.0
+    ],
+    "training_hash": "5C772E4A52090B8CA100D53B3F6F36ECD685D61338FD48A82A35F7AA7E7E034A",
+    "design_rank": 2,
+    "design_condition": 3.8235439453927462
+  },
+  {
+    "scope": "inner",
+    "unit": "B4D4AB1B7A3B7E93CBA1",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.3113640520074084
+  },
+  {
+    "scope": "inner",
+    "unit": "B4D4AB1B7A3B7E93CBA1",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.0837603492372179,
+      -0.043424922851703476
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.3113640520074084
+  },
+  {
+    "scope": "inner",
+    "unit": "F15B82130B6DF40F5A63",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.4171992577350387
+  },
+  {
+    "scope": "inner",
+    "unit": "F15B82130B6DF40F5A63",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.0617713404983398,
+      -0.0786766190606127
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.4171992577350387
+  },
+  {
+    "scope": "inner",
+    "unit": "E16044234B29E1CC0BDD",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.526838824862332
+  },
+  {
+    "scope": "inner",
+    "unit": "E16044234B29E1CC0BDD",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.0404742313158262,
+      -0.05534548034479943
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.526838824862332
+  },
+  {
+    "scope": "inner",
+    "unit": "FA3E732B02638D1EAD0F",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.6666030058507055
+  },
+  {
+    "scope": "inner",
+    "unit": "FA3E732B02638D1EAD0F",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.03177855025278,
+      -0.027430389077330142
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.6666030058507055
+  },
+  {
+    "scope": "outer",
+    "unit": "9DB579D9B0BFEE221F70",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.2560078401928454
+  },
+  {
+    "scope": "outer",
+    "unit": "9DB579D9B0BFEE221F70",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.0347802257860415,
+      -0.011634205428906967
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.2560078401928454
+  },
+  {
+    "scope": "outer",
+    "unit": "9DB579D9B0BFEE221F70",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0862214280425662,
+      0.09541864189776245,
+      -0.11275642817673776,
+      -0.1806842535356694
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 4,
+    "design_condition": 10.551989034256586
+  },
+  {
+    "scope": "outer",
+    "unit": "8974C4268269D61E17FC",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.2559993599954993
+  },
+  {
+    "scope": "outer",
+    "unit": "8974C4268269D61E17FC",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.034779985945702,
+      -0.011631353079019323
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.2559993599954993
+  },
+  {
+    "scope": "outer",
+    "unit": "8974C4268269D61E17FC",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0862218894132014,
+      0.0954213523426157,
+      -0.11275758724614186,
+      -0.18068415982369118
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 4,
+    "design_condition": 10.551962954090428
+  },
+  {
+    "scope": "outer",
+    "unit": "8B6B062C529891D18B85",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.256009111751742
+  },
+  {
+    "scope": "outer",
+    "unit": "8B6B062C529891D18B85",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.0347824891143957,
+      -0.011635055975529112
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.256009111751742
+  },
+  {
+    "scope": "outer",
+    "unit": "8B6B062C529891D18B85",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0862235528828779,
+      0.09541778435299617,
+      -0.11275628882779082,
+      -0.18068415988710207
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 4,
+    "design_condition": 10.551992329513428
+  },
+  {
+    "scope": "outer",
+    "unit": "F4220C6F219D1363D42A",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.253264766764561
+  },
+  {
+    "scope": "outer",
+    "unit": "F4220C6F219D1363D42A",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.0353449363652014,
+      -0.01085374557149132
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.253264766764561
+  },
+  {
+    "scope": "outer",
+    "unit": "F4220C6F219D1363D42A",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0859389562182542,
+      0.09655683341282542,
+      -0.11140585169112938,
+      -0.1811742496378361
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 4,
+    "design_condition": 10.540617156544315
+  },
+  {
+    "scope": "outer",
+    "unit": "2E7032BC26A4DC9B9CF6",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.253253570628418
+  },
+  {
+    "scope": "outer",
+    "unit": "2E7032BC26A4DC9B9CF6",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.0353452971431203,
+      -0.010850125542291303
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.253253570628418
+  },
+  {
+    "scope": "outer",
+    "unit": "2E7032BC26A4DC9B9CF6",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0859390447224544,
+      0.09656086507916112,
+      -0.11140538932376587,
+      -0.18117503299411622
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 4,
+    "design_condition": 10.540580055784686
+  },
+  {
+    "scope": "outer",
+    "unit": "F9AD7D504D3C5693A405",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.2532739520518246
+  },
+  {
+    "scope": "outer",
+    "unit": "F9AD7D504D3C5693A405",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.0353450732364002,
+      -0.01085679841652943
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.2532739520518246
+  },
+  {
+    "scope": "outer",
+    "unit": "F9AD7D504D3C5693A405",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0859396967993007,
+      0.09655337066431824,
+      -0.1114068260090333,
+      -0.18117357203078086
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 4,
+    "design_condition": 10.540648976325013
+  },
+  {
+    "scope": "outer",
+    "unit": "B4D4AB1B7A3B7E93CBA1",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.3113640520074084
+  },
+  {
+    "scope": "outer",
+    "unit": "B4D4AB1B7A3B7E93CBA1",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.0837603492372179,
+      -0.043424922851703476
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.3113640520074084
+  },
+  {
+    "scope": "outer",
+    "unit": "B4D4AB1B7A3B7E93CBA1",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0892853745999218,
+      0.07134912355344393,
+      -0.03523036797346546,
+      -0.18796285675684532
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 4,
+    "design_condition": 10.618341970125114
+  },
+  {
+    "scope": "outer",
+    "unit": "D1FE2352536E2C55A3EA",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.308555250418951
+  },
+  {
+    "scope": "outer",
+    "unit": "D1FE2352536E2C55A3EA",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.083890750357289,
+      -0.04258910400971553
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.308555250418951
+  },
+  {
+    "scope": "outer",
+    "unit": "D1FE2352536E2C55A3EA",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0893652824257198,
+      0.07214848937238952,
+      -0.035139751643943215,
+      -0.1879145346249363
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 4,
+    "design_condition": 10.609320930050359
+  },
+  {
+    "scope": "outer",
+    "unit": "D564E1CFCF7B9BDC41F0",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.3099567384885504
+  },
+  {
+    "scope": "outer",
+    "unit": "D564E1CFCF7B9BDC41F0",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.0839452781745766,
+      -0.04304637551603749
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 2,
+    "design_condition": 3.3099567384885504
+  },
+  {
+    "scope": "outer",
+    "unit": "D564E1CFCF7B9BDC41F0",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.089222850786348,
+      0.07174111759583177,
+      -0.034771488217155616,
+      -0.18799161895926783
+    ],
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "5C013DCFBA3D45900038B6C9F2B8CD2FEF03893CB2EE9A4AE39CC01AC7AD756B",
+    "design_rank": 4,
+    "design_condition": 10.613384400815466
+  },
+  {
+    "scope": "outer",
+    "unit": "FB9BBE3A1EE301E411C2",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.420438912030925
+  },
+  {
+    "scope": "outer",
+    "unit": "FB9BBE3A1EE301E411C2",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.0039636897861293,
+      -0.051821616492003134
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.420438912030925
+  },
+  {
+    "scope": "outer",
+    "unit": "FB9BBE3A1EE301E411C2",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0015383468152737,
+      0.012964625029320442,
+      -0.09269655899023371,
+      -0.11490010795962512
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 4,
+    "design_condition": 4.960022772974292
+  },
+  {
+    "scope": "outer",
+    "unit": "8EF230E742E60F8E8BBE",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.420435846014146
+  },
+  {
+    "scope": "outer",
+    "unit": "8EF230E742E60F8E8BBE",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.0039625668065755,
+      -0.051819952919894434
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.420435846014146
+  },
+  {
+    "scope": "outer",
+    "unit": "8EF230E742E60F8E8BBE",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.001537969907098,
+      0.012965875379269978,
+      -0.09269801620755283,
+      -0.11489984938811364
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 4,
+    "design_condition": 4.960023073312088
+  },
+  {
+    "scope": "outer",
+    "unit": "168F7BAC3F8449C65132",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.4204399311726155
+  },
+  {
+    "scope": "outer",
+    "unit": "168F7BAC3F8449C65132",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.003966717125087,
+      -0.051823547039883164
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.4204399311726155
+  },
+  {
+    "scope": "outer",
+    "unit": "168F7BAC3F8449C65132",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0015401378900572,
+      0.012963249515742091,
+      -0.09269439687674659,
+      -0.11490014263989637
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 4,
+    "design_condition": 4.960017492943883
+  },
+  {
+    "scope": "outer",
+    "unit": "9911A0AC2C63D638CDBD",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.417570229501318
+  },
+  {
+    "scope": "outer",
+    "unit": "9911A0AC2C63D638CDBD",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.0053546811943492,
+      -0.05172187004128883
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.417570229501318
+  },
+  {
+    "scope": "outer",
+    "unit": "9911A0AC2C63D638CDBD",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0019766018484633,
+      0.0135895804201763,
+      -0.09091582421401978,
+      -0.11536085144449752
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 4,
+    "design_condition": 4.949069249058508
+  },
+  {
+    "scope": "outer",
+    "unit": "6F30F9AF6351012648C0",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.4175650239920667
+  },
+  {
+    "scope": "outer",
+    "unit": "6F30F9AF6351012648C0",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.005354704176262,
+      -0.05172013695859713
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.4175650239920667
+  },
+  {
+    "scope": "outer",
+    "unit": "6F30F9AF6351012648C0",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0019765750130696,
+      0.013591411717485798,
+      -0.09091572720011826,
+      -0.11536123686096604
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 4,
+    "design_condition": 4.949060189730451
+  },
+  {
+    "scope": "outer",
+    "unit": "2EC5B2BB9492A3C59019",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.417575262102176
+  },
+  {
+    "scope": "outer",
+    "unit": "2EC5B2BB9492A3C59019",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.0053550920893546,
+      -0.05172368112328544
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.417575262102176
+  },
+  {
+    "scope": "outer",
+    "unit": "2EC5B2BB9492A3C59019",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0019772731475711,
+      0.013587496845518524,
+      -0.09091638073207156,
+      -0.11536021086495021
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 4,
+    "design_condition": 4.949080633218864
+  },
+  {
+    "scope": "outer",
+    "unit": "F15B82130B6DF40F5A63",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.4171992577350387
+  },
+  {
+    "scope": "outer",
+    "unit": "F15B82130B6DF40F5A63",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.0617713404983398,
+      -0.0786766190606127
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.4171992577350387
+  },
+  {
+    "scope": "outer",
+    "unit": "F15B82130B6DF40F5A63",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.038283069206238,
+      -0.0051782178489833755,
+      -0.04282304177982585,
+      -0.12295069567901985
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 4,
+    "design_condition": 4.784779926623047
+  },
+  {
+    "scope": "outer",
+    "unit": "A7C9F6EB15B12E8CE9D1",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.41823163495259
+  },
+  {
+    "scope": "outer",
+    "unit": "A7C9F6EB15B12E8CE9D1",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.0601099724771093,
+      -0.07824677315158957
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.41823163495259
+  },
+  {
+    "scope": "outer",
+    "unit": "A7C9F6EB15B12E8CE9D1",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.036968129583234,
+      -0.004763908681565662,
+      -0.04403034279000538,
+      -0.12287423359025838
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 4,
+    "design_condition": 4.7891467160409045
+  },
+  {
+    "scope": "outer",
+    "unit": "CAE396E5F5C0ECFE7A1F",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.4184413789900603
+  },
+  {
+    "scope": "outer",
+    "unit": "CAE396E5F5C0ECFE7A1F",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.0603549747542984,
+      -0.07841549299042518
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 2,
+    "design_condition": 3.4184413789900603
+  },
+  {
+    "scope": "outer",
+    "unit": "CAE396E5F5C0ECFE7A1F",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0371730567659743,
+      -0.004935970586563039,
+      -0.04390671684664833,
+      -0.12284814535959182
+    ],
+    "training_vr": [
+      0.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "508A8887EFF4BCA8134E8E9B6E1393DB2341C79F08AE9152D4199AE6C9F46D69",
+    "design_rank": 4,
+    "design_condition": 4.789139103471694
+  },
+  {
+    "scope": "outer",
+    "unit": "89EBC9E648E4C21E35CF",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.4957937568219135
+  },
+  {
+    "scope": "outer",
+    "unit": "89EBC9E648E4C21E35CF",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.0156616700550252,
+      -0.03279275071295061
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.4957937568219135
+  },
+  {
+    "scope": "outer",
+    "unit": "89EBC9E648E4C21E35CF",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      0.9985124514542145,
+      0.014478990334140796,
+      -0.10422574940183774,
+      -0.11262201690167034
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 4,
+    "design_condition": 4.45471467836442
+  },
+  {
+    "scope": "outer",
+    "unit": "837AABA4DC8356C0A415",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.495794520533634
+  },
+  {
+    "scope": "outer",
+    "unit": "837AABA4DC8356C0A415",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.0156597083546979,
+      -0.03279128497667646
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.495794520533634
+  },
+  {
+    "scope": "outer",
+    "unit": "837AABA4DC8356C0A415",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      0.9985118338600195,
+      0.014479589944527584,
+      -0.10422915308438126,
+      -0.1126218155862427
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 4,
+    "design_condition": 4.454719509079496
+  },
+  {
+    "scope": "outer",
+    "unit": "9D20841ED0F81E3DAF7C",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.4957923929676338
+  },
+  {
+    "scope": "outer",
+    "unit": "9D20841ED0F81E3DAF7C",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.0156655808972301,
+      -0.03279515997685898
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.4957923929676338
+  },
+  {
+    "scope": "outer",
+    "unit": "9D20841ED0F81E3DAF7C",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      0.9985144225908501,
+      0.014477772214064084,
+      -0.1042211654224498,
+      -0.11262189165160144
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 4,
+    "design_condition": 4.45470788376622
+  },
+  {
+    "scope": "outer",
+    "unit": "B8E0F23A5A3E86B4C0B2",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.4944864661585417
+  },
+  {
+    "scope": "outer",
+    "unit": "B8E0F23A5A3E86B4C0B2",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.0163407964620332,
+      -0.03285753873060665
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.4944864661585417
+  },
+  {
+    "scope": "outer",
+    "unit": "B8E0F23A5A3E86B4C0B2",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      0.9987150649987486,
+      0.014754018942786657,
+      -0.1030745794751318,
+      -0.11287056540672477
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 4,
+    "design_condition": 4.450970862574741
+  },
+  {
+    "scope": "outer",
+    "unit": "EEAB129A781CC97FE09A",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.4944862520779614
+  },
+  {
+    "scope": "outer",
+    "unit": "EEAB129A781CC97FE09A",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.016339512537761,
+      -0.0328560470459019
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.4944862520779614
+  },
+  {
+    "scope": "outer",
+    "unit": "EEAB129A781CC97FE09A",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      0.9987148602492779,
+      0.014754865841011697,
+      -0.10307740324359783,
+      -0.11287068309042567
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 4,
+    "design_condition": 4.450972919052788
+  },
+  {
+    "scope": "outer",
+    "unit": "FD04A5463C1DFE3E3220",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.4944882641575647
+  },
+  {
+    "scope": "outer",
+    "unit": "FD04A5463C1DFE3E3220",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.016342658854024,
+      -0.03285972276396337
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.4944882641575647
+  },
+  {
+    "scope": "outer",
+    "unit": "FD04A5463C1DFE3E3220",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      0.9987158781241887,
+      0.01475242552981317,
+      -0.10307185273084454,
+      -0.11287024260556704
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 4,
+    "design_condition": 4.450971641999778
+  },
+  {
+    "scope": "outer",
+    "unit": "830847752160C90A4224",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.5873604906479493
+  },
+  {
+    "scope": "outer",
+    "unit": "830847752160C90A4224",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.0081748020408585,
+      -0.03257049780243344
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.5873604906479493
+  },
+  {
+    "scope": "outer",
+    "unit": "830847752160C90A4224",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0028977969064081,
+      0.006710190288720528,
+      -0.15476920945062644,
+      -0.08662260045015192
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 4,
+    "design_condition": 4.579792009053017
+  },
+  {
+    "scope": "outer",
+    "unit": "0DAB827A636D9B243847",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.5871266136619586
+  },
+  {
+    "scope": "outer",
+    "unit": "0DAB827A636D9B243847",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.0076543372936289,
+      -0.03205927572076974
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.5871266136619586
+  },
+  {
+    "scope": "outer",
+    "unit": "0DAB827A636D9B243847",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0027262879719985,
+      0.007027171855011935,
+      -0.15513579892239757,
+      -0.08702580597005313
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 4,
+    "design_condition": 4.580039739160712
+  },
+  {
+    "scope": "outer",
+    "unit": "065CFE0C54C7B5255621",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.587264662197477
+  },
+  {
+    "scope": "outer",
+    "unit": "065CFE0C54C7B5255621",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.0078713783506867,
+      -0.03227894693545596
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 2,
+    "design_condition": 3.587264662197477
+  },
+  {
+    "scope": "outer",
+    "unit": "065CFE0C54C7B5255621",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0028135093503674,
+      0.006884632815304832,
+      -0.15495906281482685,
+      -0.08693349745526771
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      8.0
+    ],
+    "training_hash": "FD896281A2779DF0A87C7A9FD6FFE2D46481AFF6050368F9A61616D383492986",
+    "design_rank": 4,
+    "design_condition": 4.579994030269571
+  },
+  {
+    "scope": "outer",
+    "unit": "8C953972D15BD7444D10",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.6337104954645243
+  },
+  {
+    "scope": "outer",
+    "unit": "8C953972D15BD7444D10",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.0105479541653997,
+      -0.008212572742397568
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.6337104954645243
+  },
+  {
+    "scope": "outer",
+    "unit": "8C953972D15BD7444D10",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      0.9885942407377221,
+      -0.007954842572770966,
+      -0.11140414908371156,
+      -0.10098261074272287
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 4,
+    "design_condition": 6.0933295911124
+  },
+  {
+    "scope": "outer",
+    "unit": "0279533447D3BC00903D",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.633706444266258
+  },
+  {
+    "scope": "outer",
+    "unit": "0279533447D3BC00903D",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.010547375297885,
+      -0.008210945553382979
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.633706444266258
+  },
+  {
+    "scope": "outer",
+    "unit": "0279533447D3BC00903D",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      0.9885937323124899,
+      -0.00795340391317443,
+      -0.11140521299690612,
+      -0.10098254024229911
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 4,
+    "design_condition": 6.0933224209132995
+  },
+  {
+    "scope": "outer",
+    "unit": "30C1CB6B30DF923310FA",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.633711683426136
+  },
+  {
+    "scope": "outer",
+    "unit": "30C1CB6B30DF923310FA",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.010550044723433,
+      -0.008213931464471332
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.633711683426136
+  },
+  {
+    "scope": "outer",
+    "unit": "30C1CB6B30DF923310FA",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      0.9885962127746921,
+      -0.007956002870546111,
+      -0.11140344508564562,
+      -0.10098246256740595
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 4,
+    "design_condition": 6.0933320333983145
+  },
+  {
+    "scope": "outer",
+    "unit": "6834659E054BF375C240",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.6326473577221177
+  },
+  {
+    "scope": "outer",
+    "unit": "6834659E054BF375C240",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.0107231353383137,
+      -0.007957769651279365
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.6326473577221177
+  },
+  {
+    "scope": "outer",
+    "unit": "6834659E054BF375C240",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      0.9887258040819453,
+      -0.007627970491410927,
+      -0.11101780069658058,
+      -0.10109651058891937
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 4,
+    "design_condition": 6.091511869043136
+  },
+  {
+    "scope": "outer",
+    "unit": "4432F12BF5E582A146DC",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.6326425230873687
+  },
+  {
+    "scope": "outer",
+    "unit": "4432F12BF5E582A146DC",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.0107224802706003,
+      -0.007955796059652177
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.6326425230873687
+  },
+  {
+    "scope": "outer",
+    "unit": "4432F12BF5E582A146DC",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      0.9887252276672752,
+      -0.007626204745273764,
+      -0.11101878426561756,
+      -0.10109664624008177
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 4,
+    "design_condition": 6.091503187365331
+  },
+  {
+    "scope": "outer",
+    "unit": "54C17458B3BD71811BD9",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.632651045547607
+  },
+  {
+    "scope": "outer",
+    "unit": "54C17458B3BD71811BD9",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.0107241994922291,
+      -0.007959531663059379
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.632651045547607
+  },
+  {
+    "scope": "outer",
+    "unit": "54C17458B3BD71811BD9",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      0.9887268210225009,
+      -0.007629589473369808,
+      -0.11101691827084585,
+      -0.10109652928345061
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 4,
+    "design_condition": 6.091518612150203
+  },
+  {
+    "scope": "outer",
+    "unit": "F895C98D27FE475DA333",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.7188421462960974
+  },
+  {
+    "scope": "outer",
+    "unit": "F895C98D27FE475DA333",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      0.9887174783986222,
+      -0.00833423923472775
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.7188421462960974
+  },
+  {
+    "scope": "outer",
+    "unit": "F895C98D27FE475DA333",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      0.9666398470963694,
+      -0.009397318065110686,
+      -0.15413992288666875,
+      -0.07385684310688659
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 4,
+    "design_condition": 6.222497013699699
+  },
+  {
+    "scope": "outer",
+    "unit": "E7AC08441C8D74FF5386",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.718743805015193
+  },
+  {
+    "scope": "outer",
+    "unit": "E7AC08441C8D74FF5386",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      0.9885675468713039,
+      -0.00819007108652788
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.718743805015193
+  },
+  {
+    "scope": "outer",
+    "unit": "E7AC08441C8D74FF5386",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      0.9665178164508927,
+      -0.009294064664835736,
+      -0.1542173649847993,
+      -0.0739221410817883
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 4,
+    "design_condition": 6.22226453737877
+  },
+  {
+    "scope": "outer",
+    "unit": "47015D3B151DB86CEDD6",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.7188964416100863
+  },
+  {
+    "scope": "outer",
+    "unit": "47015D3B151DB86CEDD6",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      0.9886041854789027,
+      -0.008254230293536724
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 2,
+    "design_condition": 3.7188964416100863
+  },
+  {
+    "scope": "outer",
+    "unit": "47015D3B151DB86CEDD6",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      0.9665490939155825,
+      -0.009350189762032807,
+      -0.15421986098385593,
+      -0.07389101879213839
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0
+    ],
+    "training_hash": "2F8AFBD645004A5893D24F9F419D088A65C564C77AFF17F9B8D3327B2B42BA7C",
+    "design_rank": 4,
+    "design_condition": 6.222534694233062
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9FED0AAE11CF6DCE9D70",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692516586387376
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9FED0AAE11CF6DCE9D70",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.0049028200856343,
+      -0.03377522806369311
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692516586387376
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9FED0AAE11CF6DCE9D70",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.004627600616155,
+      0.017199455686321856,
+      -0.0999375435294615,
+      -0.11918632268955294
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.231516595266841
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9FED0AAE11CF6DCE9D70",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692516586387376
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9FED0AAE11CF6DCE9D70",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.0049028200856343,
+      -0.03377522806369311
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692516586387376
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9FED0AAE11CF6DCE9D70",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.004627600616155,
+      0.017199455686321856,
+      -0.0999375435294615,
+      -0.11918632268955294
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.231516595266841
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9FED0AAE11CF6DCE9D70",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692516586387376
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9FED0AAE11CF6DCE9D70",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.0049028200856343,
+      -0.03377522806369311
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692516586387376
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9FED0AAE11CF6DCE9D70",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.004627600616155,
+      0.017199455686321856,
+      -0.0999375435294615,
+      -0.11918632268955294
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.231516595266841
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9FED0AAE11CF6DCE9D70",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692516586387376
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9FED0AAE11CF6DCE9D70",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.0049028200856343,
+      -0.03377522806369311
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692516586387376
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9FED0AAE11CF6DCE9D70",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.004627600616155,
+      0.017199455686321856,
+      -0.0999375435294615,
+      -0.11918632268955294
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.231516595266841
+  },
+  {
+    "scope": "stress",
+    "unit": "9FED0AAE11CF6DCE9D70",
+    "heldout_vr": 10.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692516586387376
+  },
+  {
+    "scope": "stress",
+    "unit": "9FED0AAE11CF6DCE9D70",
+    "heldout_vr": 10.0,
+    "mode": "global",
+    "coefficients": [
+      1.0049028200856343,
+      -0.03377522806369311
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692516586387376
+  },
+  {
+    "scope": "stress",
+    "unit": "9FED0AAE11CF6DCE9D70",
+    "heldout_vr": 10.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.004627600616155,
+      0.017199455686321856,
+      -0.0999375435294615,
+      -0.11918632268955294
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.231516595266841
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "0245A977F336D9AA5F6E",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692496746175587
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "0245A977F336D9AA5F6E",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.0049018587792358,
+      -0.033774006506658495
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692496746175587
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "0245A977F336D9AA5F6E",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0046272413854234,
+      0.017200328948648827,
+      -0.09993899434436991,
+      -0.11918602328935542
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.231516661167215
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "0245A977F336D9AA5F6E",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692496746175587
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "0245A977F336D9AA5F6E",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.0049018587792358,
+      -0.033774006506658495
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692496746175587
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "0245A977F336D9AA5F6E",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0046272413854234,
+      0.017200328948648827,
+      -0.09993899434436991,
+      -0.11918602328935542
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.231516661167215
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "0245A977F336D9AA5F6E",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692496746175587
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "0245A977F336D9AA5F6E",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.0049018587792358,
+      -0.033774006506658495
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692496746175587
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "0245A977F336D9AA5F6E",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0046272413854234,
+      0.017200328948648827,
+      -0.09993899434436991,
+      -0.11918602328935542
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.231516661167215
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "0245A977F336D9AA5F6E",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692496746175587
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "0245A977F336D9AA5F6E",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.0049018587792358,
+      -0.033774006506658495
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692496746175587
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "0245A977F336D9AA5F6E",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0046272413854234,
+      0.017200328948648827,
+      -0.09993899434436991,
+      -0.11918602328935542
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.231516661167215
+  },
+  {
+    "scope": "stress",
+    "unit": "0245A977F336D9AA5F6E",
+    "heldout_vr": 10.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692496746175587
+  },
+  {
+    "scope": "stress",
+    "unit": "0245A977F336D9AA5F6E",
+    "heldout_vr": 10.0,
+    "mode": "global",
+    "coefficients": [
+      1.0049018587792358,
+      -0.033774006506658495
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692496746175587
+  },
+  {
+    "scope": "stress",
+    "unit": "0245A977F336D9AA5F6E",
+    "heldout_vr": 10.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0046272413854234,
+      0.017200328948648827,
+      -0.09993899434436991,
+      -0.11918602328935542
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.231516661167215
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2897095DE627F4F5A483",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692522543407525
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2897095DE627F4F5A483",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.004905363901034,
+      -0.03377670849009317
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692522543407525
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2897095DE627F4F5A483",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0046292966191288,
+      0.017198380044998206,
+      -0.09993578640033174,
+      -0.11918631477299789
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.2315136082217775
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2897095DE627F4F5A483",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692522543407525
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2897095DE627F4F5A483",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.004905363901034,
+      -0.03377670849009317
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692522543407525
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2897095DE627F4F5A483",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0046292966191288,
+      0.017198380044998206,
+      -0.09993578640033174,
+      -0.11918631477299789
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.2315136082217775
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2897095DE627F4F5A483",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692522543407525
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2897095DE627F4F5A483",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.004905363901034,
+      -0.03377670849009317
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692522543407525
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2897095DE627F4F5A483",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0046292966191288,
+      0.017198380044998206,
+      -0.09993578640033174,
+      -0.11918631477299789
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.2315136082217775
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2897095DE627F4F5A483",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692522543407525
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2897095DE627F4F5A483",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.004905363901034,
+      -0.03377670849009317
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692522543407525
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2897095DE627F4F5A483",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0046292966191288,
+      0.017198380044998206,
+      -0.09993578640033174,
+      -0.11918631477299789
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.2315136082217775
+  },
+  {
+    "scope": "stress",
+    "unit": "2897095DE627F4F5A483",
+    "heldout_vr": 10.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692522543407525
+  },
+  {
+    "scope": "stress",
+    "unit": "2897095DE627F4F5A483",
+    "heldout_vr": 10.0,
+    "mode": "global",
+    "coefficients": [
+      1.004905363901034,
+      -0.03377670849009317
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4692522543407525
+  },
+  {
+    "scope": "stress",
+    "unit": "2897095DE627F4F5A483",
+    "heldout_vr": 10.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0046292966191288,
+      0.017198380044998206,
+      -0.09993578640033174,
+      -0.11918631477299789
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.2315136082217775
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "613658C0AD80ED158D13",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4673597845011024
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "613658C0AD80ED158D13",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.005642027675356,
+      -0.033622442885906594
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4673597845011024
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "613658C0AD80ED158D13",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0047933626334438,
+      0.017691809213113002,
+      -0.09863579379963978,
+      -0.11953470520152254
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.224985363501641
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "613658C0AD80ED158D13",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4673597845011024
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "613658C0AD80ED158D13",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.005642027675356,
+      -0.033622442885906594
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4673597845011024
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "613658C0AD80ED158D13",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0047933626334438,
+      0.017691809213113002,
+      -0.09863579379963978,
+      -0.11953470520152254
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.224985363501641
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "613658C0AD80ED158D13",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4673597845011024
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "613658C0AD80ED158D13",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.005642027675356,
+      -0.033622442885906594
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4673597845011024
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "613658C0AD80ED158D13",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0047933626334438,
+      0.017691809213113002,
+      -0.09863579379963978,
+      -0.11953470520152254
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.224985363501641
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "613658C0AD80ED158D13",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4673597845011024
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "613658C0AD80ED158D13",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.005642027675356,
+      -0.033622442885906594
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4673597845011024
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "613658C0AD80ED158D13",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0047933626334438,
+      0.017691809213113002,
+      -0.09863579379963978,
+      -0.11953470520152254
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.224985363501641
+  },
+  {
+    "scope": "stress",
+    "unit": "613658C0AD80ED158D13",
+    "heldout_vr": 10.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4673597845011024
+  },
+  {
+    "scope": "stress",
+    "unit": "613658C0AD80ED158D13",
+    "heldout_vr": 10.0,
+    "mode": "global",
+    "coefficients": [
+      1.005642027675356,
+      -0.033622442885906594
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4673597845011024
+  },
+  {
+    "scope": "stress",
+    "unit": "613658C0AD80ED158D13",
+    "heldout_vr": 10.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0047933626334438,
+      0.017691809213113002,
+      -0.09863579379963978,
+      -0.11953470520152254
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.224985363501641
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "30C5F95177D31C08CBDE",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467356316946052
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "30C5F95177D31C08CBDE",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.005641608836633,
+      -0.03362103522830791
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467356316946052
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "30C5F95177D31C08CBDE",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.004793125239767,
+      0.017693154118798456,
+      -0.09863625975366508,
+      -0.11953482713380717
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.224980132014652
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "30C5F95177D31C08CBDE",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467356316946052
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "30C5F95177D31C08CBDE",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.005641608836633,
+      -0.03362103522830791
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467356316946052
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "30C5F95177D31C08CBDE",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.004793125239767,
+      0.017693154118798456,
+      -0.09863625975366508,
+      -0.11953482713380717
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.224980132014652
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "30C5F95177D31C08CBDE",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467356316946052
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "30C5F95177D31C08CBDE",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.005641608836633,
+      -0.03362103522830791
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467356316946052
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "30C5F95177D31C08CBDE",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.004793125239767,
+      0.017693154118798456,
+      -0.09863625975366508,
+      -0.11953482713380717
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.224980132014652
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "30C5F95177D31C08CBDE",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467356316946052
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "30C5F95177D31C08CBDE",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.005641608836633,
+      -0.03362103522830791
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467356316946052
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "30C5F95177D31C08CBDE",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.004793125239767,
+      0.017693154118798456,
+      -0.09863625975366508,
+      -0.11953482713380717
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.224980132014652
+  },
+  {
+    "scope": "stress",
+    "unit": "30C5F95177D31C08CBDE",
+    "heldout_vr": 10.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467356316946052
+  },
+  {
+    "scope": "stress",
+    "unit": "30C5F95177D31C08CBDE",
+    "heldout_vr": 10.0,
+    "mode": "global",
+    "coefficients": [
+      1.005641608836633,
+      -0.03362103522830791
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467356316946052
+  },
+  {
+    "scope": "stress",
+    "unit": "30C5F95177D31C08CBDE",
+    "heldout_vr": 10.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.004793125239767,
+      0.017693154118798456,
+      -0.09863625975366508,
+      -0.11953482713380717
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.224980132014652
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "190A42F4BBE1B61EB835",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467362915731083
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "190A42F4BBE1B61EB835",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.0056429885624527,
+      -0.03362395232377741
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467362915731083
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "190A42F4BBE1B61EB835",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0047942298039103,
+      0.017690252981417208,
+      -0.0986356870097263,
+      -0.11953423482207112
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.224991074785961
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "190A42F4BBE1B61EB835",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467362915731083
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "190A42F4BBE1B61EB835",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.0056429885624527,
+      -0.03362395232377741
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467362915731083
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "190A42F4BBE1B61EB835",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0047942298039103,
+      0.017690252981417208,
+      -0.0986356870097263,
+      -0.11953423482207112
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.224991074785961
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "190A42F4BBE1B61EB835",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467362915731083
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "190A42F4BBE1B61EB835",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.0056429885624527,
+      -0.03362395232377741
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467362915731083
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "190A42F4BBE1B61EB835",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0047942298039103,
+      0.017690252981417208,
+      -0.0986356870097263,
+      -0.11953423482207112
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.224991074785961
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "190A42F4BBE1B61EB835",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467362915731083
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "190A42F4BBE1B61EB835",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.0056429885624527,
+      -0.03362395232377741
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467362915731083
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "190A42F4BBE1B61EB835",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0047942298039103,
+      0.017690252981417208,
+      -0.0986356870097263,
+      -0.11953423482207112
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.224991074785961
+  },
+  {
+    "scope": "stress",
+    "unit": "190A42F4BBE1B61EB835",
+    "heldout_vr": 10.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467362915731083
+  },
+  {
+    "scope": "stress",
+    "unit": "190A42F4BBE1B61EB835",
+    "heldout_vr": 10.0,
+    "mode": "global",
+    "coefficients": [
+      1.0056429885624527,
+      -0.03362395232377741
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.467362915731083
+  },
+  {
+    "scope": "stress",
+    "unit": "190A42F4BBE1B61EB835",
+    "heldout_vr": 10.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0047942298039103,
+      0.017690252981417208,
+      -0.0986356870097263,
+      -0.11953423482207112
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.224991074785961
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9A90737C46C1658B4DE8",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.492225676078611
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9A90737C46C1658B4DE8",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.0441092293941507,
+      -0.059495618585688345
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.492225676078611
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9A90737C46C1658B4DE8",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0299048905822905,
+      -0.0014944330528168792,
+      -0.06434621258121957,
+      -0.12438125422179412
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.169396649789203
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9A90737C46C1658B4DE8",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.492225676078611
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9A90737C46C1658B4DE8",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.0441092293941507,
+      -0.059495618585688345
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.492225676078611
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9A90737C46C1658B4DE8",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0299048905822905,
+      -0.0014944330528168792,
+      -0.06434621258121957,
+      -0.12438125422179412
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.169396649789203
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9A90737C46C1658B4DE8",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.492225676078611
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9A90737C46C1658B4DE8",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.0441092293941507,
+      -0.059495618585688345
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.492225676078611
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9A90737C46C1658B4DE8",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0299048905822905,
+      -0.0014944330528168792,
+      -0.06434621258121957,
+      -0.12438125422179412
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.169396649789203
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9A90737C46C1658B4DE8",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.492225676078611
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9A90737C46C1658B4DE8",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.0441092293941507,
+      -0.059495618585688345
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.492225676078611
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "9A90737C46C1658B4DE8",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0299048905822905,
+      -0.0014944330528168792,
+      -0.06434621258121957,
+      -0.12438125422179412
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.169396649789203
+  },
+  {
+    "scope": "stress",
+    "unit": "9A90737C46C1658B4DE8",
+    "heldout_vr": 10.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.492225676078611
+  },
+  {
+    "scope": "stress",
+    "unit": "9A90737C46C1658B4DE8",
+    "heldout_vr": 10.0,
+    "mode": "global",
+    "coefficients": [
+      1.0441092293941507,
+      -0.059495618585688345
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.492225676078611
+  },
+  {
+    "scope": "stress",
+    "unit": "9A90737C46C1658B4DE8",
+    "heldout_vr": 10.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0299048905822905,
+      -0.0014944330528168792,
+      -0.06434621258121957,
+      -0.12438125422179412
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.169396649789203
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2891885ED8B922315612",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.493750875423715
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2891885ED8B922315612",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.0429410977023732,
+      -0.05936378760023569
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.493750875423715
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2891885ED8B922315612",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0290543345406844,
+      -0.0014565542386863264,
+      -0.06540473652965814,
+      -0.12425617345117526
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.173413548484966
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2891885ED8B922315612",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.493750875423715
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2891885ED8B922315612",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.0429410977023732,
+      -0.05936378760023569
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.493750875423715
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2891885ED8B922315612",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0290543345406844,
+      -0.0014565542386863264,
+      -0.06540473652965814,
+      -0.12425617345117526
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.173413548484966
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2891885ED8B922315612",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.493750875423715
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2891885ED8B922315612",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.0429410977023732,
+      -0.05936378760023569
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.493750875423715
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2891885ED8B922315612",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0290543345406844,
+      -0.0014565542386863264,
+      -0.06540473652965814,
+      -0.12425617345117526
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.173413548484966
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2891885ED8B922315612",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.493750875423715
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2891885ED8B922315612",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.0429410977023732,
+      -0.05936378760023569
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.493750875423715
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "2891885ED8B922315612",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0290543345406844,
+      -0.0014565542386863264,
+      -0.06540473652965814,
+      -0.12425617345117526
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.173413548484966
+  },
+  {
+    "scope": "stress",
+    "unit": "2891885ED8B922315612",
+    "heldout_vr": 10.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.493750875423715
+  },
+  {
+    "scope": "stress",
+    "unit": "2891885ED8B922315612",
+    "heldout_vr": 10.0,
+    "mode": "global",
+    "coefficients": [
+      1.0429410977023732,
+      -0.05936378760023569
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.493750875423715
+  },
+  {
+    "scope": "stress",
+    "unit": "2891885ED8B922315612",
+    "heldout_vr": 10.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0290543345406844,
+      -0.0014565542386863264,
+      -0.06540473652965814,
+      -0.12425617345117526
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.173413548484966
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "CFE71E0EF39159559D97",
+    "heldout_vr": 0.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4938296459861227
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "CFE71E0EF39159559D97",
+    "heldout_vr": 0.0,
+    "mode": "global",
+    "coefficients": [
+      1.043145694276288,
+      -0.05948352825366923
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4938296459861227
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "CFE71E0EF39159559D97",
+    "heldout_vr": 0.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0292179216088664,
+      -0.0015690984641218986,
+      -0.06528422180223643,
+      -0.12423465650498203
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.173351936202416
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "CFE71E0EF39159559D97",
+    "heldout_vr": 4.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4938296459861227
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "CFE71E0EF39159559D97",
+    "heldout_vr": 4.0,
+    "mode": "global",
+    "coefficients": [
+      1.043145694276288,
+      -0.05948352825366923
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4938296459861227
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "CFE71E0EF39159559D97",
+    "heldout_vr": 4.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0292179216088664,
+      -0.0015690984641218986,
+      -0.06528422180223643,
+      -0.12423465650498203
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.173351936202416
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "CFE71E0EF39159559D97",
+    "heldout_vr": 6.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4938296459861227
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "CFE71E0EF39159559D97",
+    "heldout_vr": 6.0,
+    "mode": "global",
+    "coefficients": [
+      1.043145694276288,
+      -0.05948352825366923
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4938296459861227
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "CFE71E0EF39159559D97",
+    "heldout_vr": 6.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0292179216088664,
+      -0.0015690984641218986,
+      -0.06528422180223643,
+      -0.12423465650498203
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.173351936202416
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "CFE71E0EF39159559D97",
+    "heldout_vr": 8.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4938296459861227
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "CFE71E0EF39159559D97",
+    "heldout_vr": 8.0,
+    "mode": "global",
+    "coefficients": [
+      1.043145694276288,
+      -0.05948352825366923
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4938296459861227
+  },
+  {
+    "scope": "training_diagnostic",
+    "unit": "CFE71E0EF39159559D97",
+    "heldout_vr": 8.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0292179216088664,
+      -0.0015690984641218986,
+      -0.06528422180223643,
+      -0.12423465650498203
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.173351936202416
+  },
+  {
+    "scope": "stress",
+    "unit": "CFE71E0EF39159559D97",
+    "heldout_vr": 10.0,
+    "mode": "none",
+    "coefficients": [
+      1.0,
+      0.0
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4938296459861227
+  },
+  {
+    "scope": "stress",
+    "unit": "CFE71E0EF39159559D97",
+    "heldout_vr": 10.0,
+    "mode": "global",
+    "coefficients": [
+      1.043145694276288,
+      -0.05948352825366923
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 2,
+    "design_condition": 3.4938296459861227
+  },
+  {
+    "scope": "stress",
+    "unit": "CFE71E0EF39159559D97",
+    "heldout_vr": 10.0,
+    "mode": "linear_vr_diagnostic",
+    "coefficients": [
+      1.0292179216088664,
+      -0.0015690984641218986,
+      -0.06528422180223643,
+      -0.12423465650498203
+    ],
+    "training_vr": [
+      0.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
+    "design_rank": 4,
+    "design_condition": 5.173351936202416
+  }
+]
