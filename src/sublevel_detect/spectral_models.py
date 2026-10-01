@@ -128,13 +128,26 @@ class LocalSpectrum(EffectiveSpectrum):
         self.local_family, self.window = family, dict(window)
         self.lo, self.hi = float(window["lo"]), float(window["hi"])
         with torch.no_grad():
-            levels = coarse.level_params()
-            inside = (levels["energies"] >= self.lo) & (levels["energies"] <= self.hi)
-            self.register_buffer("outside_energy", levels["energies"][~inside].clone())
-            self.register_buffer("outside_mass", levels["weights"][~inside].clone())
-            self.register_buffer("inside_grid", levels["energies"][inside].clone())
-            self.register_buffer("inside_quad", coarse.quadrature[inside].clone())
-            self.register_buffer("inside_mass", levels["weights"][inside].sum().clone())
+            grid = coarse.energy_grid.cpu().numpy().astype(float)
+            density = coarse.density().cpu().numpy().astype(float)
+
+            def segment(lo: float, hi: float):
+                x = np.r_[lo, grid[(grid > lo) & (grid < hi)], hi]
+                dx = np.diff(x)
+                quad = (np.r_[0, dx] + np.r_[dx, 0]) / 2
+                mass = np.interp(x, grid, density) * quad
+                return [torch.tensor(v, dtype=torch.float32) for v in (x, mass, quad)]
+
+            inside_energy, inside_mass, inside_quad = segment(self.lo, self.hi)
+            left_energy, left_mass, _ = segment(DOMAIN[0], self.lo)
+            right_energy, right_mass, _ = segment(self.hi, DOMAIN[1])
+            outside_mass = torch.cat([left_mass, right_mass])
+            normalization = outside_mass.sum() + inside_mass.sum()
+            self.register_buffer("outside_energy", torch.cat([left_energy, right_energy]))
+            self.register_buffer("outside_mass", outside_mass / normalization)
+            self.register_buffer("inside_grid", inside_energy)
+            self.register_buffer("inside_quad", inside_quad)
+            self.register_buffer("inside_mass", inside_mass.sum() / normalization)
         k = int(family[1:]) if family.startswith("d") else (4 if family in ("h4s", "equal4") else 1)
         self.k = k
         self.local_weights = nn.Parameter(torch.zeros(k - 1))
@@ -177,6 +190,26 @@ class LocalSpectrum(EffectiveSpectrum):
 
     def curvature(self) -> torch.Tensor:
         return self.inside_mass.new_zeros(())
+
+
+def refine_measure(net: EffectiveSpectrum, step: float) -> EffectiveSpectrum:
+    """Refine numerical nodes while preserving local M and fitted parameters."""
+    original = dict(net.named_parameters())
+    if isinstance(net, LocalSpectrum):
+        coarse = EffectiveSpectrum(net.n_curves, "C", step=step)
+        with torch.no_grad():
+            for name, p in coarse.named_parameters():
+                p.copy_(original[name])
+        fine = LocalSpectrum(coarse, net.local_family, net.window)
+        with torch.no_grad():
+            fine.inside_mass.copy_(net.inside_mass)
+            fine.outside_mass.mul_(net.outside_mass.sum() / fine.outside_mass.sum())
+    else:
+        fine = EffectiveSpectrum(net.n_curves, net.family, step=step)
+    with torch.no_grad():
+        for name, p in fine.named_parameters():
+            p.copy_(original[name])
+    return fine
 
 
 def distribution_summary(model: EffectiveSpectrum) -> dict[str, float]:

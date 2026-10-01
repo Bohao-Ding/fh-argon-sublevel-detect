@@ -17,13 +17,13 @@ from scipy.signal import find_peaks
 
 from . import model, paths
 from .spectral_models import (DOMAIN, LOCAL_DIMENSIONS, LOCAL_FAMILIES, NIST_4S,
-    EffectiveSpectrum, LocalSpectrum, distribution_summary, main_peak_window)
+    EffectiveSpectrum, LocalSpectrum, distribution_summary, main_peak_window, refine_measure)
 from .validation_common import atomic_json_dump, canonical_hash, sha256_file
 from .validation_holdout import prediction_metrics, split_vr_fold
 
 TRAIN_VR = (0.0, 4.0, 6.0, 8.0)
 LAMBDAS = (1e-6, 1e-4, 1e-2)
-SCHEMA = "effective-spectrum-schema1"
+SCHEMA = "effective-spectrum-schema2"
 
 
 def curve_vr(curve: dict) -> float:
@@ -372,19 +372,23 @@ class Experiment:
 def quadrature_check(tasks: list[dict], curves: list[dict], step: float) -> list[dict]:
     results = []
     for task in tasks:
-        if task["spec"]["family"] != "C":
-            continue
         coarse = load_fit(task["directory"])
-        fine = EffectiveSpectrum(len(curves), "C", step=step / 2)
-        parameters = dict(coarse.named_parameters())
-        with torch.no_grad():
-            for name, value in fine.named_parameters():
-                value.copy_(parameters[name])
+        fine = refine_measure(coarse, step / 2)
         difference = max(float(np.max(np.abs(a - b))) for a, b in zip(predict(coarse, curves), predict(fine, curves)))
-        results.append({"seed": task["spec"]["seed"], "coarse_step_eV": step,
+        results.append({"unit": Path(task["directory"]).name, "family": task["spec"]["family"],
+                        "seed": task["spec"]["seed"], "coarse_step_eV": step,
                         "fine_step_eV": step / 2, "max_difference_uA": difference,
                         "passed": difference < 1e-4})
     return results
+
+
+def completed_quadrature_tasks(root: Path) -> list[dict]:
+    tasks = []
+    for path in sorted((root / "units").glob("*/fit.json")):
+        info = json.loads(path.read_text())
+        if info["status"] != "ineligible":
+            tasks.append({"directory": str(path.parent), "spec": info["spec"]})
+    return tasks
 
 
 def _run_grid(root: Path, curves: list[dict], cfg: dict, step: float, device: str) -> dict:
@@ -421,18 +425,18 @@ def _run_grid(root: Path, curves: list[dict], cfg: dict, step: float, device: st
     decisions += stats
     final, window = exp.refit(main, penalty, "final")
     windows.append({"scope": "final", "lambda": penalty, "selected_local": selected, **window})
-    checks = quadrature_check(final, main, step)
+    final_profiles = [exp.task(main, "C", seed, penalty, width=width)
+                     for width in (1.0, 2.0, 3.0) for seed in cfg["seeds"]]
+    exp.batch(final_profiles, "final/kernel_profile")
+    for task in final_profiles:
+        exp.density(task, scope=f"final/width_{task['spec']['fixed_width']:g}")
+    checks = quadrature_check(completed_quadrature_tasks(root), main, step)
     base_tables = {"outer_scores": outer_rows, "selection": decisions,
                    "kernel_profile_scores": profiles, "quadrature": checks}
     atomic_json_dump(windows, root / "windows.json")
     if not all(row["passed"] for row in checks):
         exp.write_tables(base_tables)
         return {"refine": True, "step": step, "checks": checks}
-    final_profiles = [exp.task(main, "C", seed, penalty, width=width)
-                     for width in (1.0, 2.0, 3.0) for seed in cfg["seeds"]]
-    exp.batch(final_profiles, "final/kernel_profile")
-    for task in final_profiles:
-        exp.density(task, scope=f"final/width_{task['spec']['fixed_width']:g}")
     continuous = [t for t in final if t["spec"]["family"] == "C"]
     reference = sorted(continuous, key=lambda t: json.loads((Path(t["directory"]) / "fit.json").read_text())["best_objective"])[len(continuous) // 2]
     net = load_fit(reference["directory"])
@@ -480,6 +484,12 @@ def _run_grid(root: Path, curves: list[dict], cfg: dict, step: float, device: st
                         noise_seed=seed, heldout_vr=heldout, window_center_eV=sw["center"])
                     if row is not None:
                         synthetic.append(row)
+    # Recovery units must also pass the numerical gate before publication/stress.
+    checks = quadrature_check(completed_quadrature_tasks(root), main, step)
+    base_tables.update(quadrature=checks, bootstrap=bootstrap, synthetic_scores=synthetic)
+    if not all(row["passed"] for row in checks):
+        exp.write_tables(base_tables)
+        return {"refine": True, "step": step, "checks": checks}
     # Every decision is written before any stress observation is scored.
     freeze = {"lambda": penalty, "selected_local": selected, "window": window,
               "stress_has_influenced_selection": False,

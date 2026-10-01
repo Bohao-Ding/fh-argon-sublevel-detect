@@ -9,7 +9,7 @@ import torch
 
 from sublevel_detect import cli, model
 from sublevel_detect.spectral_models import (EffectiveSpectrum, LocalSpectrum,
-    NIST_4S, main_peak_window, spline_grid)
+    NIST_4S, main_peak_window, spline_grid, refine_measure)
 from sublevel_detect.spectral_pipeline import (Experiment, curves_hash, fit_unit,
     load_curves, load_fit, one_se_selection, predict, quadrature_check, residual_sample,
     run, settings, training_curves, training_initialization)
@@ -56,9 +56,8 @@ def test_local_replacement_keeps_outside_mass_and_width(family):
     coarse = peaked_model()
     window = main_peak_window([coarse])
     net = LocalSpectrum(coarse, family, window)
-    original = coarse.level_params()
-    outside = (original["energies"] < window["lo"]) | (original["energies"] > window["hi"])
-    assert torch.equal(net.outside_mass, original["weights"][outside])
+    assert float(net.outside_mass.sum() + net.inside_mass) == pytest.approx(1, abs=1e-6)
+    assert torch.all((net.outside_energy <= window["lo"]) | (net.outside_energy >= window["hi"]))
     before = net.outside_mass.clone()
     for name, parameter in net.named_parameters():
         if name.startswith("local_"):
@@ -71,6 +70,23 @@ def test_local_replacement_keeps_outside_mass_and_width(family):
     assert float(mass.detach().sum()) == pytest.approx(float(net.inside_mass), abs=1e-6)
     if family.startswith("d") and len(energy) > 1:
         assert torch.all(torch.diff(energy) >= 0.02 - 1e-6)
+
+
+def test_window_mass_uses_half_endpoint_weights():
+    coarse = EffectiveSpectrum(4, "C")
+    window = dict(status="eligible", center=12.0, lo=11.5, hi=12.5)
+    net = LocalSpectrum(coarse, "d1", window)
+    assert float(net.inside_mass) == pytest.approx(1 / 7, abs=1e-7)
+    assert float(net.outside_mass.sum()) == pytest.approx(6 / 7, abs=1e-7)
+
+
+@pytest.mark.parametrize("family", ["d1", "g1", "d2", "d3", "d4", "h4s", "equal4"])
+def test_local_quadrature_converges_with_frozen_mass(family):
+    coarse = peaked_model()
+    net = LocalSpectrum(coarse, family, main_peak_window([coarse]))
+    fine = refine_measure(net, 0.01)
+    assert torch.equal(net.inside_mass, fine.inside_mass)
+    assert max(np.max(np.abs(a - b)) for a, b in zip(predict(net, training_curves(curves())), predict(fine, training_curves(curves())))) < 1e-4
 
 
 def test_mixture_kernel_is_linear_in_response_weights():

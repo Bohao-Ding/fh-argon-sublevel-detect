@@ -65,6 +65,14 @@ outside the current main-peak candidate set. It is never projected into the wind
 The local one-SE rule prefers fewer spectral parameters, retains ties, and treats
 NIST and equal-spacing candidates symmetrically.
 
+Window integrals are split at both exact endpoints, with trapezoidal half weights
+on each segment; the boundary is not counted as an entire inside grid cell.
+Fine-grid checks keep the local inside mass frozen and renormalize the outside
+quadrature to its frozen mass. All real, profile, bootstrap, and recovery units
+must pass the 1e-4 uA prediction tolerance. An interrupted initial engineering
+attempt exposed and corrected the endpoint-cell error; its partial receipts stay
+local and are excluded from the formal release.
+
 ## Conditional resampling and recovery controls
 
 Thirty circular moving-block residual resamples (block length 9) are performed
