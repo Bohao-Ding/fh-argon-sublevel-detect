@@ -26,7 +26,7 @@ save_figure <- function(p, stem, height_mm) {
   print(p); dev.off()
 }
 densities <- read_table("distribution_reference.csv")
-continuous <- subset(densities, scope == "final" & family %in% c("C", "G1"))
+continuous <- subset(densities, scope == "final" & family == "C")
 median_q <- aggregate(density_per_eV ~ family + energy_eV, continuous, median)
 boot <- subset(densities, grepl("^bootstrap_", scope) & family == "C")
 interval <- aggregate(density_per_eV ~ energy_eV, boot, function(x) quantile(x, c(.025, .975)))
@@ -39,7 +39,7 @@ p_a <- ggplot() + geom_ribbon(data = interval, aes(energy_eV, ymin = lower, ymax
   geom_line(data = continuous, aes(energy_eV, density_per_eV, group = interaction(family, seed), colour = family), alpha = .3, linewidth = .35) +
   geom_line(data = median_q, aes(energy_eV, density_per_eV, colour = family), linewidth = .6) +
   geom_rug(data = delta, aes(x = energy_eV), sides = "b", colour = palette["H1"]) +
-  scale_colour_manual(values = palette) + labs(x = "Effective energy (eV)", y = "Density (1/eV)", title = "Final effective distribution")
+  scale_colour_manual(values = palette) + labs(x = "Effective energy (eV)", y = "Density (1/eV)", title = "Final continuous distribution")
 outer <- read_table("outer_scores.csv")
 coarse <- subset(outer, family %in% names(palette))
 score_median <- aggregate(nrmse ~ heldout_vr + family, coarse, median)

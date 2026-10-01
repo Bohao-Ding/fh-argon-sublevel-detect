@@ -45,7 +45,7 @@ def summarize(evidence: Path) -> dict:
         "outer_four_condition_mean_nrmse": medians.loc[:, medians.count().eq(4)].mean().to_dict(),
         "final_coarse_start_ranges": {family: ranges(group) for family, group in final.groupby("family")},
         "final_width_profile_start_ranges": {str(width): ranges(group) for width, group in profile.groupby("fixed_width_V")},
-        "bootstrap_training_objective_winners": bootstrap.training_objective_winner.value_counts().astype(int).to_dict(),
+        "bootstrap_training_objective_winners": bootstrap.training_objective_winner.fillna("no_eligible_candidate").value_counts().astype(int).to_dict(),
         "synthetic_best_local_counts": {truth: group.best_local_mean_holdout.fillna("no_eligible_candidate").value_counts().astype(int).to_dict()
                                          for truth, group in recovery.groupby("truth")},
         "synthetic_discrete_improvement_counts": recovery.groupby("truth").discrete_beats_delta_and_gaussian.sum().astype(int).to_dict(),
