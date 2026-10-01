@@ -31,6 +31,7 @@ def _iter_text_files(root: Path) -> Iterable[Path]:
         "__pycache__",
         ".pytest_cache",
         ".git",
+        ".test-tmp",
         # Versioned companion research is preserved outside the formal neural package.
         "NewModel-TEST",
         "FULL-REtry",
@@ -39,7 +40,7 @@ def _iter_text_files(root: Path) -> Iterable[Path]:
     for path in root.rglob("*"):
         if not path.is_file():
             continue
-        if any(part in ignored for part in path.parts):
+        if any(part in ignored for part in path.relative_to(root).parts):
             continue
         if path.suffix.lower() in {".py", ".md", ".txt", ".toml", ".yml", ".yaml", ".json", ".csv"}:
             yield path
