@@ -57,20 +57,20 @@ profile <- aggregate(density_per_eV ~ width + energy_eV, profile, median)
 p_c <- ggplot(profile, aes(energy_eV, density_per_eV, colour = width)) + geom_line(linewidth = .6) +
   scale_colour_manual(values = c("1" = "#337F70", "2" = "#B78B47", "3" = "#7A6D8C"), labels = c("1 V", "2 V", "3 V")) +
   labs(x = "Effective energy (eV)", y = "Density (1/eV)", title = "Fixed-width refits")
-local_names <- c("d1", "g1", "d2", "d3", "d4", "h4s", "equal4")
-local <- aggregate(nrmse ~ heldout_vr + family, subset(outer, family %in% local_names), median)
-baseline <- subset(local, family == "d1", select = c(heldout_vr, nrmse))
-names(baseline)[2] <- "baseline"
-local <- merge(local, baseline, by = "heldout_vr")
-local$delta <- local$nrmse - local$baseline
-local$family <- factor(local$family, levels = local_names)
-counts <- sapply(local_names, function(name) length(unique(local$heldout_vr[local$family == name])))
-local_labels <- setNames(paste0(local_names, "\n(n=", counts, ")"), local_names)
-p_d <- ggplot(local, aes(family, delta)) + geom_hline(yintercept = 0, linetype = "dotted", linewidth = .35) +
-  geom_point(aes(shape = factor(heldout_vr)), position = position_dodge(.35), colour = "#475B68", size = 1.7) +
-  labs(x = "Local representation", y = "NRMSE difference from local delta", title = "Matched-condition local comparison") +
-  scale_x_discrete(drop = FALSE, labels = local_labels) +
-  theme(axis.text.x = element_text(angle = 25, hjust = 1))
+concentration <- subset(read_table("concentration.csv"), scope == "final" & family == "C")
+half_low <- median(concentration$peak_halfheight_low_eV)
+half_high <- median(concentration$peak_halfheight_high_eV)
+half_height <- max(median_q$density_per_eV)/2
+p_d <- ggplot(median_q, aes(energy_eV, density_per_eV)) +
+  annotate("rect", xmin = min(nist$energy), xmax = max(nist$energy), ymin = 0, ymax = Inf,
+           fill = "#A5B6A4", alpha = .3) +
+  geom_line(colour = palette["C"], linewidth = .6) +
+  geom_vline(data = nist, aes(xintercept = energy), colour = "#889488", linetype = "dotted", linewidth = .35) +
+  annotate("segment", x = half_low, xend = half_high, y = half_height, yend = half_height, linewidth = .6, colour = "#5E6770") +
+  annotate("text", x = (half_low + half_high)/2, y = half_height - .05, label = "Main half-height interval", size = 2.5) +
+  annotate("text", x = 11.69, y = .59, label = "First 4s group", size = 2.5) +
+  coord_cartesian(xlim = c(11, 13), ylim = c(0, .64)) +
+  labs(x = "Effective energy (eV)", y = "Density (1/eV)", title = "Main lobe and first 4s group")
 save_figure((p_a + p_b) / (p_c + p_d) + plot_annotation(tag_levels = "a"), "fig6_spectral_inference", 132)
 points <- read_table("real_prediction_points.csv")
 training <- subset(points, scope == "final_training" & family %in% names(palette))

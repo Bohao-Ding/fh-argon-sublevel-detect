@@ -9,6 +9,7 @@ from pathlib import Path
 
 import pandas as pd
 from summarize_spectral_evidence import summarize
+from summarize_spectral_concentration import summarize as summarize_concentration
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
@@ -91,6 +92,10 @@ def build(run: Path, destination: Path) -> dict:
                   "paired condition contrasts after median over optimizer starts")
     source_record(destination / "claim_summary.json", grid / "summary.json",
                   "scope-aware aggregation of the source tables listed in claim_summary.sources")
+    summarize_concentration(destination).to_csv(destination / "concentration.csv", index=False)
+    source_record(destination / "concentration.csv", grid / "distributions.csv",
+                  "final and width-profile C/G1: normalized piecewise-linear density integrals and connected half-height lobe")
+    provenance["concentration_script_sha256"] = sha256_file(ROOT / "scripts/summarize_spectral_concentration.py")
     atomic_json_dump(provenance, destination / "SOURCE_MAP.json")
     (destination / "README.md").write_text(
         "# Minimal spectral inference evidence\n\n"
@@ -99,6 +104,10 @@ def build(run: Path, destination: Path) -> dict:
         f"Completed: four nested outer holdouts, three outer/final starts, 30 conditional residual resamples, "
         f"20 synthetic datasets. Final grid: {result['grid_step_eV']} eV. "
         f"Fit statuses (unique units): {result['fit_status_counts']}. Epoch-limit fits are not convergence.\n\n"
+        "`concentration.csv` locates the connected main half-height lobe and its mass, and compares the known "
+        "Ar I 4s range (11.54835442–11.82807116 eV). Continuous inversion locates effective energy concentration; "
+        "it does not naturally imply four separated states. Local discrete comparisons are supplementary exploration. "
+        "Missing inner local choices remain missing; diagnostic candidate scores are not substituted for a nested selected-model score.\n\n"
         "`summary.json` and `outer_seed_medians.csv` give complete-curve prediction scores. "
         "`matched_comparisons.csv` restricts contrasts to conditions available for both candidates; "
         "`claim_summary.json` excludes incomplete candidates from four-condition means. "
