@@ -19,6 +19,14 @@ python run.py --experiment spectrum --mode fullscan --device cpu --output output
 
 连续反演首先定位有效能区，不要求产生四个分立态。C 的连通半高区间为 11.48–12.62 eV，包含有效质量 48.7%，覆盖已知 4s 范围 11.548–11.828 eV。峰顶 12.04 eV 比该组上界高 0.212 eV，整个分布落入四态窄区间的质量仅为 11.2%；这是条件于核的粗尺度相容，不是精确恢复或原子占据比例。G1 在同一区间的有效质量为 76.0%。见 `concentration.csv` 和 `scripts/summarize_spectral_concentration.py`；已完成的离散比较保留为补充探索。
 
+## 固定增益与零点的二轮检验
+
+新增训练数据限定的读出校准检验：四个外层 C 训练集及最终训练集均保留原读出。共同电流增益/零点使未选入正式方案的 C 诊断平均由 0.12242 降至 0.11570，但 4 V 一折变差，未采用。电压比例与自由激发尺度存在混合解释，归档不能独立确定仪器误差。物理源码哈希及能量谱保持不变。随 Vr 变化的探索性读出改善较大，表示条件响应差异，不能直接作为仪器校准。见[诊断与物理讨论](docs/AFFINE_CALIBRATION_AUDIT.md)。
+
+```powershell
+python -B scripts/audit_affine_calibration.py --output output/calibration_audit_replay
+```
+
 ## 历史整合研究（805 点口径）
 
 物理结构约束的可微模型能够描述归档曲线，并在指定先验与筛选规则下提出多成分候选。本仓库现已纳入碰撞历史模型、阻滞响应分析及后续诊断，依次检验预测作用、解释必要性、宏观信息和能级专一性。入口：[研究总览](docs/research_overview.md)、[独立复现](docs/research_reproduction.md)、[详细中文主线](docs/research_storyline.zh-CN.md)。新增最小数值证据在 [research_evidence](source_data_package/research_evidence/README.md)；文章 PDF 与新增完整图件留在本地。

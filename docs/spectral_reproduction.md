@@ -67,3 +67,12 @@ SVG/PDF and 600 dpi PNG/TIFF remain local. The script uses published tables and
 distinguishes fitting, whole-curve prediction and frozen 10 V stress.
 
 The current primary interpretation locates energy concentration before any optional discrete hypothesis. `concentration.csv` reports the connected main half-height interval and effective mass in the known 4s range; recompute with `python scripts/summarize_spectral_concentration.py source_data_package/spectral_evidence_v1`. These density-derived summaries do not alter training or model selection.
+
+The second common affine readout audit also uses frozen kernel parameters, with twelve
+additional inner C references and separate byte manifests. Run
+`python -B scripts/audit_affine_calibration.py --output output/calibration_audit_replay`
+in an empty directory; it requires no local checkpoints or new training. All four
+outer inner decisions and the final decision retain identity readout. The optional
+Vr-dependent diagnostic is not selected, and spectra stay unchanged. See
+[the calibration audit](AFFINE_CALIBRATION_AUDIT.md). Remove disposable replay output
+after comparing its numerical tables with `source_data_package/calibration_audit_v1`.

@@ -19,6 +19,14 @@ H1 gives an effective scale of 11.7636 eV; the conditional C mode is 12.04 eV. F
 
 Continuous inversion first locates an effective energy region; it is not required to produce four separated states. C's connected half-height interval is 11.48–12.62 eV (48.7% effective mass), overlapping the known 4s range 11.548–11.828 eV. The 12.04 eV mode is 0.212 eV above that group's upper edge; only 11.2% of the whole effective mass is inside the narrow 4s interval. This is coarse, kernel-dependent compatibility, not precise group recovery or atomic populations. G1 puts 76.0% of its effective mass in the same range. See `concentration.csv` and `scripts/summarize_spectral_concentration.py`; the completed discrete tests are supplementary exploration.
 
+## Common gain/offset audit
+
+A second training-only readout analysis retains identity calibration in all four outer C training sets and the final training set. Common current gain/offset changes the unselected C diagnostic mean from 0.12242 to 0.11570, with a worse 4 V fold; it is not adopted. An unknown voltage gain remains confounded with free excitation scale. Spectra and physical source hashes are unchanged. The stronger exploratory Vr-dependent readout benefit describes condition mismatch, not a verified instrument error. See [the audit and physics discussion](docs/AFFINE_CALIBRATION_AUDIT.md).
+
+```powershell
+python -B scripts/audit_affine_calibration.py --output output/calibration_audit_replay
+```
+
 ## Historical integrated research (805-point scope)
 
 The physics-structured differentiable model describes the archive and proposes multicomponent candidates under specified priors and selectors. The repository now also contains collision-history modeling, retarding-response analysis and the diagnostic checks that establish their physical interpretation and limits. Follow [the research guide](docs/research_overview.md), [reproduction instructions](docs/research_reproduction.md), and [the detailed Chinese storyline](docs/research_storyline.zh-CN.md). New minimal numerical evidence is in [research_evidence](source_data_package/research_evidence/README.md); manuscript PDFs and new figure archives remain local.
