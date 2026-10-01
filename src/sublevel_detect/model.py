@@ -913,13 +913,7 @@ class PoissonRateFHCoreMultiLevel(nn.Module):
         else:
             high_energy_loss = torch.ones_like(e_collision)
 
-        energies = levels["energies"].view(1, -1).to(device=e_collision.device, dtype=e_collision.dtype)
-        weights = levels["weights"].view(1, -1).to(device=e_collision.device, dtype=e_collision.dtype)
-        phase = (e_collision.view(-1, 1) + p["phase"]) / (energies + 1e-6)
-        nearest = torch.round(phase)
-        residual = phase - nearest
-        dips = torch.exp(-0.5 * torch.square(residual * energies / (p["width"] + 1e-6)))
-        weighted_dip = torch.sum(weights * dips, dim=1).reshape_as(e_collision)
+        weighted_dip = self.weighted_periodic_response(e_collision, p, levels)
         decay = torch.exp(-p["damping"] * e_collision)
         modulation = torch.clamp(1.0 - p["osc_amp"] * contrast_scale * weighted_dip * decay, min=0.03, max=1.15)
         pred = envelope * collector_transmission * high_energy_loss * modulation
@@ -937,6 +931,17 @@ class PoissonRateFHCoreMultiLevel(nn.Module):
             "weighted_dip": weighted_dip,
             "modulation": modulation,
         }
+
+    def weighted_periodic_response(
+        self, e_collision: torch.Tensor, p: Dict[str, torch.Tensor],
+        levels: Dict[str, torch.Tensor],
+    ) -> torch.Tensor:
+        energies = levels["energies"].view(1, -1).to(device=e_collision.device, dtype=e_collision.dtype)
+        weights = levels["weights"].view(1, -1).to(device=e_collision.device, dtype=e_collision.dtype)
+        phase = (e_collision.reshape(-1, 1) + p["phase"]) / (energies + 1e-6)
+        residual = phase - torch.round(phase)
+        dips = torch.exp(-0.5 * torch.square(residual * energies / (p["width"] + 1e-6)))
+        return torch.sum(weights * dips, dim=1).reshape_as(e_collision)
 
     def forward_core(
         self,
