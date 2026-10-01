@@ -1,0 +1,104 @@
+{
+  "identity": "9DB579D9B0BFEE221F702411E3C155047A820738D6195FBB425A7504A8F53072",
+  "status": "epoch_limit",
+  "epochs": 3500,
+  "best_epoch": 3500,
+  "best_objective": 0.0027650988195091486,
+  "distribution": {
+    "mode_eV": 11.726755142211914,
+    "mean_eV": 11.726755142211914,
+    "median_eV": 11.726755142211914,
+    "sd_eV": 0.0,
+    "q05_eV": 11.726755142211914,
+    "q95_eV": 11.726755142211914,
+    "kernel_width_V": 2.3148550987243652
+  },
+  "parameters": {
+    "amp": 2.0434374809265137,
+    "offset": 0.10578995943069458,
+    "v_emit": 6.267420291900635,
+    "power": 1.2363839149475098,
+    "osc_amp": 0.5485002398490906,
+    "width": 2.3148550987243652,
+    "damping": 0.006958967074751854,
+    "phase": -1.1543254852294922,
+    "vr_scale": 0.9983639717102051,
+    "slope": 0.009797265753149986,
+    "collector_threshold": 2.688258171081543,
+    "collector_width": 6.4112868309021,
+    "collector_floor": 0.5865538716316223,
+    "vr_contrast": 0.15031781792640686,
+    "late_contrast": 0.04536035656929016,
+    "vr_late_contrast": 0.21922911703586578,
+    "late_onset": 58.038658142089844,
+    "late_width": 9.574491500854492,
+    "high_energy_loss_strength": 0.2032969743013382,
+    "high_energy_loss_onset": 69.23026275634766,
+    "high_energy_loss_width": 11.810432434082031,
+    "vr_late_baseline": -0.009907219558954239
+  },
+  "raw_parameter_values": {
+    "raw_E1": -0.3260915279388428,
+    "raw_dE": [],
+    "raw_level_logits": [
+      0.0
+    ],
+    "raw_amp": -0.3941667079925537,
+    "raw_offset": -0.136241152882576,
+    "raw_v_emit": -0.6270048022270203,
+    "raw_power": -0.7744375467300415,
+    "raw_osc_amp": 0.4449786841869354,
+    "raw_width": -0.26267480850219727,
+    "raw_damping": -2.0310347080230713,
+    "raw_phase": -0.38963064551353455,
+    "raw_vr_scale": -0.016361229121685028,
+    "raw_slope": -0.01351585891097784,
+    "raw_collector_threshold": -0.08912823349237442,
+    "raw_collector_width": -0.3018820881843567,
+    "raw_collector_floor": -0.0176728293299675,
+    "raw_vr_contrast": 0.6955316662788391,
+    "raw_late_contrast": 0.6585468649864197,
+    "raw_vr_late_contrast": 0.5969923138618469,
+    "raw_late_onset": -0.26301828026771545,
+    "raw_late_width": -0.10647770017385483,
+    "raw_high_energy_loss_strength": -0.19351734220981598,
+    "raw_high_energy_loss_onset": -0.08557847887277603,
+    "raw_high_energy_loss_width": 0.18058539927005768,
+    "raw_vr_late_baseline": 0.004639155697077513,
+    "raw_curve_gain": [
+      0.9189198613166809,
+      0.5401880741119385,
+      -0.32509148120880127
+    ],
+    "raw_curve_bias": [
+      0.8977794647216797,
+      -0.16362489759922028,
+      -0.7658414244651794
+    ],
+    "raw_curve_dva": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_mu": -0.4492614269256592
+  },
+  "n_trainable": 29,
+  "checkpoint_sha256": "D31439835489758137B28F1C8863EF48D61170E6E9B76E35B6BACB7F1E427534",
+  "spec": {
+    "schema": "effective-spectrum-schema2",
+    "family": "H1",
+    "seed": 0,
+    "lambda": 0.0,
+    "step": 0.01,
+    "n_curves": 3,
+    "excitation": 11.305555555555555,
+    "fixed_width": null,
+    "window": null,
+    "coarse": null,
+    "training_vr": [
+      4.0,
+      6.0,
+      8.0
+    ]
+  }
+}
