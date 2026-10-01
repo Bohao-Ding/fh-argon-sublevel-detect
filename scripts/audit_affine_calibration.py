@@ -168,7 +168,7 @@ def run(output: Path) -> dict:
     selected_mean = float(selected.groupby("heldout_vr").nrmse.median().mean())
     mode = float(np.median([r["distribution"]["mode_eV"] for r in receipts.values()
         if r["spec"]["family"] == "C" and r["spec"]["n_curves"] == 4]))
-    summary = dict(schema="affine-calibration-audit-v1", physical_kernel_retrained=False,
+    summary = dict(schema="affine-calibration-audit-schema1", physical_kernel_retrained=False,
         train_points=644, training_hash=curves_hash(training_curves(curves)),
         choices=choices, outer_mean_seed_median_nrmse=means.to_dict("records"),
         C_nested_selected_mean_nrmse=selected_mean,

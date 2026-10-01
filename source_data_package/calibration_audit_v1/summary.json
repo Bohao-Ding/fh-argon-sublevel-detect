@@ -1,5 +1,5 @@
 {
-  "schema": "affine-calibration-audit-v1",
+  "schema": "affine-calibration-audit-schema1",
   "physical_kernel_retrained": false,
   "train_points": 644,
   "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2",
@@ -78,7 +78,7 @@
     "validation_holdout.py": "0C5A3D180567A50248E25526A164745488D492BDC2A1B8099E281D6414EA5A7F"
   },
   "audit_sources": {
-    "audit_affine_calibration.py": "8877C02703ECB5C42DC3F12490B396AD5B7431FCC4431E573D4C5965BADFD4C3",
+    "audit_affine_calibration.py": "2393A51777A9E8EBC09181940D30CE70C692C9EDD3DB95CA89D0CD592F0BBC76",
     "affine_readout.py": "5B023D8B90E9FC592AC804F038BD1EAFFEE9DEE4316D82D7B2B044B329AD7F91"
   }
 }
