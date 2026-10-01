@@ -1,4 +1,13 @@
-# From curve description to physical-hypothesis validation
+# Complete-curve modeling and hierarchical effective energy inference
+
+The core method recovers a smooth effective excitation response distribution,
+locates its energy concentration, and compares that region with the first argon excitation group.
+Completed local discrete comparisons are supplementary exploration. Neural optimization estimates parameters; early free-K=4 is a foundation
+and baseline. The 644-point spectrum experiment has a separate [protocol](SPECTRAL_PROTOCOL.md),
+[reproduction guide](spectral_reproduction.md), identity and evidence release. Historical
+805-point studies below retain their scope.
+
+The formal spectral matrix is complete: H1/G1/C mean outer NRMSE is 0.10833/0.10824/0.12242; the effective H1 scale is 11.7636 eV and the conditional C mode 12.04 eV. Final local selection favors d1, with no stable four-state advantage. Two outer folds lack an inner local choice; their candidate diagnostics are not a complete nested selected-model score. All nine final stage-1 starts reach the epoch limit. The [252-file spectral release](../source_data_package/spectral_evidence_v1/README.md) supplies checked parameter-only replay and 30-resample/20-dataset controls. Splitting support and method completion are separate outcomes.
 
 The research starts with a physics-structured differentiable model trained by neural-network optimization. It describes the archived argon Franck–Hertz curves and supplies multicomponent candidates under specified priors and selectors. Subsequent checks ask what those candidates establish: cross-condition prediction, explanatory necessity, macroscopic response structure, and level specificity.
 
@@ -19,3 +28,5 @@ The integrated repository preserves the original neural entrypoint and adds comp
 [Detailed Chinese argument and source links](research_storyline.zh-CN.md) · [Standalone reproduction](research_reproduction.md) · [Minimal evidence](../source_data_package/research_evidence/README.md)
 
 Current article sources and new figure/PDF assets remain local. Existing remote neural source-data assets and Git history are retained. Module documents are historical records; corrected interpretation of old injection recovery is given by A5/A14 and the storyline. Apparatus metadata and DOI archiving remain unresolved.
+
+The current primary interpretation locates energy concentration before any optional discrete hypothesis. `concentration.csv` reports the connected main half-height interval and effective mass in the known 4s range; recompute with `python scripts/summarize_spectral_concentration.py source_data_package/spectral_evidence_v1`. These density-derived summaries do not alter training or model selection.

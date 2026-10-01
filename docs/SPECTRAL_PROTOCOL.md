@@ -51,7 +51,7 @@ maximum is required; boundary modes are explicitly recorded as no eligible
 interior main peak. For a single-start inner unit its own mode defines the window.
 Across-start mode range is reported; comparisons remain conditional if unstable.
 
-The continuous response outside the window, its exact quadrature masses, the
+The energy measure outside the window (nodes and exact quadrature masses), the
 total mass inside the window, and the first-stage kernel width are frozen for
 each start. Only the inside representation is replaced. All remaining common
 and training nuisance parameters can refit from that start's stage-1 state.
@@ -114,3 +114,7 @@ Existing 805-point research evidence, A1–A15 (including A4 not executed), sour
 history, and the raw spreadsheet remain unchanged. Formal PDFs and full figures
 stay local. A separate minimal spectral evidence package receives its own byte
 hashes and source mapping.
+
+## Interpretation emphasis, October 2, 2026
+
+The frozen computational protocol and results above are retained. The current article first asks where effective energy response concentrates and whether its connected main half-height region overlaps the first Ar I 4s range. Continuous inversion is not expected to produce four separated states. Stage-2 discrete tests are completed supplementary exploration, not a prerequisite for describing concentration. `concentration.csv` uses normalized sampled densities, interpolated half-height crossings around the global mode, and exact-endpoint trapezoidal interval masses; these are response contributions, not atomic populations.

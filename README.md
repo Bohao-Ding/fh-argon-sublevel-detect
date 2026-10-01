@@ -1,6 +1,25 @@
 # SubLevel Detect
 
-## Integrated research: from fitting to hypothesis validation
+## Core method: effective energy inversion from complete curves
+
+Physics-constrained complete-curve modeling and effective energy inference are the method contribution. Neural-network-style optimization estimates response parameters. The earlier free-K=4 case is the foundation and baseline. The `spectrum` experiment fits a nonnegative normalized smooth effective excitation distribution to locate concentration and compare its main lobe with argon's first excitation range. Completed local discrete comparisons are supplementary exploration. The density does not make atomic levels continuous or identify the residual collected-electron spectrum.
+
+The protocol trains on 0/4/6/8 V only (644 points), uses nested whole-curve holdouts, width profiles, 30 conditional residual resamples and 20 synthetic recovery datasets, and finally predicts the unchanged 10 V curve as a known-anomaly stress test. See [the frozen protocol](docs/SPECTRAL_PROTOCOL.md) and [execution/replay guide](docs/spectral_reproduction.md). The formal matrix is complete. Four-condition mean holdout NRMSE is 0.10833/0.10824/0.12242 for H1/G1/C; C has no overall predictive advantage. Local four-state hypotheses do not stably beat simple representations and the equal-spacing control.
+
+```powershell
+python run.py --experiment spectrum --mode smoke --device cpu --output output/spectral_smoke
+python run.py --experiment spectrum --mode fullscan --device cpu --output output/spectral_v1
+```
+
+H1 gives an effective scale of 11.7636 eV; the conditional C mode is 12.04 eV. Final selection favors local d1. Thirty conditional resamples and 20 synthetic recovery datasets do not establish four-state spacing support. All nine final stage-1 fits reach the 3500-epoch limit; convergence is not claimed. Inner local selection is missing in the outer 6/8 V folds, while candidate diagnostic scores are retained.
+
+[Independent minimal evidence](source_data_package/spectral_evidence_v1/README.md) contains 252 files, actual-byte SHA-256 and source mapping. All 1343 fitted measures pass the numerical gate at 0.01 eV; parameter replay reconstructs 43,470 points within 2.38e-7 microampere. Smoke verifies engineering only. Formal outputs, manuscript PDFs and full new figures remain local.
+
+## Energy concentration: current article emphasis
+
+Continuous inversion first locates an effective energy region; it is not required to produce four separated states. C's connected half-height interval is 11.48–12.62 eV (48.7% effective mass), overlapping the known 4s range 11.548–11.828 eV. The 12.04 eV mode is 0.212 eV above that group's upper edge; only 11.2% of the whole effective mass is inside the narrow 4s interval. This is coarse, kernel-dependent compatibility, not precise group recovery or atomic populations. G1 puts 76.0% of its effective mass in the same range. See `concentration.csv` and `scripts/summarize_spectral_concentration.py`; the completed discrete tests are supplementary exploration.
+
+## Historical integrated research (805-point scope)
 
 The physics-structured differentiable model describes the archive and proposes multicomponent candidates under specified priors and selectors. The repository now also contains collision-history modeling, retarding-response analysis and the diagnostic checks that establish their physical interpretation and limits. Follow [the research guide](docs/research_overview.md), [reproduction instructions](docs/research_reproduction.md), and [the detailed Chinese storyline](docs/research_storyline.zh-CN.md). New minimal numerical evidence is in [research_evidence](source_data_package/research_evidence/README.md); manuscript PDFs and new figure archives remain local.
 

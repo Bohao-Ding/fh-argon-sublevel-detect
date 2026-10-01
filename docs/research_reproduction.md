@@ -47,6 +47,6 @@ For an engineering-only neural check, use an isolated output directory:
 python -B run.py --mode smoke --exclude hpopt --validation --device cpu --output .test-tmp/neural_smoke
 ```
 
-Smoke products are not scientific evidence. Delete the new smoke output after checking completion. Full neural or transport training is intentionally separate from this integration task; see the existing module instructions when a formal new run is requested. v2m requires a complete verified four-channel cross-section table and provenance; A4 is NOT_EXECUTED and no substitute scientific table is supplied.
+Smoke products are not scientific evidence. Delete the new smoke output after checking completion. Full legacy neural or transport training remains separate. The authorized new spectrum experiment and parameter-only replay have their own [execution guide](spectral_reproduction.md). v2m requires a complete verified four-channel cross-section table and provenance; A4 is NOT_EXECUTED and no substitute scientific table is supplied.
 
 The measurement SHA-256 is `FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3`. Figures can be reconstructed from numeric outputs; local manuscript/PDF packages and historical training products are not required by the published diagnostic pipeline.

@@ -1,6 +1,25 @@
 # SubLevel Detect 中文说明
 
-## 整合研究：从曲线描述到物理假设验证
+## 核心方法：完整曲线的有效能量反演
+
+物理约束下的完整曲线建模与有效能量反演是核心方法贡献。神经网络式训练承担响应参数估计；早期自由 K=4 案例是方法基础与比较基线。`spectrum` 流程拟合非负归一化的平滑有效激发能量分布，定位集中区并将主峰与氩第一激发范围比较；已完成的局部离散假设作为补充探索。它不把原子能级改为连续能级，也不将其混作收集电子的剩余动能谱。
+
+协议只用 0/4/6/8 V 的 644 点训练，完成嵌套整曲线留出、核宽剖面、30 次条件性残差重采样及 20 组合成回收，最后预测原样保留的 10 V 曲线，作为已知异常条件压力测试。见[冻结协议](docs/SPECTRAL_PROTOCOL.md)与[执行和参数复播说明](docs/spectral_reproduction.md)。正式矩阵已完成。H1/G1/C 的四条件平均留出 NRMSE 为 0.10833/0.10824/0.12242，连续表示没有整体预测优势；局部四态没有稳定胜过简单表示及等间距对照。
+
+```powershell
+python run.py --experiment spectrum --mode smoke --device cpu --output output/spectral_smoke
+python run.py --experiment spectrum --mode fullscan --device cpu --output output/spectral_v1
+```
+
+正式结果给出 H1 有效尺度 11.7636 eV、C 条件性峰位 12.04 eV；最终选择局部单能量 d1。30 次条件性重采样和 20 组合成回收已完成，没有得到四态间隔支持。最终九个第一阶段拟合均达到 3500 轮上限，未称收敛；外层 6/8 V 折的内层局部选择为空，候选诊断评分保留。
+
+[独立最小证据](source_data_package/spectral_evidence_v1/README.md)包含 252 文件、实际字节 SHA-256 与来源映射。0.01 eV 网格全部 1343 个拟合测度通过数值门；参数复播 43,470 点最大差 2.38×10⁻⁷ μA。Smoke 只验证工程；正式输出、PDF 和完整新图留在本地。
+
+## 当前文章重点：能量集中区
+
+连续反演首先定位有效能区，不要求产生四个分立态。C 的连通半高区间为 11.48–12.62 eV，包含有效质量 48.7%，覆盖已知 4s 范围 11.548–11.828 eV。峰顶 12.04 eV 比该组上界高 0.212 eV，整个分布落入四态窄区间的质量仅为 11.2%；这是条件于核的粗尺度相容，不是精确恢复或原子占据比例。G1 在同一区间的有效质量为 76.0%。见 `concentration.csv` 和 `scripts/summarize_spectral_concentration.py`；已完成的离散比较保留为补充探索。
+
+## 历史整合研究（805 点口径）
 
 物理结构约束的可微模型能够描述归档曲线，并在指定先验与筛选规则下提出多成分候选。本仓库现已纳入碰撞历史模型、阻滞响应分析及后续诊断，依次检验预测作用、解释必要性、宏观信息和能级专一性。入口：[研究总览](docs/research_overview.md)、[独立复现](docs/research_reproduction.md)、[详细中文主线](docs/research_storyline.zh-CN.md)。新增最小数值证据在 [research_evidence](source_data_package/research_evidence/README.md)；文章 PDF 与新增完整图件留在本地。
 
