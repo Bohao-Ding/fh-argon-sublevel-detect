@@ -1,2 +1,10 @@
 # Keep frozen receipt bytes and their file SHA-256 unchanged on checkout.
 source_data_package/research_evidence/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# Reproduce the exact source-byte hashes used by the spectral run on any host.
+src/sublevel_detect/spectral_models.py text eol=lf
+src/sublevel_detect/spectral_pipeline.py text eol=lf
+src/sublevel_detect/model.py text eol=crlf
+src/sublevel_detect/validation_common.py text eol=crlf
+src/sublevel_detect/validation_holdout.py text eol=crlf
+source_data_package/spectral_evidence_v1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
