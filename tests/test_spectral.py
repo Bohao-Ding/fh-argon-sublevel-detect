@@ -89,6 +89,21 @@ def test_local_quadrature_converges_with_frozen_mass(family):
     assert max(np.max(np.abs(a - b)) for a, b in zip(predict(net, training_curves(curves())), predict(fine, training_curves(curves())))) < 1e-4
 
 
+def test_truncated_gaussian_requests_and_passes_finer_grid():
+    coarse = peaked_model()
+    net = LocalSpectrum(coarse, "g1", main_peak_window([coarse]))
+    net.raw_amp.data.fill_(model.inv_bounded(2.5, 0.05, 5))
+    net.raw_osc_amp.data.fill_(model.inv_bounded(0.8, 0, 0.9))
+    net.raw_width.data.fill_(model.inv_bounded(2.462, 0.25, 5))
+    net.local_mu.data.fill_(4.2257)
+    net.local_sigma.data.fill_(-7.176)
+    design = training_curves(curves())
+    error = lambda a, b: max(np.max(np.abs(x - y)) for x, y in zip(predict(a, design), predict(b, design)))
+    fine = refine_measure(net, 0.01)
+    assert error(net, fine) >= 1e-4
+    assert error(fine, refine_measure(net, 0.005)) < 1e-4
+
+
 def test_mixture_kernel_is_linear_in_response_weights():
     coarse = peaked_model()
     net = LocalSpectrum(coarse, "d2", main_peak_window([coarse]))
