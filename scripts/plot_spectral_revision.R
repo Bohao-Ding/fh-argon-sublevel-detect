@@ -14,6 +14,7 @@ theme_set(theme_classic(base_size = 8, base_family = "Arial") + theme(
   strip.text = element_text(size = 8), plot.tag = element_text(face = "bold", size = 9),
   plot.title = element_text(size = 8), panel.grid = element_blank()))
 palette <- c(H1 = "#777777", G1 = "#B57A43", C = "#246C85")
+line_styles <- c(H1 = "dashed", G1 = "dotdash", C = "solid")
 save_figure <- function(p, stem, height_mm) {
   width_mm <- 183
   svglite::svglite(file.path(output, paste0(stem, ".svg")), width = width_mm/25.4, height = height_mm/25.4)
@@ -51,7 +52,7 @@ modes$row <- as.integer(modes$scope) + .12 * (modes$seed - 1)
 p_c <- ggplot(modes, aes(mode_eV, row, shape = peak_status, colour = factor(seed))) +
   annotate("rect", xmin = ar_low, xmax = ar_high, ymin = -Inf, ymax = Inf, fill = "#B5B5B5", alpha = .3) +
   geom_point(size = 2) + scale_shape_manual(values = c(16, 1, 17),
-    labels = c("Interior peak", "Diffuse", "Boundary"), drop = FALSE) +
+    labels = c("Interior peak", "Diffuse", "Boundary")) +
   scale_y_continuous(breaks = 1:5, labels = levels(modes$scope)) +
   scale_colour_manual(values = c("#246C85", "#B57A43", "#776C8E")) +
   coord_cartesian(xlim = c(9, 16)) + labs(x = "Effective mode (eV)", y = NULL, title = "Mode stability and peak qualification")
@@ -73,22 +74,27 @@ training <- subset(points, scope == "final_training")
 pred <- aggregate(predicted_uA ~ Vr + Va + family, training, median)
 observed <- unique(training[,c("Vr", "Va", "observed_uA")])
 p_train <- ggplot() + geom_point(data = observed, aes(Va, observed_uA), size = .45, colour = "#333333") +
-  geom_line(data = pred, aes(Va, predicted_uA, colour = family), linewidth = .45) +
+  geom_line(data = pred, aes(Va, predicted_uA, colour = family, linetype = family), linewidth = .45) +
   facet_wrap(~ Vr, ncol = 2, labeller = label_both) + scale_colour_manual(values = palette) +
+  scale_linetype_manual(values = line_styles) +
   labs(x = "Accelerating voltage (V)", y = "Current (microampere)", title = "Revised final fits: four training conditions")
 save_figure(p_train, "fig9_revision_training", 118)
 stress <- subset(points, scope == "stress_10V")
 pred <- aggregate(predicted_uA ~ Va + family, stress, median)
 observed <- unique(stress[,c("Va", "observed_uA")])
 p_stress <- ggplot() + geom_point(data = observed, aes(Va, observed_uA), size = .6, colour = "#333333") +
-  geom_line(data = pred, aes(Va, predicted_uA, colour = family), linewidth = .6) + scale_colour_manual(values = palette) +
+  geom_line(data = pred, aes(Va, predicted_uA, colour = family, linetype = family), linewidth = .6) + scale_colour_manual(values = palette) +
+  scale_linetype_manual(values = line_styles) +
   labs(x = "Accelerating voltage (V)", y = "Current (microampere)", title = "Unchanged 10 V: frozen-selection stress test")
 save_figure(p_stress, "fig10_revision_stress", 75)
 save_figure((p_train / p_stress) + plot_layout(heights = c(2, 1)) + plot_annotation(tag_levels = "a"),
             "fig11_revision_curves", 166)
 
 profiles <- subset(d, grepl("^profile/", scope) & family == "C")
-profiles$profile <- sub("profile/", "", profiles$scope)
+profile_labels <- c(coarse_knots = "Knots: 0.25 eV", expanded_domain = "Domain: 8-17 eV",
+                    fine_knots = "Knots: 0.05 eV", width_1 = "Width: 1 V",
+                    width_2 = "Width: 2 V", width_3 = "Width: 3 V")
+profiles$profile <- unname(profile_labels[sub("profile/", "", profiles$scope)])
 profiles <- aggregate(density_per_eV ~ profile + energy_eV, profiles, median)
 p_profiles <- ggplot(profiles, aes(energy_eV, density_per_eV)) +
   annotate("rect", xmin = ar_low, xmax = ar_high, ymin = 0, ymax = Inf, fill = "#B5B5B5", alpha = .3) +
