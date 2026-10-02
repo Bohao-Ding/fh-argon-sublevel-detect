@@ -16,6 +16,8 @@ from sublevel_detect.spectral_revision import spectrum_summary
 from sublevel_detect.spectral_revision_pipeline import SCHEMA, make_model, restore_parameters, revision_sources
 from sublevel_detect.validation_common import sha256_file
 from sublevel_detect.validation_holdout import prediction_metrics
+from sublevel_detect.spectral_pipeline import load_curves, training_curves, curve_vr
+from sublevel_detect.spectral_revision_pipeline import predict
 
 
 def replay(evidence):
@@ -74,6 +76,17 @@ def replay(evidence):
             score_error = max(score_error, float((joined[f"{metric}_reported"] - joined[f"{metric}_replayed"]).abs().max()))
     if score_error >= 1e-9:
         raise ValueError(f"revision_score_replay_failed: {score_error}")
+    phase_count = 0
+    if (evidence / "phase_scores.csv").exists():
+        curves = {curve_vr(c): c for c in training_curves(load_curves(ROOT / "data/argon/FHdata.xlsx"))}
+        for r in pd.read_csv(evidence / "phase_scores.csv").to_dict("records"):
+            net, _ = load(r["unit"])
+            curve = curves[r["heldout_vr"]]
+            metrics = prediction_metrics(curve["Ip"], predict(net, [curve])[0], denominator_observed=curve["Ip"])
+            score_error = max(score_error, *(abs(metrics[m] - r[m]) for m in ("rmse", "nrmse")))
+            phase_count += len(curve["Va"])
+        if score_error >= 1e-9:
+            raise ValueError(f"matched_phase_replay_failed: {score_error}")
     density_error, summary_error = 0., 0.
     densities = pd.read_csv(evidence / "distribution_reference.csv")
     for unit, group in densities.groupby("unit"):
@@ -91,8 +104,27 @@ def replay(evidence):
                 raise ValueError(f"distribution_status_mismatch: {unit}, {key}")
     if density_error >= 1e-9 or summary_error >= 1e-9:
         raise ValueError(f"revision_distribution_replay_failed: {density_error}, {summary_error}")
+    band_error = 0.
+    if (evidence / "bootstrap.csv").exists():
+        centers = []
+        for _, rows in pd.read_csv(evidence / "bootstrap.csv").groupby("replicate"):
+            densities = []
+            for unit in rows.unit:
+                net, _ = load(unit)
+                with torch.no_grad():
+                    densities.append(net.density().numpy())
+                computed_summary = spectrum_summary(net)
+                for key in ("mode_eV", "mean_eV", "median_eV", "sd_eV"):
+                    summary_error = max(summary_error, abs(computed_summary[key] - float(rows[rows.unit.eq(unit)].iloc[0][key])))
+            centers.append(np.median(densities, axis=0))
+        bands = np.quantile(centers, [.025, .5, .975], axis=0).T
+        stored = pd.read_csv(evidence / "bootstrap_density_band.csv")[["lower_density", "median_density", "upper_density"]].to_numpy()
+        band_error = float(np.max(np.abs(bands - stored)))
+        if band_error >= 1e-9 or summary_error >= 1e-9:
+            raise ValueError(f"bootstrap_replay_failed: {band_error}, {summary_error}")
     return dict(ok=True, verified_files=files, parameter_models=len(nets), replayed_points=count,
                 max_prediction_difference_uA=largest, max_subset_difference_uA=subset_error,
+                replayed_phase_points=phase_count, max_bootstrap_band_difference=band_error,
                 max_score_difference=score_error, max_density_difference=density_error,
                 max_summary_difference=summary_error)
 

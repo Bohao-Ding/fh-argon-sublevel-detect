@@ -44,7 +44,7 @@ def run(main_run, output):
         raise ValueError("incompatible_matched_recovery_identity")
     atomic_json_dump(companion, output / "run_identity.json")
     exp = Experiment(output, config)
-    jobs, context = [], {}
+    jobs, context, noiseless_jobs, noiseless_context = [], {}, [], {}
     for truth_index, truth in enumerate(("single", "gaussian", "broad", "asymmetric")):
         energy = net.energy_grid.clone()
         if truth == "single":
@@ -60,6 +60,15 @@ def run(main_run, output):
         noiseless = predict(generator, main)
         truth_mean = float(energy @ weights)
         truth_sd = float(torch.sqrt(weights @ (energy - truth_mean).square()))
+        fixed_parameters = {name: p.detach().numpy().tolist() for name, p in net.named_parameters() if name.startswith("raw_")}
+        fixed_parameters.update(raw_curve_gain=[0.] * 4, raw_curve_bias=[0.] * 4)
+        clean = [dict(c, Ip=p.astype(np.float32)) for c, p in zip(main, noiseless)]
+        for penalty in config["lambdas"]:
+            choice = frozen["choices"]["C"]
+            task = exp.task(clean, "C", 0, penalty, choice["phase_response"], fixed_parameters=fixed_parameters)
+            noiseless_jobs.append(task)
+            noiseless_context[task["identity"]] = dict(truth=truth, **{"lambda": penalty},
+                truth_mode_eV=float(energy[weights.argmax()]), truth_mean_eV=truth_mean, truth_sd_eV=truth_sd)
         for replicate in range(config["noise_replicates"]):
             rng = np.random.default_rng(20000 + truth_index * 5 + replicate)
             curves = [dict(c, Ip=(p + residual_sample(r, rng, config["block_length"])).astype(np.float32))
@@ -70,16 +79,20 @@ def run(main_run, output):
                 jobs.append(task)
                 context[task["identity"]] = dict(truth=truth, replicate=replicate, seed=seed,
                     truth_mode_eV=float(energy[weights.argmax()]), truth_mean_eV=truth_mean, truth_sd_eV=truth_sd)
-    exp.batch(jobs, "matched_free_kernel")
+    exp.batch(jobs + noiseless_jobs, "matched_free_and_noiseless_controls")
     rows = [{**context[t["identity"]], "unit": t["identity"], "kernel": "free", "training_points": 644,
              "status": exp.receipts[t["identity"]]["status"], **exp.receipts[t["identity"]]["distribution"]} for t in jobs]
     fixed = pd.read_csv(main_run / "fixed_kernel_recovery.csv").assign(kernel="fixed", training_points=644)
     status = pd.read_csv(main_run / "fit_status.csv").set_index("unit").status
     fixed["status"] = fixed.unit.map(status)
     pd.concat([pd.DataFrame(rows), fixed], ignore_index=True).to_csv(output / "matched_recovery.csv", index=False)
-    exp.write({"free_recovery": rows})
+    noiseless_rows = [{**noiseless_context[t["identity"]], "unit": t["identity"], "status": exp.receipts[t["identity"]]["status"],
+                      "data_mse": exp.receipts[t["identity"]]["data_mse"], **exp.receipts[t["identity"]]["distribution"]}
+                     for t in noiseless_jobs]
+    exp.write({"free_recovery": rows, "noiseless_recovery": noiseless_rows})
     atomic_json_dump({"ok": True, "free_fits": len(jobs), "fixed_fits": len(fixed),
-                      "datasets": 4 * config["noise_replicates"], "stress_used": False}, output / "summary.json")
+                      "datasets": 4 * config["noise_replicates"], "noiseless_controls": len(noiseless_jobs),
+                      "stress_used": False}, output / "summary.json")
 
 
 if __name__ == "__main__":

@@ -20,6 +20,7 @@ src/sublevel_detect/spectral_revision.py text eol=lf
 src/sublevel_detect/spectral_revision_pipeline.py text eol=lf
 scripts/run_spectral_revision_pilot.py text eol=lf
 scripts/run_spectral_matched_recovery.py text eol=lf
+scripts/run_spectral_phase_comparison.py text eol=lf
 scripts/analyze_spectral_revision.py text eol=lf
 scripts/build_spectral_revision_evidence.py text eol=lf
 scripts/replay_spectral_revision.py text eol=lf

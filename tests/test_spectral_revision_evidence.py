@@ -12,6 +12,7 @@ from sublevel_detect.spectral_revision import RevisedSpectrum, spectrum_summary
 from sublevel_detect.spectral_revision_pipeline import SCHEMA, revision_sources
 from sublevel_detect.validation_common import sha256_file
 from sublevel_detect.validation_holdout import prediction_metrics
+from sublevel_detect.spectral_pipeline import load_curves, training_curves
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -57,10 +58,28 @@ def test_revision_replays_parameters_and_detects_changed_bytes(tmp_path):
                    for v, p, o in zip(va, prediction, observed)]
     pd.DataFrame(points).to_csv(tmp_path / "real_prediction_points.csv", index=False)
     pd.DataFrame([dict(unit=unit, energy_eV=spectrum_summary(net)["mode_eV"], density_per_eV=np.nan)]).to_csv(tmp_path / "distribution_reference.csv", index=False)
+    archived = training_curves(load_curves(ROOT / "data/argon/FHdata.xlsx"))[0]
+    with torch.no_grad():
+        phase_prediction = net(torch.tensor(archived["Va"], dtype=torch.float64), torch.zeros(161, dtype=torch.float64)).numpy()
+    phase_metrics = prediction_metrics(archived["Ip"], phase_prediction, denominator_observed=archived["Ip"])
+    pd.DataFrame([dict(unit=unit, heldout_vr=0, **phase_metrics)]).to_csv(tmp_path / "phase_scores.csv", index=False)
+    continuous = RevisedSpectrum(4, "C")
+    boot_unit = "b" * 64
+    boot_receipt = dict(spec=dict(spec, family="C"),
+        raw_parameter_values={n: p.detach().numpy().tolist() for n, p in continuous.named_parameters()},
+        distribution=spectrum_summary(continuous))
+    (tmp_path / "units" / f"{boot_unit[:20]}.json").write_text(json.dumps(boot_receipt))
+    pd.DataFrame([dict(unit=boot_unit, replicate=rep, **spectrum_summary(continuous)) for rep in (0, 1)]).to_csv(tmp_path / "bootstrap.csv", index=False)
+    with torch.no_grad():
+        density = continuous.density().numpy()
+    pd.DataFrame(dict(energy_eV=continuous.energy_grid.numpy(), lower_density=density,
+                      median_density=density, upper_density=density)).to_csv(tmp_path / "bootstrap_density_band.csv", index=False)
     (tmp_path / "SHA256SUMS.txt").write_text("".join(
         f"{sha256_file(p)}  {p.relative_to(tmp_path).as_posix()}\n" for p in sorted(tmp_path.rglob("*")) if p.is_file()))
     result = replay(tmp_path)
     assert result["ok"] and result["replayed_points"] == 483
+    assert result["replayed_phase_points"] == 161
+    assert result["max_bootstrap_band_difference"] < 1e-12
     assert result["max_subset_difference_uA"] < 1e-12
     with (tmp_path / "real_prediction_points.csv").open("a") as stream:
         stream.write("corrupted")
