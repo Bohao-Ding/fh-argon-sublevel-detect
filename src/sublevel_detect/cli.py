@@ -24,7 +24,7 @@ def build_parser() -> argparse.ArgumentParser:
         description="Run the Frank-Hertz sublevel detection reproduction pipeline."
     )
     parser.add_argument("--mode", choices=["fullscan", "smoke"], default="fullscan")
-    parser.add_argument("--experiment", choices=["legacy", "spectrum"], default="legacy")
+    parser.add_argument("--experiment", choices=["legacy", "spectrum", "spectrum-revised"], default="legacy")
     parser.add_argument(
         "--exclude",
         action="append",
@@ -88,6 +88,13 @@ def existing_main_result(args: argparse.Namespace) -> dict | None:
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+    if args.experiment == "spectrum-revised":
+        from . import spectral_revision_pipeline
+
+        result = spectral_revision_pipeline.run(mode=args.mode, input_path=args.input,
+                                               output_root=args.output, device=args.device)
+        print(json.dumps(model.json_ready({"spectrum_revised": result}), ensure_ascii=False, indent=2))
+        return 0 if result["ok"] else 1
     if args.experiment == "spectrum":
         from . import spectral_pipeline
 
