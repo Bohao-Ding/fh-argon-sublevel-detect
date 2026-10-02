@@ -30,6 +30,12 @@ diagnostics passed all 108 failed units (maximum 8.18e-5 microampere); this is o
 a refinement diagnostic. The accepted matrix is independently refitted from new
 initializations at 0.005 eV, then checked on 0.0025 eV.
 
+The nearest-period Gaussian has derivative cusps at its folding boundaries.
+In the largest failed unit, the 72.5 V / 8 V query has a folding energy of
+11.66999 eV, only 0.01281 eV from its G1 mean (11.65718 eV); response width is
+2.99696 V. This is a quadrature issue in the retained phenomenological kernel,
+not an added spectral feature or a change in experimental resolution.
+
 The original emission, collection and periodic response equations are retained,
 with a fixed voltage scale and an optional common condition shift:
 the periodic argument is Va - beta * (Vr - 6 V), beta bounded to -1 to +1 V/V.
@@ -115,6 +121,10 @@ separately; these are synthetic controls, not new observations or statistical po
 Sixteen additional noiseless, generating-kernel-fixed fits (four truths by four
 curvature coefficients, start 0) diagnose regularization broadening without noise
 or free-response compensation. They are mechanism checks, not model selection.
+The companion may train after all real-data choices and final fits are available,
+in parallel with primary recovery. It records those choices and units. Until the
+primary numerical gate passes, its summary explicitly remains pending; rerunning
+the same command verifies cached receipts and finalizes the matched table.
 
 ## Commands and preservation
 

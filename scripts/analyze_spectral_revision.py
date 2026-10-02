@@ -52,6 +52,9 @@ def analyze(run, output, companion=None, phase=None):
     concentrations.to_csv(output / "concentration.csv", index=False)
     outer_medians = outer.groupby(["heldout_vr", "family"])[["nrmse", "rmse", "bias_uA"]].median().reset_index()
     outer_medians.to_csv(output / "outer_seed_medians.csv", index=False)
+    morphology = outer.groupby(["heldout_vr", "family"])[["missing_peak", "extra_peak",
+        "matched_peak_mean_abs_V", "missing_trough", "extra_trough", "matched_trough_mean_abs_V"]].median().reset_index()
+    morphology.to_csv(output / "morphology_seed_medians.csv", index=False)
     flatten(ranges(outer, ["heldout_vr", "family"], ["nrmse", "rmse", "bias_uA"])).to_csv(output / "outer_start_ranges.csv", index=False)
     final = concentrations[concentrations.scope.eq("final")]
     usable = [c for c in QUANTITIES if c in final]
@@ -94,6 +97,7 @@ def analyze(run, output, companion=None, phase=None):
         "schema": summary["schema"], "scientific_run": summary["scientific_run"],
         "choices": summary["choices"],
         "outer_mean_seed_median_nrmse": outer_medians.groupby("family").nrmse.mean().to_dict(),
+        "outer_morphology_seed_medians": morphology.to_dict("records"),
         "stress_seed_median_nrmse": stress.groupby("family").nrmse.median().to_dict(),
         "training_mean_seed_median_nrmse": training.groupby(["Vr", "family"]).nrmse.median().groupby("family").mean().to_dict(),
         "final": final.groupby("family")[usable].median().to_dict("index"),

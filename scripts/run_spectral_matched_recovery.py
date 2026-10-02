@@ -23,11 +23,18 @@ from sublevel_detect.validation_common import atomic_json_dump, sha256_file
 
 def run(main_run, output):
     torch.set_num_threads(1)
-    summary = json.loads((main_run / "summary.json").read_text())
-    if not summary["scientific_run"] or not summary["ok"]:
-        raise ValueError("completed_formal_revision_required")
     identity = json.loads((main_run / "run_identity.json").read_text())
-    frozen = json.loads((main_run / "frozen_selection.json").read_text())
+    if identity["config"]["mode"] != "fullscan":
+        raise ValueError("formal_revision_required")
+    selection = pd.read_csv(main_run / "selection.csv")
+    selected = selection[selection.selected & selection.scope.eq("final")]
+    units = pd.read_csv(main_run / "distributions.csv")
+    final_units = sorted(units.loc[units.scope.eq("final"), "unit"].unique())
+    if len(selected) != 3 or len(final_units) != 9:
+        raise ValueError("completed_real_choices_and_final_fits_required")
+    frozen = {"final_units": final_units, "choices": {r["family"]: {
+        "lambda": float(r["lambda"]), "phase_response": bool(r["phase_response"])}
+        for r in selected.to_dict("records")}}
     receipts = [json.loads((main_run / "units" / f"{u[:20]}" / "fit.json").read_text())
                 for u in frozen["final_units"]]
     candidates = sorted([r for r in receipts if r["spec"]["family"] == "C"], key=lambda r: r["best_objective"])
@@ -39,6 +46,7 @@ def run(main_run, output):
     output.mkdir(parents=True, exist_ok=True)
     companion = {"main_identity_sha256": sha256_file(main_run / "run_identity.json"),
                  "script_sha256": sha256_file(Path(__file__)), "config": config,
+                 "real_choices_and_units": frozen,
                  "role": "matched_four_curve_synthetic_recovery", "stress_used": False}
     if (output / "run_identity.json").exists() and json.loads((output / "run_identity.json").read_text()) != companion:
         raise ValueError("incompatible_matched_recovery_identity")
@@ -82,10 +90,6 @@ def run(main_run, output):
     exp.batch(jobs + noiseless_jobs, "matched_free_and_noiseless_controls")
     rows = [{**context[t["identity"]], "unit": t["identity"], "kernel": "free", "training_points": 644,
              "status": exp.receipts[t["identity"]]["status"], **exp.receipts[t["identity"]]["distribution"]} for t in jobs]
-    fixed = pd.read_csv(main_run / "fixed_kernel_recovery.csv").assign(kernel="fixed", training_points=644)
-    status = pd.read_csv(main_run / "fit_status.csv").set_index("unit").status
-    fixed["status"] = fixed.unit.map(status)
-    pd.concat([pd.DataFrame(rows), fixed], ignore_index=True).to_csv(output / "matched_recovery.csv", index=False)
     noiseless_rows = [{**noiseless_context[t["identity"]], "unit": t["identity"], "status": exp.receipts[t["identity"]]["status"],
                       "data_mse": exp.receipts[t["identity"]]["data_mse"], **exp.receipts[t["identity"]]["distribution"]}
                      for t in noiseless_jobs]
@@ -93,6 +97,19 @@ def run(main_run, output):
     exp.write({"free_recovery": rows, "noiseless_recovery": noiseless_rows, "quadrature": checks})
     if not all(r["passed"] for r in checks):
         raise ValueError("matched_recovery_quadrature_gate_failed")
+    if not (main_run / "summary.json").exists():
+        atomic_json_dump({"ok": False, "status": "awaiting_primary_numerical_gate",
+                          "free_fits": len(jobs), "noiseless_controls": len(noiseless_jobs),
+                          "stress_used": False}, output / "summary.json")
+        return
+    summary = json.loads((main_run / "summary.json").read_text())
+    if not summary["ok"] or not summary["scientific_run"] or json.loads(
+            (main_run / "frozen_selection.json").read_text())["choices"] != frozen["choices"]:
+        raise ValueError("completed_matching_primary_revision_required")
+    fixed = pd.read_csv(main_run / "fixed_kernel_recovery.csv").assign(kernel="fixed", training_points=644)
+    status = pd.read_csv(main_run / "fit_status.csv").set_index("unit").status
+    fixed["status"] = fixed.unit.map(status)
+    pd.concat([pd.DataFrame(rows), fixed], ignore_index=True).to_csv(output / "matched_recovery.csv", index=False)
     atomic_json_dump({"ok": True, "free_fits": len(jobs), "fixed_fits": len(fixed),
                       "datasets": 4 * config["noise_replicates"], "noiseless_controls": len(noiseless_jobs),
                       "stress_used": False,
