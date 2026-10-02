@@ -1,6 +1,6 @@
 # Common affine calibration: second analysis
 
-The current archive supports conditional effective-energy concentration. It does not independently measure an absolute voltage gain or establish a common instrument error. A common current readout correction was tested on frozen H1/G1/C responses. The prescribed inner-fold rule retained the identity readout in all four outer training sets and the final training set; the published physical kernel and spectra therefore remain unchanged.
+This audit uses historical spectral_v1 responses; it does not validate the corrected continuous concentration. Current fresh training and results are in [SPECTRAL_REVISION.md](SPECTRAL_REVISION.md). The same archive can support conditional effective-energy descriptions. It does not independently measure an absolute voltage gain or establish a common instrument error. A common current readout correction was tested on frozen H1/G1/C responses. The prescribed inner-fold rule retained the identity readout in all four outer training sets and the final training set; the published physical kernel and spectra therefore remain unchanged.
 
 ## What was tested
 

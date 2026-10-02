@@ -1,3 +1,41 @@
+# Revised spectrum: standalone reproduction
+
+Use the existing Python requirements. CPU execution needs no checkpoint, external
+work folder, cross-section table, or pretrained model. The current protocol and
+actual results are in [SPECTRAL_REVISION.md](SPECTRAL_REVISION.md) and
+[the discussion](SPECTRAL_REVISION_RESULTS.zh-CN.md).
+
+```powershell
+$env:OMP_NUM_THREADS = '1'
+$env:MKL_NUM_THREADS = '1'
+$env:OPENBLAS_NUM_THREADS = '1'
+python -B run.py --experiment spectrum-revised --mode smoke --device cpu --output output/revision_smoke
+python -B scripts/replay_spectral_revision.py
+```
+
+Smoke is engineering-only and its disposable output should be removed after checks.
+The committed parameter-only release supports a lightweight replay without any
+local fullscan output. Replay verifies source and input bytes, all 244 release
+hashes, original observations, 24,633 point predictions, subset invariance, scores,
+densities and conditional bootstrap bands. The recorded maximum prediction error
+is 8.88e-16 microampere in the reference environment. It does not retrain models.
+
+For a fresh scientific run, use the fullscan and companion commands in the protocol.
+Each CPU worker uses one numerical-library thread. The accepted primary run uses
+0.005 eV quadrature, checks every fit at 0.0025 eV, and freezes selection before
+10 V. The initial 0.01 eV revision failed this gate and is retained as a failure.
+The builder refuses replacing a populated release: pass a new empty destination
+for a new export, using `--help` for arguments. Figures can be regenerated locally:
+
+```powershell
+Rscript scripts/plot_spectral_revision.R source_data_package/spectral_revision_evidence <local-figure-directory>
+```
+
+R dependencies are ggplot2, patchwork, svglite and ragg. Editable PDF/SVG and
+600 dpi PNG/TIFF stay local with manuscripts and complete optimizer histories.
+
+## Historical spectral_v1 reproduction (preserved scope)
+
 # Spectrum experiment: execution and parameter-only replay
 
 Install existing Python requirements. No pretrained model, external work folder, GPU
@@ -66,7 +104,7 @@ Rscript scripts/plot_spectral_manuscript.R source_data_package/spectral_evidence
 SVG/PDF and 600 dpi PNG/TIFF remain local. The script uses published tables and
 distinguishes fitting, whole-curve prediction and frozen 10 V stress.
 
-The current primary interpretation locates energy concentration before any optional discrete hypothesis. `concentration.csv` reports the connected main half-height interval and effective mass in the known 4s range; recompute with `python scripts/summarize_spectral_concentration.py source_data_package/spectral_evidence_v1`. These density-derived summaries do not alter training or model selection.
+The historical spectral_v1 interpretation locates energy concentration before any optional discrete hypothesis. `concentration.csv` reports the connected main half-height interval and effective mass in the known 4s range; recompute with `python scripts/summarize_spectral_concentration.py source_data_package/spectral_evidence_v1`. These density-derived summaries do not alter training or model selection.
 
 The second common affine readout audit also uses frozen kernel parameters, with twelve
 additional inner C references and separate byte manifests. Run

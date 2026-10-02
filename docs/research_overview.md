@@ -1,13 +1,25 @@
-# Complete-curve modeling and hierarchical effective energy inference
+# Complete-curve modeling and effective energy inference
 
-The core method recovers a smooth effective excitation response distribution,
-locates its energy concentration, and compares that region with the first argon excitation group.
-Completed local discrete comparisons are supplementary exploration. Neural optimization estimates parameters; early free-K=4 is a foundation
-and baseline. The 644-point spectrum experiment has a separate [protocol](SPECTRAL_PROTOCOL.md),
-[reproduction guide](spectral_reproduction.md), identity and evidence release. Historical
-805-point studies below retain their scope.
+The current `spectrum-revised` method estimates a nonnegative effective response
+distribution without anchoring four atomic states. Neural optimization estimates
+the physical response parameters; the original free-K=4 work remains its foundation.
+The completed revision uses 644 points, nested whole-condition prediction, matched
+phase controls and known-truth recovery. Mean H1/G1/C NRMSE is
+0.09348/0.09467/0.04925. Better simple-model solutions lie near 11.73 eV;
+the C mode is 10.355 eV (start range 10.285–10.885) and is not a stable
+concentration in the independently known 4s range. The corrected 10 V C stress
+score is 0.06610, weakening a measurement-error inference from earlier failures.
 
-The formal spectral matrix is complete: H1/G1/C mean outer NRMSE is 0.10833/0.10824/0.12242; the effective H1 scale is 11.7636 eV and the conditional C mode 12.04 eV. Final local selection favors d1, with no stable four-state advantage. Two outer folds lack an inner local choice; their candidate diagnostics are not a complete nested selected-model score. All nine final stage-1 starts reach the epoch limit. The [252-file spectral release](../source_data_package/spectral_evidence_v1/README.md) supplies checked parameter-only replay and 30-resample/20-dataset controls. Splitting support and method completion are separate outcomes.
+Known-response, no-added-noise controls recover a 0.15 eV Gaussian width as
+0.150004 eV without curvature and 0.658523 eV at the real-data-selected 1e-4
+coefficient. Prediction and spectral recovery are separate results.
+See [protocol](SPECTRAL_REVISION.md), [result discussion](SPECTRAL_REVISION_RESULTS.zh-CN.md),
+[reproduction](spectral_reproduction.md), and [245-file revised evidence](../source_data_package/spectral_revision_evidence/README.md).
+The 1049-fit primary matrix passes every 0.005/0.0025 eV quadrature check;
+896 fits meet local stationarity and 153 do not. These retained statuses do
+not establish a global solution. Local discrete exploration is not run.
+
+## Historical 805-point studies and earlier spectrum implementations
 
 The research starts with a physics-structured differentiable model trained by neural-network optimization. It describes the archived argon Franck–Hertz curves and supplies multicomponent candidates under specified priors and selectors. Subsequent checks ask what those candidates establish: cross-condition prediction, explanatory necessity, macroscopic response structure, and level specificity.
 

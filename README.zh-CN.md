@@ -1,6 +1,25 @@
 # SubLevel Detect 中文说明
 
-## 核心方法：完整曲线的有效能量反演
+## 当前方法：先确定有效能量集中区
+
+物理约束的完整曲线建模是方法贡献，神经网络式优化承担响应参数估计。修正版入口 `spectrum-revised` 不导入四个 NIST 能级，修复输入数组归一化、连续分位数、主峰判定与正则中心，并采用不同初始谱形、联合优化和内层选择的阻滞条件相位项。历史源码与字节收据保留。
+
+0/4/6/8 V 的 644 点训练和选择，嵌套整曲线留出平均 NRMSE 为 **H1/G1/C：0.09348/0.09467/0.04925**。C 同时选入条件相位项，匹配诊断另行区分相位和能量表示的作用。较好预测不能替代物理能区恢复：C 的峰位中位数 **10.355 eV**，起点范围 **10.285–10.885 eV**，核宽和跨条件检查未得到稳定的第一 4s 组集中区。两个较低目标的 H1/G1 解给出约 11.73 eV 的相容有效尺度。响应质量不是原子占据数或直接激发概率。
+
+协议包括 30 次条件性块重采样、四类真值各五个噪声实现、同四曲线的自由核／固定核回收及无新增噪声的曲率对照。10 V 在全部选择冻结后原样评分，不认定它存在测量错误。见[修正版设计与结果](docs/SPECTRAL_REVISION.md)、[完整结果讨论](docs/SPECTRAL_REVISION_RESULTS.zh-CN.md)、[中文主线](docs/research_storyline.zh-CN.md)及[独立新证据](source_data_package/spectral_revision_evidence/README.md)。
+
+```powershell
+python run.py --experiment spectrum-revised --mode smoke --device cpu --output <临时目录>
+python run.py --experiment spectrum-revised --mode fullscan --device cpu --output output/spectral_revision
+python scripts/run_spectral_phase_comparison.py
+python scripts/run_spectral_matched_recovery.py
+python scripts/build_spectral_revision_evidence.py
+python scripts/replay_spectral_revision.py
+```
+
+Smoke 只验证工程，核验后删除其输出。正式运行、稿件 PDF 与完整新图保留本地；冻结证据使用独立的实际字节 SHA-256 与参数复播。历史入口行为保持兼容。
+
+## 历史 spectral_v1 实现与结果
 
 物理约束下的完整曲线建模与有效能量反演是核心方法贡献。神经网络式训练承担响应参数估计；早期自由 K=4 案例是方法基础与比较基线。`spectrum` 流程拟合非负归一化的平滑有效激发能量分布，定位集中区并将主峰与氩第一激发范围比较；已完成的局部离散假设作为补充探索。它不把原子能级改为连续能级，也不将其混作收集电子的剩余动能谱。
 
@@ -15,11 +34,11 @@ python run.py --experiment spectrum --mode fullscan --device cpu --output output
 
 [独立最小证据](source_data_package/spectral_evidence_v1/README.md)包含 252 文件、实际字节 SHA-256 与来源映射。0.01 eV 网格全部 1343 个拟合测度通过数值门；参数复播 43,470 点最大差 2.38×10⁻⁷ μA。Smoke 只验证工程；正式输出、PDF 和完整新图留在本地。
 
-## 当前文章重点：能量集中区
+## 历史 spectral_v1 集中区解释
 
 连续反演首先定位有效能区，不要求产生四个分立态。C 的连通半高区间为 11.48–12.62 eV，包含有效质量 48.7%，覆盖已知 4s 范围 11.548–11.828 eV。峰顶 12.04 eV 比该组上界高 0.212 eV，整个分布落入四态窄区间的质量仅为 11.2%；这是条件于核的粗尺度相容，不是精确恢复或原子占据比例。G1 在同一区间的有效质量为 76.0%。见 `concentration.csv` 和 `scripts/summarize_spectral_concentration.py`；已完成的离散比较保留为补充探索。
 
-## 固定增益与零点的二轮检验
+## 历史 spectral_v1 固定增益与零点检验
 
 新增训练数据限定的读出校准检验：四个外层 C 训练集及最终训练集均保留原读出。共同电流增益/零点使未选入正式方案的 C 诊断平均由 0.12242 降至 0.11570，但 4 V 一折变差，未采用。电压比例与自由激发尺度存在混合解释，归档不能独立确定仪器误差。物理源码哈希及能量谱保持不变。随 Vr 变化的探索性读出改善较大，表示条件响应差异，不能直接作为仪器校准。见[诊断与物理讨论](docs/AFFINE_CALIBRATION_AUDIT.md)。
 

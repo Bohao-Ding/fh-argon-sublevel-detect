@@ -1,6 +1,25 @@
 # SubLevel Detect
 
-## Core method: effective energy inversion from complete curves
+## Current method: concentration-first effective energy inference
+
+Physics-constrained complete-curve modeling is the method contribution; neural-network-style optimization estimates response parameters. The revised `spectrum-revised` entrypoint locates effective energy concentration without inserting four NIST levels. It fixes query-dependent voltage normalization, continuous quantiles, peak qualification, and physical regularization centers, and adds diverse starts, joint optimization, and an inner-selected condition-phase response. The original sources and byte receipts remain available below.
+
+The 644 points at 0/4/6/8 V train and select. Whole-curve nested holdout mean NRMSE is **0.09348/0.09467/0.04925 for H1/G1/C**. C also selects the condition-phase response; matched phase diagnostics separate this change from the energy representation. Better current prediction does not establish a physical energy distribution. C mode median is **10.355 eV**, with start range **10.285–10.885 eV**; kernel-width and condition holdouts do not yield a stable concentration in the known 11.548–11.828 eV 4s range. Two lower-objective H1/G1 solutions give an effective scale near 11.73 eV. Effective response masses are not atomic populations or excitation probabilities.
+
+The protocol includes 30 conditional block resamples, four synthetic truths with five noise realizations, matched four-curve free/fixed-kernel recovery, and no-added-noise curvature controls. Unchanged 10 V is scored after freezing and is not assumed to be faulty. See [the revised design and results](docs/SPECTRAL_REVISION.md), [completed result discussion](docs/SPECTRAL_REVISION_RESULTS.zh-CN.md), [Chinese argument](docs/research_storyline.zh-CN.md), and [independent revised evidence](source_data_package/spectral_revision_evidence/README.md).
+
+```powershell
+python run.py --experiment spectrum-revised --mode smoke --device cpu --output <temporary-directory>
+python run.py --experiment spectrum-revised --mode fullscan --device cpu --output output/spectral_revision
+python scripts/run_spectral_phase_comparison.py
+python scripts/run_spectral_matched_recovery.py
+python scripts/build_spectral_revision_evidence.py
+python scripts/replay_spectral_revision.py
+```
+
+Smoke is engineering-only; remove its output after checking it. Formal outputs, manuscript PDFs, and complete new figures remain local. Frozen evidence has its own actual-byte SHA-256 manifest and parameter-only replay. Historical commands retain their original behavior.
+
+## Historical spectral_v1 implementation and results
 
 Physics-constrained complete-curve modeling and effective energy inference are the method contribution. Neural-network-style optimization estimates response parameters. The earlier free-K=4 case is the foundation and baseline. The `spectrum` experiment fits a nonnegative normalized smooth effective excitation distribution to locate concentration and compare its main lobe with argon's first excitation range. Completed local discrete comparisons are supplementary exploration. The density does not make atomic levels continuous or identify the residual collected-electron spectrum.
 
@@ -15,11 +34,11 @@ H1 gives an effective scale of 11.7636 eV; the conditional C mode is 12.04 eV. F
 
 [Independent minimal evidence](source_data_package/spectral_evidence_v1/README.md) contains 252 files, actual-byte SHA-256 and source mapping. All 1343 fitted measures pass the numerical gate at 0.01 eV; parameter replay reconstructs 43,470 points within 2.38e-7 microampere. Smoke verifies engineering only. Formal outputs, manuscript PDFs and full new figures remain local.
 
-## Energy concentration: current article emphasis
+## Historical spectral_v1 concentration interpretation
 
 Continuous inversion first locates an effective energy region; it is not required to produce four separated states. C's connected half-height interval is 11.48–12.62 eV (48.7% effective mass), overlapping the known 4s range 11.548–11.828 eV. The 12.04 eV mode is 0.212 eV above that group's upper edge; only 11.2% of the whole effective mass is inside the narrow 4s interval. This is coarse, kernel-dependent compatibility, not precise group recovery or atomic populations. G1 puts 76.0% of its effective mass in the same range. See `concentration.csv` and `scripts/summarize_spectral_concentration.py`; the completed discrete tests are supplementary exploration.
 
-## Common gain/offset audit
+## Historical spectral_v1 common gain/offset audit
 
 A second training-only readout analysis retains identity calibration in all four outer C training sets and the final training set. Common current gain/offset changes the unselected C diagnostic mean from 0.12242 to 0.11570, with a worse 4 V fold; it is not adopted. An unknown voltage gain remains confounded with free excitation scale. Spectra and physical source hashes are unchanged. The stronger exploratory Vr-dependent readout benefit describes condition mismatch, not a verified instrument error. See [the audit and physics discussion](docs/AFFINE_CALIBRATION_AUDIT.md).
 

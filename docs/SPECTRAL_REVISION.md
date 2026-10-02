@@ -143,5 +143,7 @@ and matched-fit diagnostic on training data, not a predictive validation result.
 Run/checkpoint identities include source bytes, input, split, initialization, grid,
 domain, knots, regularization and fixed-parameter controls; incompatible reuse fails.
 Historical `--experiment spectrum` and the original neural-network path remain available.
-Fresh science outputs stay local. A separately hashed evidence package will contain
-source-derived aggregate tables, real predictions and parameter receipts for replay.
+Fresh science outputs stay local. The independently hashed 245-file evidence package contains source-derived aggregate
+tables, real predictions and 198 parameter receipts for replay. Its 244 checked
+byte hashes include the index; the checksum file is excluded from its own list.
+Completed results and physical discussion are in [the result report](SPECTRAL_REVISION_RESULTS.zh-CN.md).
