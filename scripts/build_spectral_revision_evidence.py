@@ -48,11 +48,11 @@ def build(run, companion, phase, destination):
         if original.is_file():
             shutil.copyfile(original, destination / original.name)
             record(destination / original.name, original, "start-aware aggregation; scripts/analyze_spectral_revision.py")
-    for name in ("matched_recovery.csv", "noiseless_recovery.csv", "run_identity.json", "summary.json"):
+    for name in ("matched_recovery.csv", "noiseless_recovery.csv", "quadrature.csv", "run_identity.json", "summary.json"):
         target = destination / f"matched_{name}"
         shutil.copyfile(companion / name, target)
         record(target, companion / name)
-    for name in ("phase_scores.csv", "fit_status.csv", "run_identity.json", "summary.json"):
+    for name in ("phase_scores.csv", "fit_status.csv", "quadrature.csv", "run_identity.json", "summary.json"):
         target = destination / (name if name == "phase_scores.csv" else f"phase_{name}")
         shutil.copyfile(phase / name, target)
         record(target, phase / name)

@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from sublevel_detect.spectral_pipeline import TRAIN_VR, load_curves, training_curves
-from sublevel_detect.spectral_revision_pipeline import Experiment
+from sublevel_detect.spectral_revision_pipeline import Experiment, quadrature_rows
 from sublevel_detect.validation_common import atomic_json_dump, sha256_file
 from sublevel_detect.validation_holdout import split_vr_fold
 import pandas as pd
@@ -50,9 +50,13 @@ def run(main_run, output):
                         evaluation.append((task, test[0], scope))
     exp.batch(jobs, "matched_phase")
     rows = [exp.evaluate(t, c, scope) for t, c, scope in evaluation]
-    exp.write({"phase_scores": rows})
+    checks = quadrature_rows(exp, jobs, curves)
+    exp.write({"phase_scores": rows, "quadrature": checks})
+    if not all(r["passed"] for r in checks):
+        raise ValueError("matched_phase_quadrature_gate_failed")
     atomic_json_dump(dict(ok=True, role="fixed-candidate diagnostic, not nested reselection",
-                         units=len(jobs), stress_used=False), output / "summary.json")
+                         units=len(jobs), stress_used=False,
+                         quadrature_max_difference_uA=max(r["max_difference_uA"] for r in checks)), output / "summary.json")
 
 
 if __name__ == "__main__":

@@ -17,7 +17,7 @@ import numpy as np
 import pandas as pd
 import torch
 from sublevel_detect.spectral_pipeline import load_curves, training_curves, residual_sample
-from sublevel_detect.spectral_revision_pipeline import Experiment, load_fit, predict
+from sublevel_detect.spectral_revision_pipeline import Experiment, load_fit, predict, quadrature_rows
 from sublevel_detect.validation_common import atomic_json_dump, sha256_file
 
 
@@ -89,10 +89,14 @@ def run(main_run, output):
     noiseless_rows = [{**noiseless_context[t["identity"]], "unit": t["identity"], "status": exp.receipts[t["identity"]]["status"],
                       "data_mse": exp.receipts[t["identity"]]["data_mse"], **exp.receipts[t["identity"]]["distribution"]}
                      for t in noiseless_jobs]
-    exp.write({"free_recovery": rows, "noiseless_recovery": noiseless_rows})
+    checks = quadrature_rows(exp, jobs + noiseless_jobs, main)
+    exp.write({"free_recovery": rows, "noiseless_recovery": noiseless_rows, "quadrature": checks})
+    if not all(r["passed"] for r in checks):
+        raise ValueError("matched_recovery_quadrature_gate_failed")
     atomic_json_dump({"ok": True, "free_fits": len(jobs), "fixed_fits": len(fixed),
                       "datasets": 4 * config["noise_replicates"], "noiseless_controls": len(noiseless_jobs),
-                      "stress_used": False}, output / "summary.json")
+                      "stress_used": False,
+                      "quadrature_max_difference_uA": max(r["max_difference_uA"] for r in checks)}, output / "summary.json")
 
 
 if __name__ == "__main__":

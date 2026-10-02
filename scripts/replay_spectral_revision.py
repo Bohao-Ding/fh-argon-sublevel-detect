@@ -16,7 +16,7 @@ from sublevel_detect.spectral_revision import spectrum_summary
 from sublevel_detect.spectral_revision_pipeline import SCHEMA, make_model, restore_parameters, revision_sources
 from sublevel_detect.validation_common import sha256_file
 from sublevel_detect.validation_holdout import prediction_metrics
-from sublevel_detect.spectral_pipeline import load_curves, training_curves, curve_vr
+from sublevel_detect.spectral_pipeline import load_curves, curve_vr
 from sublevel_detect.spectral_revision_pipeline import predict
 
 
@@ -43,11 +43,19 @@ def replay(evidence):
             nets[unit], receipts[unit] = net, r
         return nets[unit], receipts[unit]["spec"]
 
+    archive = {curve_vr(c): c for c in load_curves(ROOT / "data/argon/FHdata.xlsx")}
     points = pd.read_csv(evidence / "real_prediction_points.csv")
-    largest, subset_error, count = 0., 0., 0
+    largest, subset_error, observation_error, count = 0., 0., 0., 0
     recalculated = []
     for (unit, scope, vr), group in points.groupby(["unit", "scope", "Vr"]):
         group = group.sort_values("Va")
+        original = archive[vr]
+        if not np.array_equal(group.Va.to_numpy(), original["Va"]):
+            raise ValueError("archive_voltage_grid_mismatch")
+        observation_error = max(observation_error, float(np.max(np.abs(
+            group.observed_uA.to_numpy() - original["Ip"].astype(float)))))
+        if observation_error >= 1e-12:
+            raise ValueError("archive_observation_mismatch")
         net, spec = load(unit)
         va = torch.tensor(group.Va.to_numpy(), dtype=torch.float64)
         retarding = torch.full_like(va, vr)
@@ -78,10 +86,9 @@ def replay(evidence):
         raise ValueError(f"revision_score_replay_failed: {score_error}")
     phase_count = 0
     if (evidence / "phase_scores.csv").exists():
-        curves = {curve_vr(c): c for c in training_curves(load_curves(ROOT / "data/argon/FHdata.xlsx"))}
         for r in pd.read_csv(evidence / "phase_scores.csv").to_dict("records"):
             net, _ = load(r["unit"])
-            curve = curves[r["heldout_vr"]]
+            curve = archive[r["heldout_vr"]]
             metrics = prediction_metrics(curve["Ip"], predict(net, [curve])[0], denominator_observed=curve["Ip"])
             score_error = max(score_error, *(abs(metrics[m] - r[m]) for m in ("rmse", "nrmse")))
             phase_count += len(curve["Va"])
@@ -123,6 +130,7 @@ def replay(evidence):
         if band_error >= 1e-9 or summary_error >= 1e-9:
             raise ValueError(f"bootstrap_replay_failed: {band_error}, {summary_error}")
     return dict(ok=True, verified_files=files, parameter_models=len(nets), replayed_points=count,
+                max_archive_observation_difference_uA=observation_error,
                 max_prediction_difference_uA=largest, max_subset_difference_uA=subset_error,
                 replayed_phase_points=phase_count, max_bootstrap_band_difference=band_error,
                 max_score_difference=score_error, max_density_difference=density_error,
