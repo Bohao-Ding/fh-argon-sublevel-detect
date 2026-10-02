@@ -1,0 +1,1217 @@
+{
+  "input": "data/argon/FHdata.xlsx",
+  "input_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+  "run": "output/spectral_revision",
+  "matched_control_run": "output/spectral_revision_matched_recovery",
+  "phase_control_run": "output/spectral_revision_phase_comparison",
+  "sources": {
+    "outer_scores.csv": {
+      "source_path": "output/spectral_revision/outer_scores.csv",
+      "source_sha256": "6893E469B91C8A8D26CDC7424BDCA70A01357768A6747339017EA1D9D92DC855",
+      "transformation": "exact byte copy"
+    },
+    "inner_scores.csv": {
+      "source_path": "output/spectral_revision/inner_scores.csv",
+      "source_sha256": "BDF513F306727E8BCEA130921D3961489DA74EAFEB00D3A537F7CEE9AD00A9F7",
+      "transformation": "exact byte copy"
+    },
+    "selection.csv": {
+      "source_path": "output/spectral_revision/selection.csv",
+      "source_sha256": "4B87E62064D8A8A8713CBFC72ECC3CAFCDD80CF6E4710D5E056944F3FE1B49CE",
+      "transformation": "exact byte copy"
+    },
+    "concentration_status.csv": {
+      "source_path": "output/spectral_revision/concentration_status.csv",
+      "source_sha256": "85AAC67954479A85C3649CD2F7FD5A2316CC0D3D1F0775E1C8971C62943758B8",
+      "transformation": "exact byte copy"
+    },
+    "fit_status.csv": {
+      "source_path": "output/spectral_revision/fit_status.csv",
+      "source_sha256": "AEBD2CEB945353310A4D7771343CCBBDFF4E43C510E532D4A8140AAC6C85763C",
+      "transformation": "exact byte copy"
+    },
+    "profiles.csv": {
+      "source_path": "output/spectral_revision/profiles.csv",
+      "source_sha256": "2DD57703B2808131E4CBEFD1FED8DB3471C1FCD9E1BB1BE935F9B179DDE49A32",
+      "transformation": "exact byte copy"
+    },
+    "bootstrap.csv": {
+      "source_path": "output/spectral_revision/bootstrap.csv",
+      "source_sha256": "62E73FABEC4325D3CFE62C0B0350819E7C04EE99B2945243A7E19E062BECBD23",
+      "transformation": "exact byte copy"
+    },
+    "synthetic_scores.csv": {
+      "source_path": "output/spectral_revision/synthetic_scores.csv",
+      "source_sha256": "DE1CB793A453B0FB293EDE725115349B28C53960593139BEDF904CED2F39AC45",
+      "transformation": "exact byte copy"
+    },
+    "recovery.csv": {
+      "source_path": "output/spectral_revision/recovery.csv",
+      "source_sha256": "FEFDD58D78DB1B43C5B38C4E1FA44519F5DD158076E5344F2FAC61D5DE95CA4E",
+      "transformation": "exact byte copy"
+    },
+    "fixed_kernel_recovery.csv": {
+      "source_path": "output/spectral_revision/fixed_kernel_recovery.csv",
+      "source_sha256": "7CE38949C9CDD603196DCCA382DAEE039ED2BA21DA5762B66A843C1E1F9719E5",
+      "transformation": "exact byte copy"
+    },
+    "quadrature.csv": {
+      "source_path": "output/spectral_revision/quadrature.csv",
+      "source_sha256": "ACE9A219C05A5BA474BE2A05426A7C93FD48D897A4ECFDD47F57BF0E8206DD9B",
+      "transformation": "exact byte copy"
+    },
+    "stress_scores.csv": {
+      "source_path": "output/spectral_revision/stress_scores.csv",
+      "source_sha256": "EE2E7785751E2F146B3B4C71F23D1283E9C6C33918BDD0F2F6FB5F130815F9C7",
+      "transformation": "exact byte copy"
+    },
+    "training_scores.csv": {
+      "source_path": "output/spectral_revision/training_scores.csv",
+      "source_sha256": "1103AF3A1200140FDC85B56C8C8606B34054BAC81A2722AF9B72AA1CC4D31943",
+      "transformation": "exact byte copy"
+    },
+    "run_identity.json": {
+      "source_path": "output/spectral_revision/run_identity.json",
+      "source_sha256": "A00CBAF791A0D9B2D654BBBD3B3CDD5B6E91989059EC8200AA35E1FE1A5B1118",
+      "transformation": "exact byte copy"
+    },
+    "frozen_selection.json": {
+      "source_path": "output/spectral_revision/frozen_selection.json",
+      "source_sha256": "108F55C19D91F1A524D53EE48D59E8D60FBE7C705A0F77223C7A3953AE8500DF",
+      "transformation": "exact byte copy"
+    },
+    "summary.json": {
+      "source_path": "output/spectral_revision/summary.json",
+      "source_sha256": "1FBCD65BBA034ADDCAFFABA46724957AD6FB5631CC3CB6F87A2CB71BED3DABC6",
+      "transformation": "exact byte copy"
+    },
+    "bootstrap_concentration_status.csv": {
+      "source_path": "output/spectral_revision/analysis/bootstrap_concentration_status.csv",
+      "source_sha256": "C8FCB517FE8BC555F3645E9326B1FC652ED23735ACD90CD464BFEF80D8DA269A",
+      "transformation": "start-aware aggregation; scripts/analyze_spectral_revision.py"
+    },
+    "bootstrap_density_band.csv": {
+      "source_path": "output/spectral_revision/analysis/bootstrap_density_band.csv",
+      "source_sha256": "6693023FEA4D239E28BC2D14806D0E1872D8435E0C93DB9F13D143AB5EFA6BF4",
+      "transformation": "start-aware aggregation; scripts/analyze_spectral_revision.py"
+    },
+    "bootstrap_seed_medians.csv": {
+      "source_path": "output/spectral_revision/analysis/bootstrap_seed_medians.csv",
+      "source_sha256": "4AD4093E071213A84C3852322A4979458DC831E35312A78DE4140668233653DC",
+      "transformation": "start-aware aggregation; scripts/analyze_spectral_revision.py"
+    },
+    "claim_summary.json": {
+      "source_path": "output/spectral_revision/analysis/claim_summary.json",
+      "source_sha256": "16D65BB1FF3ACB13AA347B0907E279B55A83A49EB1146E95B7064E71EDD4A67A",
+      "transformation": "start-aware aggregation; scripts/analyze_spectral_revision.py"
+    },
+    "concentration.csv": {
+      "source_path": "output/spectral_revision/analysis/concentration.csv",
+      "source_sha256": "58432A70BA683A1BE37BA9F2EC11A6D4B764F25A8F2E810A6DDAC837CE5E776A",
+      "transformation": "start-aware aggregation; scripts/analyze_spectral_revision.py"
+    },
+    "final_parameter_ranges.csv": {
+      "source_path": "output/spectral_revision/analysis/final_parameter_ranges.csv",
+      "source_sha256": "1D5D9185653344AAB787E9BA4177F0926E334C16A7504BF271B1B787843B0AF0",
+      "transformation": "start-aware aggregation; scripts/analyze_spectral_revision.py"
+    },
+    "matched_recovery_seed_medians.csv": {
+      "source_path": "output/spectral_revision/analysis/matched_recovery_seed_medians.csv",
+      "source_sha256": "5A76C24CAC6FF8F07DAF0A538571453533DC28C498F07027097FB7AD82581F0F",
+      "transformation": "start-aware aggregation; scripts/analyze_spectral_revision.py"
+    },
+    "morphology_seed_medians.csv": {
+      "source_path": "output/spectral_revision/analysis/morphology_seed_medians.csv",
+      "source_sha256": "B37555951134DF226A6F92F473BF053014E35FDB9FB3146B8D7E7905E76F82CC",
+      "transformation": "start-aware aggregation; scripts/analyze_spectral_revision.py"
+    },
+    "outer_seed_medians.csv": {
+      "source_path": "output/spectral_revision/analysis/outer_seed_medians.csv",
+      "source_sha256": "579A3B4A8CEF7467E8A8D7A4573979CF4BDC0BE2F2691148E6B809714F7D9E3C",
+      "transformation": "start-aware aggregation; scripts/analyze_spectral_revision.py"
+    },
+    "outer_start_ranges.csv": {
+      "source_path": "output/spectral_revision/analysis/outer_start_ranges.csv",
+      "source_sha256": "92D0032CE7337BAC24AFEB4ED50955892AA7D93033B9D967CDB4B90548DF9050",
+      "transformation": "start-aware aggregation; scripts/analyze_spectral_revision.py"
+    },
+    "peak_threshold_sensitivity.csv": {
+      "source_path": "output/spectral_revision/analysis/peak_threshold_sensitivity.csv",
+      "source_sha256": "2D3EB483E3594FFD6D2C149237B9919953222CA2B88B7BB9B3E529132A6F98FD",
+      "transformation": "start-aware aggregation; scripts/analyze_spectral_revision.py"
+    },
+    "phase_seed_medians.csv": {
+      "source_path": "output/spectral_revision/analysis/phase_seed_medians.csv",
+      "source_sha256": "AE3A207D0346226E066DF079DE3D08D1D6492B798473C324999D3B1C6CE707E1",
+      "transformation": "start-aware aggregation; scripts/analyze_spectral_revision.py"
+    },
+    "profile_ranges.csv": {
+      "source_path": "output/spectral_revision/analysis/profile_ranges.csv",
+      "source_sha256": "F2DDCE31ABC28FD25E4DC6A3C53D9E6F623BF39BDC6AB544B88C1510C69FE5B3",
+      "transformation": "start-aware aggregation; scripts/analyze_spectral_revision.py"
+    },
+    "recovery_seed_medians.csv": {
+      "source_path": "output/spectral_revision/analysis/recovery_seed_medians.csv",
+      "source_sha256": "9085A0157788914BB2F1134C7ACF7C9A39A641A7321AB8B88A378E8EE679D50F",
+      "transformation": "start-aware aggregation; scripts/analyze_spectral_revision.py"
+    },
+    "matched_matched_recovery.csv": {
+      "source_path": "output/spectral_revision_matched_recovery/matched_recovery.csv",
+      "source_sha256": "56A3386F27E66F97B80509F5E2F39C307EB3D622DBB7B162516877E5F8D8A515",
+      "transformation": "exact byte copy"
+    },
+    "matched_noiseless_recovery.csv": {
+      "source_path": "output/spectral_revision_matched_recovery/noiseless_recovery.csv",
+      "source_sha256": "1230A52C0B19494E8AED856E8A859EEA551A24296477955F16295B42DA0459E5",
+      "transformation": "exact byte copy"
+    },
+    "matched_quadrature.csv": {
+      "source_path": "output/spectral_revision_matched_recovery/quadrature.csv",
+      "source_sha256": "7468FB68C51F942247708C716C1064E7AEE53567FD1696C6E6688B58A1E565A0",
+      "transformation": "exact byte copy"
+    },
+    "matched_run_identity.json": {
+      "source_path": "output/spectral_revision_matched_recovery/run_identity.json",
+      "source_sha256": "A848B8F70125F91381A8109017BB9FC114591C12CD5E337A6EE6C24E4E2A5BE9",
+      "transformation": "exact byte copy"
+    },
+    "matched_summary.json": {
+      "source_path": "output/spectral_revision_matched_recovery/summary.json",
+      "source_sha256": "5020E43E2E70DEF296EFED4C324086BED3E4BD120FB051D142F0A75A07E18186",
+      "transformation": "exact byte copy"
+    },
+    "phase_scores.csv": {
+      "source_path": "output/spectral_revision_phase_comparison/phase_scores.csv",
+      "source_sha256": "24A6192D8C7D0B54F50F6E3CF8DB5F669629C83DBF3DCF6444A2F39277F09D36",
+      "transformation": "exact byte copy"
+    },
+    "phase_fit_status.csv": {
+      "source_path": "output/spectral_revision_phase_comparison/fit_status.csv",
+      "source_sha256": "5BECD35679E85A036B3E2261D2525D9CB1373A756B51DB49DCA14DD00349AE01",
+      "transformation": "exact byte copy"
+    },
+    "phase_quadrature.csv": {
+      "source_path": "output/spectral_revision_phase_comparison/quadrature.csv",
+      "source_sha256": "D668E2BBEC2613DB7505BA2A0AB3F636A39B0D6601E715C40ADA9F7D362C0484",
+      "transformation": "exact byte copy"
+    },
+    "phase_run_identity.json": {
+      "source_path": "output/spectral_revision_phase_comparison/run_identity.json",
+      "source_sha256": "49817B4FF55E2B7C00CC87110EF4C4EC8C2552D6445979BB8B6ABB1AD41CC826",
+      "transformation": "exact byte copy"
+    },
+    "phase_summary.json": {
+      "source_path": "output/spectral_revision_phase_comparison/summary.json",
+      "source_sha256": "423D1D9F9916F644EAFED6AC91D8C326A93C385410AC174E7B2F73537568E10D",
+      "transformation": "exact byte copy"
+    },
+    "real_prediction_points.csv": {
+      "source_path": "output/spectral_revision/prediction_points.csv",
+      "source_sha256": "FE6B8B6F838151E428E549639A626A7A5FF1283504B6D1409E4E2040EAB50294",
+      "transformation": "retain actual outer, final training and frozen stress points"
+    },
+    "distribution_reference.csv": {
+      "source_path": "output/spectral_revision/distributions.csv",
+      "source_sha256": "E7F7A446CA68A13E283016ED18A314F6CE83D5A623B14F241888FC5D53386F7E",
+      "transformation": "retain real-data outer/final/sensitivity measures"
+    },
+    "units/00307E5122EE42F1CA2D.json": {
+      "source_path": "output/spectral_revision/units/00307E5122EE42F1CA2D/fit.json",
+      "source_sha256": "51A85B0564A995B0BEE495265A016698DC616EB17363DF45D1C1357C7ECE2104",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/00BAEF41259349BCDBA4.json": {
+      "source_path": "output/spectral_revision/units/00BAEF41259349BCDBA4/fit.json",
+      "source_sha256": "6F0E19A6EB2EA5D527FE931E5DDB31E459943FBDAA7E7CC337E578F437F623B6",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/020D4C40ED7D8C6818E4.json": {
+      "source_path": "output/spectral_revision/units/020D4C40ED7D8C6818E4/fit.json",
+      "source_sha256": "E3B1CA614AD859DAD6D3BA35BAF8FC98A40D52B307B145DF4D31A637B861B210",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/023884822796CF9B1167.json": {
+      "source_path": "output/spectral_revision/units/023884822796CF9B1167/fit.json",
+      "source_sha256": "7B95B93E3677E400E7D447ACCCAD0380D3455CF611EEF3CA3F95E04E9BBBB21A",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/02983400804E7FB9FAAA.json": {
+      "source_path": "output/spectral_revision/units/02983400804E7FB9FAAA/fit.json",
+      "source_sha256": "795B51DB8AA690EB1811F8DC83D7792D44881E7F6F649EA15FBEAAABDCCDF829",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/06D832082DC6820084F2.json": {
+      "source_path": "output/spectral_revision/units/06D832082DC6820084F2/fit.json",
+      "source_sha256": "6F4624D90E4A2CD1EEA1D16CA707829D84DFBED1ABB7AC62FA01670E9EF43A79",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/09A77866D2A4A24F8D30.json": {
+      "source_path": "output/spectral_revision/units/09A77866D2A4A24F8D30/fit.json",
+      "source_sha256": "AA60EA57F93EEE79D76EC86C84D34E18ECE0D55712764A049CDF892099D64F2A",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/0C890B6192BF390DF796.json": {
+      "source_path": "output/spectral_revision/units/0C890B6192BF390DF796/fit.json",
+      "source_sha256": "509DF95F7F121948FF3ED2077871C21DF834CFECB86147401F88828B092D3CFF",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/0E100820D4C207A933AA.json": {
+      "source_path": "output/spectral_revision/units/0E100820D4C207A933AA/fit.json",
+      "source_sha256": "1F57BAB3E90C9062EAE3B80A36CC64A79BB9DC3133E4C3002294427A346BD24E",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/1123795045A2B6BF7783.json": {
+      "source_path": "output/spectral_revision/units/1123795045A2B6BF7783/fit.json",
+      "source_sha256": "0C7C0E7078C56ADC71ED9D3CAACAAF282078F196D69257CCCE85963899F7202C",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/12F1BAEAB6EA01F3681B.json": {
+      "source_path": "output/spectral_revision/units/12F1BAEAB6EA01F3681B/fit.json",
+      "source_sha256": "610B4CFEB1991ABD09227FF611F301BB4A0A402897D91250FE4FAE9E52C0D872",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/15DA710E778B989432F2.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/15DA710E778B989432F2/fit.json",
+      "source_sha256": "6E32DC3159C7BEE564994F37D56B62F81AF4847F09C0A65AA73B22064EEC2C44",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/18C501B2470055DE3F3E.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/18C501B2470055DE3F3E/fit.json",
+      "source_sha256": "0438A8AA21F00BC827468C316DC173FBBE75671C2064423F2A2B88C79A7102A5",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/194B2D94F8419BCBA26C.json": {
+      "source_path": "output/spectral_revision/units/194B2D94F8419BCBA26C/fit.json",
+      "source_sha256": "B631527AD20BF8688E80192227E38EED3D9992AA7ED43CB6C1D3DB8E4279C2EC",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/1972E53D39E83DC6E4E8.json": {
+      "source_path": "output/spectral_revision/units/1972E53D39E83DC6E4E8/fit.json",
+      "source_sha256": "18D880442F729C4048521A5401B115F6EAFEDBBEDEB216F70B1CC76CD2A1AEBD",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/19C4DBC9D3C99FD25BCC.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/19C4DBC9D3C99FD25BCC/fit.json",
+      "source_sha256": "B89CB932B58DA641C365B15C4AF13372FB53A65B99EB213718BD75890AE6B965",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/1A055859FD3819A296A7.json": {
+      "source_path": "output/spectral_revision/units/1A055859FD3819A296A7/fit.json",
+      "source_sha256": "EFF583A3A6377066918969CEC8FDBEB1F6FB9D7C37029DA2CE4848E147E3F8B7",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/1B42F465A14BC7268811.json": {
+      "source_path": "output/spectral_revision/units/1B42F465A14BC7268811/fit.json",
+      "source_sha256": "3D05503D23D40B20E2A3674B74C155D4C203BA2666514DF29BCEE6DD45A53125",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/1BC32802F978FA78DB7C.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/1BC32802F978FA78DB7C/fit.json",
+      "source_sha256": "38786828FB23BFCEB8BDFA1E78377AFA3C87FB59CED8002713A350D29552FD36",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/1DCAA72CCAA6CADB499A.json": {
+      "source_path": "output/spectral_revision/units/1DCAA72CCAA6CADB499A/fit.json",
+      "source_sha256": "07FB98EE79F6C60A61EB0D837D348EB34B90FCE66EC38FD463C6F38F9F1A39E8",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/1F9593ED968070D2DC8C.json": {
+      "source_path": "output/spectral_revision/units/1F9593ED968070D2DC8C/fit.json",
+      "source_sha256": "827597F19809986151AAE476CEFF9FDAC3ADE3535E294EC856074421BF04B867",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/1FA540EFC1EFB1937ACF.json": {
+      "source_path": "output/spectral_revision/units/1FA540EFC1EFB1937ACF/fit.json",
+      "source_sha256": "AED60875F1DB0058409487B824B0769862B0AA6F21395B54F77983BCC4F9537D",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/21B7A232CB32CB70CA32.json": {
+      "source_path": "output/spectral_revision/units/21B7A232CB32CB70CA32/fit.json",
+      "source_sha256": "5CFB0AFBB223482ABFD7C7561FE82F81534FEFE9B7BE0BC4EEBCEE212F58468F",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/223C538469FD6F8006E8.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/223C538469FD6F8006E8/fit.json",
+      "source_sha256": "272961A336045404DE55D34D9AC48718AAAE2C77903B81359E4EC86A330D6F02",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/241590EA37E379305DE8.json": {
+      "source_path": "output/spectral_revision/units/241590EA37E379305DE8/fit.json",
+      "source_sha256": "561A4C8C9EF087F237458125F4E44059E3F25B3F44FD4BEF858F7C4DAC87EE7F",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/24294152306EBF47A8CB.json": {
+      "source_path": "output/spectral_revision/units/24294152306EBF47A8CB/fit.json",
+      "source_sha256": "D8797F687E7989417E3829A2E4D40392247888D907728AC96A24BD077BE73902",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/2580F7E0A319B658D645.json": {
+      "source_path": "output/spectral_revision/units/2580F7E0A319B658D645/fit.json",
+      "source_sha256": "2B5C67B21732DA862FBB7F69C8459AB3E975881168606B7DD4C18679A44EA52D",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/262327DBFA516EFCC64B.json": {
+      "source_path": "output/spectral_revision/units/262327DBFA516EFCC64B/fit.json",
+      "source_sha256": "20303E93DC13F1EAC005B3F9591D16C45ABA8F6BD3B14AA6C1929A3730DE8BC9",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/2667DC2391257372C8DA.json": {
+      "source_path": "output/spectral_revision/units/2667DC2391257372C8DA/fit.json",
+      "source_sha256": "FC61239A66C31C8E0CACF267B2324382902A5E65579D66E8A0FE06FDCBD660EA",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/26F969AD0E377F13CC74.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/26F969AD0E377F13CC74/fit.json",
+      "source_sha256": "7CE0689542288BCA3B17BF99BD48A0FBCFCABB19C7F29FE8805739A5389187C0",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/288B4B9E779C7760B19D.json": {
+      "source_path": "output/spectral_revision/units/288B4B9E779C7760B19D/fit.json",
+      "source_sha256": "EFAF6BFE6F14DCE730FFAFB93791935F491CCA6FAD9FE47EFDD2CD90FAB25EF2",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/2AC421CA54586358E7D4.json": {
+      "source_path": "output/spectral_revision/units/2AC421CA54586358E7D4/fit.json",
+      "source_sha256": "CBE43FA080EE44F82B9423ABD82492DC9C6FBBAFCE343B969CB409FEC7E91521",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/2C32EBC591BC430301BC.json": {
+      "source_path": "output/spectral_revision/units/2C32EBC591BC430301BC/fit.json",
+      "source_sha256": "89D5EAD47A67E0E1E67015F83C63D55A220C1CB8A5722D11164143B5FB4095AC",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/2CB50892C08DE8C0AC07.json": {
+      "source_path": "output/spectral_revision/units/2CB50892C08DE8C0AC07/fit.json",
+      "source_sha256": "7911D290EE17CCBAD144810364FB6CA60CA71845FD46E80D67C23D5D1E6B2FAC",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/31EFAFA81BCAE38D7601.json": {
+      "source_path": "output/spectral_revision/units/31EFAFA81BCAE38D7601/fit.json",
+      "source_sha256": "BADB68715BFF97669A840844168596BCA39C78092452D8B45C48E2D036A9A42B",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/31FAFCE71853031B9D3B.json": {
+      "source_path": "output/spectral_revision/units/31FAFCE71853031B9D3B/fit.json",
+      "source_sha256": "18AF347F01A7782B44D8BD1C802B254ACA57A787A4F3AD9F5A34188CB5341B40",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/323F4FAF63DBCE0B5804.json": {
+      "source_path": "output/spectral_revision/units/323F4FAF63DBCE0B5804/fit.json",
+      "source_sha256": "5B9DBEA0F08BD13C10CA65BB651A291DF1A4C1AF6764B21043C48CCC05FD6AFF",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/32BCCD6238E603D64C0E.json": {
+      "source_path": "output/spectral_revision/units/32BCCD6238E603D64C0E/fit.json",
+      "source_sha256": "9A3CE5CC53A964ABE93A7CDCF23FEB3462921FF2A1BA21F221810F6708A7DC64",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/3404CCF9F1051F2BCC23.json": {
+      "source_path": "output/spectral_revision/units/3404CCF9F1051F2BCC23/fit.json",
+      "source_sha256": "FB62816858AB903D0520A45FBC92C3001CFFCA432D1C2635A7B83736BA36AA93",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/3433FA27636F4DE2BEDB.json": {
+      "source_path": "output/spectral_revision/units/3433FA27636F4DE2BEDB/fit.json",
+      "source_sha256": "B6129AF54337C3E04DBA127C96831FCD4D350E6EE4026B0D5697808F1C153DF5",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/34B17E5B047533CBC09E.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/34B17E5B047533CBC09E/fit.json",
+      "source_sha256": "BE82015F8C280FDA9CB0BE6E38CBC7BC281FD6FB60366CBAC35EC9C79B338B99",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/365ADB3A78D2825D0C42.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/365ADB3A78D2825D0C42/fit.json",
+      "source_sha256": "3BD87EABDBB39377D0FF01C210B489183738DD64C6553E8AA858C24E5EC65939",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/37B74A79FA49EDCF55AF.json": {
+      "source_path": "output/spectral_revision/units/37B74A79FA49EDCF55AF/fit.json",
+      "source_sha256": "9226F64352FD4411F500B0CD16FA34C0B92CC16E65154A475A0F45637C76687C",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/3AB2AB8128290F6F150E.json": {
+      "source_path": "output/spectral_revision/units/3AB2AB8128290F6F150E/fit.json",
+      "source_sha256": "45D1C5F6C09A3F095E3CF1AA5362D71FA6EEFD3094C236F718FF51CC69E6F12C",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/3B0B62A6CECBCEB9312C.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/3B0B62A6CECBCEB9312C/fit.json",
+      "source_sha256": "8713E22B7305CF3816BCA34C438177D1DAC8AA5FE6495C48E74A3E449DCF7367",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/3D32318E8423A1301E0C.json": {
+      "source_path": "output/spectral_revision/units/3D32318E8423A1301E0C/fit.json",
+      "source_sha256": "FE58683D91952459FCD7AC77866960ABBA3CE7187C6039BFF2296FE75B61146A",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/439A6F87DC0B3315AED6.json": {
+      "source_path": "output/spectral_revision/units/439A6F87DC0B3315AED6/fit.json",
+      "source_sha256": "6FE14B76BBB41E9F5EEF18D224A570777027CBEA1415CE574DDCA006EC170092",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/43C0BD7119933B46A714.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/43C0BD7119933B46A714/fit.json",
+      "source_sha256": "02B2938C7347827461C79E87A1782EC2E95C285C6CA3A1BCF3E799C03CF5C843",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/441D6F16BE36F255A864.json": {
+      "source_path": "output/spectral_revision/units/441D6F16BE36F255A864/fit.json",
+      "source_sha256": "A271B79EF88EC34A42BD40D5F6C6625DA51305AAAA98C0A7138A56E387F7A34D",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/45C8FD7D222741361ADB.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/45C8FD7D222741361ADB/fit.json",
+      "source_sha256": "0A725BADCB1B5BB12F5357C457E784233312B6DEABAE148272103D0009F2B1B0",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/46C28DDAFD9C4CF5F8C2.json": {
+      "source_path": "output/spectral_revision/units/46C28DDAFD9C4CF5F8C2/fit.json",
+      "source_sha256": "FAB96AC56F48A81D8240DAE236CA8936B6CBD1070FD96B6495D81EE7A809D6B3",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/47D399E19A5442A3CFAB.json": {
+      "source_path": "output/spectral_revision/units/47D399E19A5442A3CFAB/fit.json",
+      "source_sha256": "A6B3307C1CD3E45DE761A50A55B11D42B63C6CF7A605536EF384922EFAF696E9",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/4883B0DF336763D09294.json": {
+      "source_path": "output/spectral_revision/units/4883B0DF336763D09294/fit.json",
+      "source_sha256": "EA4A02877FCF3C85F1C644AE79A2C6946F3618A0219099B1A20988D0DBC344B3",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/48849A5A2390AAB4F08C.json": {
+      "source_path": "output/spectral_revision/units/48849A5A2390AAB4F08C/fit.json",
+      "source_sha256": "7460D1F761BE5DCFCC7A0D4831C97B499A3CE88EE52709D533F097E923898591",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/48E1DAEFB88C981202A8.json": {
+      "source_path": "output/spectral_revision/units/48E1DAEFB88C981202A8/fit.json",
+      "source_sha256": "B322EC1C81FB344C3CA948A8D29C4CB05BD894175F19D8CED44C07559B52FD3F",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/4A43E1D885B142D3A4E3.json": {
+      "source_path": "output/spectral_revision/units/4A43E1D885B142D3A4E3/fit.json",
+      "source_sha256": "89B2537DEEABFAF4967D25019E7A6D71920F136266DC6351860BE579E8615D59",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/4BDB5CA95BDE19ADE5AC.json": {
+      "source_path": "output/spectral_revision/units/4BDB5CA95BDE19ADE5AC/fit.json",
+      "source_sha256": "6726D5F8A90A27AB61BDBC6EEB116E853C5B65AB63588CED2EE9E6B2A092D750",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/4CBC7AFEAD9DE5723042.json": {
+      "source_path": "output/spectral_revision/units/4CBC7AFEAD9DE5723042/fit.json",
+      "source_sha256": "8545000B3823F066BCBACD92C128BB06921BB73785566EA4CFF82F8B2C219F71",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/4E0DCAB851E5BE071AD4.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/4E0DCAB851E5BE071AD4/fit.json",
+      "source_sha256": "479C207F47991ABA3E3185C6DA8D7CE2522271C627F31151247E7321F966723A",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/4EA261BD2A3DA6C2AAB5.json": {
+      "source_path": "output/spectral_revision/units/4EA261BD2A3DA6C2AAB5/fit.json",
+      "source_sha256": "AF0873194126D5CC23D651C7BEC31DE8C5DC3C47865BF1BD0FA794A64BB119AB",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/50AAD38E17C5BD9FAD35.json": {
+      "source_path": "output/spectral_revision/units/50AAD38E17C5BD9FAD35/fit.json",
+      "source_sha256": "8671A2709696F69B8D356FF87F1C4D70B79CCAAAF01F1894CA51112CA36E9141",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/50F7E2E1F5FA2EBB1DB7.json": {
+      "source_path": "output/spectral_revision/units/50F7E2E1F5FA2EBB1DB7/fit.json",
+      "source_sha256": "D7DF70C3572660DF129098E35F7D92F5AF3361645F32C5793164FC8F6EC11811",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/524CB4D11A54D55A99B3.json": {
+      "source_path": "output/spectral_revision/units/524CB4D11A54D55A99B3/fit.json",
+      "source_sha256": "E2C84FA313EE14CB2AF1A22B620FA7C6671A5ADADD608B5B5CF84D33C5E39AD7",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/530CB9A9DCD2D6F6D129.json": {
+      "source_path": "output/spectral_revision/units/530CB9A9DCD2D6F6D129/fit.json",
+      "source_sha256": "7E45CA040590D950F828059A49B406CA467EEF33ED3ECA8F173120BCA94283BE",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/5841FEA4C9F7351EF889.json": {
+      "source_path": "output/spectral_revision/units/5841FEA4C9F7351EF889/fit.json",
+      "source_sha256": "F66E7B86054C8F1F533D0EBDA4E4A914FE8137E18BBFDE55002F104F6A9AFF5B",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/594397E2CD0F11DDF0B1.json": {
+      "source_path": "output/spectral_revision/units/594397E2CD0F11DDF0B1/fit.json",
+      "source_sha256": "59D543C796EFA2F248D52F0D0240B86A2D74EDCD2B9CE0D0005B17519159E69C",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/599065C1C494C96770BC.json": {
+      "source_path": "output/spectral_revision/units/599065C1C494C96770BC/fit.json",
+      "source_sha256": "9212EC45C787CFFD4BFD33BE1E5EB6DADB845E4E3F1EA663E84F82A581B1E3E6",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/5B4D9FC08CCE89C68ECA.json": {
+      "source_path": "output/spectral_revision/units/5B4D9FC08CCE89C68ECA/fit.json",
+      "source_sha256": "CC822C687E1978F02EC974A3BD8661907A0283827CDD9A050A1721B817CE0A36",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/5D4605F44CB271524BA4.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/5D4605F44CB271524BA4/fit.json",
+      "source_sha256": "092016495C40CA159AA02E2B4607F6E6FE848D9BBE5793A796B9C9E34018C1F4",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/5DB100A68B1727F3AAA4.json": {
+      "source_path": "output/spectral_revision/units/5DB100A68B1727F3AAA4/fit.json",
+      "source_sha256": "2B36FCDEB385F9FAFF7034D696ABFF39A7E2598821B585DDAF503B00BF1B9A37",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/5ED7D4E5BF5925F7C903.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/5ED7D4E5BF5925F7C903/fit.json",
+      "source_sha256": "F1AAF052F065E16B9B7C67435FB21FBF98A5A28B0DBDDAB35FFFDB483A5474BC",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/5F2814C1A309CE519DA7.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/5F2814C1A309CE519DA7/fit.json",
+      "source_sha256": "C60C6323A0C54CAD8591358AD351124AE5A11AB3DD90F585ACE7C61310CDA0CC",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/6016F3AC62951803880D.json": {
+      "source_path": "output/spectral_revision/units/6016F3AC62951803880D/fit.json",
+      "source_sha256": "4A8D37AEA99E06747E4E5FD1E08D092A279FAE0BA463B1070D6EEAD0877A1E51",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/60D9A3D0F501C48BFD9F.json": {
+      "source_path": "output/spectral_revision/units/60D9A3D0F501C48BFD9F/fit.json",
+      "source_sha256": "377592DBBD572A6EFB57E4D2F886772CF70F97FD4BD53B7BFB9C6B4B5B618A4A",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/63854B2BBADE06726E72.json": {
+      "source_path": "output/spectral_revision/units/63854B2BBADE06726E72/fit.json",
+      "source_sha256": "E13D6EABF5F501D45A42BCF32ED2FE53407BAE72613069597C9C85AD6174D955",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/63AD6975A162DD1F28A5.json": {
+      "source_path": "output/spectral_revision/units/63AD6975A162DD1F28A5/fit.json",
+      "source_sha256": "F344C7A1DD5CCDA23AFE8FE05EEAC55E9E6A7348238A87CD0CED2BC409333F25",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/64AED6F96B3831AB3718.json": {
+      "source_path": "output/spectral_revision/units/64AED6F96B3831AB3718/fit.json",
+      "source_sha256": "7E1ABDE516F745BDD0485393C16F56662213F238781CCD7C62D1C2601F5237C3",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/65C9AD2AC0C7FB881560.json": {
+      "source_path": "output/spectral_revision/units/65C9AD2AC0C7FB881560/fit.json",
+      "source_sha256": "9E13E6AA75FF53494BEC2C4FE1D22A9A8204D793F0E0847E9116206AC9175857",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/663B4054B2FCA6412E3C.json": {
+      "source_path": "output/spectral_revision/units/663B4054B2FCA6412E3C/fit.json",
+      "source_sha256": "876641159ED3112E85E5055B1C42E791BD7874A0E94C8D5C1B5500F25BEB9FB9",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/67502D7B0D80F07726BD.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/67502D7B0D80F07726BD/fit.json",
+      "source_sha256": "717A7842D38590DB2F93D464AA007DC2BAF31BBBD9ACB601231D2532D58C883B",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/68FD47A601F1E6663E01.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/68FD47A601F1E6663E01/fit.json",
+      "source_sha256": "EB66583D4E596FAB08F29AB26269E65BD969B310349C596E68B4E84931F13E6E",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/6AACF09BFBF10405C258.json": {
+      "source_path": "output/spectral_revision/units/6AACF09BFBF10405C258/fit.json",
+      "source_sha256": "9AA99F9780228485E274B6864B5F3EDE85EE33AA46764B8BC194FDA357EF3259",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/6AFA922D094B0E4003BF.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/6AFA922D094B0E4003BF/fit.json",
+      "source_sha256": "22E609CB16D63A8221BC25F9C0EEBACDBDDF70A0D3B836B5C4AFA6BF15EA0CCE",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/6CE38FA885AE248D7DD1.json": {
+      "source_path": "output/spectral_revision/units/6CE38FA885AE248D7DD1/fit.json",
+      "source_sha256": "E9590D3D470EAD67B4E0062E325044520770C238223C4FF89DD53B7EA8AC7D8E",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/6E10BE45A2D76AE98FE6.json": {
+      "source_path": "output/spectral_revision/units/6E10BE45A2D76AE98FE6/fit.json",
+      "source_sha256": "24DF8DE80FB6008C6DA8FD8D373E9DD5E8E1E1AEAD9B91FFA61266D4F67CFE91",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/72720802F05A5C4DB5E2.json": {
+      "source_path": "output/spectral_revision/units/72720802F05A5C4DB5E2/fit.json",
+      "source_sha256": "679A1BC8F055CEE178A9B08300A4C43F4FC5715ACC61FAC34BE2C0619C9B9434",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/72F5A157BBBAB21A5CCF.json": {
+      "source_path": "output/spectral_revision/units/72F5A157BBBAB21A5CCF/fit.json",
+      "source_sha256": "416436D95DDF94112CC5202CE1EA7AAED84EC497B8B0971864FD92E440AF76B2",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/74435435334BD9A3EF64.json": {
+      "source_path": "output/spectral_revision/units/74435435334BD9A3EF64/fit.json",
+      "source_sha256": "1E0FD46D699FACA9958B403EF7278AAACBBFFD71F53F38223E1A7BF7A76F4C45",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/74BD615AF1FADFF9EB4A.json": {
+      "source_path": "output/spectral_revision/units/74BD615AF1FADFF9EB4A/fit.json",
+      "source_sha256": "706351E13AAEB37A4717D52B1EC27C562034A24A33F34C2AEED1D9EE23A01E90",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/758EE0C49DF4B86AB0C0.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/758EE0C49DF4B86AB0C0/fit.json",
+      "source_sha256": "262457B272C1E2018A73B685B7550240655A5DC13F0F81E9447857C5C8DE91E9",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/77A5ABD10C459A46AC7D.json": {
+      "source_path": "output/spectral_revision/units/77A5ABD10C459A46AC7D/fit.json",
+      "source_sha256": "50C5005CD284DB1CA4491CF76B251AA5253B72713E3C60A566E73CBAD257D2AA",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/78B242040D735A2A2B65.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/78B242040D735A2A2B65/fit.json",
+      "source_sha256": "A472590E76916194B714E1CF57D2A754EF797CABF755BB51FE2F9BB9DA76F217",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/79991CE4B177F919421B.json": {
+      "source_path": "output/spectral_revision/units/79991CE4B177F919421B/fit.json",
+      "source_sha256": "46AF2C4AACF7532A81FFDCB93CC17EC1719DAB2EAC8FA229971235CA07A52135",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/7B1A7BBA4B11062AE77D.json": {
+      "source_path": "output/spectral_revision/units/7B1A7BBA4B11062AE77D/fit.json",
+      "source_sha256": "CBE0254FA788224018C93C6517285271D5C8C7A10059EC5852A737430D1AE304",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/7FA485F1B1D2F442E3E0.json": {
+      "source_path": "output/spectral_revision/units/7FA485F1B1D2F442E3E0/fit.json",
+      "source_sha256": "3FBCED05312BC09F2B3A934C64F654DADB778C66A3B3496DFA58D694083CB585",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/8069BC9CEE20ED8A58B2.json": {
+      "source_path": "output/spectral_revision/units/8069BC9CEE20ED8A58B2/fit.json",
+      "source_sha256": "82E74FD3465FA187FF0CDF84F4A93BDBCE9477F087D55C3435E083030AF50152",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/814CDC71D9ED3529B193.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/814CDC71D9ED3529B193/fit.json",
+      "source_sha256": "15ECE196874561C4357426D5DFF6B45D783490CBDABD8B04AF0D77A9B61532D2",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/81B2000F8D1ADBF35C96.json": {
+      "source_path": "output/spectral_revision/units/81B2000F8D1ADBF35C96/fit.json",
+      "source_sha256": "FFFBECC7B5147C4F92CA5DC13873D84EB5964F82FFB3381EBBDCB66BA1345E74",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/8212FB25180387DF60FB.json": {
+      "source_path": "output/spectral_revision/units/8212FB25180387DF60FB/fit.json",
+      "source_sha256": "7A3DEE3206BAE0FE5E73F560DE7FDC8EAE1A057249D8253041121E4B62EC27D0",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/821C0F28F834B1AFA821.json": {
+      "source_path": "output/spectral_revision/units/821C0F28F834B1AFA821/fit.json",
+      "source_sha256": "3F530C34B0E9947DB7E266BE31921B86BA40BEB98F29BD9EE8AD5F553D690269",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/84DB72624463366D2C82.json": {
+      "source_path": "output/spectral_revision/units/84DB72624463366D2C82/fit.json",
+      "source_sha256": "0EBE8009309F06A887D0CDA42D8FA1E679654A48A47BF012ADA819E71FD65E62",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/851633A2B8E721C7A982.json": {
+      "source_path": "output/spectral_revision/units/851633A2B8E721C7A982/fit.json",
+      "source_sha256": "35357F383D74D71758DA2ACC30F89D2DBB5F90A1E862558DAA3A72025ED4E793",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/8638FA4A48C74C9C2856.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/8638FA4A48C74C9C2856/fit.json",
+      "source_sha256": "644A3CABD2DA973FB2CFCD03737B34D1231E69966C7AE847168A3ABF8F9F8E0B",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/865B5F1B3B9488FE7CD2.json": {
+      "source_path": "output/spectral_revision/units/865B5F1B3B9488FE7CD2/fit.json",
+      "source_sha256": "9CC1A4DD2B9759100B972A5C9F5CEECF5FA28D44417E4164ECAED4C78F7E4054",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/868D4769B8560AC6D98C.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/868D4769B8560AC6D98C/fit.json",
+      "source_sha256": "CBA5DAA0B23C45559715F9A571A6C9B0EED1DD10440F6946A922F7E37D1EADCC",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/87604D68B50DBDD35D2F.json": {
+      "source_path": "output/spectral_revision/units/87604D68B50DBDD35D2F/fit.json",
+      "source_sha256": "DCA36C657FAF3CC07687FB7F15A326F6553066BC3C748C0C68B751B3F51F2D8D",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/88A32A64820ABCD41815.json": {
+      "source_path": "output/spectral_revision/units/88A32A64820ABCD41815/fit.json",
+      "source_sha256": "2BF0263E981467DC018438DA80681745324610CEFC2830DEE30DA25B90338866",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/896BCFCD257592EFF5D9.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/896BCFCD257592EFF5D9/fit.json",
+      "source_sha256": "2DCCA3459819FE4FA422BEC981C300285BD7AF3A9695988449DC6E88C269FA24",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/8A00DACE03DB7A344DC4.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/8A00DACE03DB7A344DC4/fit.json",
+      "source_sha256": "C8DFE54268235D3823CAA614D856671DEC5159E42078AA1C31DC8D0F8547FA56",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/8A9A0A97C38DDD2B8AF7.json": {
+      "source_path": "output/spectral_revision/units/8A9A0A97C38DDD2B8AF7/fit.json",
+      "source_sha256": "147FA09B7996F66CAA4237D5A5E993922F16741EF926EC0D308ECE28269C044E",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/8AEDA4156EA92710E86E.json": {
+      "source_path": "output/spectral_revision/units/8AEDA4156EA92710E86E/fit.json",
+      "source_sha256": "17299FA8763CF2E78E10CCEDE19C08E8C5505FAEDC008ED8ECB616FC7F0335C4",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/8B7858971434C47973CA.json": {
+      "source_path": "output/spectral_revision/units/8B7858971434C47973CA/fit.json",
+      "source_sha256": "0C175873052372AD80CA83C2038FE216949F5FED2B867F5609690E40DFE8396A",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/8DED4491F10281DF7C6D.json": {
+      "source_path": "output/spectral_revision/units/8DED4491F10281DF7C6D/fit.json",
+      "source_sha256": "253538CAAA8B7EE535632676DB2EF87D1F7448C5940ADDDF4A65BF1CFCEF7832",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/918996C42FAB367F8735.json": {
+      "source_path": "output/spectral_revision/units/918996C42FAB367F8735/fit.json",
+      "source_sha256": "EDBB35B973F5AAC0BD7E4FA299D3142540A85FC8A8A6DE525889477E9471E50F",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/91E32542C396D06A2E9F.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/91E32542C396D06A2E9F/fit.json",
+      "source_sha256": "AE4CDC83C0B9707E1DC090D62530E2EF2FAB58349F3FF240F28663F6A0A10D8A",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/923C1422E87B93B0732A.json": {
+      "source_path": "output/spectral_revision/units/923C1422E87B93B0732A/fit.json",
+      "source_sha256": "D5B1DCDFA0F25DC2C8AA48C97235FA0C581037866CEBF3179375D10747375284",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/928A57EAA870557887D2.json": {
+      "source_path": "output/spectral_revision/units/928A57EAA870557887D2/fit.json",
+      "source_sha256": "14C2F49B1979234255CC2EFF45FB09E0DE1BECF0522A0863B9AD6D68F451F6DE",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/929488CECAE7CC4BE47D.json": {
+      "source_path": "output/spectral_revision/units/929488CECAE7CC4BE47D/fit.json",
+      "source_sha256": "4AE6AF967F9C0000D69DE91F0E0FAF531F2D6674C40E057F9CEAF9054931F996",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/9544C2CA564BAFB5411B.json": {
+      "source_path": "output/spectral_revision/units/9544C2CA564BAFB5411B/fit.json",
+      "source_sha256": "21615D33AB6FDFDCF187F8A4F21150D16E2274CA2AC4AA463E65E330EFDDA935",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/96502AB866A49CA9471F.json": {
+      "source_path": "output/spectral_revision/units/96502AB866A49CA9471F/fit.json",
+      "source_sha256": "75F0BADBD75BBDE59A73D23157C134C5A9674D3EA504010E04E8765D95822216",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/9859394D3843CBD00224.json": {
+      "source_path": "output/spectral_revision/units/9859394D3843CBD00224/fit.json",
+      "source_sha256": "DB5FA79E89CABDA6D92A3266E64FCB52946BE498EFB158D802C9CEA3BA122D19",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/99556E3DAB172A8556F3.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/99556E3DAB172A8556F3/fit.json",
+      "source_sha256": "B8FDA04182BFEBE43AA45ED04151CE9B51C98E9B7427B9600268ED0593C7EEE1",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/9A2E70EF2CC172FBD822.json": {
+      "source_path": "output/spectral_revision/units/9A2E70EF2CC172FBD822/fit.json",
+      "source_sha256": "0C9BCC3BA0BF58F5F9B11661C36ECF9CF4BCD3E57866E7927991D329780B90AE",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/9EEAA5949A872A6A0E46.json": {
+      "source_path": "output/spectral_revision/units/9EEAA5949A872A6A0E46/fit.json",
+      "source_sha256": "4CBE1C63443A378EE4378AE0C72488E7A3F4E690EFE31628AB80C6F15D674B71",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/9F56E16BD50D0530792D.json": {
+      "source_path": "output/spectral_revision/units/9F56E16BD50D0530792D/fit.json",
+      "source_sha256": "A0647C213BF3C37810E806BD0A8CABD08D995A88A820CE40D422A22ABCB58535",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/9FB53748A9A157E48672.json": {
+      "source_path": "output/spectral_revision/units/9FB53748A9A157E48672/fit.json",
+      "source_sha256": "08D0C9F88474D4E5A26C191A401C6F590607BE91910576D9374AB61F4237B3D4",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/A20B861D2909990725F5.json": {
+      "source_path": "output/spectral_revision/units/A20B861D2909990725F5/fit.json",
+      "source_sha256": "291AE6E574FF7B91A77DE0337B354229CB9E1D8B284F2ECD2BFE3273B8D75933",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/A499C9AAB59CC104A72E.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/A499C9AAB59CC104A72E/fit.json",
+      "source_sha256": "E8D77356FC458E6D75C229E0DD8AC79924D6A8D356F0B7B590D9EC161CBE0721",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/A518619BF59A8869B8CB.json": {
+      "source_path": "output/spectral_revision/units/A518619BF59A8869B8CB/fit.json",
+      "source_sha256": "7CC2E92FED2F21A2FAF18B3D8BC06663665F557DF58F42DC64D42BE5CB145AFF",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/A604E4445891011D6D60.json": {
+      "source_path": "output/spectral_revision/units/A604E4445891011D6D60/fit.json",
+      "source_sha256": "50048DEF04A3073DCC0989FB532969C8FF43BAB2FF3BC0B3CFA62107F35AF822",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/A6F6C7ECC1B3304BCBE0.json": {
+      "source_path": "output/spectral_revision/units/A6F6C7ECC1B3304BCBE0/fit.json",
+      "source_sha256": "5991D2C6B0E9836E1BBB0FFF6A9DC2F0CEC471FFCFF265FCE466DA02D22BFDE3",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/A7479A826D8D55053048.json": {
+      "source_path": "output/spectral_revision/units/A7479A826D8D55053048/fit.json",
+      "source_sha256": "18ACF6741D1D48E6218E1B8F064F60F1A21C5FCD99FF96DBB872F243ED2F509C",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/AA518AE1E381B89AB346.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/AA518AE1E381B89AB346/fit.json",
+      "source_sha256": "C6613B54BA2D69804FE0F8778FF107F905105AADFDCF2E378AD1BD9776937B78",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/AAB30F6F91ED6EA0DB1D.json": {
+      "source_path": "output/spectral_revision/units/AAB30F6F91ED6EA0DB1D/fit.json",
+      "source_sha256": "D33E1175BDC2583DFBA2BEA852667F88F2C35970654C35532702EE71E8AD0E75",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/AD083260E26FE30A4AD3.json": {
+      "source_path": "output/spectral_revision/units/AD083260E26FE30A4AD3/fit.json",
+      "source_sha256": "20EBC2F5B007F6389F6BA80C09AEF0D6F0F13FAE993FACC2A8A526F2A2490C85",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/AE84E92B8E70B8E96AAB.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/AE84E92B8E70B8E96AAB/fit.json",
+      "source_sha256": "BD063EE3C22B8B4B390BDCFB63F435B5F170CB94CF0273E39256BC64302C396F",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/B00F1C7A5E515E721C12.json": {
+      "source_path": "output/spectral_revision/units/B00F1C7A5E515E721C12/fit.json",
+      "source_sha256": "1B1A432F8945093BBD20CFCC9BA7ED84D76A3A6C3C46FA5BBAF3282E93068B0A",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/B08716CAD7750AE1DF8D.json": {
+      "source_path": "output/spectral_revision/units/B08716CAD7750AE1DF8D/fit.json",
+      "source_sha256": "CE2F38B18B6AC7E01E3B967606C2C821B39C231B5D085031C7A82FB20EF3E4EE",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/B121E81D729592C5C76C.json": {
+      "source_path": "output/spectral_revision/units/B121E81D729592C5C76C/fit.json",
+      "source_sha256": "EF3D421595D71261909187A2ACFCE8D6F27F05FD41741823866AD7663ECC55BA",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/B46B2C76B673242788A3.json": {
+      "source_path": "output/spectral_revision/units/B46B2C76B673242788A3/fit.json",
+      "source_sha256": "0F6F4C6E07991C322637D96DAA1C1983EDD18B10B5D854ECBB602091814FC477",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/B4A084590144B4620DA6.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/B4A084590144B4620DA6/fit.json",
+      "source_sha256": "80A6CDF1C30EF39B0FC633908BA1DA2CCDBCCFD7A695B5384110F6D12B2BD5B2",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/B4EFF05425B3CD04CBD1.json": {
+      "source_path": "output/spectral_revision/units/B4EFF05425B3CD04CBD1/fit.json",
+      "source_sha256": "5DDA1AC6DD5CF88E5A5547D632B41F569316B66E4842F0545B64B5F5C686BA9B",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/B5B7CC46B1331B991248.json": {
+      "source_path": "output/spectral_revision/units/B5B7CC46B1331B991248/fit.json",
+      "source_sha256": "CDF6EE206C65FA418A902C79EDDB99C62452C93D99C7EC39775537FB1B808B4B",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/B7705241101619138EE9.json": {
+      "source_path": "output/spectral_revision/units/B7705241101619138EE9/fit.json",
+      "source_sha256": "97653EBEF28A62742486CD94F5C21223D752F2924B2D7493381A4340767DEF6F",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/B7D55D782760D1FB9D7F.json": {
+      "source_path": "output/spectral_revision/units/B7D55D782760D1FB9D7F/fit.json",
+      "source_sha256": "1122B7C11F410F6879727487A1EAB6CA4C6213893C21E4728543AE003A5533F2",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/BB3AD280450245F6EEAB.json": {
+      "source_path": "output/spectral_revision/units/BB3AD280450245F6EEAB/fit.json",
+      "source_sha256": "5064E227CF532892D83E921CDC05BD4E20A2EE6085591D3AD1BCEE2C0837FF74",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/BE19FA0526725C81CB64.json": {
+      "source_path": "output/spectral_revision/units/BE19FA0526725C81CB64/fit.json",
+      "source_sha256": "41FFE25AEA8F1AD55AFC003A2B0518B91A601A080B7DED39307519527776F0A9",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/C0427D080F4A1EC335D7.json": {
+      "source_path": "output/spectral_revision/units/C0427D080F4A1EC335D7/fit.json",
+      "source_sha256": "978C019C35D8BC6C341928CAAA8614CCEE98150D911B2DAB15BAB6B4F6B2D1C6",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/C2A497487FB96D034D2C.json": {
+      "source_path": "output/spectral_revision/units/C2A497487FB96D034D2C/fit.json",
+      "source_sha256": "4C3975BF63272F23D858168A596E6C7C94C22B56966F01FED2121CD867917716",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/C435522DFBDCAE9A1701.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/C435522DFBDCAE9A1701/fit.json",
+      "source_sha256": "6DFF8DA64AD0FF3E8D5123CCBFD2FBC6BA57746D22C804D2FE8C5EE563A56CA1",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/C44C60BE98FCA4650051.json": {
+      "source_path": "output/spectral_revision/units/C44C60BE98FCA4650051/fit.json",
+      "source_sha256": "1B8946A7736331A7077144D5FD661FB464AC897B916C9FE8D79896EEDB9D2356",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/C458727A5085D19A1A49.json": {
+      "source_path": "output/spectral_revision/units/C458727A5085D19A1A49/fit.json",
+      "source_sha256": "72C2BB22504CB47126B1BAE380CCD9159A782AEE02C07AD17C7A88C8E3AFD4B2",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/C4F7275AFDDD34925FCE.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/C4F7275AFDDD34925FCE/fit.json",
+      "source_sha256": "2D4E87F027FA28F3881ABA51665AEE58ECE1E18EBEEF24C102F6E162A0B618ED",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/C52209D6FD655A9BE8AF.json": {
+      "source_path": "output/spectral_revision/units/C52209D6FD655A9BE8AF/fit.json",
+      "source_sha256": "56B8E9E16EF65AEB60C8253C82FE807B82303D57D2112E2246FDE2F93F5252CE",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/C62F6F9E8A83B70CAE48.json": {
+      "source_path": "output/spectral_revision/units/C62F6F9E8A83B70CAE48/fit.json",
+      "source_sha256": "861DB78B3420F24AF465D1F81AC4F6ADB0288CAE7D6D303434EDFA98FB2B388E",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/CABD8B551811A78578B0.json": {
+      "source_path": "output/spectral_revision/units/CABD8B551811A78578B0/fit.json",
+      "source_sha256": "0F0376FC3FD3C132A2E47386BD438D17AC7F89E74BC956EEA3F0C87B8FEC7911",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/CD4300D33AD08C3AC17C.json": {
+      "source_path": "output/spectral_revision/units/CD4300D33AD08C3AC17C/fit.json",
+      "source_sha256": "C2D04F21A3463C5BBAC37CD159C4F6BFDFEA27CA6129090E0B7096203FA11CBF",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/CD8C2AB29BE25B59E32E.json": {
+      "source_path": "output/spectral_revision/units/CD8C2AB29BE25B59E32E/fit.json",
+      "source_sha256": "3FF7B13D595E75DC3A0FEA502CEF81887A275AEEBA2304BCFD1BCE9591E569AD",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/CE22C85127D16D6C08BC.json": {
+      "source_path": "output/spectral_revision/units/CE22C85127D16D6C08BC/fit.json",
+      "source_sha256": "C6F0B0AD943D373CE5F5559C2DA239B2311D50674E352ADC2C882A9B1408695B",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/D2EDEE938DE0A856DC7F.json": {
+      "source_path": "output/spectral_revision/units/D2EDEE938DE0A856DC7F/fit.json",
+      "source_sha256": "E3CF36590A71C91E7DDB2E2C3C5D1780C9C5DD007F093EE0FB6B55CCA66D9D25",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/D2F9B8085DD75017F67C.json": {
+      "source_path": "output/spectral_revision/units/D2F9B8085DD75017F67C/fit.json",
+      "source_sha256": "86BC9812E2490D5975D15816A8FA824163C1080506B0368052006DDD408554D9",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/D3752CEFF5BF39D1AA8D.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/D3752CEFF5BF39D1AA8D/fit.json",
+      "source_sha256": "A03DEA5A7B76F44319E15D0F24106448B447BBD228FBDB805B8CE01144EB6642",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/D3F777E7E8414C2A909D.json": {
+      "source_path": "output/spectral_revision/units/D3F777E7E8414C2A909D/fit.json",
+      "source_sha256": "9AADBF8F4D2DC5D1F6B1BDA34A9907101D5D1B38BADDC3935B6BF4C1BACC48AC",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/D3FD966866AC4B23E686.json": {
+      "source_path": "output/spectral_revision/units/D3FD966866AC4B23E686/fit.json",
+      "source_sha256": "823BAA276BF48F35AC8896352BC0E3C3A9B7708D3739D2AA178E82666E5C29D6",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/D64263A6A3D98C20BE42.json": {
+      "source_path": "output/spectral_revision/units/D64263A6A3D98C20BE42/fit.json",
+      "source_sha256": "F01FC61E567643F1587A84A0BF96EFE24BA79A74A2F7D13CA1261C4280659BC7",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/D735369AC3EB9F8CDB8C.json": {
+      "source_path": "output/spectral_revision/units/D735369AC3EB9F8CDB8C/fit.json",
+      "source_sha256": "63FEA1CD6DFCBB5AAF5054926C5B60FA962A55601645A62492D5FFCAC9872EA3",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/D995BA1CE9ED55E20E64.json": {
+      "source_path": "output/spectral_revision/units/D995BA1CE9ED55E20E64/fit.json",
+      "source_sha256": "A34A0813D11FC5984254D86C5D552C8F785B5F8DB947D0CBD341DD18BA4F7B01",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/D9EC5F1BB05B31288E68.json": {
+      "source_path": "output/spectral_revision/units/D9EC5F1BB05B31288E68/fit.json",
+      "source_sha256": "D29DC9CAF2483EC83D5E9519DB23B3809942C08E81A066787581ACFA8BEA72CB",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/DA8ABF6CF94FEBDAB028.json": {
+      "source_path": "output/spectral_revision/units/DA8ABF6CF94FEBDAB028/fit.json",
+      "source_sha256": "307B4599DF3490DB9AF9B2019382A981123D0EAEC944C42D4267B46F655614D6",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/DBDBFA00236B8CC13424.json": {
+      "source_path": "output/spectral_revision/units/DBDBFA00236B8CC13424/fit.json",
+      "source_sha256": "456F13ED1CEB4873387B5F4F1EB8B4378E452D4864AFB98ADF8752E8A51D9704",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/DC1E96CC9F5D3D93D1B2.json": {
+      "source_path": "output/spectral_revision/units/DC1E96CC9F5D3D93D1B2/fit.json",
+      "source_sha256": "C9F8CF45DC60F50A522F9102629B0E4A03E2660CD1A6B0BCFFF5B4FDE740C24E",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/DC3D36ECEEE0DD4FC89B.json": {
+      "source_path": "output/spectral_revision/units/DC3D36ECEEE0DD4FC89B/fit.json",
+      "source_sha256": "C338A5C1E09BA5701F54DC912D9566AE4C3B3E7D59C099550F492DED39CB3313",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/DD95A7E1A74703836BCC.json": {
+      "source_path": "output/spectral_revision/units/DD95A7E1A74703836BCC/fit.json",
+      "source_sha256": "91E2A0E6DF7F6CD8BD703F8A3D21F91BAC2DF0F7D956209657A83DB4C78267C8",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/DEF4FF4C1073BAD4AEA1.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/DEF4FF4C1073BAD4AEA1/fit.json",
+      "source_sha256": "DF5A0A0159A25794581EDFCB1FA1E8B0889BB1E9A64EDA6387CFB9A29C9241ED",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/DF2F0AE5DF38E452CB32.json": {
+      "source_path": "output/spectral_revision/units/DF2F0AE5DF38E452CB32/fit.json",
+      "source_sha256": "865EACC2804909770653230C2910263E01FDAB8238B4088E4F546CE15E8BD72A",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/DFE6C5E307714677393F.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/DFE6C5E307714677393F/fit.json",
+      "source_sha256": "532BE68F1E588780451D315F3E739AF55612664FB8CED257CDA15DFFD1C09B42",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/E5FEA4B075545D2BE29D.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/E5FEA4B075545D2BE29D/fit.json",
+      "source_sha256": "DF8B5FB5F0C2D2C76AACF4EF8DA3F2A441CDCF4187C7815E980E01435AD70995",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/EC4C274215854E543967.json": {
+      "source_path": "output/spectral_revision/units/EC4C274215854E543967/fit.json",
+      "source_sha256": "0F850273BD39A2B7926D3500E1448A978DE0F5542D0AD3BF8697DD904951A3E5",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/EC9CC98625A002C32625.json": {
+      "source_path": "output/spectral_revision/units/EC9CC98625A002C32625/fit.json",
+      "source_sha256": "E597E3024FCAE8DF25299F64A6E688419CEF901FF3E6C36D276E5C860D7B5875",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/EDA1F8B4257CF2AF70B1.json": {
+      "source_path": "output/spectral_revision/units/EDA1F8B4257CF2AF70B1/fit.json",
+      "source_sha256": "95FCDCF9CE5168566415FC7776DC904BAE4ED870455723EE7BF414AED0A9F343",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/EE7B9D3676A2B6087289.json": {
+      "source_path": "output/spectral_revision/units/EE7B9D3676A2B6087289/fit.json",
+      "source_sha256": "FA1758F3D8EF3519869C55DCDF0E0904B054A589BF2C6A4979FEC72B15588F69",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/EF41E09D967B433A0CA7.json": {
+      "source_path": "output/spectral_revision/units/EF41E09D967B433A0CA7/fit.json",
+      "source_sha256": "80C0A9D0F380D7264F804AEE4D2CEB1E0A8808F196BB55E575714EDE35DBA704",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/F1E6F305C6662D4AB7E8.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/F1E6F305C6662D4AB7E8/fit.json",
+      "source_sha256": "60BDFA1096C25A0D952610B6B209F7FC373E28F84295247A465A87730E71715F",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/F32C738CB620582B25F7.json": {
+      "source_path": "output/spectral_revision/units/F32C738CB620582B25F7/fit.json",
+      "source_sha256": "42EA52EF7438A796FF260FCD0D5768B3D923139211DEDDFEAFC198BF3E022193",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/F59CBC74D25B52D512FD.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/F59CBC74D25B52D512FD/fit.json",
+      "source_sha256": "53DEC1345142DAF52B3D5D8A8CA83DE57F3311000B65DACEE032EFFD734BC982",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/F61FB80787184B51384E.json": {
+      "source_path": "output/spectral_revision/units/F61FB80787184B51384E/fit.json",
+      "source_sha256": "75534C5BE82127B40CB963C165B529AE6F7134AD5B445D9D0A94BEF31F5E02DA",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/F6C91FF8090A965B6004.json": {
+      "source_path": "output/spectral_revision/units/F6C91FF8090A965B6004/fit.json",
+      "source_sha256": "59945B3B9CB1CB87D99C75C5C7B73751CFB5DB0C29E56740061A6C20C3D1BF28",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/F7367BFBA7ED703F7575.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/F7367BFBA7ED703F7575/fit.json",
+      "source_sha256": "709091A14F1B546E1B25548D4A130427D18458A72D38FA0BBEE34DAC5E3CB2CF",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/F9477394A703F452A821.json": {
+      "source_path": "output/spectral_revision/units/F9477394A703F452A821/fit.json",
+      "source_sha256": "583457EDD7B141C7ACD2645C63D8E29B8701C0E75D9B2558BAD5CA319D6D6B72",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/FADE13D7B3304B8BF118.json": {
+      "source_path": "output/spectral_revision/units/FADE13D7B3304B8BF118/fit.json",
+      "source_sha256": "F9F6F538574C4C7A81E1738DEE962C79463D331727596D583792B7513E84A02D",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/FD303179D38E850C6A05.json": {
+      "source_path": "output/spectral_revision/units/FD303179D38E850C6A05/fit.json",
+      "source_sha256": "5C7AC3F6853D5A79B72A20588DEE521E96875AA379249E4F338D884CA962E3E3",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/FD7612ED8FA04F447E45.json": {
+      "source_path": "output/spectral_revision/units/FD7612ED8FA04F447E45/fit.json",
+      "source_sha256": "C8F390B84181859F4462692586818CD1D4AB3009272C8254645ACA37E178FD34",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/FDCE8F721C9E0B2945B0.json": {
+      "source_path": "output/spectral_revision/units/FDCE8F721C9E0B2945B0/fit.json",
+      "source_sha256": "4FC85BB020EFE994645A010BCBA4FAE9AC11BCA457D84EBDDCD0F18DDD4CD241",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/FE492D3D64E26B4F1EFA.json": {
+      "source_path": "output/spectral_revision/units/FE492D3D64E26B4F1EFA/fit.json",
+      "source_sha256": "26005A90EF4BA1286BC2A127235921C7401F1EBCC63A1CCB3EB55F5669165E06",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/FE740B92C5FDCECFBABD.json": {
+      "source_path": "output/spectral_revision_phase_comparison/units/FE740B92C5FDCECFBABD/fit.json",
+      "source_sha256": "C2AA1CAE910FE3A302B3A9477AB41591201016874610948D501045B56DC7E9BD",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/FEF34C3A35330CAF07E0.json": {
+      "source_path": "output/spectral_revision/units/FEF34C3A35330CAF07E0/fit.json",
+      "source_sha256": "30D73C09C765526400490399A5ECDEA32597605417D6ABCD22E6151E14F0BF2B",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/FF8A88987B430C5415A1.json": {
+      "source_path": "output/spectral_revision/units/FF8A88987B430C5415A1/fit.json",
+      "source_sha256": "95A9F55A098F56E709DA91A4F58AE1884672D4B9DDA568DA8FA909B05C84F733",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    },
+    "units/FFAC469B5D437195BF57.json": {
+      "source_path": "output/spectral_revision/units/FFAC469B5D437195BF57/fit.json",
+      "source_sha256": "2EE5C43D6C21AF9609B5B1F94BB1101E7FCE4B4DD8236B06768ED1B8237DA29D",
+      "transformation": "parameter-only receipt; omit optimizer history and elapsed time"
+    }
+  },
+  "analysis_source_sha256": "BDFB3EFFBF4554D8D336C3ED5BB38B17C2F9665F21C985D1ED84BCE5C5F265EC",
+  "excluded": [
+    "checkpoints",
+    "synthetic point predictions and densities",
+    "manuscripts",
+    "figures",
+    "optimizer histories"
+  ]
+}

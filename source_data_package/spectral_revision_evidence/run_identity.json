@@ -1,0 +1,57 @@
+{
+  "schema": "effective-spectrum-revision-schema1",
+  "input_sha256": "FF4B316B7D11C84B99E07B9AE0E32AFD03EEFD33698CF9DE3D02062D7F1902F3",
+  "config": {
+    "schema": "effective-spectrum-revision-schema1",
+    "mode": "fullscan",
+    "workers": 4,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "inner_seed": 0,
+    "lambdas": [
+      0.0,
+      1e-08,
+      1e-06,
+      0.0001
+    ],
+    "phase_responses": [
+      false,
+      true
+    ],
+    "knot_step": 0.1,
+    "domain": [
+      9.0,
+      16.0
+    ],
+    "grid_step": 0.005,
+    "lr": 0.002,
+    "clip": 5.0,
+    "common_regularization": 0.0001,
+    "adam_epochs": 1500,
+    "min_epochs": 300,
+    "patience": 150,
+    "relative_delta": 2e-05,
+    "lbfgs_iterations": 400,
+    "joint_iterations": 600,
+    "gradient_tolerance": 1e-05,
+    "simplex_tolerance": 0.0001,
+    "bootstrap_count": 30,
+    "noise_replicates": 5,
+    "block_length": 9,
+    "peak_to_uniform_threshold": 1.5,
+    "mode_range_threshold_eV": 0.5
+  },
+  "sources": {
+    "spectral_models.py": "CAB7D308BF6C67490F0A53D74B8AE9CB5F93F30711B34F1BC5E8D953B5F77596",
+    "spectral_pipeline.py": "A3D4EBD79C8940FB68DFBC3A409821276254E467984C659CBE44B50168E7A3EA",
+    "model.py": "EFCDFD25B6B40E75BF3E51E7EF81AA8E1E469B064CFF070EDC12C8A94112535F",
+    "validation_common.py": "BEE2B897845E9DF3F12D762E4A4DF0254F5D666ED65A7BF389E3BE1504FED38B",
+    "validation_holdout.py": "0C5A3D180567A50248E25526A164745488D492BDC2A1B8099E281D6414EA5A7F",
+    "spectral_revision.py": "9E9C13EB431DF49C16230F411431DCC1C4602BC96F237BBA6B7F8097A3DF2230",
+    "spectral_revision_pipeline.py": "B36A570E37644B34E37F9E36A3E521D8A101E129067F213AD9FED8CCFEEE976A"
+  },
+  "training_hash": "07F228998527B5008835F1CD490A2345622BF341F099C878B9BDF75D6C6383F2"
+}

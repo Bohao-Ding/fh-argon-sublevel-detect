@@ -1,0 +1,67 @@
+{
+  "ok": true,
+  "scientific_run": true,
+  "schema": "effective-spectrum-revision-schema1",
+  "train_points": 644,
+  "outer_folds": 4,
+  "outer_mean_seed_median_nrmse": {
+    "C": 0.049248061539777246,
+    "G1": 0.09467385017407087,
+    "H1": 0.09347877614669767
+  },
+  "choices": {
+    "H1": {
+      "phase_response": false,
+      "lambda": 0.0
+    },
+    "G1": {
+      "phase_response": false,
+      "lambda": 0.0
+    },
+    "C": {
+      "phase_response": true,
+      "lambda": 0.0001
+    }
+  },
+  "concentration_status": [
+    {
+      "scope": "outer_0V",
+      "status": "unstable_concentration",
+      "mode_median_eV": 12.3,
+      "mode_range_eV": 1.4100000000000001
+    },
+    {
+      "scope": "outer_4V",
+      "status": "unstable_concentration",
+      "mode_median_eV": 10.32,
+      "mode_range_eV": 0.5899999999999999
+    },
+    {
+      "scope": "outer_6V",
+      "status": "unstable_concentration",
+      "mode_median_eV": 11.8,
+      "mode_range_eV": 1.620000000000001
+    },
+    {
+      "scope": "outer_8V",
+      "status": "unstable_concentration",
+      "mode_median_eV": 12.48,
+      "mode_range_eV": 1.545
+    },
+    {
+      "scope": "final",
+      "status": "unstable_concentration",
+      "mode_median_eV": 10.355,
+      "mode_range_eV": 0.5999999999999996
+    }
+  ],
+  "unique_fits": 1049,
+  "status_counts": {
+    "stationary": 896,
+    "iteration_limit": 153
+  },
+  "quadrature_max_difference_uA": 8.807537994393044e-05,
+  "bootstrap_count": 30,
+  "synthetic_datasets": 20,
+  "local_discrete_stage": "not_run_in_concentration_protocol"
+}

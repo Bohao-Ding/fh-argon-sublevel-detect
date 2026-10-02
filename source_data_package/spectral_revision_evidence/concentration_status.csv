@@ -1,0 +1,6 @@
+scope,status,mode_median_eV,mode_range_eV
+outer_0V,unstable_concentration,12.3,1.4100000000000001
+outer_4V,unstable_concentration,10.32,0.5899999999999999
+outer_6V,unstable_concentration,11.8,1.620000000000001
+outer_8V,unstable_concentration,12.48,1.545
+final,unstable_concentration,10.355,0.5999999999999996

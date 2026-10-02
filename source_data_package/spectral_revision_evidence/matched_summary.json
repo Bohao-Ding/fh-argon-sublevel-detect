@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "free_fits": 60,
+  "fixed_fits": 60,
+  "datasets": 20,
+  "noiseless_controls": 16,
+  "stress_used": false,
+  "quadrature_max_difference_uA": 4.056007102892778e-05
+}

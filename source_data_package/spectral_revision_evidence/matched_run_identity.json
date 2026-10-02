@@ -1,0 +1,76 @@
+{
+  "main_identity_sha256": "A00CBAF791A0D9B2D654BBBD3B3CDD5B6E91989059EC8200AA35E1FE1A5B1118",
+  "script_sha256": "A6B3F747A7D8AF3EB315AAC904B48F8E268613D3342397BA97C50FE5B27F724E",
+  "config": {
+    "schema": "effective-spectrum-revision-schema1",
+    "mode": "fullscan",
+    "workers": 4,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "inner_seed": 0,
+    "lambdas": [
+      0.0,
+      1e-08,
+      1e-06,
+      0.0001
+    ],
+    "phase_responses": [
+      false,
+      true
+    ],
+    "knot_step": 0.1,
+    "domain": [
+      9.0,
+      16.0
+    ],
+    "grid_step": 0.005,
+    "lr": 0.002,
+    "clip": 5.0,
+    "common_regularization": 0.0001,
+    "adam_epochs": 1500,
+    "min_epochs": 300,
+    "patience": 150,
+    "relative_delta": 2e-05,
+    "lbfgs_iterations": 400,
+    "joint_iterations": 600,
+    "gradient_tolerance": 1e-05,
+    "simplex_tolerance": 0.0001,
+    "bootstrap_count": 30,
+    "noise_replicates": 5,
+    "block_length": 9,
+    "peak_to_uniform_threshold": 1.5,
+    "mode_range_threshold_eV": 0.5
+  },
+  "real_choices_and_units": {
+    "final_units": [
+      "1F9593ED968070D2DC8C3400ACE038A40CA44713C3565C8E89097B6F60764021",
+      "2580F7E0A319B658D645A3CE94806F2134B062EA21C4570868E9684EB692B44C",
+      "2AC421CA54586358E7D4E832FB674529166D4E62559CDB2EC9FF2340FDE32548",
+      "439A6F87DC0B3315AED6F6C1315FB5E786B316A2CAF86B59F36846CC4AB2664C",
+      "524CB4D11A54D55A99B3EA46C2CC991EBC4C6F84B653FFDE8C7AC72AAC3DE861",
+      "65C9AD2AC0C7FB881560B885717F5A1C1300EE9C52531B60D2AA3BED1C1E73C1",
+      "8A9A0A97C38DDD2B8AF7E68ED580EA9D8C402F88CF782F134BB285F880707B58",
+      "8B7858971434C47973CA064C646276C86568074D3AED6DEB522FBE36EF6110AE",
+      "C52209D6FD655A9BE8AF8429BF356EDE869CA1A2854504BD31E6201CFCFF5F0B"
+    ],
+    "choices": {
+      "H1": {
+        "lambda": 0.0,
+        "phase_response": false
+      },
+      "G1": {
+        "lambda": 0.0,
+        "phase_response": false
+      },
+      "C": {
+        "lambda": 0.0001,
+        "phase_response": true
+      }
+    }
+  },
+  "role": "matched_four_curve_synthetic_recovery",
+  "stress_used": false
+}

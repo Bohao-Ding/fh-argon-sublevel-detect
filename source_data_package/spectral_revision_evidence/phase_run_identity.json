@@ -1,0 +1,6 @@
+{
+  "main_identity_sha256": "A00CBAF791A0D9B2D654BBBD3B3CDD5B6E91989059EC8200AA35E1FE1A5B1118",
+  "script_sha256": "992F512B8265DAD37B8533E11EB87CA409E413BF8BD63DC8AFBA0BA5F05FF4B9",
+  "role": "matched_phase_holdout_diagnostic",
+  "stress_used": false
+}

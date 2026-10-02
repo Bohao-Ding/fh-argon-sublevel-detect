@@ -1,0 +1,7 @@
+{
+  "ok": true,
+  "role": "fixed-candidate diagnostic, not nested reselection",
+  "units": 90,
+  "stress_used": false,
+  "quadrature_max_difference_uA": 4.060914417824968e-05
+}

@@ -1,0 +1,12 @@
+{
+  "record_role": "publication and parameter replay environment",
+  "python": "3.13.7",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "torch": "2.8.0+cu128",
+  "numpy": "2.3.3",
+  "scipy": "1.16.2",
+  "pandas": "2.3.2",
+  "model_dtype": "float64",
+  "science_device": "cpu",
+  "numerical_threads_per_worker": 1
+}
