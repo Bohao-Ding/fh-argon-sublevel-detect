@@ -18,9 +18,17 @@ buffer and specification field. It never depends on a prediction query's extent.
 
 H1 is a delta response energy. G1 is a Gaussian normalized on the energy domain.
 C is a nonnegative cubic B-spline density with default 0.1 eV knots on 9–16 eV.
-Quadrature uses 0.01 eV; every fitted measure is compared with 0.005 eV predictions
+Quadrature uses 0.005 eV; every fitted measure is compared with 0.0025 eV predictions
 at a maximum absolute tolerance of 1e-4 microampere before the stress curve is scored.
 Integration resolution is not experimental or representation resolution.
+
+The first corrected 0.01 eV run retained 1049 units but failed this gate in 108
+(94 G1 and 14 C), with maximum difference 3.29e-4 microampere. It stopped before
+scoring 10 V and remains in `output/spectral_revision_grid_0.01_failed`, including
+its source snapshot and failure receipt. Halving the grid in frozen-parameter
+diagnostics passed all 108 failed units (maximum 8.18e-5 microampere); this is only
+a refinement diagnostic. The accepted matrix is independently refitted from new
+initializations at 0.005 eV, then checked on 0.0025 eV.
 
 The original emission, collection and periodic response equations are retained,
 with a fixed voltage scale and an optional common condition shift:
@@ -50,6 +58,8 @@ The best training objective state is saved. Receipts record optimizer histories,
 SLSQP outcomes, the shared raw-coordinate gradient and a direct simplex KKT residual.
 "stationary" requires shared gradient <= 1e-5 and simplex residual <= 1e-4;
 other units are "iteration_limit". Stationarity is local, not a global optimum proof.
+The latter field means the stationarity gate failed within the protocol; solver
+termination messages distinguish an actual iteration cap from an earlier stop.
 
 Four outer whole-Vr holdouts each use three training curves. Inner whole-curve
 holdouts select phase response and, for C, curvature separately for each family.
@@ -60,6 +70,12 @@ shifted initial energy, Gaussian width and response-kernel width for H1/G1.
 All held-out predictions use gain 1 and bias 0. Computational starts are not
 experimental replicates. Scores are median across starts per condition, then
 mean across conditions; individual values and ranges are retained.
+
+A matched diagnostic also fits phase off/on for every family, condition and start,
+at the outer-training-selected C penalty. It reports separate held-out scores and
+does not alter the nested choices. The final four-curve phase pairs are training
+diagnostics only. This separates response-phase effects from representation effects;
+it does not estimate an instrument voltage gain or use NIST as a calibration anchor.
 
 ## Concentration and sensitivity
 
@@ -96,6 +112,9 @@ with identical synthetic observations. Only this matched comparison isolates the
 kernel constraint; three-curve holdout recovery and four-curve fixed recovery
 also differ in their training conditions. Mode, mean and width error are reported
 separately; these are synthetic controls, not new observations or statistical power.
+Sixteen additional noiseless, generating-kernel-fixed fits (four truths by four
+curvature coefficients, start 0) diagnose regularization broadening without noise
+or free-response compensation. They are mechanism checks, not model selection.
 
 ## Commands and preservation
 
@@ -104,6 +123,7 @@ python run.py --experiment spectrum-revised --mode smoke --device cpu --output <
 python scripts/run_spectral_revision_pilot.py --output output/spectral_revision_pilot
 python run.py --experiment spectrum-revised --mode fullscan --device cpu --output output/spectral_revision
 python scripts/run_spectral_matched_recovery.py
+python scripts/run_spectral_phase_comparison.py
 python scripts/build_spectral_revision_evidence.py
 python scripts/replay_spectral_revision.py
 ```

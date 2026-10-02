@@ -30,7 +30,7 @@ def settings(mode):
             "seeds": [0] if smoke else [0, 1, 2], "inner_seed": 0,
             "lambdas": [1e-6] if smoke else [0.0, 1e-8, 1e-6, 1e-4],
             "phase_responses": [False, True], "knot_step": 0.1, "domain": [9.0, 16.0],
-            "grid_step": 0.01, "lr": 0.002, "clip": 5.0, "common_regularization": 1e-4,
+            "grid_step": 0.005, "lr": 0.002, "clip": 5.0, "common_regularization": 1e-4,
             "adam_epochs": 12 if smoke else 1500, "min_epochs": 3 if smoke else 300,
             "patience": 3 if smoke else 150, "relative_delta": 2e-5,
             "lbfgs_iterations": 8 if smoke else 400,
