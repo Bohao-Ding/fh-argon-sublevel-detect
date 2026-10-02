@@ -14,3 +14,14 @@ src/sublevel_detect/affine_readout.py text eol=lf
 scripts/audit_affine_calibration.py text eol=lf
 source_data_package/calibration_audit_v1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 source_data_package/calibration_reference_v1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# Revised inference has its own byte identities and parameter-only evidence.
+src/sublevel_detect/spectral_revision.py text eol=lf
+src/sublevel_detect/spectral_revision_pipeline.py text eol=lf
+scripts/run_spectral_revision_pilot.py text eol=lf
+scripts/run_spectral_matched_recovery.py text eol=lf
+scripts/analyze_spectral_revision.py text eol=lf
+scripts/build_spectral_revision_evidence.py text eol=lf
+scripts/replay_spectral_revision.py text eol=lf
+scripts/plot_spectral_revision.R text eol=lf
+source_data_package/spectral_revision_evidence/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
