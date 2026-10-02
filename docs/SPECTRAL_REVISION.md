@@ -147,3 +147,25 @@ Fresh science outputs stay local. The independently hashed 245-file evidence pac
 tables, real predictions and 198 parameter receipts for replay. Its 244 checked
 byte hashes include the index; the checksum file is excluded from its own list.
 Completed results and physical discussion are in [the result report](SPECTRAL_REVISION_RESULTS.zh-CN.md).
+
+## Recorded standalone validation (2026-10-03)
+
+A clean checkout of `c2f8baeb2b81632f28aa5f5e16151b01a34060b0` passed
+147 tests with one skip for an external historical manuscript plotting script
+that is outside this source repository. The CPU smoke passed its engineering
+checks (70 fits, `scientific_run=false`, maximum quadrature difference 2.81e-6
+microampere); it is not a scientific result.
+
+The clean checkout verified 437 earlier frozen file hashes and all 244 revised
+release hashes. Checkpoint-free replay loaded 189 model states from the 198
+available receipts, reconstructed 13041 real and 11592 phase-diagnostic prediction
+points, and checked them against the original observations. Maximum prediction
+difference was 8.88e-16 microampere; full/subset query difference was zero.
+Nine additional final phase-pair receipts are byte-verified references for training
+diagnostics and are not needed for the published prediction replay.
+
+This verification covers source portability and the stated numerical definitions.
+It does not turn local stationarity into a global-optimum claim, synthetic curves
+into independent measurements, or an effective template density into an atomic
+excitation probability. Formal manuscripts and the six editable figure sets remain
+local; old receipts and existing uncommitted materials are preserved.
